@@ -1,0 +1,18 @@
+*{
+    background-color: blue;
+    margin: 0px;
+    padding: 0px;
+    background-color: #F0F4F9;
+
+
+
+}
+
+main {
+    background-color: white;
+    min-height: 100vh;
+}
+
+.side-bar {
+    background-color: #2A3647;
+} 
