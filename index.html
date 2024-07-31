@@ -4,47 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Join Dummy</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Orbitron:wght@400..900&display=swap" rel="stylesheet">
     <!------------------------------------------ Bootstrap CSS -->
-
-
-
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 
-    <style>
-        body {
-            display: flex;
-            height: 100vh;
-            overflow: hidden;
-        }
-        .sidebar {
-            width: 250px;
-            background-color: #343a40;
-            color: white;
-            position: fixed;
-            top: 0;
-            bottom: 0;
-            overflow-y: auto;
-        }
-        .sidebar a {
-            color: white;
-            text-decoration: none;
-        }
-        .sidebar a:hover {
-            background-color: #495057;
-        }
-        .content {
-            margin-left: 250px;
-            flex-grow: 1;
-            background-color: #f8f9fa;
-            overflow-y: auto;
-            padding: 20px;
-        }
-        .navbar {
-            background-color: #6c757d;
-            margin-left: 250px;
-        }
-
-    </style>
+    <link href="style.css" rel="stylesheet">
 </head>
 <body>
     <div class="sidebar" id="sidebarMenu">
@@ -67,14 +33,10 @@
     </div>
     <div class="content">
         <nav class="navbar navbar-expand-lg navbar-light fixed-top">
-            <button class="navbar-toggler" type="button" id="sidebarToggle" aria-label="Toggle sidebar">
-                <span class="navbar-toggler-icon"></span>
-            </button>
+            
             <a class="navbar-brand" href="#">Kanban Project Management Tool</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
+           
+           
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
                         <a class="nav-link" href="#">?</a>
@@ -85,10 +47,137 @@
                 </ul>
             </div>
         </nav>
-        <div class="container-fluid mt-5 pt-5">
-            <div class="row">
-                <div class="m-6 p-5">
-                    <h1>add new contact section</h1>
+        <div class="container-fluid mt-0 pt-0 ">
+            <div class="row mt-2">
+                <div class="mt-5 p-5 contact-section overflow-auto">
+                    
+                    <button class="btn btn-add-new-contact">
+                        <span>Add new contact</span>
+                        <span class="p-2 "><img src="./assets/img/person_add.png" alt=""></span>
+                    </button>
+                    <div class="alphabet-contact-list">
+                        <span>A</span>                        
+                    </div>
+                    <div class="line-contact-list"></div>
+
+                   
+
+                    <div class="contact-details-section row active">
+                        <div class="contact-details-profile mt-3 mb-3">AM</div>
+                        <div class="contact-details flex-column">
+                            <span class="contact-details-name mt-3">Anton Mayer</span>
+                            <span class="contact-details-email">antom@gmail.com</span>
+                        </div>
+                    </div>
+
+
+
+                    <div class="contact-details-section row">
+                        <div class="contact-details-profile mt-3 mb-3">AS</div>
+                        <div class="contact-details flex-column">
+                            <span class="contact-details-name mt-3">Anja Schulz</span>
+                            <span class="contact-details-email">schulz@hotmail.com</span>
+                        </div>
+                    </div>
+
+                    <div class="alphabet-contact-list">
+                        <span>B</span>                        
+                    </div>
+                    <div class="line-contact-list"></div>
+
+                    <div class="contact-details-section row">
+                        <div class="contact-details-profile mt-3 mb-3">BZ</div>
+                        <div class="contact-details flex-column">
+                            <span class="contact-details-name mt-3">Benedikt Ziegler</span>
+                            <span class="contact-details-email">benedikt@gmail.com</span>
+                        </div>
+                    </div>
+
+                    <div class="alphabet-contact-list">
+                        <span>D</span>                        
+                    </div>
+                    <div class="line-contact-list"></div>
+
+                    <div class="contact-details-section row">
+                        <div class="contact-details-profile mt-3 mb-3">DE</div>
+                        <div class="contact-details flex-column">
+                            <span class="contact-details-name mt-3">David Eisenberg</span>
+                            <span class="contact-details-email">davidberg@gmail.com</span>
+                        </div>
+                    </div>
+
+                    <div class="alphabet-contact-list">
+                        <span>E</span>                        
+                    </div>
+                    <div class="line-contact-list"></div>
+
+                    <div class="contact-details-section row">
+                        <div class="contact-details-profile mt-3 mb-3">EF</div>
+                        <div class="contact-details flex-column">
+                            <span class="contact-details-name mt-3">Eva Fischer</span>
+                            <span class="contact-details-email">eva@gmail.com</span>
+                        </div>
+                    </div>
+
+                    <div class="contact-details-section row">
+                        <div class="contact-details-profile mt-3 mb-3">EM</div>
+                        <div class="contact-details flex-column">
+                            <span class="contact-details-name mt-3">Emmanuel Mauer</span>
+                            <span class="contact-details-email">emmanuelma@gmail.com</span>
+                        </div>
+                    </div>
+
+                    <div class="alphabet-contact-list">
+                        <span>M</span>                        
+                    </div>
+                    <div class="line-contact-list"></div>
+
+                    <div class="contact-details-section row">
+                        <div class="contact-details-profile mt-3 mb-3">MA</div>
+                        <div class="contact-details flex-column">
+                            <span class="contact-details-name mt-3">Mnton Mayer</span>
+                            <span class="contact-details-email">antom@gmail.com</span>
+                        </div>
+                    </div>
+
+                    <div class="alphabet-contact-list">
+                        <span>H</span>                        
+                    </div>
+                    <div class="line-contact-list"></div>
+
+                    <div class="contact-details-section row">
+                        <div class="contact-details-profile mt-3 mb-3">HM</div>
+                        <div class="contact-details flex-column">
+                            <span class="contact-details-name mt-3">Hnton Mayer</span>
+                            <span class="contact-details-email">antom@gmail.com</span>
+                        </div>
+                    </div>
+
+                    <div class="contact-details-section row">
+                        <div class="contact-details-profile mt-3 mb-3">AM</div>
+                        <div class="contact-details flex-column">
+                            <span class="contact-details-name mt-3">Anton Mayer</span>
+                            <span class="contact-details-email">antom@gmail.com</span>
+                        </div>
+                    </div>
+
+                    <div class="contact-details-section row">
+                        <div class="contact-details-profile mt-3 mb-3">AM</div>
+                        <div class="contact-details flex-column">
+                            <span class="contact-details-name mt-3">Anton Mayer</span>
+                            <span class="contact-details-email">antom@gmail.com</span>
+                        </div>
+                    </div>
+                    <div class="contact-details-section row">
+                        <div class="contact-details-profile mt-3 mb-3">AM</div>
+                        <div class="contact-details flex-column">
+                            <span class="contact-details-name mt-3">Anton Mayer</span>
+                            <span class="contact-details-email">antom@gmail.com</span>
+                        </div>
+                    </div>
+
+
+                 
                    
                 </div>
                 <div class="m-6 p-5">
