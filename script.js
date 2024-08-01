@@ -1,6 +1,22 @@
+
+let profileColors = [
+    '#8A2E70',
+    '#667ECC',
+    '#0F2E24',
+    '#FF33A6', 
+    '#9DCD6A',
+    '#24246B',
+    '#663CB4',
+    '#D0A971', 
+    '#D071A9',
+    '#3E6020'
+];
+
+
 const BASE_URL =
   "https://joincontacts-e7692-default-rtdb.europe-west1.firebasedatabase.app/";
 let users = [];
+
 
 function init() {
   loadContacts("/contacts").then(displayContacts);
@@ -84,15 +100,22 @@ async function displayContacts() {
   for (let i = 0; i < users.length; i++) {
     const user = users[i];
     contactDisplay.innerHTML += `
-      <div class="contact-details-section row active">
-        <div class="contact-details-profile mt-3 mb-3">${getInitials(
-          user.name
-        )}</div>
-        <div class="contact-details flex-column">
-            <span class="contact-details-name mt-3">${user.name}</span>
-            <span class="contact-details-email">${user.email}</span>
-        </div>
-      </div>`;
+
+
+    <div class="alphabet-contact-list ">
+    <span>A</span>                        
+</div>
+<div class="line-contact-list"></div>
+
+
+
+<div class="contact-details-section row ">
+    <div class="contact-details-profile mt-3 mb-3" style="background-color:${assignRandomColors()}">${getInitials(user.name)}</div>
+    <div class="contact-details flex-column">
+        <span class="contact-details-name mt-3">${user.name}</span>
+        <span class="contact-details-email">${user.email}</span>
+    </div>
+</div> `;
   }
 }
 
@@ -100,6 +123,7 @@ function getInitials(fullName) {
   let nameParts = fullName.split(" ");
   let firstLetters = nameParts.map((part) => part.charAt(0));
   let initials = firstLetters.join("");
+  assignRandomColors();
   return initials;
 }
 
@@ -114,3 +138,9 @@ function getInitials(fullName) {
 //     <span>${user.name}</span>
 //     <span>${user.email}</span>
 // </div>
+
+
+
+function assignRandomColors() {
+    return profileColors[Math.floor(Math.random() * profileColors.length-1)]
+}

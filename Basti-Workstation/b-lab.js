@@ -2,6 +2,7 @@ const BASE_URL =
   "https://joincontacts-e7692-default-rtdb.europe-west1.firebasedatabase.app/";
 let users = [];
 
+
 function init() {
   loadContacts("/contacts").then(displayContacts);
 }
