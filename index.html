@@ -14,9 +14,9 @@
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 
     <link href="style.css" rel="stylesheet">
+    <script src="script.js"></script>
 </head>
-
-<body>
+<body onload="init()">
     <div class="sidebar" id="sidebarMenu">
         <h2 class="text-center"><img class="capa-2" src="./assets/img/Capa 2.png" alt=""></h2>
         <ul class="nav flex-column">
@@ -58,14 +58,19 @@
         </nav>
         <div class="container-fluid mt-0 pt-0 ">
             <div class="row mt-2">
-                <div class="mt-5 p-5 contact-section overflow-auto">
+                <div class="mt-5 p-5 contact-list-main-section ">
 
-                    <button class="btn btn-add-new-contact">
-                        <span>Add new contact</span>
-                        <span class="p-2 "><img src="./assets/img/person_add.png" alt=""></span>
-                    </button>
-                    <div class="alphabet-contact-list">
-                        <span>A</span>
+                    <div class="btn-add-new-contact-section">
+                        <button class="btn btn-add-new-contact">
+                            <span>Add new contact</span>
+                            <span class="p-2 "><img src="./assets/img/person_add.png" alt=""></span>
+                        </button>                      
+                    </div>
+
+                    <div id="contact-content" class="contact-list-persons-container">
+
+                    <!-- <div class="alphabet-contact-list ">
+                        <span>A</span>                        
                     </div>
                     <div class="line-contact-list"></div>
 
@@ -185,9 +190,24 @@
                         </div>
                     </div>
 
+                    <div class="contact-details-section row">
+                        <div class="contact-details-profile mt-3 mb-3">AM</div>
+                        <div class="contact-details flex-column">
+                            <span class="contact-details-name mt-3">Anton Mayer</span>
+                            <span class="contact-details-email">antom@gmail.com</span>
+                        </div>
+                    </div>
+                    <div class="contact-details-section row">
+                        <div class="contact-details-profile mt-3 mb-3">AM</div>
+                        <div class="contact-details flex-column">
+                            <span class="contact-details-name mt-3">Anton Mayer</span>
+                            <span class="contact-details-email">antom@gmail.com</span>
+                        </div>
+                    </div>
 
 
-
+                </div> -->
+                   
                 </div>
                 <div class="m-6 p-5">
                     <h1>Contacts</h1>
@@ -196,6 +216,7 @@
             </div>
         </div>
     </div>
+    
 </body>
 
 </html>

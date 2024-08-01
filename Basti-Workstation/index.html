@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Slide-In Popup</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <button id="openPopup">Add Contact</button>
+
+    <div id="overlay" class="hidden"></div>
+
+    <div id="popup" class="hidden">
+      <div class="popup-content">
+        <div class="left-pane">
+          <h1>Add contact</h1>
+          <p>Tasks are better with a team!</p>
+        </div>
+        <div class="right-pane">
+          <span id="closePopup">&times;</span>
+          <form>
+            <input type="text" placeholder="Name" />
+            <input type="email" placeholder="Email" />
+            <input type="tel" placeholder="Phone" />
+            <button type="button" id="cancel">Cancel</button>
+            <button type="submit">Create contact</button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>

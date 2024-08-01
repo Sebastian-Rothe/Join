@@ -43,22 +43,25 @@ body {
     background-color: white;
     margin-left: 250px;
 }
-
-.navbar-brand {
-font-family: Inter;
-font-size: px;
-font-weight: 400;
-line-height: 24px;
-text-align: left;
-}
-
-.contact-section {
-
+.contact-list-main-section{
+    
     height: 100vh;
 
 }
 
-.btn-add-new-contact {
+.btn-add-new-contact-section{
+    position: fixed;
+    align-content: center;     
+    width:400px;
+    height:100px;
+}
+.contact-list-persons-container{
+    margin-top: 100px;    
+    width:400px;
+    height:  100vh;
+    overflow-y: auto;
+}
+.btn-add-new-contact{    
     background-color: #2A3647;
     color: white;
     border-radius: 8px;
@@ -68,10 +71,9 @@ text-align: left;
     height: 56px;
 
 }
-
-.btn-add-new-contact:hover {
+.btn-add-new-contact:hover{
     background-color: #29ABE2;
-    box-shadow: 0 3px 3px -3px rgba(0, 0, 0, 0.20), 0 10px 20px -5px rgba(0, 0, 0, 0.30);
+    box-shadow: 0 3px 3px -3px rgba(0,0,0,0.20), 0 10px 20px -5px rgba(0,0,0,0.30);
     color: white;
     cursor: pointer;
 }
@@ -108,8 +110,7 @@ text-align: left;
 }
 
 .contact-details-section:hover {
-    cursor: pointer;
-
+    cursor: pointer;    
 }
 
 .contact-details-section.active {
@@ -117,13 +118,11 @@ text-align: left;
     border-radius: 8px;
     color: white;
 }
-
-
-.contact-details-profile {
+.contact-details-profile{
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: #FF7A00;
+    
     border-radius: 100px;
     width: 42px;
     height: 42px;
@@ -133,13 +132,14 @@ text-align: left;
 
 .contact-details-name {
     font-size: 20px;
-    font-weight: 400px;
-
+    font-weight: 400px;    
 }
 
 .contact-details-email {
     color: #007CEE;
 }
+
+
 
 .capa-2 {
     width: 100px;
@@ -177,20 +177,3 @@ h3 {
     color: #29ABE2;
 
 }
-
-
-/* 
-.privacy {
-    cursor: pointer;
-    margin-top: 243px;
-    padding-left: 52px;
-    padding-right: 59px;
-    margin-bottom: 8px;
-}
-
-.legal {
-    cursor: pointer;
-    margin-bottom: 103px;
-    padding-left: 52px;
-    padding-right: 59px;
-} */
