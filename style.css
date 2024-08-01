@@ -31,12 +31,25 @@ body {
     background-color: #6c757d;
     margin-left: 250px;
 }
-.contact-section{
+.contact-list-main-section{
     
     height: 100vh;
     
 }
-.btn-add-new-contact{
+
+.btn-add-new-contact-section{
+    position: fixed;
+    align-content: center;     
+    width:400px;
+    height:100px;
+}
+.contact-list-persons-container{
+    margin-top: 100px;    
+    width:400px;
+    height:  100vh;
+    overflow-y: auto;
+}
+.btn-add-new-contact{    
     background-color: #2A3647;
     color: white;
     border-radius: 8px;
@@ -47,10 +60,10 @@ body {
      
 }
 .btn-add-new-contact:hover{
-      background-color: #29ABE2;
-      box-shadow: 0 3px 3px -3px rgba(0,0,0,0.20), 0 10px 20px -5px rgba(0,0,0,0.30);
-      color: white;
-      cursor: pointer;
+    background-color: #29ABE2;
+    box-shadow: 0 3px 3px -3px rgba(0,0,0,0.20), 0 10px 20px -5px rgba(0,0,0,0.30);
+    color: white;
+    cursor: pointer;
 }
 .alphabet-contact-list{
     display: flex;     
@@ -79,16 +92,13 @@ body {
     transition: background-color 0.3s; /* Optional: for a smooth transition */
 }
 .contact-details-section:hover {
-    cursor: pointer;
-    
+    cursor: pointer;    
 }
 .contact-details-section.active {
     background-color: #2A3647;
     border-radius: 8px;
     color: white;
 }
-
-
 .contact-details-profile{
     display: flex;
     align-items: center;
@@ -102,10 +112,10 @@ body {
 }
 .contact-details-name{
     font-size: 20px;
-    font-weight: 400px;
-    
+    font-weight: 400px;    
 }
 .contact-details-email{
     color:#007CEE;
 }
+
 
