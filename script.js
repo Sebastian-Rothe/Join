@@ -12,14 +12,27 @@ let profileColors = [
     '#3E6020'
 ];
 
-
 const BASE_URL =
   "https://joincontacts-e7692-default-rtdb.europe-west1.firebasedatabase.app/";
 let users = [];
 
-
 function init() {
   loadContacts("/contacts").then(displayContacts);
+}
+
+// function to include other html files 
+async function includeHTML() {
+  let includeElements = document.querySelectorAll('[w3-include-html]');
+  for (let i = 0; i < includeElements.length; i++) {
+      const element = includeElements[i];
+      file = element.getAttribute("w3-include-html"); // "includes/header.html"
+      let resp = await fetch(file);
+      if (resp.ok) {
+          element.innerHTML = await resp.text();
+      } else {
+          element.innerHTML = 'Page not found';
+      }
+  }
 }
 
 async function loadContacts(path = "/contacts") {
@@ -100,14 +113,10 @@ async function displayContacts() {
   for (let i = 0; i < users.length; i++) {
     const user = users[i];
     contactDisplay.innerHTML += `
-
-
     <div class="alphabet-contact-list ">
     <span>A</span>                        
 </div>
 <div class="line-contact-list"></div>
-
-
 
 <div class="contact-details-section row ">
     <div class="contact-details-profile mt-3 mb-3" style="background-color:${assignRandomColors()}">${getInitials(user.name)}</div>
@@ -144,3 +153,4 @@ function getInitials(fullName) {
 function assignRandomColors() {
     return profileColors[Math.floor(Math.random() * profileColors.length-1)]
 }
+
