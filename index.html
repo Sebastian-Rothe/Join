@@ -1,82 +1,66 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Join Dummy</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Orbitron:wght@400..900&display=swap" rel="stylesheet">
     <!------------------------------------------ Bootstrap CSS -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 
     <link href="style.css" rel="stylesheet">
-    <link rel="stylesheet" href="./Basti-Workstation/style-basti.css">
-    <script src="script.js"></script>
 </head>
-<body onload="init(), includeHTML()">
-    <div w3-include-html="./Basti-Workstation/index-basti.html"></div>
+<body>
     <div class="sidebar" id="sidebarMenu">
-        <h2 class="text-center"><img class="capa-2" src="./assets/img/Capa 2.png" alt=""></h2>
+        <h2 class="text-center"><img src="" alt="">img logo</h2>
         <ul class="nav flex-column">
             <li class="nav-item">
-                <a class="nav-link" href="#"><img src="./assets/img/Summary.png" alt=""></a>
+                <a class="nav-link" href="#">Summary</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#"><img src="./assets/img/Add Task.png" alt=""></a>
+                <a class="nav-link" href="#">Add Task</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#"><img src="./assets/img/Board.png" alt=""></a>
+                <a class="nav-link" href="#">Board</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#"><img src="./assets/img/Contacts.png" alt=""></a>
+                <a class="nav-link" href="#">Contacts</a>
             </li>
+           
         </ul>
-        <div class="nav-footer">
-            <a href="#">Privacy Policy</a>
-            <br>
-            <a href="#">Legal Notice</a>
-        </div>
     </div>
     <div class="content">
         <nav class="navbar navbar-expand-lg navbar-light fixed-top">
-
-            <div>
-                <span class="nav-bar-text">Kanban Project Management Tool</span>
-            </div>
             
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="#"><img src="./assets/img/help.png" alt=""></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#"><img src="./assets/img/Group 5.png " alt=""></a>
-                </li>
-            </ul>
-
+            <a class="navbar-brand" href="#">Kanban Project Management Tool</a>
+           
+           
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">?</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">circle</a>
+                    </li>                   
+                </ul>
+            </div>
         </nav>
         <div class="container-fluid mt-0 pt-0 ">
             <div class="row mt-2">
-                <div class="mt-5 p-5 contact-list-main-section ">
-
-                    <div class="btn-add-new-contact-section">
-                        <button class="btn btn-add-new-contact" onclick="openNewContact()">
-                            <span>Add new contact</span>
-                            <span class="p-2 "><img src="./assets/img/person_add.png" alt=""></span>
-                        </button>                      
-                    </div>
-
-                    <div id="contact-content" class="contact-list-persons-container">
-
-                    <!-- <div class="alphabet-contact-list ">
+                <div class="mt-5 p-5 contact-section overflow-auto">
+                    
+                    <button class="btn btn-add-new-contact">
+                        <span>Add new contact</span>
+                        <span class="p-2 "><img src="./assets/img/person_add.png" alt=""></span>
+                    </button>
+                    <div class="alphabet-contact-list">
                         <span>A</span>                        
                     </div>
                     <div class="line-contact-list"></div>
 
-
+                   
 
                     <div class="contact-details-section row active">
                         <div class="contact-details-profile mt-3 mb-3">AM</div>
@@ -97,7 +81,7 @@
                     </div>
 
                     <div class="alphabet-contact-list">
-                        <span>B</span>
+                        <span>B</span>                        
                     </div>
                     <div class="line-contact-list"></div>
 
@@ -110,7 +94,7 @@
                     </div>
 
                     <div class="alphabet-contact-list">
-                        <span>D</span>
+                        <span>D</span>                        
                     </div>
                     <div class="line-contact-list"></div>
 
@@ -123,7 +107,7 @@
                     </div>
 
                     <div class="alphabet-contact-list">
-                        <span>E</span>
+                        <span>E</span>                        
                     </div>
                     <div class="line-contact-list"></div>
 
@@ -144,7 +128,7 @@
                     </div>
 
                     <div class="alphabet-contact-list">
-                        <span>M</span>
+                        <span>M</span>                        
                     </div>
                     <div class="line-contact-list"></div>
 
@@ -157,7 +141,7 @@
                     </div>
 
                     <div class="alphabet-contact-list">
-                        <span>H</span>
+                        <span>H</span>                        
                     </div>
                     <div class="line-contact-list"></div>
 
@@ -192,33 +176,33 @@
                         </div>
                     </div>
 
-                    <div class="contact-details-section row">
-                        <div class="contact-details-profile mt-3 mb-3">AM</div>
-                        <div class="contact-details flex-column">
-                            <span class="contact-details-name mt-3">Anton Mayer</span>
-                            <span class="contact-details-email">antom@gmail.com</span>
-                        </div>
-                    </div>
-                    <div class="contact-details-section row">
-                        <div class="contact-details-profile mt-3 mb-3">AM</div>
-                        <div class="contact-details flex-column">
-                            <span class="contact-details-name mt-3">Anton Mayer</span>
-                            <span class="contact-details-email">antom@gmail.com</span>
-                        </div>
-                    </div>
 
-
-                </div> -->
+                 
                    
                 </div>
                 <div class="m-6 p-5">
                     <h1>Contacts</h1>
-
+                    <h2>Better with a team</h2>
+                    <div class="contact-card">
+                        <div class="avatar">AM</div>
+                        <div class="contact-details">
+                            <h3>Anton Mayer</h3>
+                            <div class="actions">
+                                <button>Edit</button>
+                                <button>Delete</button>
+                            </div>
+                            <div class="contact-info">
+                                <p><strong>Email</strong></p>
+                                <p><a href="mailto:antom@gmail.com">antom@gmail.com</a></p>
+                                <p><strong>Phone</strong></p>
+                                <p>+49 1111 111 11 1</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div>
+                </div>
+            </div>         
         </div>
     </div>
-    <script src="./Basti-Workstation/script-basti.js"></script>
 </body>
-
 </html>
