@@ -1,7 +1,0 @@
-global variables = UPPERCASE
-variables = camelCase
-ID's = "your-name" all lowercase
-classes = "your-name" all lowercase
-Attribute = "lowercase" <input type="text" placeholder="Enter your name">
-functions = camelCase
-"''" do as you like
