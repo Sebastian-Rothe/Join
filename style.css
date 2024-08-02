@@ -177,3 +177,85 @@ h3 {
     color: #29ABE2;
 
 }
+
+
+
+
+.container {
+    margin: 50px;
+    max-width: 600px;
+    margin: 50px auto;
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    font-size: 2em;
+    margin: 0;
+}
+
+h2 {
+    color: #666;
+    font-weight: normal;
+    margin: 10px 0 20px 0;
+}
+
+.contact-card {
+    margin: 20px;
+    display: flex;
+    align-items: center;
+}
+
+.avatar {
+    background-color: orange;
+    color: white;
+    font-size: 1.5em;
+    font-weight: bold;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 20px;
+}
+
+.contact-details {
+    flex: 1;
+}
+
+.contact-details h3 {
+    margin: 0;
+    font-size: 1.5em;
+}
+
+.actions {
+    margin: 10px 0;
+}
+
+.actions button {
+    background: none;
+    border: none;
+    color: blue;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+.actions button:hover {
+    text-decoration: underline;
+}
+
+.contact-info p {
+    margin: 5px 0;
+}
+
+.contact-info a {
+    color: blue;
+    text-decoration: none;
+}
+
+.contact-info a:hover {
+    text-decoration: underline;
+}
