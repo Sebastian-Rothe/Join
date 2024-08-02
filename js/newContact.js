@@ -1,11 +1,17 @@
 function openNewContact(){
   let popup = document.getElementById('new-contact-overlay');
   popup.classList.remove('d-none');
+  setTimeout(() => {
+    popup.classList.add('aktiv');
+  }, 10); // Kurze Verzögerung
 }
 
 function closeNewContact(){
   let popup = document.getElementById('new-contact-overlay');
-  popup.classList.add('d-none');
+  popup.classList.remove('aktiv');
+  setTimeout(() => {
+    popup.classList.add('d-none');
+  }, 500);
 }
 
 function submitAndClose(){
@@ -19,8 +25,9 @@ function checkForm(){
   }else{
     return
   }
-}
-document.getElementById('openOverlayNC').addEventListener('click', function() {
-  let overlay = document.getElementById('new-contact-overlay');
-  overlay.classList.toggle('aktiv');
-});
+} 
+
+// document.getElementById('openOverlayNC').addEventListener('click', function() {
+//   let overlay = document.getElementById('new-contact-overlay');
+//   overlay.classList.toggle('aktiv');
+// });

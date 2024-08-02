@@ -28,27 +28,22 @@
                 
                 <input
                   id="name"
-                  class="input-name"
+                  class="icon-name"
                   type="text"
                   placeholder="Name"
                   required
                 />
-                <input id="email" type="email" placeholder="Email" required />
-                <input id="phone" type="tel" placeholder="Phone" required />
+                <input id="email" class="icon-email" type="email" placeholder="Email" required />
+                <input id="phone" class="icon-phone" type="tel" placeholder="Phone" required />
 
                 <div class="align-form-buttons">
                   <button type="button" id="cancelPopup" onclick="closeNewContact()">
                     Cancel
-                    <img src="../assets/icons/close.png" alt="Cancel Icon" />
+                    <img src="../assets/icons/close.svg" alt="Cancel Icon" />
                   </button>
-                  <button
-                    id="submitButton"
-                    type="submit"
-                    value="submit"
-                    onclick="checkForm()"
-                  >
+                  <button id="submitButton" type="submit" value="submit" onclick="checkForm()">
                     Create contact
-                    <img src="../assets/icons/check.png" alt="Create Icon" />
+                    <img src="../assets/icons/check.svg" alt="Create Icon" />
                   </button>
                 </div>
               </form>
