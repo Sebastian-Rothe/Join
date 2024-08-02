@@ -1,7 +1,7 @@
 body {
     display: flex;
     height: 100vh;
-    overflow: hidden;
+    overflow: hidden; /* Prevents the entire page from scrolling */
     font-family: "Inter", sans-serif;
 }
 
@@ -19,7 +19,7 @@ body {
     position: fixed;
     top: 0;
     bottom: 0;
-    overflow-y: auto;
+    overflow-y: auto; /* Keeps the sidebar scrollable */
 }
 
 .sidebar a {
@@ -28,25 +28,26 @@ body {
 }
 
 .sidebar a:hover {
-    background-color: #495057;
+    background-color: #2A3D59;
 }
 
 .content {
     margin-left: 250px;
     flex-grow: 1;
     background-color: #f8f9fa;
-    overflow-y: auto;
+    overflow-y: hidden; /* Prevents scrolling in the main content */
 
 }
 
 .navbar {
     background-color: white;
     margin-left: 250px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    height: 96px;
 }
-.contact-list-main-section{
-    
-    height: 100vh;
-
+.contact-list-main-section{    
+    max-height:100vh;
+    overflow: hidden; /* Prevents scrolling in the main contact list section */
 }
 
 .btn-add-new-contact-section{
@@ -58,8 +59,9 @@ body {
 .contact-list-persons-container{
     margin-top: 100px;    
     width:400px;
-    height:  100vh;
-    overflow-y: auto;
+    min-height: 100vh;
+    /* height: calc(100vh - 100px); Adjusts the height to fit the remaining viewport */
+    overflow-y: auto; /* Enables vertical scrolling for this container */
 }
 .btn-add-new-contact{    
     background-color: #2A3647;
@@ -147,6 +149,9 @@ body {
     margin-top: 64px;
     margin-bottom: 114px;
 }
+.nav li{
+    margin-bottom: 15px;
+}
 
 .nav-link {
     cursor: pointer;
@@ -169,13 +174,21 @@ h3 {
     flex-direction: column;
     padding-left: 52px;
     padding-right: 59px;
-    margin-top: 320px;
+    margin-top: 500px;
+    
 
 }
 
-.nav-footer :hover {
-    color: #29ABE2;
 
+.nav-footer a{
+    font-size: 16px;
+    color: #A8A8A8;
+}
+
+.nav-footer a:hover{
+    font-size: 18px;
+    color:#29ABE2;
+    background-color: #2A3647;
 }
 
 
@@ -201,6 +214,47 @@ h2 {
     font-weight: normal;
     margin: 10px 0 20px 0;
 }
+.view-contacts{
+display: flex;
+flex-direction: column;
+margin-top: 96px;
+margin-left:55px ;
+
+}
+.contacts-title-section{
+   
+   
+    justify-content: center;
+    align-items: center;
+    padding-right:30px ;
+   
+}
+.contacts-title{
+    font-size:61px;
+    font-weight:700;
+    padding-right:30px;
+   
+}
+.contacts-title-line{
+    width:3px;
+    height: 59px;
+    background-color: #29ABE2;
+    border-radius:3px;
+
+}
+.contacts-sub-title{
+    font-size:27px;
+    font-weight:400;
+    padding-left: 30px;
+}
+.name-actions-section-contact span{
+font-size:47px ;
+font-weight: 500;
+
+}
+.name-actions-section-contact {
+    margin-left: 0px;
+}
 
 .contact-card {
     margin: 20px;
@@ -209,17 +263,17 @@ h2 {
 }
 
 .avatar {
-    background-color: orange;
+    background-color:#FF7A00;
     color: white;
-    font-size: 1.5em;
+    font-size: 2.94em;
     font-weight: bold;
-    width: 50px;
-    height: 50px;
+    width: 120px;
+    height: 120px;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-right: 20px;
+    margin-right:54px;
 }
 
 .contact-details {
@@ -231,31 +285,53 @@ h2 {
     font-size: 1.5em;
 }
 
-.actions {
+.contact-actions {
     margin: 10px 0;
 }
 
-.actions button {
+.contact-actions a {
     background: none;
-    border: none;
-    color: blue;
+    border: none;    
     cursor: pointer;
     margin-right: 10px;
+    color: black;
+   text-decoration: none;
+}
+.contact-actions a:hover {
+    cursor: pointer;
+    font-size:18px ;
+    color:#29ABE2;
+}
+
+.contact-actions a img {
+    filter: brightness(0) saturate(100%) invert(0%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(100%) contrast(100%);
+}
+
+.contact-actions a:hover img {
+    filter: brightness(0) saturate(100%) invert(55%) sepia(96%) saturate(3326%) hue-rotate(169deg) brightness(96%) contrast(98%);
 }
 
 .actions button:hover {
     text-decoration: underline;
 }
-
+.info{
+    height:74px;
+    width: 207px;   
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    
+}
 .contact-info p {
     margin: 5px 0;
 }
 
 .contact-info a {
-    color: blue;
+    color: #007CEE;
     text-decoration: none;
 }
 
 .contact-info a:hover {
-    text-decoration: underline;
+   cursor:default;
+    
 }

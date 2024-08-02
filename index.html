@@ -6,15 +6,9 @@
     <title>Join Dummy</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
-      rel="stylesheet"
-    />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet"/>
     <!------------------------------------------ Bootstrap CSS -->
-    <link
-      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
-      rel="stylesheet"
-    />
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet"/>
 
     <!-- <link rel="stylesheet" href="./styles/newContact.css"> -->
     <link rel="stylesheet" href="style.css" />
@@ -28,24 +22,21 @@
       </h2>
       <ul class="nav flex-column">
         <li class="nav-item">
-          <a class="nav-link" href="#"
-            ><img src="./assets/img/Summary.png" alt=""
-          /></a>
+          <a class="nav-link" href="#">
+            <img src="./assets/img/Summary.png" alt=""/>
+          </a>
         </li>
+
         <li class="nav-item">
-          <a class="nav-link" href="#"
-            ><img src="./assets/img/Add Task.png" alt=""
-          /></a>
+          <a class="nav-link" href="#"><img src="./assets/img/Add Task.png" alt=""/></a>
         </li>
+
         <li class="nav-item">
-          <a class="nav-link" href="#"
-            ><img src="./assets/img/Board.png" alt=""
-          /></a>
+          <a class="nav-link" href="#"><img src="./assets/img/Board.png" alt=""/></a>
         </li>
+
         <li class="nav-item">
-          <a class="nav-link" href="#"
-            ><img src="./assets/img/Contacts.png" alt=""
-          /></a>
+          <a class="nav-link" href="#"><img src="./assets/img/Contacts.png" alt=""/></a>
         </li>
       </ul>
       <div class="nav-footer">
@@ -54,7 +45,7 @@
         <a href="#">Legal Notice</a>
       </div>
     </div>
-    <div class="content">
+    <div class="content" >
       <nav class="navbar navbar-expand-lg navbar-light fixed-top">
         <div>
           <span class="nav-bar-text">Kanban Project Management Tool</span>
@@ -75,179 +66,43 @@
       </nav>
       <div class="container-fluid mt-0 pt-0">
         <div class="row mt-2">
-          <div class="mt-5 p-5 contact-list-main-section">
+          <div class="mt-5 p-5 contact-list-main-section row">
             <div class="btn-add-new-contact-section">
-              <button
-                class="btn btn-add-new-contact"
-                onclick="openNewContact()"
-              >
+              <button class="btn btn-add-new-contact" onclick="openNewContact()">
                 <span>Add new contact</span>
-                <span class="p-2"
-                  ><img src="./assets/img/person_add.png" alt=""
-                /></span>
+                <span class="p-2"><img src="./assets/img/person_add.png" alt=""/></span>
               </button>
             </div>
 
-            <div id="contact-content" class="contact-list-persons-container">
-              <!-- <div class="alphabet-contact-list ">
-                        <span>A</span>                        
-                    </div>
-                    <div class="line-contact-list"></div>
-
-
-
-                    <div class="contact-details-section row active">
-                        <div class="contact-details-profile mt-3 mb-3">AM</div>
-                        <div class="contact-details flex-column">
-                            <span class="contact-details-name mt-3">Anton Mayer</span>
-                            <span class="contact-details-email">antom@gmail.com</span>
-                        </div>
-                    </div>
-
-
-
-                    <div class="contact-details-section row">
-                        <div class="contact-details-profile mt-3 mb-3">AS</div>
-                        <div class="contact-details flex-column">
-                            <span class="contact-details-name mt-3">Anja Schulz</span>
-                            <span class="contact-details-email">schulz@hotmail.com</span>
-                        </div>
-                    </div>
-
-                    <div class="alphabet-contact-list">
-                        <span>B</span>
-                    </div>
-                    <div class="line-contact-list"></div>
-
-                    <div class="contact-details-section row">
-                        <div class="contact-details-profile mt-3 mb-3">BZ</div>
-                        <div class="contact-details flex-column">
-                            <span class="contact-details-name mt-3">Benedikt Ziegler</span>
-                            <span class="contact-details-email">benedikt@gmail.com</span>
-                        </div>
-                    </div>
-
-                    <div class="alphabet-contact-list">
-                        <span>D</span>
-                    </div>
-                    <div class="line-contact-list"></div>
-
-                    <div class="contact-details-section row">
-                        <div class="contact-details-profile mt-3 mb-3">DE</div>
-                        <div class="contact-details flex-column">
-                            <span class="contact-details-name mt-3">David Eisenberg</span>
-                            <span class="contact-details-email">davidberg@gmail.com</span>
-                        </div>
-                    </div>
-
-                    <div class="alphabet-contact-list">
-                        <span>E</span>
-                    </div>
-                    <div class="line-contact-list"></div>
-
-                    <div class="contact-details-section row">
-                        <div class="contact-details-profile mt-3 mb-3">EF</div>
-                        <div class="contact-details flex-column">
-                            <span class="contact-details-name mt-3">Eva Fischer</span>
-                            <span class="contact-details-email">eva@gmail.com</span>
-                        </div>
-                    </div>
-
-                    <div class="contact-details-section row">
-                        <div class="contact-details-profile mt-3 mb-3">EM</div>
-                        <div class="contact-details flex-column">
-                            <span class="contact-details-name mt-3">Emmanuel Mauer</span>
-                            <span class="contact-details-email">emmanuelma@gmail.com</span>
-                        </div>
-                    </div>
-
-                    <div class="alphabet-contact-list">
-                        <span>M</span>
-                    </div>
-                    <div class="line-contact-list"></div>
-
-                    <div class="contact-details-section row">
-                        <div class="contact-details-profile mt-3 mb-3">MA</div>
-                        <div class="contact-details flex-column">
-                            <span class="contact-details-name mt-3">Mnton Mayer</span>
-                            <span class="contact-details-email">antom@gmail.com</span>
-                        </div>
-                    </div>
-
-                    <div class="alphabet-contact-list">
-                        <span>H</span>
-                    </div>
-                    <div class="line-contact-list"></div>
-
-                    <div class="contact-details-section row">
-                        <div class="contact-details-profile mt-3 mb-3">HM</div>
-                        <div class="contact-details flex-column">
-                            <span class="contact-details-name mt-3">Hnton Mayer</span>
-                            <span class="contact-details-email">antom@gmail.com</span>
-                        </div>
-                    </div>
-
-                    <div class="contact-details-section row">
-                        <div class="contact-details-profile mt-3 mb-3">AM</div>
-                        <div class="contact-details flex-column">
-                            <span class="contact-details-name mt-3">Anton Mayer</span>
-                            <span class="contact-details-email">antom@gmail.com</span>
-                        </div>
-                    </div>
-
-                    <div class="contact-details-section row">
-                        <div class="contact-details-profile mt-3 mb-3">AM</div>
-                        <div class="contact-details flex-column">
-                            <span class="contact-details-name mt-3">Anton Mayer</span>
-                            <span class="contact-details-email">antom@gmail.com</span>
-                        </div>
-                    </div>
-                    <div class="contact-details-section row">
-                        <div class="contact-details-profile mt-3 mb-3">AM</div>
-                        <div class="contact-details flex-column">
-                            <span class="contact-details-name mt-3">Anton Mayer</span>
-                            <span class="contact-details-email">antom@gmail.com</span>
-                        </div>
-                    </div>
-
-                    <div class="contact-details-section row">
-                        <div class="contact-details-profile mt-3 mb-3">AM</div>
-                        <div class="contact-details flex-column">
-                            <span class="contact-details-name mt-3">Anton Mayer</span>
-                            <span class="contact-details-email">antom@gmail.com</span>
-                        </div>
-                    </div>
-                    <div class="contact-details-section row">
-                        <div class="contact-details-profile mt-3 mb-3">AM</div>
-                        <div class="contact-details flex-column">
-                            <span class="contact-details-name mt-3">Anton Mayer</span>
-                            <span class="contact-details-email">antom@gmail.com</span>
-                        </div>
-                    </div>
-
-
-                </div> -->
+            <div id="contact-content" class="contact-list-persons-container" >
+             <!-- load in js -->
             </div>
-
-            <div class="m-6p-5">
-              <div class="viewContacts">
-                <h1>
-                  Contacts
-                  <h1 class="blue">|</h1>
-                </h1>
-                <h2>Better with a team</h2>
+            <div class="view-contacts">
+            <div class="contacts-title-section row">
+              
+                <span class="contacts-title">Contacts</span>
+                <span><div class="contacts-title-line"></div></span>
+                <span class="contacts-sub-title">Better with a team</span>
+               
+               
               </div>
 
               <div class="contact-card">
-                <div class="viewright">
+                <div >
+                  <div class="avatar-contact-details-section row">
                   <div class="avatar">AM</div>
-                  <div class="contact-details">
-                    <h3>Anton Mayer</h3>
-                    <div class="actions">
-                      <button>✎Edit</button>
-                      <button>🗑️Delete</button>
+
+                  <div class="name-actions-section-contact">
+                      <span>Anton Mayer</span>
+                      <div class="contact-actions">
+                        <a href="#" ><img src="./assets/img/edit.svg" alt="Edit">Edit</a>
+                        <a href="#" ><img src="./assets/img/delete.svg" alt="Delete">Delete</a>
                     </div>
                   </div>
+
+                  </div>
+
+
                   <div class="contact-info">
                     <div class="info">contact information</div>
                     <p><strong>Email</strong></p>
@@ -258,9 +113,26 @@
                 </div>
               </div>
             </div>
+
           </div>
         </div>
       </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     </div>
     <script src="./js/newContact.js"></script>
   </body>
