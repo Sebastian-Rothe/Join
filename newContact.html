@@ -25,7 +25,7 @@
                 <img src="../assets/icons/profil-icon.svg" alt="" />
               </div>
               <form class="align-form" id="contactForm">
-                <label for="name">Name:</label>
+                
                 <input
                   id="name"
                   class="input-name"
@@ -33,15 +33,11 @@
                   placeholder="Name"
                   required
                 />
-
-                <label for="email">Email:</label>
                 <input id="email" type="email" placeholder="Email" required />
-
-                <label for="phone">Phone:</label>
                 <input id="phone" type="tel" placeholder="Phone" required />
 
                 <div class="align-form-buttons">
-                  <button type="button" id="cancelPopup">
+                  <button type="button" id="cancelPopup" onclick="closeNewContact()">
                     Cancel
                     <img src="../assets/icons/close.png" alt="Cancel Icon" />
                   </button>
@@ -49,7 +45,7 @@
                     id="submitButton"
                     type="submit"
                     value="submit"
-                    onclick="submitAndClose()"
+                    onclick="checkForm()"
                   >
                     Create contact
                     <img src="../assets/icons/check.png" alt="Create Icon" />
