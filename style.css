@@ -123,13 +123,14 @@ body {
 .contact-details-profile{
     display: flex;
     align-items: center;
-    justify-content: center;
-    
+    justify-content: center;    
     border-radius: 100px;
     width: 42px;
     height: 42px;
     margin-left: 24px;
     margin-right: 24px;
+    color: white;
+    font-size: 12px;
 }
 
 .contact-details-name {

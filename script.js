@@ -110,21 +110,31 @@ async function displayContacts() {
   await loadContacts("/contacts");
   let contactDisplay = document.getElementById("contact-content");
   contactDisplay.innerHTML = "";
-  for (let i = 0; i < users.length; i++) {
-    const user = users[i];
-    contactDisplay.innerHTML += `
-    <div class="alphabet-contact-list ">
-    <span>A</span>                        
-</div>
-<div class="line-contact-list"></div>
+  let sortAlphabet = '';
 
-<div class="contact-details-section row ">
-    <div class="contact-details-profile mt-3 mb-3" style="background-color:${assignRandomColors()}">${getInitials(user.name)}</div>
-    <div class="contact-details flex-column">
-        <span class="contact-details-name mt-3">${user.name}</span>
-        <span class="contact-details-email">${user.email}</span>
-    </div>
-</div> `;
+  for (let i = 0; i < users.length; i++) {
+      const user = users[i];
+      let firstLetter = user.name.charAt(0).toUpperCase();
+
+      if (firstLetter !== sortAlphabet) {
+          sortAlphabet = firstLetter;
+          contactDisplay.innerHTML += `
+              <div class="alphabet-contact-list">
+                  <span>${sortAlphabet}</span>                        
+              </div>
+              <div class="line-contact-list"></div>`;
+      }
+
+      contactDisplay.innerHTML += `
+          <div class="contact-details-section row">
+              <div class="contact-details-profile mt-3 mb-3" style="background-color:${assignRandomColors()}">
+                  ${getInitials(user.name)}
+              </div>
+              <div class="contact-details flex-column">
+                  <span class="contact-details-name mt-3">${user.name}</span>
+                  <span class="contact-details-email">${user.email}</span>
+              </div>
+          </div>`;
   }
 }
 
