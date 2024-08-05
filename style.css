@@ -346,3 +346,17 @@ font-weight: 500;
 0% { background-color: initial; }
 100% { background-color: #2A3647; }
 }
+.m-6p-5{
+    margin-top: 30px;
+   padding: 30px;
+}
+.viewContacts{
+    Display: ruby-text;
+}
+.viewright{
+    margin-left: 50px;
+}
+.blue{
+    color: rgb(60, 108, 229);
+    margin-left: 3px;
+}
