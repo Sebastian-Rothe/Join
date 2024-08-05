@@ -65,8 +65,17 @@ async function addUser() {
   document.getElementById("email").value = "";
   await postContact("/contacts", newUser);
   await loadContacts("/contacts");
-  displayContacts();
+  displayContacts(newUser);
 }
+
+
+function addNewContactToDisplay(user) {
+  const contactDisplay = document.getElementById("contact-content");
+  const contactHTML = getContactCardHTML(user, true);
+  contactDisplay.innerHTML += contactHTML;
+  highlightNewContact();
+}
+
 
 async function postContact(path = "", data = {}) {
   await fetch(BASE_URL + path + ".json", {
@@ -106,38 +115,58 @@ async function deleteContact(id) {
 //   });
 // }
 
-async function displayContacts() {
+async function displayContacts(newUser = null) {
   await loadContacts("/contacts");
-    // Sortiere die Benutzer alphabetisch nach Namen
-    users.sort((a, b) => a.name.localeCompare(b.name));
+  users.sort((a, b) => a.name.localeCompare(b.name));
+  
   let contactDisplay = document.getElementById("contact-content");
   contactDisplay.innerHTML = "";
   let sortAlphabet = '';
 
   for (let i = 0; i < users.length; i++) {
-      const user = users[i];
-      let firstLetter = user.name.charAt(0).toUpperCase();
+    const user = users[i];
+    let firstLetter = user.name.charAt(0).toUpperCase();
 
-      if (firstLetter !== sortAlphabet) {
-          sortAlphabet = firstLetter;
-          contactDisplay.innerHTML += `
-              <div class="alphabet-contact-list">
-                  <span>${sortAlphabet}</span>                        
-              </div>
-              <div class="line-contact-list"></div>`;
-      }
-
+    if (firstLetter !== sortAlphabet) {
+      sortAlphabet = firstLetter;
       contactDisplay.innerHTML += `
-          <div class="contact-details-section row">
-              <div class="contact-details-profile mt-3 mb-3" style="background-color:${assignRandomColors()}">
-                  ${getInitials(user.name)}
-              </div>
-              <div class="contact-details flex-column">
-                  <span class="contact-details-name mt-3">${user.name}</span>
-                  <span class="contact-details-email">${user.email}</span>
-              </div>
-          </div>`;
+        <div class="alphabet-contact-list">
+          <span>${sortAlphabet}</span>                        
+        </div>
+        <div class="line-contact-list"></div>`;
+    }
+    const isNew = newUser && user.name === newUser.name && user.email === newUser.email;
+    contactDisplay.innerHTML += getContactCardHTML(user, isNew);
   }
+  highlightNewContact();
+}
+
+function getContactCardHTML(user, isNew){
+  return`
+    <div class="contact-details-section row ${isNew ? 'new-contact' : ''}">
+        <div class="contact-details-profile mt-3 mb-3" style="background-color:${assignRandomColors()}">
+            ${getInitials(user.name)}
+        </div>
+        <div class="contact-details flex-column">
+            <span class="contact-details-name mt-3">${user.name}</span>
+            <span class="contact-details-email">${user.email}</span>
+        </div>
+    </div>`;
+}
+
+function highlightNewContact() {
+  setTimeout(() => {
+    const newContactElement = document.querySelector('.contact-details-section.new-contact');
+
+    if (newContactElement) {
+      newContactElement.classList.add('highlight');
+
+      setTimeout(() => {
+        newContactElement.classList.remove('highlight');
+        newContactElement.classList.remove('new-contact');
+      }, 3000); 
+    } 
+  }, 100); 
 }
 
 function getInitials(fullName) {

@@ -334,3 +334,15 @@ font-weight: 500;
    cursor:default;
     
 }
+
+.contact-details-section.new-contact {
+    background-color:  #2A3647; 
+    color: white;
+    border-radius: 8px;
+    animation: highlightAnimation 2s ease-in-out;
+}
+
+@keyframes highlightAnimation {
+0% { background-color: initial; }
+100% { background-color: #2A3647; }
+}
