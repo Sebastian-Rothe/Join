@@ -160,7 +160,51 @@ function getInitials(fullName) {
 
 
 
-function assignRandomColors() {
-    return profileColors[Math.floor(Math.random() * profileColors.length-1)]
+// Firebase Konfiguration
+var firebaseConfig = {
+  apiKey: "DEINE_API_KEY",
+  authDomain: "DEINE_AUTH_DOMAIN",
+  databaseURL: "https://joincontacts-e7692-default-rtdb.europe-west1.firebasedatabase.app/",
+  projectId: "joincontacts-e7692",
+  storageBucket: "joincontacts-e7692.appspot.com",
+  messagingSenderId: "DEINE_MESSAGING_SENDER_ID",
+  appId: "DEINE_APP_ID"
+};
+
+// Initialisierung der Firebase App
+firebase.initializeApp(firebaseConfig);
+
+// Referenz zur Firebase Realtime Database
+var database = firebase.database();
+
+// Funktion zum Laden der Kontakte
+function loadContacts() {
+  var contactList = document.getElementById('contactList');
+
+  // Referenz zur Datenbanktabelle 'contacts'
+  var contactsRef = database.ref('contacts');
+
+  // Daten einmalig laden
+  contactsRef.once('value', function(snapshot) {
+    snapshot.forEach(function(childSnapshot) {
+      var contactData = childSnapshot.val();
+      var contactName = contactData.name;
+      var contactEmail = contactData.email;
+
+      // HTML für jeden Kontakt erstellen und anhängen
+      var contactHTML = `
+        <div class="contact-details-section row">
+          <div class="contact-details-profile mt-3 mb-3">${contactName.substring(0, 2)}</div>
+          <div class="contact-details flex-column">
+            <span class="contact-details-name mt-3">${contactName}</span>
+            <span class="contact-details-email">${contactEmail}</span>
+          </div>
+        </div>
+      `;
+      contactList.innerHTML += contactHTML;
+    });
+  });
 }
 
+// Aufruf der Funktion zum Laden der Kontakte
+loadContacts();
