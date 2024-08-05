@@ -9,7 +9,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet"/>
     <!------------------------------------------ Bootstrap CSS -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet"/>
-
     <!-- <link rel="stylesheet" href="./styles/newContact.css"> -->
     <link rel="stylesheet" href="style.css" />
     <script src="script.js"></script>
@@ -18,26 +17,47 @@
     <div w3-include-html="./newContact.html"></div>
     <div class="sidebar" id="sidebarMenu">
       <h2 class="text-center">
-        <img class="capa-2" src="./assets/img/Capa 2.png" alt="" />
+        <img class="capa-2 " src="./assets/img/Capa 2.png" alt="" />
       </h2>
       <ul class="nav flex-column">
         <li class="nav-item">
-          <a class="nav-link" href="#">
-            <img src="./assets/img/Summary.png" alt=""/>
-          </a>
+          <div class="nav-link">
+            <a href="#">        
+              <img src="./assets/icons/summary.svg" alt=""/>
+              <span>Summary</span>
+            </a>
+          <div>
         </li>
 
         <li class="nav-item">
-          <a class="nav-link" href="#"><img src="./assets/img/Add Task.png" alt=""/></a>
+          <div class="nav-link">
+            <a href="#">        
+              <img src="./assets/icons/AddTask.svg" alt=""/>
+              <span>Add Task</span>
+            </a>
+          <div>
+        </li>
+
+
+        <li class="nav-item">
+          <div class="nav-link">
+            <a href="#">        
+              <img src="./assets/icons/Board.svg" alt=""/>
+              <span>Board</span>
+            </a>
+          <div>
         </li>
 
         <li class="nav-item">
-          <a class="nav-link" href="#"><img src="./assets/img/Board.png" alt=""/></a>
+          <div class="nav-link">
+            <a href="#">        
+              <img src="./assets/icons/contacts.svg" alt=""/>
+              <span>Contacts</span>
+            </a>
+          <div>
         </li>
 
-        <li class="nav-item">
-          <a class="nav-link" href="#"><img src="./assets/img/Contacts.png" alt=""/></a>
-        </li>
+       
       </ul>
       <div class="nav-footer">
         <a href="#">Privacy Policy</a>
@@ -45,24 +65,16 @@
         <a href="#">Legal Notice</a>
       </div>
     </div>
+
     <div class="content" >
       <nav class="navbar navbar-expand-lg navbar-light fixed-top">
         <div>
           <span class="nav-bar-text">Kanban Project Management Tool</span>
         </div>
-
-        <ul class="navbar-nav ml-auto">
-          <li class="nav-item">
-            <a class="nav-link" href="#"
-              ><img src="./assets/img/help.png" alt=""
-            /></a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#"
-              ><img src="./assets/img/Group 5.png " alt=""
-            /></a>
-          </li>
-        </ul>
+        <div class="navbar-nav nav-info-box">
+          <div class="question-icon"><a href="#"><img src="./assets/img/help.png" alt=""/></a></div>
+          <div class="avatar-header"><a  href="#">SM</a></div>
+        </div>
       </nav>
       <div class="container-fluid mt-0 pt-0">
         <div class="row mt-2">
@@ -78,13 +90,10 @@
              <!-- load in js -->
             </div>
             <div class="view-contacts">
-            <div class="contacts-title-section row">
-              
+            <div class="contacts-title-section row">              
                 <span class="contacts-title">Contacts</span>
                 <span><div class="contacts-title-line"></div></span>
-                <span class="contacts-sub-title">Better with a team</span>
-               
-               
+                <span class="contacts-sub-title">Better with a team</span>               
               </div>
 
               <div class="contact-card">
@@ -95,14 +104,11 @@
                   <div class="name-actions-section-contact">
                       <span>Anton Mayer</span>
                       <div class="contact-actions">
-                        <a href="#" ><img src="./assets/img/edit.svg" alt="Edit">Edit</a>
-                        <a href="#" ><img src="./assets/img/delete.svg" alt="Delete">Delete</a>
+                        <div class="contact-actions-edite"><a href="#" ><img src="./assets/img/edit.svg" alt="Edit">Edit</a></div>
+                        <div class="contact-actions-delete"><a href="#" ><img src="./assets/img/delete.svg" alt="Delete">Delete</a></div>
                     </div>
                   </div>
-
                   </div>
-
-
                   <div class="contact-info">
                     <div class="info">contact information</div>
                     <p><strong>Email</strong></p>
@@ -112,27 +118,14 @@
                   </div>
                 </div>
               </div>
-            </div>
-
-          </div>
-        </div>
+            </div>           
+          </div>         
+        </div>      
       </div>
+    </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    <div class="sidebar-mobile-screen">
+      sidebar-mobile-screen
     </div>
     <script src="./js/newContact.js"></script>
   </body>
