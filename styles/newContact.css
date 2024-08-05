@@ -22,7 +22,7 @@ body {
   justify-content: center;
   color: white;
   padding: 20px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); */
   transform: translateX(100%); /* Startet außerhalb des Bildschirms */
   transition: transform 0.5s ease-in-out, background-color 0.5s ease-in-out;
   z-index: 1100;
@@ -180,36 +180,52 @@ button[type="submit"] {
   opacity: 1;
 } */
 
-<<<<<<< HEAD
 /* button:disabled {
   background-color: #ccc; 
   cursor: not-allowed; 
 } */
-=======
-button:disabled {
-  background-color: #ccc; /* Graue Hintergrundfarbe */
-  cursor: not-allowed; /* Zeigt den "nicht erlaubt"-Cursor */
-}
-/* Allgemeine Input-Feld-Stile */
-input {
-  padding-right: 40px; /* Platz für das Icon schaffen */
-  background-position: right center; /* Position des Icons rechts zentrieren */
-  background-repeat: no-repeat; /* Icon nicht wiederholen */
-  background-size: 20px; /* Größe des Icons */
-  border: 1px solid #ccc; /* Rahmen des Input-Feldes (optional) */
-  border-radius: 5px; /* Abgerundete Ecken (optional) */
+
+#newContactCreated{
+  position: fixed;
+  height: 80px;
+  width: 250px;
+  font-size: 16px;
+  bottom: 10%;
+  right: 40%;
+  background-color: #6d6d6d;
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  z-index: 4000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
 }
 
-/* Spezifische Icons für verschiedene Input-Felder */
-.icon-name {
-  background-image: url("../assets/icons/person.png"); /* Pfad zum Namen-Icon */
+@keyframes slideInRight {
+  from {
+transform: translateX(1000px);
+  }
+  to{
+    transform: translateX(0);
+  }
 }
 
-.icon-email {
-  background-image: url("../assets/icons/person.png"); /* Pfad zum E-Mail-Icon */
+.slideInRight{
+  animation: slideInRight 1s ease-in-out;
 }
 
-.icon-phone {
-  background-image: url("../assets/icons/person.png"); /* Pfad zum Telefon-Icon */
+@keyframes slideLeft{
+  from {
+transform: translateX(0);
+  }
+  to{
+    transform: translateX(1000px);
+  }
 }
->>>>>>> 884b35c (change)
+
+.slideLeft{
+  animation: slideLeft 1s ease-in-out;
+}
