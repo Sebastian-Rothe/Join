@@ -180,7 +180,36 @@ button[type="submit"] {
   opacity: 1;
 } */
 
+<<<<<<< HEAD
 /* button:disabled {
   background-color: #ccc; 
   cursor: not-allowed; 
 } */
+=======
+button:disabled {
+  background-color: #ccc; /* Graue Hintergrundfarbe */
+  cursor: not-allowed; /* Zeigt den "nicht erlaubt"-Cursor */
+}
+/* Allgemeine Input-Feld-Stile */
+input {
+  padding-right: 40px; /* Platz für das Icon schaffen */
+  background-position: right center; /* Position des Icons rechts zentrieren */
+  background-repeat: no-repeat; /* Icon nicht wiederholen */
+  background-size: 20px; /* Größe des Icons */
+  border: 1px solid #ccc; /* Rahmen des Input-Feldes (optional) */
+  border-radius: 5px; /* Abgerundete Ecken (optional) */
+}
+
+/* Spezifische Icons für verschiedene Input-Felder */
+.icon-name {
+  background-image: url("../assets/icons/person.png"); /* Pfad zum Namen-Icon */
+}
+
+.icon-email {
+  background-image: url("../assets/icons/person.png"); /* Pfad zum E-Mail-Icon */
+}
+
+.icon-phone {
+  background-image: url("../assets/icons/person.png"); /* Pfad zum Telefon-Icon */
+}
+>>>>>>> 884b35c (change)
