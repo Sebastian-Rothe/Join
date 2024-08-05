@@ -22,7 +22,7 @@ body {
   justify-content: center;
   color: white;
   padding: 20px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); */
   transform: translateX(100%); /* Startet außerhalb des Bildschirms */
   transition: transform 0.5s ease-in-out, background-color 0.5s ease-in-out;
   z-index: 1100;
@@ -184,3 +184,49 @@ button[type="submit"] {
   background-color: #ccc; 
   cursor: not-allowed; 
 } */
+
+#newContactCreated{
+  position: fixed;
+  height: 80px;
+  width: 250px;
+  font-size: 16px;
+  bottom: 10%;
+  right: 40%;
+  background-color: #6d6d6d;
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  z-index: 4000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+
+@keyframes slideInRight {
+  from {
+transform: translateX(1000px);
+  }
+  to{
+    transform: translateX(0);
+  }
+}
+
+.slideInRight{
+  animation: slideInRight 1s ease-in-out;
+}
+
+@keyframes slideLeft{
+  from {
+transform: translateX(0);
+  }
+  to{
+    transform: translateX(1000px);
+  }
+}
+
+.slideLeft{
+  animation: slideLeft 1s ease-in-out;
+}
+
