@@ -59,7 +59,7 @@ body {
 .contact-list-persons-container{
     margin-top: 100px;    
     width:400px;
-    height: 100vh;
+    height: 89%;
     /* height: calc(100vh - 100px); Adjusts the height to fit the remaining viewport */
     overflow-y: auto; /* Enables vertical scrolling for this container */
 }

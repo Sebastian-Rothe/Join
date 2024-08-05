@@ -1,15 +1,15 @@
 
 let profileColors = [
-    '#8A2E70',
-    '#667ECC',
-    '#0F2E24',
-    '#FF33A6', 
-    '#9DCD6A',
-    '#24246B',
-    '#663CB4',
-    '#D0A971', 
-    '#D071A9',
-    '#3E6020'
+  '#FF5733', // Rot
+  '#33FF57', // Grün
+  '#3357FF', // Blau
+  '#FF33A6', // Pink
+  '#FFA500', // Orange
+  '#FFD700', // Gold
+  '#8A2BE2', // Blauviolett
+  '#7FFFD4', // Aquamarin
+  '#FF4500', // Orangerot
+  '#3E6020'  // Dunkelolivgrün
 ];
 
 const BASE_URL =
@@ -108,6 +108,8 @@ async function deleteContact(id) {
 
 async function displayContacts() {
   await loadContacts("/contacts");
+    // Sortiere die Benutzer alphabetisch nach Namen
+    users.sort((a, b) => a.name.localeCompare(b.name));
   let contactDisplay = document.getElementById("contact-content");
   contactDisplay.innerHTML = "";
   let sortAlphabet = '';
