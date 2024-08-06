@@ -329,6 +329,9 @@ input {
   .closePopup {
     display: none;
   }
+  .close{
+    opacity: 1;
+  }
   .closePopupMobile {
     display: block;
   }
