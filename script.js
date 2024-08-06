@@ -87,18 +87,17 @@ async function postContact(path = "", data = {}) {
 }
 
 async function deleteContact(id) {
+  const detailDisplay = document.getElementById("contact-details");
   let response = await fetch(BASE_URL + `/contacts/${id}.json`, {
     method: "DELETE",
   });
   if (!response.ok) {
-    // console.error(`Fehler beim Löschen des Kontakts: ${response.statusText}`);
     return null;
   }
   let responseToJson = await response.json();
-  // console.log(`Kontakt mit ID ${id} gelöscht:`, responseToJson);
-
   await loadContacts("/contacts");
   displayContacts();
+  detailDisplay.style.display = 'none';
   return responseToJson;
 }
 
