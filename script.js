@@ -160,7 +160,7 @@ function showContactDetails(user) {
           <div class="name-actions-section-contact">
             <span>${user.name}</span>
             <div class="contact-actions">
-              <div class="contact-actions-edit"><a href="#"><img src="./assets/img/edit.svg" alt="Edit">Edit</a></div>
+              <div class="contact-actions-edit"><a href="#" onclick="editContact('${user.id}')"><img src="./assets/img/edit.svg" alt="Edit">Edit</a></div>
               <div class="contact-actions-delete"><a href="#" onclick="deleteContact('${user.id}')"><img src="./assets/img/delete.svg" alt="Delete">Delete</a></div>
             </div>
           </div>
@@ -176,6 +176,7 @@ function showContactDetails(user) {
     </div>`;
   detailDisplay.style.display = 'block'; // Ensure the details section is visible
 }
+
 
 function highlightNewContact() {
   setTimeout(() => {
@@ -204,3 +205,57 @@ function assignRandomColors() {
   return profileColors[Math.floor(Math.random() * profileColors.length-1)]
 }
 
+
+function editContact(id) {
+  let popup = document.getElementById('edit-contact-overlay');
+  popup.classList.remove('d-none');
+  setTimeout(() => {
+    popup.classList.add('aktiv');
+  }, 10); 
+ 
+  // Suche den Kontakt mit der gegebenen ID
+  const contact = users.find(user => user.id === id);
+
+  // Fülle die Eingabefelder mit den Daten des Kontakts
+  document.getElementById("edit-name").value = contact.name;
+  document.getElementById("edit-email").value = contact.email;
+  document.getElementById("edit-phone").value = contact.phone;
+
+
+  // Ändere den Submit-Button, um den Kontakt zu aktualisieren
+  const editSave = document.getElementById("save-edit-button");
+  editSave.onclick = function(event) {
+    event.preventDefault(); // Verhindert das Standardverhalten des Formular-Submits
+    updateContact(id);
+  };
+}
+
+function updateContact(id) {
+  const updatedContact = {
+    name: document.getElementById("edit-name").value,
+    email: document.getElementById("edit-email").value,
+    phone: document.getElementById("edit-phone").value
+  };
+
+  fetch(BASE_URL + `/contacts/${id}.json`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(updatedContact)
+  })
+  .then(response => {
+    if (response.ok) {
+      loadContacts("/contacts").then(displayContacts);
+      closeEditedContact();
+    }
+  });
+}
+
+function closeEditedContact(){
+  let popup = document.getElementById('edit-contact-overlay');
+  popup.classList.remove('aktiv');
+  setTimeout(() => {
+    popup.classList.add('d-none');
+  }, 1000);
+}
