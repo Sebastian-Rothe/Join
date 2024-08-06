@@ -152,6 +152,8 @@ function getContactCardHTML(user, isNew) {
 
 function showContactDetails(user) {
   const detailDisplay = document.getElementById("contact-details");
+  const contactDetails = document.getElementById("view-contacts");
+  const contactContent = document.getElementById("contact-content");
   detailDisplay.innerHTML = `
     <div class="contact-card">
       <div>
@@ -175,8 +177,20 @@ function showContactDetails(user) {
       </div>
     </div>`;
   detailDisplay.style.display = 'block'; // Ensure the details section is visible
+  contactDetails.style.display = 'block'; // Ensure the details section is visible
+  if (window.innerWidth <= 655) {
+    contactContent.style.display = 'none';
+  }
 }
 
+function backToContactList(){
+  const contactContent = document.getElementById("contact-content");
+  const contactDetails = document.getElementById("view-contacts");
+  contactContent.style.display = 'block';
+  if (window.innerWidth <= 655) {
+    contactDetails.style.display = 'none';
+  }
+}
 
 function highlightNewContact() {
   setTimeout(() => {
