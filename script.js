@@ -221,6 +221,10 @@ function editContact(id) {
   document.getElementById("edit-email").value = contact.email;
   document.getElementById("edit-phone").value = contact.phone;
 
+  const editAvatar = document.getElementById("edit-avatar");
+  editAvatar.style.backgroundColor = assignRandomColors();
+  editAvatar.innerText = getInitials(contact.name);
+
 
   // Ändere den Submit-Button, um den Kontakt zu aktualisieren
   const editSave = document.getElementById("save-edit-button");
