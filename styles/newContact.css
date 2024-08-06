@@ -41,6 +41,12 @@
   background-color: #2c3e50;
   color: white;
   padding: 20px;
+  position: relative
+}
+.avatar-in-edit{
+  margin-right: 0;
+  width: 134px;
+  height: 134px;
 }
 
 .left-pane {
@@ -106,9 +112,19 @@
 }
 
 .closePopup {
+  filter: invert(0); /* Schwarze Farbe */
   position: absolute;
-  top: 34px;
-  right: 34px;
+  top: 16px;
+  right: 16px;
+  cursor: pointer;
+}
+
+.closePopupMobile {
+  display: none;
+  filter: brightness(0) invert(1); /* Weiße Farbe */
+  position: absolute;
+  top: 16px;
+  right: 16px;
   cursor: pointer;
 }
 
@@ -154,7 +170,10 @@ input {
 .cancel-button {
   background-color: white;
   margin-right: 20px;
-  
+}
+.cancel-button img {
+  height: 18px;
+  width: 18px;
 }
 .cancel-button:hover{
   color: #29ABE2;
@@ -210,7 +229,7 @@ input {
 
 @keyframes slideInRight {
   from {
-transform: translateX(1000px);
+    transform: translateX(1000px);
   }
   to{
     transform: translateX(0);
@@ -249,19 +268,19 @@ transform: translateX(1000px);
     width: 90%;
   }
   .right-pane{
-
+    position: relative;
   }
-  .left-side-new-c{
+  /* .left-side-new-c{
 
-  }
+  } */
 }
 @media (max-width: 992px){
   .left-side-new-c{
     width: 45%;
   }
-  .right-pane{
+  /* .right-pane{
 
-  }
+  } */
   .align-form-buttons{
     display: flex;
     flex-direction: column-reverse;
@@ -328,5 +347,20 @@ transform: translateX(1000px);
   }
   .left-pane img{
     display: none;
+  }
+  /* .closePopup {
+    filter: brightness(0) invert(1);
+    top: -280px;
+    position: absolute;
+    right: 32px;
+    cursor: pointer;
+  } */
+
+  .closePopup {
+    display: none;
+  }
+
+  .closePopupMobile {
+    display: block;
   }
 }

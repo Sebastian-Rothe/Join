@@ -11,6 +11,9 @@
       <div id="popup" class="popup">
         <div class="popup-content">
           <div class="left-side-new-c">
+            <span class="closePopupMobile" onclick="closeNewContact()">
+              <img class="close" src="./assets/icons/close.svg" alt="">
+            </span>
             <div class="left-pane">
               <img src="../assets/img/Capa 2.png" alt="" />
               <h2>Add contact</h2>
@@ -19,23 +22,17 @@
             </div>
           </div>
           <div class="right-pane">
-            <span id="closePopup" class="closePopup" onclick="closeNewContact()"><img src="./assets/icons/close.svg" alt=""></span>
+            <span id="closePopup" class="closePopup" onclick="closeNewContact()">
+              <img class="close" src="./assets/icons/close.svg" alt="">
+            </span>
             <div class="align-new-contact-input">
               <div class="profil-icon">
                 <img src="../assets/icons/profil-icon.svg" alt="" />
               </div>
               <form class="align-form" id="contactForm">
-                
-                <input
-                  id="name"
-                  class="icon-name"
-                  type="text"
-                  placeholder="Name"
-                  required
-                />
+                <input id="name" class="icon-name" type="text" placeholder="Name" required />
                 <input id="email" class="icon-email" type="email" placeholder="Email" required />
                 <input id="phone" class="icon-phone" type="tel" placeholder="Phone" required />
-
                 <div class="align-form-buttons">
                   <button class="cancel-button" type="button" id="cancelPopup" onclick="closeNewContact()">
                     Cancel
@@ -53,7 +50,6 @@
       </div>
     </div>
     <div id="newContactCreated" class="d-none newContactCreated">Contact successful created</div>
-
     <script src="./js/newContact.js"></script>
     <script src="script.js"></script>
   </body>
