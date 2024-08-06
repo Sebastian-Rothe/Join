@@ -39,7 +39,6 @@ async function loadContacts(path = "/contacts") {
   users = [];
   let userResponse = await fetch(BASE_URL + path + ".json");
   let responseToJson = await userResponse.json();
-  console.log(responseToJson);
 
   if (responseToJson) {
     Object.keys(responseToJson).forEach((key) => {
@@ -50,7 +49,6 @@ async function loadContacts(path = "/contacts") {
         phone: responseToJson[key]["phone"],
       });
     });
-    console.log(users);
     return users;
   }
 }
