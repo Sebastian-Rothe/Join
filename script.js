@@ -140,9 +140,9 @@ async function displayContacts(newUser = null) {
   highlightNewContact();
 }
 
-function getContactCardHTML(user, isNew){
-  return`
-    <div class="contact-details-section row ${isNew ? 'new-contact' : ''}">
+function getContactCardHTML(user, isNew) {
+  return `
+    <div class="contact-details-section row ${isNew ? 'new-contact' : ''}" onclick='showContactDetails(${JSON.stringify(user)})'>
         <div class="contact-details-profile mt-3 mb-3" style="background-color:${assignRandomColors()}">
             ${getInitials(user.name)}
         </div>
@@ -151,6 +151,33 @@ function getContactCardHTML(user, isNew){
             <span class="contact-details-email">${user.email}</span>
         </div>
     </div>`;
+}
+
+function showContactDetails(user) {
+  const detailDisplay = document.getElementById("contact-details");
+  detailDisplay.innerHTML = `
+    <div class="contact-card">
+      <div>
+        <div class="avatar-contact-details-section row">
+          <div class="avatar" style="background-color:${assignRandomColors()}">${getInitials(user.name)}</div>
+          <div class="name-actions-section-contact">
+            <span>${user.name}</span>
+            <div class="contact-actions">
+              <div class="contact-actions-edit"><a href="#"><img src="./assets/img/edit.svg" alt="Edit">Edit</a></div>
+              <div class="contact-actions-delete"><a href="#" onclick="deleteContact('${user.id}')"><img src="./assets/img/delete.svg" alt="Delete">Delete</a></div>
+            </div>
+          </div>
+        </div>
+        <div class="contact-info">
+          <div class="info">contact information</div>
+          <p><strong>Email</strong></p>
+          <p><a href="mailto:${user.email}">${user.email}</a></p>
+          <p><strong>Phone</strong></p>
+          <p>${user.phone}</p>
+        </div>
+      </div>
+    </div>`;
+  detailDisplay.style.display = 'block'; // Ensure the details section is visible
 }
 
 function highlightNewContact() {
@@ -176,17 +203,6 @@ function getInitials(fullName) {
   return initials;
 }
 
-// might be interesting for manuel
-// id brauche wir für das deatil fenster
-
-// <div class="just-border">
-//     <div>
-//         <Button onclick="deleteContact('${user.id}')">delete</Button>
-//         <Button onclick="editContact()">edit</Button>
-//     </div>
-//     <span>${user.name}</span>
-//     <span>${user.email}</span>
-// </div>
 function assignRandomColors() {
   return profileColors[Math.floor(Math.random() * profileColors.length-1)]
 }
