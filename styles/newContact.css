@@ -336,3 +336,22 @@ input {
     display: block;
   }
 }
+@media (max-width: 430px){
+  .popup {
+    display: flex;
+    height: 100%;
+    width: 100%;
+  }
+  .popup-content {
+    display: flex;
+    height: 100%;
+    width: 100%;
+  }
+  .new-contact-overlay {
+    padding: 0px;
+
+  }
+  .popup {
+    border-radius: 0px;
+  }
+}
