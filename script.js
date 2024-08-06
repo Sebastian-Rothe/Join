@@ -277,3 +277,27 @@ function closeEditedContact(){
     popup.classList.add('d-none');
   }, 1000);
 }
+
+function backToContactList() {
+  const contactContent = document.getElementById("contact-content");
+  const contactDetails = document.getElementById("view-contacts");
+  contactContent.style.display = 'block';
+  if (window.innerWidth <= 655) {
+    contactDetails.style.display = 'none';
+  }
+}
+
+function handleResize() {
+  const contactContent = document.getElementById("contact-content");
+  const contactDetails = document.getElementById("view-contacts");
+  if (window.innerWidth >= 655) {
+    contactContent.style.display = 'block';
+    contactDetails.style.display = 'block';
+  }
+  else if(window.innerWidth <= 655){
+    contactDetails.style.display = 'none';
+  }
+}
+
+window.addEventListener('resize', handleResize);
+handleResize();
