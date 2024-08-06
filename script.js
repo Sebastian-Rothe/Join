@@ -68,7 +68,6 @@ async function addUser() {
   displayContacts(newUser);
 }
 
-
 function addNewContactToDisplay(user) {
   const contactDisplay = document.getElementById("contact-content");
   const contactHTML = getContactCardHTML(user, true);
