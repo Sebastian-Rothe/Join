@@ -1,5 +1,5 @@
 
-function showPopup(){
+function showSuccessPopup(){
   const contact = document.getElementById('newContactCreated');
   setTimeout(() => {
       contact.classList.remove('d-none');
@@ -38,7 +38,7 @@ function checkForm(){
   let form = document.getElementById('contactForm');
   if (form.checkValidity()){
     submitAndClose();
-    showPopup();
+    showSuccessPopup();
   }else{
     return
   }
