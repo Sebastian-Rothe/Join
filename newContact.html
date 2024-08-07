@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Slide-In Popup</title>
     <link rel="stylesheet" href="./styles/newContact.css" />
+    <link rel="stylesheet" href="./styles/newContactMobile.css">
   </head>
   <body>
     <div id="new-contact-overlay" class="d-none new-contact-overlay">
@@ -48,6 +49,10 @@
           </div>
         </div>
       </div>
+    </div>
+    <div id="mobile-add-button" class="mobile-add-button">
+      <img id="mobile-add1" class="mobile-default-img" src="./assets/icons/nContactM1.svg" alt="">
+      <img id="mobile-add2" class="mobile-hover-img" src="./assets/icons/nContactM2.svg" alt="" onclick="openNewContact()">
     </div>
     <div id="newContactCreated" class="d-none newContactCreated">Contact successful created</div>
     <script src="./js/newContact.js"></script>

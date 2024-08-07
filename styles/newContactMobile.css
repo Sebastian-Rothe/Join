@@ -1,0 +1,32 @@
+.mobile-add-button{
+    display: none;
+}
+.mobile-hover-img{
+    display: none;
+}
+
+@media (max-width: 655px) {
+    #openOverlayNC{
+        display: none;
+    }
+    .new-contact-overlay{
+        transform: translateY(100%)  !important;
+    }
+    .new-contact-overlay.aktiv {
+        transform: translateY(0) !important;
+    }
+    .mobile-add-button{
+        cursor: pointer;
+        display: block;
+        position: fixed;
+        right: 8px;
+        bottom: 88px;
+    }
+    .mobile-add-button:hover .mobile-default-img {
+        display: none;
+    }
+    .mobile-add-button:hover .mobile-hover-img {
+        display: block;
+    }
+}
+    
