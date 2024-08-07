@@ -344,8 +344,17 @@ input {
 @media (max-width: 580px) {
   .align-form{
     width: 90%;
+    margin-left: 10px;
   }
 }
+/* @media (max-height: 700px) {
+  .left-side-new-c{
+    height: 40%;
+  }
+  .align-form{
+    margin-bottom: 8px;
+  }
+} */
 @media (max-width: 430px){
   .popup {
     height: 80%;
@@ -359,7 +368,16 @@ input {
   }
   .align-form {
     padding: 10px;
-    width: 90%;
+  }
+  .profil-icon img{
+    width: 100px;
+    height: 100px;
+    margin-top: 22%;
+  }
+  #edit-avatar{
+    width: 100px;
+    height: 100px;
+    margin-top: 22%;
   }
 
 
