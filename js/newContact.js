@@ -1,5 +1,5 @@
 
-function showPopup(){
+function showSuccessPopup(){
   const contact = document.getElementById('newContactCreated');
   setTimeout(() => {
       contact.classList.remove('d-none');
@@ -38,9 +38,32 @@ function checkForm(){
   let form = document.getElementById('contactForm');
   if (form.checkValidity()){
     submitAndClose();
-    showPopup();
+    showSuccessPopup();
   }else{
     return
   }
 } 
+
+function addNewContactToDisplay(user) {
+  const contactDisplay = document.getElementById("contact-content");
+  const contactHTML = getContactCardHTML(user, true);
+  contactDisplay.innerHTML += contactHTML;
+  highlightNewContact();
+}
+
+function highlightNewContact() {
+  setTimeout(() => {
+    const newContactElement = document.querySelector('.contact-details-section.new-contact');
+
+    if (newContactElement) {
+      newContactElement.classList.add('highlight');
+
+      setTimeout(() => {
+        newContactElement.classList.remove('highlight');
+        newContactElement.classList.remove('new-contact');
+      }, 3000); 
+    } 
+  }, 200); 
+}
+
 

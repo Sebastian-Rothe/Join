@@ -1,20 +1,18 @@
-const BASE_URL =
-  "https://joincontacts-e7692-default-rtdb.europe-west1.firebasedatabase.app/";
- 
-let users = [];
-
-async function includeHTML() {
-  let includeElements = document.querySelectorAll('[w3-include-html]');
-  for (let i = 0; i < includeElements.length; i++) {
-      const element = includeElements[i];
-      file = element.getAttribute("w3-include-html");
-      let resp = await fetch(file);
-      if (resp.ok) {
-          element.innerHTML = await resp.text();
-      } else {
-          element.innerHTML = 'Page not found';
-      }
-  }
+let profileColors = [
+    '#FF5733', // Rot
+    '#33FF57', // Grün
+    '#3357FF', // Blau
+    '#FF33A6', // Pink
+    '#FFA500', // Orange
+    '#FFD700', // Gold
+    '#8A2BE2', // Blauviolett
+    '#7FFFD4', // Aquamarin
+    '#FF4500', // Orangerot
+    '#3E6020'  // Dunkelolivgrün
+  ];
+  
+function init() {
+  loadContacts("/contacts").then(displayContacts);
 }
 
 async function loadContacts(path = "/contacts") {
@@ -46,13 +44,6 @@ async function addUser() {
   await postContact("/contacts", newUser);
   await loadContacts("/contacts");
   displayContacts(newUser);
-}
-
-function addNewContactToDisplay(user) {
-  const contactDisplay = document.getElementById("contact-content");
-  const contactHTML = getContactCardHTML(user, true);
-  contactDisplay.innerHTML += contactHTML;
-  highlightNewContact();
 }
 
 async function postContact(path = "", data = {}) {
@@ -105,75 +96,16 @@ function updateContactDisplay(contactDisplay, user, sortAlphabet, newUser) {
   return sortAlphabet;
 }
 
-function addAlphabetHeader(contactDisplay, sortAlphabet) {
-  contactDisplay.innerHTML += `
-    <div class="alphabet-contact-list">
-      <span>${sortAlphabet}</span>                        
-    </div>
-    <div class="line-contact-list"></div>`;
-}
-
-function getContactCardHTML(user, isNew) {
-  return `
-    <div class="contact-card${isNew ? ' new' : ''}">
-      <p>${user.name}</p>
-      <p>${user.email}</p>
-    </div>`;
-}
-
-function getContactCardHTML(user, isNew) {
-  return `
-    <div class="contact-details-section row ${isNew ? 'new-contact' : ''}" onclick='showContactDetails(${JSON.stringify(user)})'>
-        <div class="contact-details-profile mt-3 mb-3" style="background-color:${assignRandomColors()}">
-            ${getInitials(user.name)}
-        </div>
-        <div class="contact-details flex-column">
-            <span class="contact-details-name mt-3">${user.name}</span>
-            <span class="contact-details-email">${user.email}</span>
-        </div>
-    </div>`;
-}
-
 function showContactDetails(user) {
   const detailDisplay = document.getElementById("contact-details");
   const contactDetails = document.getElementById("view-contacts");
   const contactContent = document.getElementById("contact-content");
-  const mobileContactOption = document.getElementById("mobile-contact-option");
   detailDisplay.innerHTML = getContactDetailHTML(user);
-  detailDisplay.style.display = 'block';
+  detailDisplay.style.display = 'block'; 
   contactDetails.style.display = 'block'; 
-  mobileContactOption.classList.remove('d-none');
   if (window.innerWidth <= 655) {
     contactContent.style.display = 'none';
   }
-}
-
-function getContactDetailHTML(user){
-  return`
-    <div class="contact-card">
-      <div>
-        <div class="avatar-contact-details-section row">
-          <div class="avatar" style="background-color:${assignRandomColors()}">${getInitials(user.name)}</div>
-          <div class="name-actions-section-contact">
-            <span>${user.name}</span>
-            <div class="contact-actions">
-              <div class="contact-actions-edit"><a href="#" onclick="editContact('${user.id}')"><img src="./assets/img/edit.svg" alt="Edit">Edit</a></div>
-              <div class="contact-actions-delete"><a href="#" onclick="deleteContact('${user.id}')"><img src="./assets/img/delete.svg" alt="Delete">Delete</a></div>
-            </div>
-          </div>
-        </div>
-        <div class="contact-info">
-          <div class="info">contact information</div>
-          <p><strong>Email</strong></p>
-          <p><a href="mailto:${user.email}">${user.email}</a></p>
-          <p><strong>Phone</strong></p>
-          <p>${user.phone}</p>
-        </div>
-      </div>
-    </div>   
-    
-    `;
-
 }
 
 function backToContactList(){
@@ -183,21 +115,6 @@ function backToContactList(){
   if (window.innerWidth <= 655) {
     contactDetails.style.display = 'none';
   }
-}
-
-function highlightNewContact() {
-  setTimeout(() => {
-    const newContactElement = document.querySelector('.contact-details-section.new-contact');
-
-    if (newContactElement) {
-      newContactElement.classList.add('highlight');
-
-      setTimeout(() => {
-        newContactElement.classList.remove('highlight');
-        newContactElement.classList.remove('new-contact');
-      }, 3000); 
-    } 
-  }, 200); 
 }
 
 function getInitials(fullName) {
@@ -290,57 +207,10 @@ function closeEditedContact(){
 function backToContactList() {
   const contactContent = document.getElementById("contact-content");
   const contactDetails = document.getElementById("view-contacts");
-  changeToAddButton();
   contactContent.style.display = 'block';
   if (window.innerWidth <= 655) {
     contactDetails.style.display = 'none';
   }
-}
-
-function openMobileContactOption() {
-  let popup = document.getElementById('mobile-contact-option-popup');
-  const mobileContactOption = document.getElementById("mobile-contact-option");
-  const overlay = document.getElementById("overlay-option");
-  closeMobileAddB();
-  popup.classList.remove('d-none');
-  overlay.classList.remove('d-none');
-  mobileContactOption.classList.add("d-none");
-  setTimeout(() => {
-    popup.classList.add('aktiv');
-    overlay.style.opacity = '1';
-  }, 10); 
-}
-
-function closeMobileContactOption() {
-  let popup = document.getElementById('mobile-contact-option-popup');
-  const mobileContactOption = document.getElementById("mobile-contact-option");
-  const overlay = document.getElementById("overlay-option");
-  popup.classList.remove('aktiv');
-  overlay.style.opacity = '0';
-  
-  setTimeout(() => {
-    popup.classList.add('d-none');
-    overlay.classList.add('d-none');
-    mobileContactOption.classList.remove("d-none");
-    addMobileAddB();
-  }, 300); // Match the transition duration
-}
-
-function changeToAddButton(){
-  const mobileContactOption = document.getElementById("mobile-contact-option");
-  const imageContainer = document.getElementById('mobile-add-button');
-  mobileContactOption.classList.add("d-none");
-  imageContainer.classList.remove('d-none')
-}
-
-function closeMobileAddB(){
-  const imageContainer = document.getElementById('mobile-add-button');
-  imageContainer.classList.add('d-none');
-}
-
-function addMobileAddB(){
-  const imageContainer = document.getElementById('mobile-add-button');
-  imageContainer.classList.remove('d-none')
 }
 
 function handleResize() {
@@ -352,7 +222,6 @@ function handleResize() {
   }
   else if(window.innerWidth <= 655){
     contactDetails.style.display = 'none';
-    document.getElementById("mobile-contact-option").classList.add("d-none");
   }
 }
 
