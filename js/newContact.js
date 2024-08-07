@@ -1,16 +1,13 @@
 
 function showPopup(){
   const contact = document.getElementById('newContactCreated');
-  
   setTimeout(() => {
       contact.classList.remove('d-none');
       contact.classList.add('slideInRight');
   }, 1000);
-
   setTimeout(() => {
     contact.classList.add('slideLeft');
   }, 3000);
-  
   setTimeout(() => {
     contact.classList.add('d-none');
     contact.classList.remove('slideLeft');
@@ -31,7 +28,6 @@ function closeNewContact(){
   setTimeout(() => {
     popup.classList.add('d-none');
   }, 500);
-  showPopup();    // don't forget!!!!
 }
 
 function submitAndClose(){
@@ -47,10 +43,4 @@ function checkForm(){
     return
   }
 } 
-
-// document.getElementById('openOverlayNC').addEventListener('click', function() {
-//   let overlay = document.getElementById('new-contact-overlay');
-//   overlay.classList.toggle('aktiv');
-// });
-
 

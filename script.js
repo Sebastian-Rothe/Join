@@ -20,12 +20,11 @@ function init() {
   loadContacts("/contacts").then(displayContacts);
 }
 
-// function to include other html files 
 async function includeHTML() {
   let includeElements = document.querySelectorAll('[w3-include-html]');
   for (let i = 0; i < includeElements.length; i++) {
       const element = includeElements[i];
-      file = element.getAttribute("w3-include-html"); // "includes/header.html"
+      file = element.getAttribute("w3-include-html");
       let resp = await fetch(file);
       if (resp.ok) {
           element.innerHTML = await resp.text();
@@ -73,7 +72,6 @@ function addNewContactToDisplay(user) {
   highlightNewContact();
 }
 
-
 async function postContact(path = "", data = {}) {
   await fetch(BASE_URL + path + ".json", {
     method: "POST",
@@ -98,18 +96,6 @@ async function deleteContact(id) {
   detailDisplay.style.display = 'none';
   return responseToJson;
 }
-
-// might be interesting for you batool
-
-// async function editContact(id, data = {}) {
-//   await fetch(BASE_URL + `/contacts/${id}` + ".json", {
-//     method: "PUT",
-//     headers: {
-//       "Content-Type": "application/json",
-//     },
-//     body: JSON.stringify(data),
-//   });
-// }
 
 async function displayContacts(newUser = null) {
   await loadContacts("/contacts");
@@ -204,7 +190,7 @@ function highlightNewContact() {
         newContactElement.classList.remove('new-contact');
       }, 3000); 
     } 
-  }, 100); 
+  }, 200); 
 }
 
 function getInitials(fullName) {
@@ -219,18 +205,15 @@ function assignRandomColors() {
   return profileColors[Math.floor(Math.random() * profileColors.length-1)]
 }
 
-
 function editContact(id) {
   let popup = document.getElementById('edit-contact-overlay');
   popup.classList.remove('d-none');
   setTimeout(() => {
     popup.classList.add('aktiv');
   }, 10); 
- 
-  // Suche den Kontakt mit der gegebenen ID
+
   const contact = users.find(user => user.id === id);
 
-  // Fülle die Eingabefelder mit den Daten des Kontakts
   document.getElementById("edit-name").value = contact.name;
   document.getElementById("edit-email").value = contact.email;
   document.getElementById("edit-phone").value = contact.phone;
@@ -239,11 +222,9 @@ function editContact(id) {
   editAvatar.style.backgroundColor = assignRandomColors();
   editAvatar.innerText = getInitials(contact.name);
 
-
-  // Ändere den Submit-Button, um den Kontakt zu aktualisieren
   const editSave = document.getElementById("save-edit-button");
   editSave.onclick = function(event) {
-    event.preventDefault(); // Verhindert das Standardverhalten des Formular-Submits
+    event.preventDefault(); 
     updateContact(id);
   };
 }
