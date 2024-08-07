@@ -140,8 +140,9 @@ function showContactDetails(user) {
   const contactContent = document.getElementById("contact-content");
   const mobileContactOption = document.getElementById("mobile-contact-option");
   detailDisplay.innerHTML = getContactDetailHTML(user);
-  detailDisplay.style.display = 'block'; 
+  detailDisplay.style.display = 'block';
   contactDetails.style.display = 'block'; 
+  mobileContactOption.classList.remove('d-none');
   if (window.innerWidth <= 655) {
     contactContent.style.display = 'none';
   }
@@ -172,12 +173,7 @@ function getContactDetailHTML(user){
     </div>   
     
     `;
-  detailDisplay.style.display = 'block'; // Ensure the details section is visible
-  contactDetails.style.display = 'block'; // Ensure the details section is visible
-  mobileContactOption.classList.remove('d-none');
-  if (window.innerWidth <= 655) {
-    contactContent.style.display = 'none';
-  }
+
 }
 
 function backToContactList(){
