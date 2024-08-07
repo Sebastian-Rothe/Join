@@ -46,13 +46,6 @@ async function addUser() {
   displayContacts(newUser);
 }
 
-function addNewContactToDisplay(user) {
-  const contactDisplay = document.getElementById("contact-content");
-  const contactHTML = getContactCardHTML(user, true);
-  contactDisplay.innerHTML += contactHTML;
-  highlightNewContact();
-}
-
 async function postContact(path = "", data = {}) {
   await fetch(BASE_URL + path + ".json", {
     method: "POST",
@@ -103,35 +96,6 @@ function updateContactDisplay(contactDisplay, user, sortAlphabet, newUser) {
   return sortAlphabet;
 }
 
-function addAlphabetHeader(contactDisplay, sortAlphabet) {
-  contactDisplay.innerHTML += `
-    <div class="alphabet-contact-list">
-      <span>${sortAlphabet}</span>                        
-    </div>
-    <div class="line-contact-list"></div>`;
-}
-
-function getContactCardHTML(user, isNew) {
-  return `
-    <div class="contact-card${isNew ? ' new' : ''}">
-      <p>${user.name}</p>
-      <p>${user.email}</p>
-    </div>`;
-}
-
-function getContactCardHTML(user, isNew) {
-  return `
-    <div class="contact-details-section row ${isNew ? 'new-contact' : ''}" onclick='showContactDetails(${JSON.stringify(user)})'>
-        <div class="contact-details-profile mt-3 mb-3" style="background-color:${assignRandomColors()}">
-            ${getInitials(user.name)}
-        </div>
-        <div class="contact-details flex-column">
-            <span class="contact-details-name mt-3">${user.name}</span>
-            <span class="contact-details-email">${user.email}</span>
-        </div>
-    </div>`;
-}
-
 function showContactDetails(user) {
   const detailDisplay = document.getElementById("contact-details");
   const contactDetails = document.getElementById("view-contacts");
@@ -144,31 +108,6 @@ function showContactDetails(user) {
   }
 }
 
-function getContactDetailHTML(user){
-  return`
-    <div class="contact-card">
-      <div>
-        <div class="avatar-contact-details-section row">
-          <div class="avatar" style="background-color:${assignRandomColors()}">${getInitials(user.name)}</div>
-          <div class="name-actions-section-contact">
-            <span>${user.name}</span>
-            <div class="contact-actions">
-              <div class="contact-actions-edit"><a href="#" onclick="editContact('${user.id}')"><img src="./assets/img/edit.svg" alt="Edit">Edit</a></div>
-              <div class="contact-actions-delete"><a href="#" onclick="deleteContact('${user.id}')"><img src="./assets/img/delete.svg" alt="Delete">Delete</a></div>
-            </div>
-          </div>
-        </div>
-        <div class="contact-info">
-          <div class="info">contact information</div>
-          <p><strong>Email</strong></p>
-          <p><a href="mailto:${user.email}">${user.email}</a></p>
-          <p><strong>Phone</strong></p>
-          <p>${user.phone}</p>
-        </div>
-      </div>
-    </div>`;
-}
-
 function backToContactList(){
   const contactContent = document.getElementById("contact-content");
   const contactDetails = document.getElementById("view-contacts");
@@ -176,21 +115,6 @@ function backToContactList(){
   if (window.innerWidth <= 655) {
     contactDetails.style.display = 'none';
   }
-}
-
-function highlightNewContact() {
-  setTimeout(() => {
-    const newContactElement = document.querySelector('.contact-details-section.new-contact');
-
-    if (newContactElement) {
-      newContactElement.classList.add('highlight');
-
-      setTimeout(() => {
-        newContactElement.classList.remove('highlight');
-        newContactElement.classList.remove('new-contact');
-      }, 3000); 
-    } 
-  }, 200); 
 }
 
 function getInitials(fullName) {
