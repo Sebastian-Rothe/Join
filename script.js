@@ -123,7 +123,7 @@ function getContactCardHTML(user, isNew) {
 
 function getContactCardHTML(user, isNew) {
   return `
-    <div class="contact-details-section row ${isNew ? 'new-contact' : ''}" onclick='showContactDetails(${JSON.stringify(user)})'>
+    <div id="${user.name}" class="contact-details-section row ${isNew ? 'new-contact' : ''}" onclick='showContactDetails(${JSON.stringify(user)})'>
         <div class="contact-details-profile mt-3 mb-3" style="background-color:${assignRandomColors()}">
             ${getInitials(user.name)}
         </div>
@@ -135,6 +135,7 @@ function getContactCardHTML(user, isNew) {
 }
 
 function showContactDetails(user) {
+  highlightSelectedContact(user.email);
   const detailDisplay = document.getElementById("contact-details");
   const contactDetails = document.getElementById("view-contacts");
   const contactContent = document.getElementById("contact-content");
@@ -146,6 +147,22 @@ function showContactDetails(user) {
   if (window.innerWidth <= 655) {
     contactContent.style.display = 'none';
   }
+}
+
+function highlightSelectedContact(id){
+  clearSelectedHighlight();
+  const contactSection = document.getElementById("contact-details-section-"+id);
+  contactSection.classList.add("active");
+}
+
+function clearSelectedHighlight(){
+  const contactDetailsSections = document.getElementsByClassName("contact-details-section");
+
+  const contactDetailsArray = Array.from(contactDetailsSections);
+
+  contactDetailsArray.forEach(section => {
+      section.classList.remove("active");
+  });
 }
 
 function getContactDetailHTML(user){

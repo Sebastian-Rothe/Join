@@ -109,11 +109,13 @@ body {
     height: 78px;
     margin-left: 2px;
     margin-top: 10px;
-    transition: background-color 0.3s;    
+       
 }
 
 .contact-details-section:hover {
-    cursor: pointer;    
+    cursor: pointer;   
+    background-color: #d8d7d7;
+    border-radius: 10px;
 }
 
 .contact-details-section.active {
@@ -377,12 +379,11 @@ h2 {
 }
 
 .contact-actions a:hover img {
-    transform: scale(1.0); 
+    transform: scale(1.0);
     filter: brightness(0) saturate(100%) invert(55%) sepia(96%) saturate(3326%) hue-rotate(169deg) brightness(96%) contrast(98%); /* Ändert die Filter auf Hover */
 }
 
-.contact-actions a:hover {
-    font-size: 18px;
+.contact-actions a:hover {    
     color: #29ABE2;
 }
 .contact-actions-edite{
@@ -486,6 +487,10 @@ h2 {
 .blue{
     color: rgb(60, 108, 229);
     margin-left: 3px;
+}
+.error
+{
+    border-color: red;
 }
 
 @media (max-width: 1326px) {
@@ -769,12 +774,30 @@ h2 {
     } 
 
     .mobile-contact-option {
-        cursor: pointer;
+        /* cursor: pointer;
         display: block;
         position: absolute;
         right: 8px;
         bottom: 88px;
+        z-index: 99; */
+        position: absolute;
+        background-color: rgba(42, 54, 71, 1);
+        display: flex;        
+        justify-content: center;
+        align-items: center;
+        border-radius: 100%;
+        width: 65px;
+        height: 65px;
+        z-index: 3;
+        border: 1px;
+        bottom: 94px;
+        right: 10px;
+        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.3);
         z-index: 99;
+    }
+    .mobile-contact-option:hover{
+        cursor: pointer;
+        background-color: #29ABE2;
     }
     .mobile-contact-option-popup{
         position: absolute;
@@ -786,7 +809,7 @@ h2 {
         z-index: 100;
         transition: transform 0.3s ease;
         transform: translateX(100%);
-    }
+    } 
     
     .mobile-contact-option-popup.aktiv {
         transform: translateX(0);
@@ -796,7 +819,7 @@ h2 {
         padding-bottom: 10px;
         
        
-    }
+    }   
     .mobile-contact-option-edit a{
         color: #090909;
         text-decoration: none;

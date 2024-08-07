@@ -31,9 +31,9 @@
                 <img src="../assets/icons/profil-icon.svg" alt="" />
               </div>
               <form class="align-form" id="contactForm">
-                <input id="name" class="icon-name" type="text" placeholder="Name" required />
-                <input id="email" class="icon-email" type="email" placeholder="Email" required />
-                <input id="phone" class="icon-phone" type="tel" placeholder="Phone" required />
+                <input id="name" class="icon-name" type="text" placeholder="Name" required oninvalid="onInvalid(this)"/>
+                <input id="email" class="icon-email" type="email" placeholder="Email" required oninvalid="onInvalid(this)"/>
+                <input id="phone" class="icon-phone" type="tel" placeholder="Phone" required oninvalid="onInvalid(this)"/>
                 <div class="align-form-buttons">
                   <button class="cancel-button" type="button" id="cancelPopup" onclick="closeNewContact()">
                     Cancel

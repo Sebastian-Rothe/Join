@@ -1,4 +1,3 @@
-
 function showSuccessPopup(){
   const contact = document.getElementById('newContactCreated');
   setTimeout(() => {
@@ -42,7 +41,11 @@ function checkForm(){
   }else{
     return
   }
-} 
+}
+
+function onInvalid(element) {
+  element.classList.add("error");
+}
 
 function addNewContactToDisplay(user) {
   const contactDisplay = document.getElementById("contact-content");

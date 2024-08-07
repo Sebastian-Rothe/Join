@@ -100,7 +100,7 @@ function showContactDetails(user) {
   const detailDisplay = document.getElementById("contact-details");
   const contactDetails = document.getElementById("view-contacts");
   const contactContent = document.getElementById("contact-content");
-  detailDisplay.innerHTML = getContactDetailHTML(user);
+  detailDisplay.innerHTML = getContactDetailHTML(user);  
   detailDisplay.style.display = 'block'; 
   contactDetails.style.display = 'block'; 
   if (window.innerWidth <= 655) {

@@ -41,7 +41,7 @@ function getContactDetailHTML(user){
   
 function getContactCardHTML(user, isNew) {
     return `
-      <div class="contact-details-section row ${isNew ? 'new-contact' : ''}" onclick='showContactDetails(${JSON.stringify(user)})'>
+      <div id="contact-details-section-${user.email}" class="contact-details-section row ${isNew ? 'new-contact' : ''}" onclick='showContactDetails(${JSON.stringify(user)})'>
           <div class="contact-details-profile mt-3 mb-3" style="background-color:${assignRandomColors()}">
               ${getInitials(user.name)}
           </div>
