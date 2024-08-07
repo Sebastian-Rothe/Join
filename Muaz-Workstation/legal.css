@@ -84,3 +84,11 @@ body {
     font-size: 16px;
     line-height: 1.5;
 }
+.font{
+    font-size: 70px;
+}
+.backIcon{
+    position: absolute;
+    top: 70px;
+    right: 70px;
+    }

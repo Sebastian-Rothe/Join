@@ -84,6 +84,23 @@ body {
     font-size: 16px;
     line-height: 1.5;
 }
-.btn{
-    background-color: black;
+.btn {
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    z-index: 1000;
+}
+
+.btn img {
+    width: 30px; 
+    height: auto;
+}
+
+.font{
+    font-size: 70px;
+}
+.backIcon{
+position: absolute;
+top: 70px;
+right: 70px;
 }
