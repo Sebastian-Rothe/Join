@@ -100,27 +100,42 @@ async function deleteContact(id) {
 async function displayContacts(newUser = null) {
   await loadContacts("/contacts");
   users.sort((a, b) => a.name.localeCompare(b.name));
-  
   let contactDisplay = document.getElementById("contact-content");
   contactDisplay.innerHTML = "";
+
   let sortAlphabet = '';
-
-  for (let i = 0; i < users.length; i++) {
-    const user = users[i];
-    let firstLetter = user.name.charAt(0).toUpperCase();
-
-    if (firstLetter !== sortAlphabet) {
-      sortAlphabet = firstLetter;
-      contactDisplay.innerHTML += `
-        <div class="alphabet-contact-list">
-          <span>${sortAlphabet}</span>                        
-        </div>
-        <div class="line-contact-list"></div>`;
-    }
-    const isNew = newUser && user.name === newUser.name && user.email === newUser.email;
-    contactDisplay.innerHTML += getContactCardHTML(user, isNew);
-  }
+  users.forEach(user => {
+    sortAlphabet = updateContactDisplay(contactDisplay, user, sortAlphabet, newUser);
+  });
   highlightNewContact();
+}
+
+function updateContactDisplay(contactDisplay, user, sortAlphabet, newUser) {
+  let firstLetter = user.name.charAt(0).toUpperCase();
+
+  if (firstLetter !== sortAlphabet) {
+    sortAlphabet = firstLetter;
+    addAlphabetHeader(contactDisplay, sortAlphabet);
+  }
+  const isNew = newUser && user.name === newUser.name && user.email === newUser.email;
+  contactDisplay.innerHTML += getContactCardHTML(user, isNew);
+  return sortAlphabet;
+}
+
+function addAlphabetHeader(contactDisplay, sortAlphabet) {
+  contactDisplay.innerHTML += `
+    <div class="alphabet-contact-list">
+      <span>${sortAlphabet}</span>                        
+    </div>
+    <div class="line-contact-list"></div>`;
+}
+
+function getContactCardHTML(user, isNew) {
+  return `
+    <div class="contact-card${isNew ? ' new' : ''}">
+      <p>${user.name}</p>
+      <p>${user.email}</p>
+    </div>`;
 }
 
 function getContactCardHTML(user, isNew) {
@@ -140,7 +155,16 @@ function showContactDetails(user) {
   const detailDisplay = document.getElementById("contact-details");
   const contactDetails = document.getElementById("view-contacts");
   const contactContent = document.getElementById("contact-content");
-  detailDisplay.innerHTML = `
+  detailDisplay.innerHTML = getContactDetailHTML(user);
+  detailDisplay.style.display = 'block'; 
+  contactDetails.style.display = 'block'; 
+  if (window.innerWidth <= 655) {
+    contactContent.style.display = 'none';
+  }
+}
+
+function getContactDetailHTML(user){
+  return`
     <div class="contact-card">
       <div>
         <div class="avatar-contact-details-section row">
@@ -162,11 +186,6 @@ function showContactDetails(user) {
         </div>
       </div>
     </div>`;
-  detailDisplay.style.display = 'block'; // Ensure the details section is visible
-  contactDetails.style.display = 'block'; // Ensure the details section is visible
-  if (window.innerWidth <= 655) {
-    contactContent.style.display = 'none';
-  }
 }
 
 function backToContactList(){
@@ -207,13 +226,21 @@ function assignRandomColors() {
 
 function editContact(id) {
   let popup = document.getElementById('edit-contact-overlay');
+  showEditPopup(popup);
+
+  const contact = users.find(user => user.id === id);
+  populateEditForm(contact);
+  setupEditSaveButton(id);
+}
+
+function showEditPopup(popup) {
   popup.classList.remove('d-none');
   setTimeout(() => {
     popup.classList.add('aktiv');
-  }, 10); 
+  }, 10);
+}
 
-  const contact = users.find(user => user.id === id);
-
+function populateEditForm(contact) {
   document.getElementById("edit-name").value = contact.name;
   document.getElementById("edit-email").value = contact.email;
   document.getElementById("edit-phone").value = contact.phone;
@@ -221,7 +248,9 @@ function editContact(id) {
   const editAvatar = document.getElementById("edit-avatar");
   editAvatar.style.backgroundColor = assignRandomColors();
   editAvatar.innerText = getInitials(contact.name);
+}
 
+function setupEditSaveButton(id) {
   const editSave = document.getElementById("save-edit-button");
   editSave.onclick = function(event) {
     event.preventDefault(); 
@@ -230,25 +259,36 @@ function editContact(id) {
 }
 
 function updateContact(id) {
-  const updatedContact = {
+  const updatedContact = getUpdatedContactData();
+  sendUpdateRequest(id, updatedContact)
+    .then(response => {
+      if (response.ok) {
+        handleUpdateSuccess();
+      }
+    });
+}
+
+function getUpdatedContactData() {
+  return {
     name: document.getElementById("edit-name").value,
     email: document.getElementById("edit-email").value,
     phone: document.getElementById("edit-phone").value
   };
+}
 
-  fetch(BASE_URL + `/contacts/${id}.json`, {
+function sendUpdateRequest(id, updatedContact) {
+  return fetch(BASE_URL + `/contacts/${id}.json`, {
     method: "PUT",
     headers: {
       "Content-Type": "application/json"
     },
     body: JSON.stringify(updatedContact)
-  })
-  .then(response => {
-    if (response.ok) {
-      loadContacts("/contacts").then(displayContacts);
-      closeEditedContact();
-    }
   });
+}
+
+function handleUpdateSuccess() {
+  loadContacts("/contacts").then(displayContacts);
+  closeEditedContact();
 }
 
 function closeEditedContact(){
