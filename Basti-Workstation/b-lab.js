@@ -80,20 +80,22 @@ async function deleteContact(id) {
 
 async function displayContacts() {
   await loadContacts("/contacts");
-  let contactDisplay = document.getElementById("contact-content");
+  let contactDisplay = document.getElementById("contact-list");
   contactDisplay.innerHTML = "";
   for (let i = 0; i < users.length; i++) {
     const user = users[i];
     contactDisplay.innerHTML += `
-      <div class="contact-details-section row active">
-        <div class="contact-details-profile mt-3 mb-3">${getInitials(
-          user.name
-        )}</div>
-        <div class="contact-details flex-column">
-            <span class="contact-details-name mt-3">${user.name}</span>
-            <span class="contact-details-email">${user.email}</span>
-        </div>
-      </div>`;
+    <li id="contact-item-${user.email}" class="single-contact contact-hover-effect ${isNew ? 'new-contact' : ''}" onclick='showContactDetails(${JSON.stringify(user)})' style="cursor: pointer;">
+      <div class="avatar-placeholder" style="background-color: ${assignRandomColors()};">
+        <span class="avatar-overlay">
+        ${getInitials(user.name)}
+        </span>
+      </div>
+      <div class="contact-details">
+        <span>${user.name}</span>
+      <address class="contact-email ellipsis-text">${user.email}</address>
+      </div>
+    </li>`;
   }
 }
 

@@ -48,7 +48,7 @@ function onInvalid(element) {
 }
 
 function addNewContactToDisplay(user) {
-  const contactDisplay = document.getElementById("contact-content");
+  const contactDisplay = document.getElementById("contact-list");
   const contactHTML = getContactCardHTML(user, true);
   contactDisplay.innerHTML += contactHTML;
   highlightNewContact();

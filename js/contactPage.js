@@ -74,7 +74,7 @@ async function deleteContact(id) {
 async function displayContacts(newUser = null) {
   await loadContacts("/contacts");
   users.sort((a, b) => a.name.localeCompare(b.name));
-  let contactDisplay = document.getElementById("contact-content");
+  let contactDisplay = document.getElementById("contact-list");
   contactDisplay.innerHTML = "";
 
   let sortAlphabet = '';
@@ -89,7 +89,7 @@ function showContactDetails(user) {
 
   const detailDisplay = document.getElementById("contact-details");
   const contactDetails = document.getElementById("view-contacts");
-  const contactContent = document.getElementById("contact-content");
+  const contactContent = document.getElementById("contact-list");
   const mobileContactOption = document.getElementById("mobile-contact-option");
   getUserIdForMobile(user);
  
@@ -147,9 +147,9 @@ function updateDisplayStates(contactDetails, contactContent, mobileContactOption
 }
 
 function backToContactList(){
-  const contactContent = document.getElementById("contact-content");
+  const contactContent = document.getElementById("contact-list");
   const contactDetails = document.getElementById("view-contacts");
-  contactContent.style.display = 'block';
+  contactContent.classList.remove("d-none");
   if (window.innerWidth <= 655) {
     contactDetails.style.display = 'none';
   }
@@ -168,20 +168,20 @@ function assignRandomColors() {
 }
 
 function backToContactList() {
-  const contactContent = document.getElementById("contact-content");
+  const contactContent = document.getElementById("contact-list");
   const contactDetails = document.getElementById("view-contacts");
   changeToAddButton();
-  contactContent.style.display = 'block';
+  contactContent.classList.remove("d-none");
   if (window.innerWidth <= 655) {
     contactDetails.style.display = 'none';
   }
 }
 
 function handleResize() {
-  const contactContent = document.getElementById("contact-content");
+  const contactContent = document.getElementById("contact-list");
   const contactDetails = document.getElementById("view-contacts");
   if (window.innerWidth >= 655) {
-    contactContent.style.display = 'block';
+    contactContent.classList.remove("d-none");
     contactDetails.style.display = 'block';
   }
   else if(window.innerWidth <= 655){

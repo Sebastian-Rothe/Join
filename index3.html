@@ -7,7 +7,9 @@
     <link rel="stylesheet" href="reset.css" />
     <link rel="stylesheet" href="style3.css" />
 </head>
-<body>
+<body onload="init(), includeHTML()">
+    <div w3-include-html="./newContact.html"></div>
+    <div w3-include-html="./editContact.html"></div>
     <header>        
         <div class="header-left-content">
             <span class="header-title">Kanban Project Management Tool</span>
@@ -65,204 +67,12 @@
     <section class="contact-details-area" id="contact-detail">
         <div class="list-container">
           <div class="button-container">
-            <button class="primary-btn new-contact-button text-action-btn" onclick="renderAddUserInputField()">
+            <button id="openOverlayNC" class="primary-btn new-contact-button text-action-btn" onclick="openNewContact()">
               Add new contact <img src="./assets/icons/person_add.svg" alt="">
             </button>
           </div>
           <ul class="contact-list" id="contact-list">
-          <li class="letter-heading">
-            <span>K</span>
-          </li>
-          <li class="contact-separator"></li>
-          
-            <li id="contact-item" class="single-contact contact-hover-effect" onclick="showUserDetails(0, this)" style="cursor: pointer;">
-              <div class="avatar-placeholder" style="background-color: #ec1313;">
-                <span class="avatar-overlay">KY</span>
-              </div>
-              <div class="contact-details">
-                <span>Kai Yamamoto</span>
-             <address class="contact-email ellipsis-text">kai.y@outlook.com</address>
-              </div>
-            </li>
-            <li id="contact-item" class="single-contact contact-hover-effect" onclick="showUserDetails(1, this)">
-              <div class="avatar-placeholder" style="background-color: #fc6f03;">
-                <span class="avatar-overlay">KP</span>
-              </div>
-              <div class="contact-details">
-                <span>Kumar Patel</span>
-             <address class="contact-email ellipsis-text">kumar.p@outlook.com</address>
-              </div>
-            </li>
-          <li class="letter-heading">
-            <span>L</span>
-          </li>
-          <li class="contact-separator"></li>
-          
-            <li id="contact-item" class="single-contact contact-hover-effect" onclick="showUserDetails(2, this)">
-              <div class="avatar-placeholder" style="background-color: #bed926;">
-                <span class="avatar-overlay">LH</span>
-              </div>
-              <div class="contact-details">
-                <span>Leon Hofer</span>
-             <address class="contact-email ellipsis-text">leon.h@gmail.com</address>
-              </div>
-            </li>
-            <li id="contact-item" class="single-contact contact-hover-effect" onclick="showUserDetails(3, this)">
-              <div class="avatar-placeholder" style="background-color: #13ec66;">
-                <span class="avatar-overlay">LM</span>
-              </div>
-              <div class="contact-details">
-                <span>Li Mei</span>
-             <address class="contact-email ellipsis-text">li.m@webmail.com</address>
-              </div>
-            </li>
-            <li id="contact-item" class="single-contact contact-hover-effect" onclick="showUserDetails(4, this)">
-              <div class="avatar-placeholder" style="background-color: #e61953;">
-                <span class="avatar-overlay">LM</span>
-              </div>
-              <div class="contact-details">
-                <span>Lisa Müller</span>
-             <address class="contact-email ellipsis-text">lisa.m@web.de</address>
-              </div>
-            </li>
-          <li class="letter-heading">
-            <span>M</span>
-          </li>
-          <li class="contact-separator"></li>
-          
-            <li id="contact-item" class="single-contact contact-hover-effect" onclick="showUserDetails(5, this)">
-              <div class="avatar-placeholder" style="background-color: #a3f609;">
-                <span class="avatar-overlay">MM</span>
-              </div>
-              <div class="contact-details">
-                <span>Maria Müller</span>
-             <address class="contact-email ellipsis-text">mariamueller@gmail.com</address>
-              </div>
-            </li>
-            <li id="contact-item" class="single-contact contact-hover-effect" onclick="showUserDetails(6, this)">
-              <div class="avatar-placeholder" style="background-color: #e74c3c;">
-                <span class="avatar-overlay">MT</span>
-              </div>
-              <div class="contact-details">
-                <span>Markus Thiele</span>
-             <address class="contact-email ellipsis-text">markus.t@web.de</address>
-              </div>
-            </li>
-            <li id="contact-item" class="single-contact contact-hover-effect" onclick="showUserDetails(7, this)">
-              <div class="avatar-placeholder" style="background-color: #badd22;">
-                <span class="avatar-overlay">MS</span>
-              </div>
-              <div class="contact-details">
-                <span>Max Stigler</span>
-             <address class="contact-email ellipsis-text">max.stigler@web.de</address>
-              </div>
-            </li>
-            <li id="contact-item" class="single-contact contact-hover-effect" onclick="showUserDetails(8, this)">
-              <div class="avatar-placeholder" style="background-color: #457b9d;">
-                <span class="avatar-overlay">MJ</span>
-              </div>
-              <div class="contact-details">
-                <span>Michael Johnson</span>
-             <address class="contact-email ellipsis-text">michael.j@yahoo.com</address>
-              </div>
-            </li>
-          <li class="letter-heading">
-            <span>N</span>
-          </li>
-          <li class="contact-separator"></li>
-          
-            <li id="contact-item" class="single-contact contact-hover-effect" onclick="showUserDetails(9, this)">
-              <div class="avatar-placeholder" style="background-color: #e47c1b;">
-                <span class="avatar-overlay">NT</span>
-              </div>
-              <div class="contact-details">
-                <span>Nina Torres</span>
-             <address class="contact-email ellipsis-text">nina.t@web.de</address>
-              </div>
-            </li>
-          <li class="letter-heading">
-            <span>O</span>
-          </li>
-          <li class="contact-separator"></li>
-          
-            <li id="contact-item" class="single-contact contact-hover-effect" onclick="showUserDetails(10, this)">
-              <div class="avatar-placeholder" style="background-color: #f4a261;">
-                <span class="avatar-overlay">OK</span>
-              </div>
-              <div class="contact-details">
-                <span>Oliver Koch</span>
-             <address class="contact-email ellipsis-text">oliver.k@web.de</address>
-              </div>
-            </li>
-          <li class="letter-heading">
-            <span>P</span>
-          </li>
-          <li class="contact-separator"></li>
-          
-            <li id="contact-item" class="single-contact contact-hover-effect" onclick="showUserDetails(11, this)">
-              <div class="avatar-placeholder" style="background-color: #f94f06;">
-                <span class="avatar-overlay">PS</span>
-              </div>
-              <div class="contact-details">
-                <span>Patrick Schlieker</span>
-             <address class="contact-email ellipsis-text">patrick.schlieker@gmail.com</address>
-              </div>
-            </li>
-            <li id="contact-item" class="single-contact contact-hover-effect" onclick="showUserDetails(12, this)">
-              <div class="avatar-placeholder" style="background-color: #6a0572;">
-                <span class="avatar-overlay">PB</span>
-              </div>
-              <div class="contact-details">
-                <span>Peter Braun</span>
-             <address class="contact-email ellipsis-text">peter.b@gmail.com</address>
-              </div>
-            </li>
-          <li class="letter-heading">
-            <span>S</span>
-          </li>
-          <li class="contact-separator"></li>
-          
-            <li id="contact-item" class="single-contact contact-hover-effect" onclick="showUserDetails(13, this)">
-              <div class="avatar-placeholder" style="background-color: #34a2eb;">
-                <span class="avatar-overlay">SK</span>
-              </div>
-              <div class="contact-details">
-                <span>Sabine Krause</span>
-             <address class="contact-email ellipsis-text">sabine.k@web.de</address>
-              </div>
-            </li>
-            <li id="contact-item" class="single-contact contact-hover-effect" onclick="showUserDetails(14, this)">
-              <div class="avatar-placeholder" style="background-color: #264653;">
-                <span class="avatar-overlay">SN</span>
-              </div>
-              <div class="contact-details">
-                <span>Sara Nielsen</span>
-             <address class="contact-email ellipsis-text">sara.n@hotmail.com</address>
-              </div>
-            </li>
-            <li id="contact-item" class="single-contact contact-hover-effect" onclick="showUserDetails(15, this)">
-              <div class="avatar-placeholder" style="background-color: #ff595e;">
-                <span class="avatar-overlay">SR</span>
-              </div>
-              <div class="contact-details">
-                <span>Sofia Rossi</span>
-             <address class="contact-email ellipsis-text">sofia.r@yahoo.com</address>
-              </div>
-            </li>
-          <li class="letter-heading">
-            <span>Y</span>
-          </li>
-          <li class="contact-separator"></li>
-          
-            <li id="contact-item" class="single-contact contact-hover-effect" onclick="showUserDetails(16, this)">
-              <div class="avatar-placeholder" style="background-color: #2a9d8f;">
-                <span class="avatar-overlay">YA</span>
-              </div>
-              <div class="contact-details">
-                <span>Yasmin Ahmed</span>
-             <address class="contact-email ellipsis-text">yasmin.a@hotmail.com</address>
-              </div>
-            </li></ul>
+          </ul>
         </div>
     </section>
     <section class="contact-display">
@@ -337,6 +147,10 @@
     
       </div>
 </main>
-
+    <script src="script.js"></script>
+    <script src="./js/contactPage.js"></script>
+    <script src="./js/tampletes.js"></script>
+    <script src="./js/newContact.js"></script>
+    <script src="./js/editContact.js"></script>
 </body>
 </html>

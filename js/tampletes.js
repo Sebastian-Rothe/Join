@@ -1,17 +1,9 @@
-function getContactCardHTML(user, isNew) {
-  return `
-    <div class="contact-card${isNew ? ' new' : ''}">
-      <p>${user.name}</p>
-      <p>${user.email}</p>
-    </div>`;
-}
-
 function addAlphabetHeader(contactDisplay, sortAlphabet) {
     contactDisplay.innerHTML += `
-      <div class="alphabet-contact-list">
-        <span>${sortAlphabet}</span>                        
-      </div>
-      <div class="line-contact-list"></div>`;
+    <li class="letter-heading">
+      <span>${sortAlphabet}</span>
+    </li>
+    <li class="contact-separator"></li>`;
 }
 
 function getContactDetailHTML(user){
@@ -41,13 +33,15 @@ function getContactDetailHTML(user){
   
 function getContactCardHTML(user, isNew) {
     return `
-      <div id="contact-details-section-${user.email}" class="contact-details-section row ${isNew ? 'new-contact' : ''}" onclick='showContactDetails(${JSON.stringify(user)})'>
-          <div class="contact-details-profile mt-3 mb-3" style="background-color:${assignRandomColors()}">
-              ${getInitials(user.name)}
-          </div>
-          <div class="contact-details flex-column">
-              <span class="contact-details-name mt-3">${user.name}</span>
-              <span class="contact-details-email">${user.email}</span>
-          </div>
-      </div>`;
+    <li id="contact-item-${user.email}" class="single-contact contact-hover-effect ${isNew ? 'new-contact' : ''}" onclick='showContactDetails(${JSON.stringify(user)})' style="cursor: pointer;">
+      <div class="avatar-placeholder" style="background-color: ${assignRandomColors()};">
+        <span class="avatar-overlay">
+        ${getInitials(user.name)}
+        </span>
+      </div>
+      <div class="contact-details">
+        <span>${user.name}</span>
+      <address class="contact-email ellipsis-text">${user.email}</address>
+      </div>
+    </li>`;
 }
