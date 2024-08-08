@@ -1,12 +1,13 @@
+body {
+    font-family: 'Inter', sans-serif;
+    margin: 0;
+}
+
 .all {
     display: flex;
     justify-content: center;
     align-items: center;
     margin: 50px;
-}
-body {
-    font-family: 'Inter', sans-serif;
-    margin: 0;
 }
 
 .sidebar {
@@ -18,11 +19,14 @@ body {
     background-color: #2B3A42;
     color: white;
     padding-top: 20px;
+    overflow-y: auto; 
 }
 
 .sidebar img {
     display: block;
     margin: 0 auto;
+    width: 80%; 
+    max-width: 150px; 
 }
 
 .sidebar ul {
@@ -59,17 +63,17 @@ body {
 .content {
     margin-left: 250px;
     padding: 20px;
+    width: calc(100% - 250px);
+    box-sizing: border-box; 
 }
 
 .navbar {
     background-color: white;
     box-shadow: 0 4px 2px -2px gray;
     padding: 10px 20px;
-}
-
-.navbar .nav-bar-text {
-    font-size: 18px;
-    font-weight: 600;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .container-fluid h2, .container-fluid h1 {
@@ -77,18 +81,101 @@ body {
 }
 
 .container-fluid h1 {
-    font-size: 36px;
+    font-size: 28px;
 }
 
 .container-fluid p {
-    font-size: 16px;
+    font-size: 14px;
     line-height: 1.5;
 }
-.font{
-    font-size: 70px;
+
+
+.font {
+    font-size: 40px;
+    margin-left: 10px;
 }
-.backIcon{
+
+.backIcon {
     position: absolute;
-    top: 80px;
-    right: 70px;
+    right: 20px;
+    
+}
+
+
+@media (max-width: 768px) {
+    .all {
+        flex-direction: column;
+        align-items: stretch; 
     }
+
+    .sidebar {
+        position: relative;
+        width: 100%; 
+        height: auto; 
+        margin-bottom: 20px;
+    }
+
+    .content {
+        margin-left: 0;
+        width: 100%;
+    }
+
+    .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .container-fluid h1 {
+        font-size: 24px;
+    }
+
+    .container-fluid p {
+        font-size: 14px;
+    }
+
+    .font {
+        font-size: 32px;
+    }
+
+    .backIcon {
+        width: 25px;
+        margin-left: 5px;
+    }
+    .sidebar .nav-footer a {
+        display: none;
+    }
+}
+
+@media (max-width: 320px) {
+    .sidebar {
+        width: 100%; 
+        padding: 10px; 
+    }
+
+    .sidebar img {
+        width: 100%; 
+        max-width: 120px; 
+    }
+
+    .container-fluid h1 {
+        font-size: 22px;
+    }
+
+    .container-fluid p {
+        font-size: 12px;
+    }
+
+    .font {
+        font-size: 28px;
+        margin-left: 5px;
+    }
+
+    .backIcon {
+        width: 20px;
+        margin-left: 0;
+    }
+    .sidebar .nav-footer a {
+        display: none;
+    }
+}
+
