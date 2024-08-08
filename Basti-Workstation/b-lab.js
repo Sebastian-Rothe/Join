@@ -169,3 +169,31 @@ function updateDisplayStates(contactDetails, contactContent, mobileContactOption
     contactContent.style.display = 'none';
   }
 }
+
+
+
+function openMobileContactOption() {
+  console.log('Opening popup...');
+  const popup = document.getElementById('mobile-contact-option-popup');
+  const overlay = document.getElementById('overlay-option');
+  closeMobileAddB();
+  popup.classList.remove('d-none');
+  overlay.classList.remove('d-none');
+  setTimeout(() => {
+    popup.classList.add('aktiv');
+    overlay.style.opacity = '1';
+  }, 10);
+}
+
+function closeMobileContactOption() {
+  console.log('Closing popup...');
+  const popup = document.getElementById('mobile-contact-option-popup');
+  const overlay = document.getElementById('overlay-option');
+  popup.classList.remove('aktiv');
+  overlay.style.opacity = '0';
+  setTimeout(() => {
+    popup.classList.add('d-none');
+    overlay.classList.add('d-none');
+    addMobileAddB();
+  }, 300);
+}

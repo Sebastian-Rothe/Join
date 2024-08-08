@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="main-board">
+        <div id="head-board">
+            <h2>Board</h2>
+            <div>
+                <input type="text">
+                <button>Add task</button>
+            </div>
+        </div>
+        <div>
+            <div id="to-do-div">
+                <div id="to-do-head"><span>To do</span><img src="" alt=""></div>
+                <div id="to-do-content"></div>
+            </div>
+            <div id="in-progress-div">
+                <div id="in-grogress-head"><span>In progress</span><img src="" alt=""></div>
+                <div id="in-progress-content"></div>
+            </div>
+            <div id="await-feedback-div">
+                <div id="await-feedback-head"><span>Await feedback</span><img src="" alt=""></div>
+                <div id="await-feedback-content"></div>
+            </div>
+            <div id="done-div">
+                <div id="done-head"><span>Done</span></div>
+                <div id="done-content"></div>
+            </div>
+        </div>
+    </div>
+
+
+    <div id="add-task-div">
+        
+        <div id="add-task-head">
+            <h2>Add Task</h2>
+            <img src="" alt="Close icon">
+        </div>
+
+        <div id="add-task-body">
+            <div id="add-task-body-left">
+                <label for="">Title*
+                    <input type="text" placeholder="Enter a title">
+                </label>
+                <label for="">description
+                    <textarea name="" id="" placeholder="Enter a Description"></textarea>
+                </label>
+                <label for="">Assigned to
+                    <input type="">
+                </label>
+            </div>
+            <div id="add-task-body-right">
+                <label for="">Due date*
+                    <input type="date">
+                </label>
+                <label for="">Prio
+                    <div>
+                        <button>Urgent</button>
+                        <button>Medium</button>
+                        <button>Low</button>
+                    </div>
+                </label>
+                <label for="">Category*
+                    <input type="text">
+                </label>
+                <label for="">Subtasks
+                    <input type="text" placeholder="Add new subtask">
+                </label>
+            </div>
+        </div>
+
+        <div id="add-task-footer">
+            <div>
+                <span>*This field is required</span>
+            </div>
+            <div>
+                <button>Cancel</button>
+                <button>Create Task</button>
+            </div>
+        </div>
+
+    </div>
+</body>
+</html>

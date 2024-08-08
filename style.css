@@ -1000,3 +1000,32 @@ h2 {
 ::-webkit-scrollbar-track {
     background: white;
 }
+
+
+
+.mobile-edit-delete-contact-button {
+    background-color: transparent; 
+    border: 2px solid transparent; 
+    border-radius: 8px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    padding: 4px;
+    color: inherit; 
+    transition: border-color 0.2s ease, color 0.2s ease; 
+}
+.mobile-edit-delete-contact-button:active {
+    border-color: #29ABE2; 
+    color: #29ABE2; 
+}
+.mobile-edit-delete-contact-button:focus {
+    outline: none; 
+}
+.mobile-edit-delete-contact-button img {
+    margin-right: 8px; 
+    transition: filter 0.2s ease; 
+}
+.mobile-edit-delete-contact-button:active img {
+    filter: invert(40%) sepia(100%) saturate(500%) hue-rotate(160deg); 
+}
+

@@ -200,48 +200,53 @@ function clearSelectedHighlight(){
 }
 
 function openMobileContactOption() {
-  let popup = document.getElementById('mobile-contact-option-popup');
+  const popup = document.getElementById('mobile-contact-option-popup');
   const mobileContactOption = document.getElementById("mobile-contact-option");
-  const overlay = document.getElementById("overlay-option");
-  closeMobileAddB();
+
   popup.classList.remove('d-none');
-  overlay.classList.remove('d-none');
+  popup.classList.add('aktiv');
   mobileContactOption.classList.add("d-none");
-  setTimeout(() => {
-    popup.classList.add('aktiv');
-    overlay.style.opacity = '1';
-  }, 10); 
+  closeMobileAddB();
+
+  document.addEventListener('click', handleDocumentClick);
 }
 
 function closeMobileContactOption() {
-  let popup = document.getElementById('mobile-contact-option-popup');
+  const popup = document.getElementById('mobile-contact-option-popup');
   const mobileContactOption = document.getElementById("mobile-contact-option");
-  const overlay = document.getElementById("overlay-option");
+
   popup.classList.remove('aktiv');
-  overlay.style.opacity = '0';
-  
-  setTimeout(() => {
-    popup.classList.add('d-none');
-    overlay.classList.add('d-none');
-    mobileContactOption.classList.remove("d-none");
-    addMobileAddB();
-  }, 300); // Match the transition duration
+  popup.classList.add('d-none');
+  mobileContactOption.classList.remove("d-none");
+  addMobileAddB();
+
+  document.removeEventListener('click', handleDocumentClick);
 }
 
-function changeToAddButton(){
+function handleDocumentClick(event) {
+  const popup = document.getElementById('mobile-contact-option-popup');
+  const trigger = document.getElementById('mobile-contact-option');
+
+  if (!popup.contains(event.target) && event.target !== trigger) {
+    closeMobileContactOption();
+  }
+}
+
+function changeToAddButton() {
   const mobileContactOption = document.getElementById("mobile-contact-option");
   const imageContainer = document.getElementById('mobile-add-button');
+ 
   mobileContactOption.classList.add("d-none");
-  imageContainer.classList.remove('d-none')
+  imageContainer.classList.remove('d-none');
 }
 
-function closeMobileAddB(){
+function closeMobileAddB() {
   const imageContainer = document.getElementById('mobile-add-button');
   imageContainer.classList.add('d-none');
 }
 
-function addMobileAddB(){
+function addMobileAddB() {
   const imageContainer = document.getElementById('mobile-add-button');
-  imageContainer.classList.remove('d-none')
+  imageContainer.classList.remove('d-none');
 }
 
