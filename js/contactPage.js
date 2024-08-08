@@ -84,25 +84,16 @@ async function displayContacts(newUser = null) {
   highlightNewContact();
 }
 
-function updateContactDisplay(contactDisplay, user, sortAlphabet, newUser) {
-  let firstLetter = user.name.charAt(0).toUpperCase();
-
-  if (firstLetter !== sortAlphabet) {
-    sortAlphabet = firstLetter;
-    addAlphabetHeader(contactDisplay, sortAlphabet);
-  }
-  const isNew = newUser && user.name === newUser.name && user.email === newUser.email;
-  contactDisplay.innerHTML += getContactCardHTML(user, isNew);
-  return sortAlphabet;
-}
-
 function showContactDetails(user) {
+  highlightSelectedContact(user.email);
   const detailDisplay = document.getElementById("contact-details");
   const contactDetails = document.getElementById("view-contacts");
   const contactContent = document.getElementById("contact-content");
-  detailDisplay.innerHTML = getContactDetailHTML(user);  
-  detailDisplay.style.display = 'block'; 
+  const mobileContactOption = document.getElementById("mobile-contact-option");
+  detailDisplay.innerHTML = getContactDetailHTML(user);
+  detailDisplay.style.display = 'block';
   contactDetails.style.display = 'block'; 
+  mobileContactOption.classList.remove('d-none');
   if (window.innerWidth <= 655) {
     contactContent.style.display = 'none';
   }
@@ -129,84 +120,10 @@ function assignRandomColors() {
   return profileColors[Math.floor(Math.random() * profileColors.length-1)]
 }
 
-function editContact(id) {
-  let popup = document.getElementById('edit-contact-overlay');
-  showEditPopup(popup);
-
-  const contact = users.find(user => user.id === id);
-  populateEditForm(contact);
-  setupEditSaveButton(id);
-}
-
-function showEditPopup(popup) {
-  popup.classList.remove('d-none');
-  setTimeout(() => {
-    popup.classList.add('aktiv');
-  }, 10);
-}
-
-function populateEditForm(contact) {
-  document.getElementById("edit-name").value = contact.name;
-  document.getElementById("edit-email").value = contact.email;
-  document.getElementById("edit-phone").value = contact.phone;
-
-  const editAvatar = document.getElementById("edit-avatar");
-  editAvatar.style.backgroundColor = assignRandomColors();
-  editAvatar.innerText = getInitials(contact.name);
-}
-
-function setupEditSaveButton(id) {
-  const editSave = document.getElementById("save-edit-button");
-  editSave.onclick = function(event) {
-    event.preventDefault(); 
-    updateContact(id);
-  };
-}
-
-function updateContact(id) {
-  const updatedContact = getUpdatedContactData();
-  sendUpdateRequest(id, updatedContact)
-    .then(response => {
-      if (response.ok) {
-        handleUpdateSuccess();
-      }
-    });
-}
-
-function getUpdatedContactData() {
-  return {
-    name: document.getElementById("edit-name").value,
-    email: document.getElementById("edit-email").value,
-    phone: document.getElementById("edit-phone").value
-  };
-}
-
-function sendUpdateRequest(id, updatedContact) {
-  return fetch(BASE_URL + `/contacts/${id}.json`, {
-    method: "PUT",
-    headers: {
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify(updatedContact)
-  });
-}
-
-function handleUpdateSuccess() {
-  loadContacts("/contacts").then(displayContacts);
-  closeEditedContact();
-}
-
-function closeEditedContact(){
-  let popup = document.getElementById('edit-contact-overlay');
-  popup.classList.remove('aktiv');
-  setTimeout(() => {
-    popup.classList.add('d-none');
-  }, 1000);
-}
-
 function backToContactList() {
   const contactContent = document.getElementById("contact-content");
   const contactDetails = document.getElementById("view-contacts");
+  changeToAddButton();
   contactContent.style.display = 'block';
   if (window.innerWidth <= 655) {
     contactDetails.style.display = 'none';
@@ -222,8 +139,71 @@ function handleResize() {
   }
   else if(window.innerWidth <= 655){
     contactDetails.style.display = 'none';
+    document.getElementById("mobile-contact-option").classList.add("d-none");
   }
 }
 
 window.addEventListener('resize', handleResize);
 handleResize();
+
+function highlightSelectedContact(id){
+  clearSelectedHighlight();
+  const contactSection = document.getElementById("contact-details-section-"+id);
+  contactSection.classList.add("active");
+}
+
+function clearSelectedHighlight(){
+  const contactDetailsSections = document.getElementsByClassName("contact-details-section");
+  const contactDetailsArray = Array.from(contactDetailsSections);
+
+  contactDetailsArray.forEach(section => {
+      section.classList.remove("active");
+  });
+}
+
+function openMobileContactOption() {
+  let popup = document.getElementById('mobile-contact-option-popup');
+  const mobileContactOption = document.getElementById("mobile-contact-option");
+  const overlay = document.getElementById("overlay-option");
+  closeMobileAddB();
+  popup.classList.remove('d-none');
+  overlay.classList.remove('d-none');
+  mobileContactOption.classList.add("d-none");
+  setTimeout(() => {
+    popup.classList.add('aktiv');
+    overlay.style.opacity = '1';
+  }, 10); 
+}
+
+function closeMobileContactOption() {
+  let popup = document.getElementById('mobile-contact-option-popup');
+  const mobileContactOption = document.getElementById("mobile-contact-option");
+  const overlay = document.getElementById("overlay-option");
+  popup.classList.remove('aktiv');
+  overlay.style.opacity = '0';
+  
+  setTimeout(() => {
+    popup.classList.add('d-none');
+    overlay.classList.add('d-none');
+    mobileContactOption.classList.remove("d-none");
+    addMobileAddB();
+  }, 300); // Match the transition duration
+}
+
+function changeToAddButton(){
+  const mobileContactOption = document.getElementById("mobile-contact-option");
+  const imageContainer = document.getElementById('mobile-add-button');
+  mobileContactOption.classList.add("d-none");
+  imageContainer.classList.remove('d-none')
+}
+
+function closeMobileAddB(){
+  const imageContainer = document.getElementById('mobile-add-button');
+  imageContainer.classList.add('d-none');
+}
+
+function addMobileAddB(){
+  const imageContainer = document.getElementById('mobile-add-button');
+  imageContainer.classList.remove('d-none')
+}
+
