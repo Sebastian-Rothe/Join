@@ -4,3 +4,22 @@
     width: 134px;
     height: 134px;
   }
+
+
+/* css for contact slide */
+  #contact-details {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.5s ease-in-out;
+    transform: translateX(100%); 
+}
+#contact-details.aktiv {
+    transform: translateX(0); 
+}
+.contact-details-section {
+    width: 352px;
+    height: 78px;
+    margin-left: 2px;
+    margin-top: 10px;     
+}
