@@ -197,7 +197,13 @@
   .profile-avatar a:hover{
     text-decoration: none;   
   }
-  
+
+  .avatar-in-edit{
+    margin-right: 0;
+    width: 134px;
+    height: 134px;
+  }
+
   .sidebar {
     display: flex;
     flex-direction: column;
