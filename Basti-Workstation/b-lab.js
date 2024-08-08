@@ -115,3 +115,57 @@ function getInitials(fullName) {
 //     <span>${user.name}</span>
 //     <span>${user.email}</span>
 // </div>
+
+// functions for contact detail slide show
+function showContactDetails(user) {
+  highlightSelectedContact(user.email);
+  
+  const detailDisplay = document.getElementById("contact-details");
+  const contactDetails = document.getElementById("view-contacts");
+  const contactContent = document.getElementById("contact-content");
+  const mobileContactOption = document.getElementById("mobile-contact-option");
+
+  if (isDetailDisplayActive(detailDisplay)) {
+    closeCurrentDetail(detailDisplay, user);
+  } else {
+    openNewDetail(detailDisplay, user);
+  }
+  updateDisplayStates(contactDetails, contactContent, mobileContactOption);
+}
+
+function isDetailDisplayActive(detailDisplay) {
+  return detailDisplay.classList.contains('aktiv');
+}
+
+function closeCurrentDetail(detailDisplay, user) {
+  detailDisplay.classList.remove('aktiv');
+  setTimeout(() => {
+    updateDetailContent(detailDisplay, user);
+    openDetailWithAnimation(detailDisplay);
+  }, 500);
+}
+
+function openNewDetail(detailDisplay, user) {
+  updateDetailContent(detailDisplay, user);
+  detailDisplay.classList.remove('d-none');
+  openDetailWithAnimation(detailDisplay);
+}
+
+function updateDetailContent(detailDisplay, user) {
+  detailDisplay.innerHTML = getContactDetailHTML(user);
+}
+
+function openDetailWithAnimation(detailDisplay) {
+  setTimeout(() => {
+    detailDisplay.classList.add('aktiv');
+  }, 10); 
+}
+
+function updateDisplayStates(contactDetails, contactContent, mobileContactOption) {
+  contactDetails.style.display = 'block';
+  mobileContactOption.classList.remove('d-none');
+  
+  if (window.innerWidth <= 655) {
+    contactContent.style.display = 'none';
+  }
+}
