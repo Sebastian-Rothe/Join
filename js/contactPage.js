@@ -57,7 +57,7 @@ async function postContact(path = "", data = {}) {
 }
 
 async function deleteContact(id) {
-  const detailDisplay = document.getElementById("contact-details");
+  const detailDisplay = document.getElementById("contact-content");
   let response = await fetch(BASE_URL + `/contacts/${id}.json`, {
     method: "DELETE",
   });
@@ -86,8 +86,8 @@ async function displayContacts(newUser = null) {
 
 function showContactDetails(user) {
   highlightSelectedContact(user.email);
-
-  const detailDisplay = document.getElementById("contact-details");
+  
+  const detailDisplay = document.getElementById("contact-content");
   const contactDetails = document.getElementById("view-contacts");
   const contactContent = document.getElementById("contact-list");
   const mobileContactOption = document.getElementById("mobile-contact-option");
@@ -195,12 +195,12 @@ handleResize();
 
 function highlightSelectedContact(id){
   clearSelectedHighlight();
-  const contactSection = document.getElementById("contact-details-section-"+id);
+  const contactSection = document.getElementById("contact-item-"+id);
   contactSection.classList.add("active");
 }
 
 function clearSelectedHighlight(){
-  const contactDetailsSections = document.getElementsByClassName("contact-details-section");
+  const contactDetailsSections = document.getElementsByClassName("single-contact");
   const contactDetailsArray = Array.from(contactDetailsSections);
 
   contactDetailsArray.forEach(section => {
