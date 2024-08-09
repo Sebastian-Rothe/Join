@@ -519,6 +519,12 @@
     height: 59px;
     width: 3px;
   }
+  .divider-responsive{
+    background-color: rgba(41, 171, 226, 1);
+    height: 3px;
+    width: 120px;
+    display: none;
+  }
   
   .contact-heading h1 {
     font-size: 61px;
@@ -855,7 +861,11 @@
 }
 
   /* Responsive */
-
+@media (max-width: 1650px) {
+    .header-left-content {     
+      justify-content: end;     
+    }
+}
 @media (max-width: 1300px) {
     .contact-heading {
         flex-direction: column;
@@ -869,20 +879,23 @@
       height: auto;
       align-items: flex-start;
       gap: 24px;
-    }  
-    .header-right-content {
-      flex: none;
-      margin-left: 56px;
-    }
+    }     
     .divider {
-        background-color: rgba(41, 171, 226, 1);
-        height: 3px;
-        width: 120px;
+        display: none;
     }
-  }
+    .divider-responsive{
+        display: block;
+    }
+}
+  @media (max-width: 1200px) {
+    .header-left-content {
+      display: none; 
+      
+    }
+}
 @media (max-width: 1127px) {
     .contact-name-large {
-        font-size: 37px;
+        font-size: 27px;
     }
     .avatar-large {
         height: 90px;
@@ -893,12 +906,70 @@
         font-weight: 400;
     }
 }
-@media (max-width: 1127px) {
-    .contact-name-large {
-        font-size: 27px;
-    }
+
+@media (max-width: 1030px) {
+  .menu-item span{
+    display: none;    
+  }
+  .sidebar {    
+    width: 120px;    
+  }
+  .menu-item {   
+    width: calc(100% -40px);    
+    padding-left: 40px;
+  }
+  .footer-container {     
+    padding-left: 10px;
 }
-  
+  .footer-container a:hover{    
+    font-size: 16px;
+    color:#29ABE2;    
+  }
+  .logo-container {
+    width: 50px;
+    height: 120px;    
+    margin-left: 35px;
+}
+.container-main {    
+    padding-left: 100px;    
+}
+}
+@media (max-width: 902px) {
+    .sidebar {    
+    display: none;   
+    }
+    .container-main {    
+      padding-left: 0px;    
+  }
+  .menu-mobile-display-container {   
+    display: flex;
+}
+}
+@media (max-width: 800px) {
+
+  .contact-display {
+    display: none;
+  }
+  .contact-details-area {
+    width: 100%;    
+  }
+  .contact-list {
+    width: 750px; 
+    align-items: center; 
+   
+  }
+  .new-contact-button {
+    width: 100%;
+    margin-left: 200px;
+  }
+  .button-container { 
+    width: 600px;  
+  } 
+}
+@media (max-width: 750px) {
+
+}
+
 
 
   /* @media (max-width: 1170px) {
