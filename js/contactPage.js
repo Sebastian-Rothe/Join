@@ -86,18 +86,27 @@ async function displayContacts(newUser = null) {
 
 function showContactDetails(user) {
   highlightSelectedContact(user.email);
-  
+
   const detailDisplay = document.getElementById("contact-details");
   const contactDetails = document.getElementById("view-contacts");
   const contactContent = document.getElementById("contact-content");
   const mobileContactOption = document.getElementById("mobile-contact-option");
-
+  getUserIdForMobile(user);
+ 
   if (isDetailDisplayActive(detailDisplay)) {
     closeCurrentDetail(detailDisplay, user);
   } else {
     openNewDetail(detailDisplay, user);
   }
   updateDisplayStates(contactDetails, contactContent, mobileContactOption);
+}
+
+function getUserIdForMobile(user){
+  const editButton = document.getElementById("mobile-button-edit");
+  const deleteButton = document.getElementById("mobile-button-delete");
+
+  editButton.setAttribute("onclick", `editContact(${JSON.stringify(user.id)})`);
+  deleteButton.setAttribute("onclick", `deleteContact(${JSON.stringify(user.id)})`);
 }
 
 function isDetailDisplayActive(detailDisplay) {
