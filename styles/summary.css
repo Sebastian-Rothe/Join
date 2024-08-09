@@ -37,8 +37,27 @@ body {
 }
 
 .menu li {
+    display: flex;
+    align-items: center;
     margin: 20px 0;
     font-size: 18px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.menu li:hover {
+    transform: scale(1.1); /* Vergrößert den Container */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Optionaler Schatteneffekt */
+}
+
+.menu li .icon-sm {
+    margin-right: 10px;
+    flex-shrink: 0;
+}
+
+.menu li .icon-sm img {
+    height: 20px;
+    width: 20px;
+    display: block;
 }
 
 .legal {
@@ -93,18 +112,35 @@ header h1 {
     margin-top: 20px;
 }
 
+.metric-item:hover {
+    color: white;
+    background-color: #041f4d; /* Dunkelblauer Hover-Effekt */
+}
+
 .metric-item {
+    font-weight: bolder;
+    padding: 20px;
+    height: 120px;
+    width: auto;
+    cursor: pointer;
     background-color: #F5F5F5;
     border-radius: 10px;
     padding: 20px;
     text-align: center;
     font-size: 18px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.metric-item:hover {
+    transform: scale(1.1); /* Vergrößert den Container */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Optionaler Schatteneffekt */
 }
 
 .metric-item p:first-child {
     font-size: 32px;
     font-weight: bold;
-    margin: 0;
+    margin: 5;
+    padding: auto;
 }
 
 .greeting {
@@ -114,4 +150,12 @@ header h1 {
 
 .greeting span {
     color: #1E90FF;
+}
+
+.icon-sm {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 40px;
+    width: 40px;
 }
