@@ -1,16 +1,16 @@
 let profileColors = [
-  '#CC4629', // Darker Rot
-  '#29CC46', // Darker Grün
-  '#2946CC', // Darker Blau
-  '#CC2985', // Darker Pink
-  '#CC8400', // Darker Orange
-  '#CCAD00', // Darker Gold
-  '#6F2296', // Darker Blauviolett
-  '#66CCA6', // Darker Aquamarin
-  '#CC3600', // Darker Orangerot
-  '#324D1A'  // Darker Dunkelolivgrün
-];
-  
+    '#FF5733', // Rot
+    '#33FF57', // Grün
+    '#3357FF', // Blau
+    '#FF33A6', // Pink
+    '#FFA500', // Orange
+    '#FFD700', // Gold
+    '#8A2BE2', // Blauviolett
+    '#7FFFD4', // Aquamarin
+    '#FF4500', // Orangerot
+    '#3E6020'  // Dunkelolivgrün
+  ];
+
 function init() {
   loadContacts("/contacts").then(displayContacts);
 }
@@ -164,7 +164,7 @@ function getInitials(fullName) {
 }
 
 function assignRandomColors() {
-  return profileColors[Math.floor(Math.random() * profileColors.length)]
+  return profileColors[Math.floor(Math.random() * profileColors.length-1)]
 }
 
 function backToContactList() {

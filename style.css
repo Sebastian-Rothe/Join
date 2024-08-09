@@ -15,7 +15,11 @@ body {
     display: none;
     margin-left: 40pX;
 }
-
+.container, .container-fluid, .container-lg, .container-md, .container-sm, .container-xl {
+    
+    padding-right: 0px;
+    padding-left: 0px;
+}
 .sidebar {
     width: 232px;
     background-color: #2A3647;
@@ -23,30 +27,44 @@ body {
     position: fixed;
     top: 0;
     bottom: 0;
-    overflow-y: auto;
-      
+    overflow-y: hidden; /* Keeps the sidebar scrollable */  
+    z-index: 1000;  
 }
 .sidebar a {
     color: white;
     text-decoration: none;
 }
-
+.fixed-top{
+    z-index: 1;
+}
 .content {
-    margin-left: 250px;    
+    /* margin-left: 250px; */
+    padding-left: 230px;
     flex-grow: 1;
     background-color: #f8f9fa;
-    overflow-y: hidden;    
+    overflow-y: hidden; 
+    overflow-x: hidden;
 }
 .navbar {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    background-color: white;    
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);   
+    background-color: white;
+    /* margin-left: 250px; */
+    /* padding-left: 250px;  */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); 
+   
     height: 96px;
-    margin-left: 250px;      
+    width: 120%;
+    
 }
-
+.fixed-top {
+    position: relative;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 1;
+}
 .nav-info-box{
     width:104px;
     height: 56px;
@@ -57,8 +75,9 @@ body {
 }
 .contact-list-main-section{    
     max-height:100vh;
-    overflow: auto; /*****************************************************change */
-    
+     overflow: hidden; /*****************************************************change */
+     padding-left: 80px;
+     /* margin-top: 100px; */
 }
 .btn-add-new-contact-section{
     position: fixed;
@@ -68,9 +87,11 @@ body {
 }
 .contact-list-persons-container{
     margin-top: 150px;    
-    width:400px;    
-    overflow-y: auto;
-    height: 80%;
+    width:400px;
+    height:77%;   
+    /* margin-bottom: 700px;  */
+    overflow-y: auto; 
+    /* box-shadow: 4px 0 4px -4px rgba(0, 0, 0, 0.6); */
 }
 .btn-add-new-contact{    
     background-color: #2A3647;
@@ -232,8 +253,9 @@ h2 {
     position: relative;
     display: flex;
     flex-direction: column;
-    margin-top: 96px;
-    margin-left:55px;
+    padding-top: 80px;
+    padding-left:55px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); 
 }
 .contacts-title-section{   
     justify-content: center;
