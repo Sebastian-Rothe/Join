@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="./styles/board.css">
+    <title>Join Board</title>
+</head>
+<body>
+
+    <!-- include header and sidebar -->
+
+    <div id="main-board" class="main-board">
+        <div id="head-board" class="head-board">
+            <h2>Board</h2>
+            <div class="search-container">
+                <input type="text" placeholder="Find Task" class="search-input">
+                <button class="search-button">Add task
+                    <img src="./assets/icons/add.svg" alt="">
+                </button>
+            </div>
+        </div>
+        <div id="board-main-div" class="board-main-div">
+            <div id="to-do-div" class="to-do-div align-all-4">
+                <div id="to-do-head" class="all4-style">
+                    <span>To do</span>
+                    <img class="hover-to-blue" src="./assets/icons/add-button-board.svg" alt="">
+                </div>
+                <div id="to-do-content" class="task-section">
+                    <div id="empty-section-note" class="empty-section-note">
+                        <span>No tasks To do</span>
+                    </div>                    
+                </div>
+            </div>
+            <div id="in-progress-div" class="in-progress-div align-all-4">
+                <div id="in-progress-head" class="in-progress-head all4-style">
+                    <span>In progress</span>
+                    <img class="hover-to-blue" src="./assets/icons/add-button-board.svg" alt="">
+                </div>
+                <div id="in-progress-content" class="task-section">
+                    <div id="empty-section-note" class="empty-section-note">
+                        <span>No tasks In progress</span>
+                    </div>    
+                </div>
+            </div>
+            <div id="await-feedback-div" class="await-feedback-div align-all-4">
+                <div id="await-feedback-head" class="all4-style">
+                    <span>Await feedback</span>
+                    <img class="hover-to-blue" src="./assets/icons/add-button-board.svg" alt="">
+                </div>
+                <div id="await-feedback-content" class="task-section">
+                    <div id="empty-section-note" class="empty-section-note">
+                        <span>No tasks Await feedback</span>
+                    </div>    
+                </div>
+            </div>
+            <div id="done-div" class="done-div align-all-4">
+                <div id="done-head"  class="all4-style">
+                    <span>Done</span>
+                </div>
+                <div id="done-content" class="task-section">
+                    <div id="empty-section-note" class="empty-section-note">
+                        <span>No tasks Done</span>
+                    </div>    
+                </div>
+            </div>
+        </div>
+    </div>
+    
+
+
+
+<script src="./js/board.js"></script>
+</body>
+</html>
