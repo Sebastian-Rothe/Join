@@ -6,6 +6,7 @@
     <title>Join Dummy</title>
     <link rel="stylesheet" href="reset.css" />
     <link rel="stylesheet" href="style3.css" />
+    <link rel="stylesheet" href="./styles/newContactMobile.css">
 </head>
 <body onload="init(), includeHTML()">
     <div w3-include-html="./newContact.html"></div>
@@ -13,7 +14,7 @@
     <header>        
         <div class="header-left-content">
             <span class="header-title">Kanban Project Management Tool</span>
-            <span><img class="logo-small" src="./assets/img/logosmall.png" alt="" /></span>
+            <span><img class="logo-small" src="./assets/icons/Capa 2.svg" alt="" /></span>
         </div>
         <div class="header-right-content">
             <div class="help-icon"><a href="#"><img src="./assets/img/help.png" alt=""/></a></div>
@@ -74,6 +75,16 @@
           <ul class="contact-list" id="contact-list">
           </ul>
         </div>
+        <div id="mobile-contact-option" class="mobile-contact-option d-none" onclick="openMobileContactOption()"><img src="./assets/icons/more_vert.svg" alt="" /></div>
+        <div id="overlay-option" class="overlay-option d-none" onclick="closeMobileContactOption()"></div>
+        <div class="mobile-contact-option-popup d-none" id="mobile-contact-option-popup">
+          <div class="mobile-contact-option-edit"><button class="mobile-edit-delete-contact-button" onclick="editContact('user.id')"><img src="./assets/img/edit.svg" alt="Edit">Edit</button></div>
+          <div class="mobile-contact-option-delete"><button class="mobile-edit-delete-contact-button" onclick="deleteContact(user.id)"><img src="./assets/img/delete.svg" alt="Delete">Delete</button></div>
+        </div>
+        <div id="mobile-add-button" class="mobile-add-button">
+          <img id="mobile-add1" class="mobile-default-img" src="./assets/icons/nContactM1.svg" alt="">
+          <img id="mobile-add2" class="mobile-hover-img" src="./assets/icons/nContactM2.svg" alt="" onclick="openNewContact()">
+        </div>
     </section>
     <section class="contact-display">
         <div id="view-contacts" class="view-contacts"></div>
@@ -85,8 +96,10 @@
         </div>
         <article id="contact-content" class="contact-content"> 
             <!--Load in JS-->
+          
         </article>
     </section>
+    
     <div class="menu-mobile-display-container">
      
         <div class="menu-mobile-display-item">
@@ -118,6 +131,12 @@
         </div>
     
       </div>
+
+
+
+
+
+      
 </main>
     <script src="script.js"></script>
     <script src="./js/contactPage.js"></script>

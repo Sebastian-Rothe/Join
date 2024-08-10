@@ -505,7 +505,11 @@ h2 {
     border-radius: 8px;
     animation: highlightAnimation 2s ease-in-out;
 }
-
+.view-contacts {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+  }
 @keyframes highlightAnimation {
 0% { background-color: initial; }
 100% { background-color: #2A3647; }
