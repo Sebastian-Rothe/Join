@@ -73,6 +73,7 @@
             </button>
           </div>
           <ul class="contact-list" id="contact-list">
+            <!-- Load contact list from JS -->
           </ul>
         </div>
         <div id="mobile-contact-option" class="mobile-contact-option d-none" onclick="openMobileContactOption()"><img src="./assets/icons/more_vert.svg" alt="" /></div>
@@ -86,10 +87,10 @@
           <img id="mobile-add2" class="mobile-hover-img" src="./assets/icons/nContactM2.svg" alt="" onclick="openNewContact()">
         </div>
     </section>
-    <section class="contact-display">
-        <div id="view-contacts" class="view-contacts"></div>
+    <section id="contact-display" class="contact-display">
         <div class="contact-heading">
           <span class="contacts-title">Contacts</span>
+          <span onclick="backToContactList()" class="arrow-left-contacts"><img src="./assets/img/arrow-left-line.png" alt=""></span>
           <div class="divider"></div>
           <span>Better with a team</span>
           <div class="divider-responsive"></div>
