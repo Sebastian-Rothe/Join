@@ -150,11 +150,12 @@ function openDetailWithAnimation(detailDisplay) {
 function updateDisplayStates(viewContacts, contactList, contactDetails, mobileContactOption, buttonBack) {
   viewContacts.style.display = 'block';
   mobileContactOption.classList.remove('d-none');
-  buttonBack.classList.remove('d-none');
 
   if (window.innerWidth <= 655) {
     contactList.classList.add('d-none');
     contactDetails.classList.add('d-none');
+  buttonBack.classList.remove('d-none');
+
   }
 }
 
