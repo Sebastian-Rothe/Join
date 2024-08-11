@@ -35,14 +35,14 @@
                     </a>                
                 </li>
                 <li class="menu-item">               
-                    <a href="#">        
-                    <img src="./assets/icons/Board.svg" alt=""/>
+                    <a href="#" onclick="loadContent('add_task.html')">        
+                    <img src="./assets/icons/AddTask.svg" alt=""/>
                     <span>Add Task</span>
                     </a>               
                 </li>
                 <li class="menu-item">                
-                    <a href="#">       
-                    <img src="./assets/icons/AddTask.svg" alt=""/>
+                    <a href="#" onclick="loadContent('board.html')">     
+                    <img src="./assets/icons/Board.svg" alt=""/>
                     <span>Board</span>
                     </a>                
                 </li>
@@ -55,19 +55,21 @@
             </ul>
 
             <div class="footer-container">
-                <a href="#">Privacy Policy</a>
+                <a href="#" onclick="loadContent('privacy.html')">
+                    Privacy Policy
+                </a>
                 <br>
-                <a href="#">Legal Notice</a>
+                <a href="#" onclick="loadContent('legal.html')">
+                    Legal Notice
+                </a>
             </div>
         </nav>
     </aside>
 
     <!--------------------------------------------------------- Main content -->
 
-    <main class="container-main">
         <!-- Inhalt wird hier geladen -->
         <iframe id="content-frame"></iframe>
-    </main>
 
 
 

@@ -274,14 +274,14 @@
     height: 30px;
     width: 30px;    
   }
-  .footer-container {    
+  .footer-container {       
     display: flex;
     flex-direction: column;
     color: #cdcdcd;
     font-size: 16px;    
     padding-left: 56px;       
   }
-  .footer-container a {    
+  .footer-container a {       
     margin-bottom: 10px;    
     font-size: 16px;
     color: #A8A8A8;

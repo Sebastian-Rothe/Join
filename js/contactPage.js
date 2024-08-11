@@ -154,8 +154,8 @@ function updateDisplayStates(viewContacts, contactList, contactDetails, mobileCo
   if (window.innerWidth <= 850) {
     contactList.classList.add('d-none');
     contactDetails.classList.add('d-none');
-  buttonBack.classList.remove('d-none');
-
+    buttonBack.classList.remove('d-none');
+    mobileContactOption.classList.remove('d-none');
   }
 }
 
@@ -178,7 +178,7 @@ function backToContactList() {
   changeToAddButton();
   contactList.classList.remove("d-none");
   contactDetails.classList.remove("d-none");
-  if (window.innerWidth <= 655) {
+  if (window.innerWidth <= 850) {
     contactDisplay.style.display = 'none';
   }
 }
@@ -187,14 +187,14 @@ function handleResize() {
   const contactList = document.getElementById("contact-list");
   const contactDetails = document.getElementById("contact-detail");
   const contactDisplay = document.getElementById("contact-display");
-  if (window.innerWidth >= 655) {
+  if (window.innerWidth >= 850) {
     contactList.classList.remove("d-none");
     contactDetails.classList.remove("d-none");
     contactDisplay.style.display = 'block';
   }
-  else if(window.innerWidth <= 655){
+  else if(window.innerWidth <= 850){
     contactDisplay.style.display = 'none';
-    document.getElementById("mobile-contact-option").classList.add("d-none");
+    document.getElementById("mobile-contact-option").classList.remove("d-none");
     document.getElementById("btnBack").classList.add("d-none");
   }
 }
