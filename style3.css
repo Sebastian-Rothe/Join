@@ -491,6 +491,7 @@
   }
   
   .contact-display {
+    position: relative;
     width: 100%;
     background-color: rgba(246, 247, 248, 1);
     display: flex;
@@ -857,6 +858,20 @@
     display: block;
     margin-top: 2px; /* Optional: to add some space between the image and text */
 }
+
+.arrow-left-contacts{
+  margin-top: 20px;
+  margin-left: 90px;
+ }
+ .arrow-left-contacts img{
+  width:42px;
+  height: 42px;
+ 
+ }
+ .arrow-left-contacts img:hover{
+  cursor: pointer;
+ 
+ }
 
   /* Responsive */
 @media (max-width: 1650px) {

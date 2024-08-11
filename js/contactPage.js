@@ -87,18 +87,28 @@ async function displayContacts(newUser = null) {
 function showContactDetails(user) {
   highlightSelectedContact(user.email);
   
-  const detailDisplay = document.getElementById("contact-content");
-  const contactDetails = document.getElementById("view-contacts");
-  const contactContent = document.getElementById("contact-list");
+  const contactContent = document.getElementById("contact-content");
+  const viewContacts = document.getElementById("contact-display");
+  const contactDetails = document.getElementById("contact-detail");
+  const contactList = document.getElementById("contact-list");
   const mobileContactOption = document.getElementById("mobile-contact-option");
+  const buttonBack = document.getElementById("btnBack");
   getUserIdForMobile(user);
  
-  if (isDetailDisplayActive(detailDisplay)) {
-    closeCurrentDetail(detailDisplay, user);
+  if (isDetailDisplayActive(contactContent)) {
+    closeCurrentDetail(contactContent, user);
   } else {
-    openNewDetail(detailDisplay, user);
+    openNewDetail(contactContent, user);
   }
-  updateDisplayStates(contactDetails, contactContent, mobileContactOption);
+  updateDisplayStates(viewContacts, contactList, contactDetails, mobileContactOption, buttonBack);
+}
+
+function getUserIdForMobile(user){
+  const editButton = document.getElementById("mobile-button-edit");
+  const deleteButton = document.getElementById("mobile-button-delete");
+
+  editButton.setAttribute("onclick", `editContact(${JSON.stringify(user.id)})`);
+  deleteButton.setAttribute("onclick", `deleteContact(${JSON.stringify(user.id)})`);
 }
 
 function getUserIdForMobile(user){
@@ -118,7 +128,7 @@ function closeCurrentDetail(detailDisplay, user) {
   setTimeout(() => {
     updateDetailContent(detailDisplay, user);
     openDetailWithAnimation(detailDisplay);
-  }, 500);
+  }, 100);
 }
 
 function openNewDetail(detailDisplay, user) {
@@ -137,21 +147,14 @@ function openDetailWithAnimation(detailDisplay) {
   }, 10); 
 }
 
-function updateDisplayStates(contactDetails, contactContent, mobileContactOption) {
-  contactDetails.style.display = 'block';
+function updateDisplayStates(viewContacts, contactList, contactDetails, mobileContactOption, buttonBack) {
+  viewContacts.style.display = 'block';
   mobileContactOption.classList.remove('d-none');
-  
-  if (window.innerWidth <= 655) {
-    contactContent.style.display = 'none';
-  }
-}
+  buttonBack.classList.remove('d-none');
 
-function backToContactList(){
-  const contactContent = document.getElementById("contact-list");
-  const contactDetails = document.getElementById("view-contacts");
-  contactContent.classList.remove("d-none");
   if (window.innerWidth <= 655) {
-    contactDetails.style.display = 'none';
+    contactList.classList.add('d-none');
+    contactDetails.classList.add('d-none');
   }
 }
 
@@ -168,25 +171,30 @@ function assignRandomColors() {
 }
 
 function backToContactList() {
-  const contactContent = document.getElementById("contact-list");
-  const contactDetails = document.getElementById("view-contacts");
+  const contactList = document.getElementById("contact-list");
+  const contactDetails = document.getElementById("contact-detail");
+  const contactDisplay = document.getElementById("contact-display");
   changeToAddButton();
-  contactContent.classList.remove("d-none");
+  contactList.classList.remove("d-none");
+  contactDetails.classList.remove("d-none");
   if (window.innerWidth <= 655) {
-    contactDetails.style.display = 'none';
+    contactDisplay.style.display = 'none';
   }
 }
 
 function handleResize() {
-  const contactContent = document.getElementById("contact-list");
-  const contactDetails = document.getElementById("view-contacts");
+  const contactList = document.getElementById("contact-list");
+  const contactDetails = document.getElementById("contact-detail");
+  const contactDisplay = document.getElementById("contact-display");
   if (window.innerWidth >= 655) {
-    contactContent.classList.remove("d-none");
-    contactDetails.style.display = 'block';
+    contactList.classList.remove("d-none");
+    contactDetails.classList.remove("d-none");
+    contactDisplay.style.display = 'block';
   }
   else if(window.innerWidth <= 655){
-    contactDetails.style.display = 'none';
+    contactDisplay.style.display = 'none';
     document.getElementById("mobile-contact-option").classList.add("d-none");
+    document.getElementById("btnBack").classList.add("d-none");
   }
 }
 

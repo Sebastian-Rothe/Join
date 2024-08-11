@@ -76,12 +76,6 @@
             <!-- Load contact list from JS -->
           </ul>
         </div>
-        <div id="mobile-contact-option" class="mobile-contact-option d-none" onclick="openMobileContactOption()"><img src="./assets/icons/more_vert.svg" alt="" /></div>
-        <div id="overlay-option" class="overlay-option d-none" onclick="closeMobileContactOption()"></div>
-        <div class="mobile-contact-option-popup d-none" id="mobile-contact-option-popup">
-          <div class="mobile-contact-option-edit"><button class="mobile-edit-delete-contact-button" onclick="editContact('user.id')"><img src="./assets/img/edit.svg" alt="Edit">Edit</button></div>
-          <div class="mobile-contact-option-delete"><button class="mobile-edit-delete-contact-button" onclick="deleteContact(user.id)"><img src="./assets/img/delete.svg" alt="Delete">Delete</button></div>
-        </div>
         <div id="mobile-add-button" class="mobile-add-button">
           <img id="mobile-add1" class="mobile-default-img" src="./assets/icons/nContactM1.svg" alt="">
           <img id="mobile-add2" class="mobile-hover-img" src="./assets/icons/nContactM2.svg" alt="" onclick="openNewContact()">
@@ -90,7 +84,7 @@
     <section id="contact-display" class="contact-display">
         <div class="contact-heading">
           <span class="contacts-title">Contacts</span>
-          <span onclick="backToContactList()" class="arrow-left-contacts"><img src="./assets/img/arrow-left-line.png" alt=""></span>
+          <span id="btnBack" onclick="backToContactList()" class="arrow-left-contacts d-none"><img src="./assets/img/arrow-left-line.png" alt=""></span>
           <div class="divider"></div>
           <span>Better with a team</span>
           <div class="divider-responsive"></div>
@@ -99,6 +93,12 @@
             <!--Load in JS-->
           
         </article>
+        <div id="mobile-contact-option" class="mobile-contact-option d-none" onclick="openMobileContactOption()"><img src="./assets/icons/more_vert.svg" alt="" /></div>
+        <div id="overlay-option" class="overlay-option d-none" onclick="closeMobileContactOption()"></div>
+        <div class="mobile-contact-option-popup d-none" id="mobile-contact-option-popup">
+          <div class="mobile-contact-option-edit"><button class="mobile-edit-delete-contact-button" onclick="editContact('user.id')"><img src="./assets/img/edit.svg" alt="Edit">Edit</button></div>
+          <div class="mobile-contact-option-delete"><button class="mobile-edit-delete-contact-button" onclick="deleteContact(user.id)"><img src="./assets/img/delete.svg" alt="Delete">Delete</button></div>
+        </div>
     </section>
     
     <div class="menu-mobile-display-container">
