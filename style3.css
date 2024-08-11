@@ -998,6 +998,13 @@
   .button-container { 
     width: 600px;  
   } 
+  .row{
+    display: flex;
+    flex-direction: row; 
+  }
+  .arrow-left-contacts {
+    margin-left: 90px;
+  }
 }
 @media (max-width: 750px) {
   .contact-details-area {
@@ -1099,13 +1106,7 @@
     z-index: 999; /* Slightly less than the popup */
     transition: opacity 0.3s ease;
 }
-.row{
-  display: flex;
-  flex-direction: row; 
-}
-.arrow-left-contacts {
-  margin-left: 90px;
-}
+
 
 }
 @media (max-width: 630px) {

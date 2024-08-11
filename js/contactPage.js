@@ -151,7 +151,7 @@ function updateDisplayStates(viewContacts, contactList, contactDetails, mobileCo
   viewContacts.style.display = 'block';
   mobileContactOption.classList.remove('d-none');
 
-  if (window.innerWidth <= 655) {
+  if (window.innerWidth <= 850) {
     contactList.classList.add('d-none');
     contactDetails.classList.add('d-none');
   buttonBack.classList.remove('d-none');
