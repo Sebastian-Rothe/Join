@@ -84,9 +84,9 @@ document.addEventListener("DOMContentLoaded", function() {
   });
   
   document.addEventListener('DOMContentLoaded', function() {
-    let openButton = document.getElementById('openPopupButton');
-    let closeButton = document.getElementById('closePopup'); 
-    let popupOverlay = document.getElementById('popupOverlay'); 
+    let openButton = document.getElementById('openboardButton');
+    let closeButton = document.getElementById('board-closePopup'); 
+    let popupOverlay = document.getElementById('board-popupOverlay'); 
 
     function openPopup() {
         popupOverlay.style.display = 'flex';
@@ -106,3 +106,4 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     });
 });
+

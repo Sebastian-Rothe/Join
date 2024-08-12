@@ -98,63 +98,62 @@ input, button{
     justify-content: center;
     align-items: center;
 }
-<<<<<<< HEAD
-/*end of: note for empty section*/
-
-.popup-overlay {
-    display: none; 
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5); 
-    z-index: 1000; 
-    justify-content: center;
-    align-items: center;
+/* Popup styles adjusted to board-popup */
+.board-popup-overlay {
+  display: none; 
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5); 
+  z-index: 1000; 
+  justify-content: center;
+  align-items: center;
 }
 
-.popup-content {
-    background: #fff; 
-    padding: 20px;
-    border-radius: 8px;
-    max-width: 500px; 
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
-    position: relative;
+.board-popup-content {
+  background: #fff; 
+  padding: 20px;
+  border-radius: 8px;
+  max-width: 500px; 
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
+  position: relative;
 }
 
-.popup-close {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    font-size: 20px;
-    cursor: pointer;
-    color: #333; 
+.board-popup-close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 20px;
+  cursor: pointer;
+  color: #333; 
 }
 
-
-#openPopupButton {
-    background-color: #007BFF; 
-    color: #fff;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
+#openboardButton {
+  background-color: #007BFF; 
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+#openboardButton:hover {
+  background-color: #0056b3; 
 }
 
-#openPopupButton:hover {
-    background-color: #0056b3; 
+.test-pop {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
 }
-.test-pop{
-    display: flex;
-    align-items: center;
-    flex-direction: column;
+
+.board-popup-actions {
+  margin-top: 15px;
+  display: flex;
+  justify-content: end;
 }
-=======
-
->>>>>>> 66f9678 (add add-task-betty format all css code)
-
 
 
 
