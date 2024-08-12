@@ -9,7 +9,7 @@ body {
 }
 
 button {
-  font-family: "Inter";
+  
   font-size: 16px;
   font-weight: 400;
   margin: 0;
@@ -1099,10 +1099,22 @@ header {
     z-index: 999; /* Slightly less than the popup */
     transition: opacity 0.3s ease;
   }
+  .contact-actions{
+    display: none;
+  }
 }
 @media (max-width: 750px) {
   .contact-details-area {
     width: 90%;
+  }
+  .contact-heading{
+    margin-top: 30px;
+  }
+  .contact-info-text{
+    margin: 12px 0px;
+  }
+  .info-block {
+    height: 100px;
   }
   .contact-list {
     width: 720px;

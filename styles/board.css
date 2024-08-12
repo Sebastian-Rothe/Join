@@ -1,162 +1,162 @@
 /* should be standard css for all css*/
-input, button{
-    border: unset;
-    cursor: pointer;
-    outline: none;
+input,
+button {
+  border: unset;
+  cursor: pointer;
+  outline: none;
 }
 /*end*/
 /* my standard css classes for this board */
-.hover-to-blue:hover{
-    cursor: pointer;
-    filter: brightness(0) saturate(100%) invert(68%) sepia(23%) saturate(5482%) hue-rotate(155deg) brightness(94%) contrast(93%);
-
+.hover-to-blue:hover {
+  cursor: pointer;
+  filter: brightness(0) saturate(100%) invert(68%) sepia(23%) saturate(5482%)
+    hue-rotate(155deg) brightness(94%) contrast(93%);
 }
 /* end of: my standard css classes for this board */
 
 /* befor adding header and sidebar */
-.main-board{
-    width: 80%;
-    margin-top: 100px;
-    margin-left: 200px;
+.main-board {
+  width: 80%;
+  margin-top: 100px;
+  margin-left: 200px;
 }
 /* a just when with header etc */
 
 /* head of the board with h2 search-input and add test button */
-.head-board{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 24px;
+.head-board {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
 }
 
-.head-board h2{
-    font-size: 4rem;
-    color: black;
+.head-board h2 {
+  font-size: 4rem;
+  color: black;
 }
 
 .search-container {
-    display: flex;
-    align-items: center;
-    max-width: 60%; 
-    gap: 8%;
+  display: flex;
+  align-items: center;
+  max-width: 60%;
+  gap: 8%;
 }
 
-.search-input{
-    padding: 10px;
-    border: 1px solid #DADCE0;
-    border-radius: 5px;
-    font-size: 16px;
-    width: 80%;
-    background-image: url('../assets/icons/Frame\ 122.svg');
-    background-position: calc(100% - 12px) center; 
-    background-repeat: no-repeat;
+.search-input {
+  padding: 10px;
+  border: 1px solid #dadce0;
+  border-radius: 5px;
+  font-size: 16px;
+  width: 80%;
+  background-image: url("../assets/icons/Frame\ 122.svg");
+  background-position: calc(100% - 12px) center;
+  background-repeat: no-repeat;
 }
 
-.icon-search{
-    background-image: ;
+.icon-search {
+  background-image: ;
 }
-.search-button{
-    background-color: #091931;
-    color: white;
-    border-radius: 10px;
-    width: 220px;
-    height: 50px;
-    font-size: 1.5rem;
-    font-weight: bold;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
+.search-button {
+  background-color: #091931;
+  color: white;
+  border-radius: 10px;
+  width: 220px;
+  height: 50px;
+  font-size: 1.5rem;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
 }
-.search-button:hover{
-    background-color: #29ABE2;
+.search-button:hover {
+  background-color: #29abe2;
 }
 /* end of: head of the board with h2 serch-input and add tast button */
 
-
 /* start: board-main-div */
 
-.board-main-div{
-    width: 100%;
-    display: flex;
-    justify-content: space-evenly;
+.board-main-div {
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
 }
 
-.align-all-4{ /* was brauchen wir für alle vier?*/
-    height: 20vh; /*CHANGE FOR ADD TASK INPUT JUST FOR THE TRAIN*/
-    border: 1px solid black; /*just for testing*/
-    width: 20%;
+.align-all-4 {
+  /* was brauchen wir für alle vier?*/
+  height: 20vh; /*CHANGE FOR ADD TASK INPUT JUST FOR THE TRAIN*/
+  border: 1px solid black; /*just for testing*/
+  width: 20%;
 }
-.all4-style{
-    margin-bottom: 12px;
-    font-size: 1.2rem;
-    font-weight: bold;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 4px;
+.all4-style {
+  margin-bottom: 12px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 4px;
 }
 
 /* note for empty section */
-.empty-section-note{
-    background-color: #E7E7E7;
-    color: #A8A8A8;
-    height: 48px;
-    width: 100%;
-    border-radius: 10px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.empty-section-note {
+  background-color: #e7e7e7;
+  color: #a8a8a8;
+  height: 48px;
+  width: 100%;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 /*end of: note for empty section*/
 
 .popup-overlay {
-    display: none; 
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5); 
-    z-index: 1000; 
-    justify-content: center;
-    align-items: center;
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+  justify-content: center;
+  align-items: center;
 }
 
 .popup-content {
-    background: #fff; 
-    padding: 20px;
-    border-radius: 8px;
-    max-width: 500px; 
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
-    position: relative;
+  background: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  max-width: 500px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  position: relative;
 }
 
 .popup-close {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    font-size: 20px;
-    cursor: pointer;
-    color: #333; 
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 20px;
+  cursor: pointer;
+  color: #333;
 }
 
-
 #openPopupButton {
-    background-color: #007BFF; 
-    color: #fff;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
 }
 
 #openPopupButton:hover {
-    background-color: #0056b3; 
+  background-color: #0056b3;
 }
-.test-pop{
-    display: flex;
-    align-items: center;
-    flex-direction: column;
+.test-pop {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
 }
