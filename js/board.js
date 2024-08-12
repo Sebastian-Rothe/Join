@@ -74,11 +74,35 @@ function checkDate(inputId) {
 
 // nimm das alert raus
 function setMinDate(inputId) {
-  let dateInput = document.getElementById(inputId);
-  let today = new Date().toISOString().split("T")[0]; // Heutiges Datum im Format YYYY-MM-DD
-  dateInput.setAttribute("min", today);
-}
+    let dateInput = document.getElementById(inputId);
+    let today = new Date().toISOString().split('T')[0]; // Heutiges Datum im Format YYYY-MM-DD
+    dateInput.setAttribute("min", today);
+  }
+  
+document.addEventListener("DOMContentLoaded", function() {
+    setMinDate("date"); // Setzt das Mindestdatum für das Input-Feld mit der ID "date"
+  });
+  
+  document.addEventListener('DOMContentLoaded', function() {
+    let openButton = document.getElementById('openPopupButton');
+    let closeButton = document.getElementById('closePopup'); 
+    let popupOverlay = document.getElementById('popupOverlay'); 
 
-document.addEventListener("DOMContentLoaded", function () {
-  setMinDate("date"); // Setzt das Mindestdatum für das Input-Feld mit der ID "date"
+    function openPopup() {
+        popupOverlay.style.display = 'flex';
+    }
+
+    function closePopup() {
+        popupOverlay.style.display = 'none';
+    }
+
+    openButton.addEventListener('click', openPopup);
+
+    closeButton.addEventListener('click', closePopup);
+
+    popupOverlay.addEventListener('click', function(event) {
+        if (event.target === popupOverlay) {
+            closePopup();
+        }
+    });
 });
