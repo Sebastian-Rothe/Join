@@ -193,7 +193,7 @@ function handleResize() {
     contactDisplay.style.display = 'block';
   }
   else if(window.innerWidth <= 850){
-    contactDisplay.style.display = 'none';
+    // contactDisplay.style.display = 'none';
     document.getElementById("mobile-contact-option").classList.remove("d-none");
     document.getElementById("btnBack").classList.add("d-none");
   }
