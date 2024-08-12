@@ -25,10 +25,19 @@ async function loadTasks(path = "/tasks") {
 async function addTask() {
   if (!checkDate("date")) return;
 
-  const fields = ["title", "description", "contacts", "date", "priority", "category", "subtasks", "taskState"];
+  const fields = [
+    "title",
+    "description",
+    "contacts",
+    "date",
+    "priority",
+    "category",
+    "subtasks",
+    "taskState",
+  ];
   const newTask = {};
 
-  fields.forEach(id => {
+  fields.forEach((id) => {
     newTask[id] = document.getElementById(id).value;
     document.getElementById(id).value = ""; // Clear input field
   });
@@ -36,7 +45,6 @@ async function addTask() {
   await postTask("/tasks", newTask);
   await loadTasks("/tasks");
 }
-
 
 async function postTask(path = "", data = {}) {
   try {
@@ -74,36 +82,35 @@ function checkDate(inputId) {
 
 // nimm das alert raus
 function setMinDate(inputId) {
-    let dateInput = document.getElementById(inputId);
-    let today = new Date().toISOString().split('T')[0]; // Heutiges Datum im Format YYYY-MM-DD
-    dateInput.setAttribute("min", today);
-  }
-  
-document.addEventListener("DOMContentLoaded", function() {
-    setMinDate("date"); // Setzt das Mindestdatum für das Input-Feld mit der ID "date"
-  });
-  
-  document.addEventListener('DOMContentLoaded', function() {
-    let openButton = document.getElementById('openboardButton');
-    let closeButton = document.getElementById('board-closePopup'); 
-    let popupOverlay = document.getElementById('board-popupOverlay'); 
+  let dateInput = document.getElementById(inputId);
+  let today = new Date().toISOString().split("T")[0]; // Heutiges Datum im Format YYYY-MM-DD
+  dateInput.setAttribute("min", today);
+}
 
-    function openPopup() {
-        popupOverlay.style.display = 'flex';
-    }
-
-    function closePopup() {
-        popupOverlay.style.display = 'none';
-    }
-
-    openButton.addEventListener('click', openPopup);
-
-    closeButton.addEventListener('click', closePopup);
-
-    popupOverlay.addEventListener('click', function(event) {
-        if (event.target === popupOverlay) {
-            closePopup();
-        }
-    });
+document.addEventListener("DOMContentLoaded", function () {
+  setMinDate("date"); // Setzt das Mindestdatum für das Input-Feld mit der ID "date"
 });
 
+document.addEventListener("DOMContentLoaded", function () {
+  let openButton = document.getElementById("openboardButton");
+  let closeButton = document.getElementById("board-closePopup");
+  let popupOverlay = document.getElementById("board-popupOverlay");
+
+  function openPopup() {
+    popupOverlay.style.display = "flex";
+  }
+
+  function closePopup() {
+    popupOverlay.style.display = "none";
+  }
+
+  openButton.addEventListener("click", openPopup);
+
+  closeButton.addEventListener("click", closePopup);
+
+  popupOverlay.addEventListener("click", function (event) {
+    if (event.target === popupOverlay) {
+      closePopup();
+    }
+  });
+});
