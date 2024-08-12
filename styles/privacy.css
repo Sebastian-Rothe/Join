@@ -5,93 +5,34 @@ body {
 
 .all {
     display: flex;
-    justify-content: center;
+    justify-content: left;
     align-items: center;
-    margin: 50px;
+    margin-left: 300px;
+    margin-top: 200px;
 }
-
-.sidebar {
-    position: fixed;
-    left: 0;
-    top: 0;
-    bottom: 0;
-    width: 250px;
-    background-color: #2B3A42;
-    color: white;
-    padding-top: 20px;
-    overflow-y: auto; 
-}
-
-.sidebar img {
-    display: block;
-    margin: 0 auto;
-    width: 80%; 
-    max-width: 150px; 
-}
-
-.sidebar ul {
-    padding: 0;
-    list-style: none;
-    margin-top: 30px;
-}
-
-.sidebar ul li {
-    margin-bottom: 20px;
-}
-
-.sidebar ul li a {
-    color: white;
-    text-decoration: none;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.sidebar .nav-footer {
-    position: absolute;
-    bottom: 20px;
-    width: 100%;
-    text-align: center;
-}
-
-.sidebar .nav-footer a {
-    color: white;
-    text-decoration: none;
-    display: block;
+p{
+    font-size: 16px;
 }
 
 .content {
-    margin-left: 250px;
+    margin-left: 400px;
     padding: 20px;
     width: calc(100% - 250px);
     box-sizing: border-box;
 }
 
-.navbar {
-    background-color: white;
-    box-shadow: 0 4px 2px -2px gray;
-    padding: 10px 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+.sub-title{
+    font-size: 27px;
+    font-weight: 700;
+   
 }
 
 .container-fluid h2, .container-fluid h1 {
     font-weight: 600;
 }
-
-.container-fluid h1 {
-    font-size: 28px;
-}
-
-.container-fluid p {
-    font-size: 14px;
-    line-height: 1.5;
-}
-
-.font {
-    font-size: 40px;
-    margin-left: 10px;
+.title{
+    font-size: 61px;
+    font-weight: 700;
 }
 
 .backIcon {
@@ -130,7 +71,7 @@ body {
         font-size: 14px;
     }
 
-    .font {
+    .title {
         font-size: 32px;
     }
 

@@ -167,7 +167,7 @@ function updateDisplayStates(contactDetails, contactContent, mobileContactOption
   contactDetails.style.display = 'block';
   mobileContactOption.classList.remove('d-none');
   
-  if (window.innerWidth <= 655) {
+  if (window.innerWidth <= 850) {
     contactContent.style.display = 'none';
   }
 }

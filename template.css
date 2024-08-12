@@ -4,6 +4,9 @@ iframe {
     height: 100vh;
     border: none;
 }
+body{
+    font-family: 'Inter', sans-serif;
+}
 
 /* mobile */
 
