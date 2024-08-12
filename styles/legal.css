@@ -10,11 +10,13 @@ body {
     margin-left: 300px;
     margin-top: 200px;
 }
+
 .title{
     font-size: 61px;
     font-weight: 700;
     margin-bottom: 30px;
 }
+
 .sub-title{
     font-size:27px;
     font-weight: 700;
@@ -99,7 +101,6 @@ body {
     line-height: 1.5;
 }
 
-
 .font {
     font-size: 40px;
    
@@ -110,7 +111,6 @@ body {
     right: 20px;
     
 }
-
 
 @media (max-width: 768px) {
     .all {

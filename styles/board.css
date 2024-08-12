@@ -1,33 +1,30 @@
-/* should be standard css for all css*/
-input,
-button {
-  border: unset;
-  cursor: pointer;
-  outline: none;
+
+input, button{
+    border: unset;
+    cursor: pointer;
+    outline: none;
 }
 /*end*/
 /* my standard css classes for this board */
-.hover-to-blue:hover {
-  cursor: pointer;
-  filter: brightness(0) saturate(100%) invert(68%) sepia(23%) saturate(5482%)
-    hue-rotate(155deg) brightness(94%) contrast(93%);
+.hover-to-blue:hover{
+    cursor: pointer;
+    filter: brightness(0) saturate(100%) invert(68%) sepia(23%) saturate(5482%) hue-rotate(155deg) brightness(94%) contrast(93%);
+
 }
-/* end of: my standard css classes for this board */
 
 /* befor adding header and sidebar */
-.main-board {
-  width: 80%;
-  margin-top: 100px;
-  margin-left: 200px;
+.main-board{
+    width: 80%;
+    margin-top: 100px;
+    margin-left: 200px;
 }
-/* a just when with header etc */
 
 /* head of the board with h2 search-input and add test button */
-.head-board {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 24px;
+.head-board{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
 }
 
 .head-board h2 {
@@ -74,6 +71,7 @@ button {
 }
 /* end of: head of the board with h2 serch-input and add tast button */
 
+
 /* start: board-main-div */
 
 .board-main-div {
@@ -82,33 +80,33 @@ button {
   justify-content: space-evenly;
 }
 
-.align-all-4 {
-  /* was brauchen wir für alle vier?*/
-  height: 20vh; /*CHANGE FOR ADD TASK INPUT JUST FOR THE TRAIN*/
-  border: 1px solid black; /*just for testing*/
-  width: 20%;
+.align-all-4{ /* was brauchen wir für alle vier?*/
+    height: 20vh; /*CHANGE FOR ADD TASK INPUT JUST FOR THE TRAIN*/
+    border: 1px solid black; /*just for testing*/
+    width: 20%;
 }
-.all4-style {
-  margin-bottom: 12px;
-  font-size: 1.2rem;
-  font-weight: bold;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 4px;
+.all4-style{
+    margin-bottom: 12px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 4px;
 }
 
 /* note for empty section */
-.empty-section-note {
-  background-color: #e7e7e7;
-  color: #a8a8a8;
-  height: 48px;
-  width: 100%;
-  border-radius: 10px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.empty-section-note{
+    background-color: #E7E7E7;
+    color: #A8A8A8;
+    height: 48px;
+    width: 100%;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
+<<<<<<< HEAD
 /*end of: note for empty section*/
 
 .popup-overlay {
@@ -160,3 +158,6 @@ button {
   align-items: center;
   flex-direction: column;
 }
+=======
+
+>>>>>>> 66f9678 (add add-task-betty format all css code)

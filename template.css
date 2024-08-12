@@ -8,7 +8,7 @@ body{
     font-family: 'Inter', sans-serif;
 }
 
-/* mobile */
+/**************************************************************** mobile */
 
 .menu-mobile-display-container {
     display: flex;
@@ -22,13 +22,11 @@ body{
     color: #f8f9fa;
     display: none;
 }
-
 .menu-mobile-display-item {
    
     flex: 1;
     margin-top: 16px;
 }
-
 .menu-mobile-display-item a {
     flex-direction: column;
     text-decoration: none;
@@ -37,73 +35,64 @@ body{
     align-content: center;
     align-items: center;
 }
-
 .menu-mobile-display-item a img {
    
-    margin-bottom: 4px; /* Optional: to add some space between the image and text */
+    margin-bottom: 4px;
     width: 30px;
     height: 30px;
 }
-
 .menu-mobile-display-item a span {
     display: block;
-    margin-top: 2px; /* Optional: to add some space between the image and text */
+    margin-top: 2px;
 }
 
 @media (max-width: 1030px) {
     .menu-item span{
-      display: none;    
+        display: none;    
     }
     .contact-name-large {
-      font-size: 18px;    
-  }
+        font-size: 18px;    
+    }
     .sidebar {    
-      width: 120px;    
+        width: 120px;    
     }
     .menu-item {   
-      width: calc(100% -40px);    
-      padding-left: 40px;
+        width: calc(100% -40px);    
+        padding-left: 40px;
     }
     .footer-container {     
-      padding-left: 10px;
-  }
+        padding-left: 10px;
+    }
     .footer-container a:hover{    
-      font-size: 16px;
-      color:#29ABE2;    
+        font-size: 16px;
+        color:#29ABE2;    
     }
     .logo-container {
-      width: 50px;
-      height: 100px;    
-      margin-left: 20px;
+        width: 50px;
+        height: 100px;    
+        margin-left: 20px;
+    }
+    .logo-container img{
+        width: 80px;
+        height:100px;
   }
-  .logo-container img{
-    width: 80px;
-    height:100px;    
-   
-  }
-  
-  /* .container-main {    
-      padding-left: 100px;    
-  } */
-  }
-
- 
+}
   @media (max-width: 902px) {
     .sidebar {    
-      display: none;   
+        display: none;   
     }
     .container-main {    
-      padding-left: 0px;    
+        padding-left: 0px;    
     }
     .menu-mobile-display-container {   
-     display: flex;
-  }
-  .logo-small {
-    display: block;
-  }
-  .header-left-content {
-    justify-content: start;
-    padding-left: 40px;
-  }
-  }
+        display: flex;
+    }
+    .logo-small {
+        display: block;
+    }
+    .header-left-content {
+        justify-content: start;
+        padding-left: 40px;
+    }
+}
   

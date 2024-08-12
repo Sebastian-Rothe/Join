@@ -881,10 +881,12 @@ header {
   color: inherit;
   transition: border-color 0.2s ease, color 0.2s ease;
 }
+
 .mobile-edit-delete-contact-button:active {
   border-color: #29abe2;
   color: #29abe2;
 }
+
 .mobile-edit-delete-contact-button:focus {
   outline: none;
 }
@@ -987,6 +989,7 @@ header {
     padding-left: 100px;
   }
 }
+
 @media (max-width: 902px) {
   /* .sidebar {    
     display: none;   
