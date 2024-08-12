@@ -816,7 +816,7 @@
   }
   
   /* mobile */
-
+/* 
   .menu-mobile-display-container {
     display: flex;
     justify-content: space-between; 
@@ -849,15 +849,15 @@
 
 .menu-mobile-display-item a img {
    
-    margin-bottom: 4px; /* Optional: to add some space between the image and text */
+    margin-bottom: 4px;
     width: 30px;
     height: 30px;
 }
 
 .menu-mobile-display-item a span {
     display: block;
-    margin-top: 2px; /* Optional: to add some space between the image and text */
-}
+    margin-top: 2px;
+} */
 
 .arrow-left-contacts{
   margin-top: 20px;
@@ -872,6 +872,38 @@
   cursor: pointer;
  
  }
+
+
+ .mobile-edit-delete-contact-button {
+  background-color: transparent; 
+  border: 2px solid transparent; 
+  border-radius: 8px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  padding: 4px;
+  color: inherit; 
+  transition: border-color 0.2s ease, color 0.2s ease; 
+}
+.mobile-edit-delete-contact-button:active {
+  border-color: #29ABE2; 
+  color: #29ABE2; 
+}
+.mobile-edit-delete-contact-button:focus {
+  outline: none; 
+}
+.mobile-edit-delete-contact-button img {
+  margin-right: 8px; 
+  transition: filter 0.2s ease; 
+}
+.mobile-edit-delete-contact-button:active img {
+  filter: invert(40%) sepia(100%) saturate(500%) hue-rotate(160deg); 
+}
+
+
+
+
+
 
   /* Responsive */
 @media (max-width: 1650px) {
@@ -931,7 +963,7 @@
 }
 
 @media (max-width: 1030px) {
-  .menu-item span{
+  /* .menu-item span{
     display: none;    
   }
   .contact-name-large {
@@ -960,20 +992,20 @@
   width: 80px;
   height:100px;    
  
-}
+} */
 
 .container-main {    
     padding-left: 100px;    
 }
 }
 @media (max-width: 902px) {
-  .sidebar {    
+  /* .sidebar {    
     display: none;   
-  }
+  } */
   .container-main {    
     padding-left: 0px;    
   }
-  .menu-mobile-display-container {   
+  /* .menu-mobile-display-container {   
    display: flex;
 }
 .logo-small {
@@ -982,8 +1014,8 @@
 .header-left-content {
   justify-content: start;
   padding-left: 40px;
-}
-}
+}*/
+} 
 @media (max-width: 850px) {
 
   .contact-display {
