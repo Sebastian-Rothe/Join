@@ -19,9 +19,9 @@ input, button{
     margin-top: 100px;
     margin-left: 200px;
 }
-/* ajust when with header etc */
+/* a just when with header etc */
 
-/* head of the board with h2 serch-input and add tast button */
+/* head of the board with h2 search-input and add test button */
 .head-board{
     display: flex;
     justify-content: space-between;
@@ -83,7 +83,7 @@ input, button{
 }
 
 .align-all-4{ /* was brauchen wir für alle vier?*/
-    height: 70vh; 
+    height: 20vh; /*CHANGE FOR ADD TASK INPUT JUST FOR THE TRAIN*/
     border: 1px solid black; /*just for testing*/
     width: 20%;
 }
