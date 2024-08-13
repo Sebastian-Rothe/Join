@@ -1,4 +1,5 @@
-// das tasks wird mit allen daten auf firebase gespeichert!
+// Bestehende Funktionen für das Laden, Hinzufügen und Posten von Tasks
+
 async function loadTasks(path = "/tasks") {
   tasks = [];
   let taskResponse = await fetch(BASE_URL + path + ".json");
@@ -10,7 +11,7 @@ async function loadTasks(path = "/tasks") {
         id: key,
         title: responseToJson[key]["title"],
         description: responseToJson[key]["description"],
-        assigned: responseToJson[key]["contacts"], // dont't know how this is going to work
+        assigned: responseToJson[key]["contacts"], // don't know how this is going to work
         date: responseToJson[key]["date"],
         priority: responseToJson[key]["priority"],
         category: responseToJson[key]["category"],
@@ -67,7 +68,7 @@ async function postTask(path = "", data = {}) {
   }
 }
 
-//  check that the date is not in the past!
+// check that the date is not in the past!
 function checkDate(inputId) {
   let dateInput = document.getElementById(inputId);
   let today = new Date().toISOString().split("T")[0]; // Heutiges Datum im Format YYYY-MM-DD
@@ -80,7 +81,7 @@ function checkDate(inputId) {
   return true;
 }
 
-// nimm das alert raus
+// set minimum date
 function setMinDate(inputId) {
   let dateInput = document.getElementById(inputId);
   let today = new Date().toISOString().split("T")[0]; // Heutiges Datum im Format YYYY-MM-DD
@@ -91,6 +92,7 @@ document.addEventListener("DOMContentLoaded", function () {
   setMinDate("date"); // Setzt das Mindestdatum für das Input-Feld mit der ID "date"
 });
 
+// Popup management
 document.addEventListener("DOMContentLoaded", function () {
   let openButton = document.getElementById("openboardButton");
   let closeButton = document.getElementById("board-closePopup");
@@ -105,7 +107,6 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   openButton.addEventListener("click", openPopup);
-
   closeButton.addEventListener("click", closePopup);
 
   popupOverlay.addEventListener("click", function (event) {
@@ -113,4 +114,48 @@ document.addEventListener("DOMContentLoaded", function () {
       closePopup();
     }
   });
+});
+
+// Suchfunktionalität
+
+document.getElementById('search-input').addEventListener('input', function() {
+  const searchTerm = this.value.toLowerCase();
+  const taskSections = document.querySelectorAll('.task-section');
+
+  let noResults = true;
+
+  taskSections.forEach(section => {
+    const tasks = section.querySelectorAll('.task');
+    let sectionHasResults = false;
+
+    tasks.forEach(task => {
+      const taskTitle = task.querySelector('.task-title').textContent.toLowerCase();
+      const taskDescription = task.querySelector('.task-description').textContent.toLowerCase();
+
+      if (taskTitle.includes(searchTerm) || taskDescription.includes(searchTerm)) {
+        task.style.display = 'block';
+        sectionHasResults = true;
+      } else {
+        task.style.display = 'none';
+      }
+    });
+
+    if (sectionHasResults) {
+      section.parentElement.querySelector('.empty-section-note').style.display = 'none';
+      noResults = false;
+    } else {
+      section.parentElement.querySelector('.empty-section-note').style.display = 'block';
+    }
+  });
+
+  if (searchTerm === '') {
+    taskSections.forEach(section => {
+      section.parentElement.querySelector('.empty-section-note').style.display = 'none';
+    });
+  }
+
+  if (noResults && searchTerm !== '') {
+    // test Suchfeld "No results found"
+    alert('No tasks match your search .');
+  }
 });
