@@ -14,20 +14,17 @@
             <div class="left-side">
                     <div class="title">Add Task</div>    
                     <label  for="title">Titel<span class="required">*</span></label>
-                    <input type="text" id="enterTitle" name="entertitle" placeholder="Enter a title">
+                    <input type="text" id="title" name="entertitle" placeholder="Enter a title">
 
                     <label for="textarea">Description</label>
-                    <textarea id="textarea" name="textarea" rows="4" cols="50" placeholder="Enter a Description..."></textarea>
+                    <textarea id="description" name="textarea" rows="4" cols="50" placeholder="Enter a Description..."></textarea>
             
                     
             
                   
                     <label for="dropdown">Assigned to</label>
-                    <select id="assignedDropdown" name="dropdown">
+                    <select id="contacts" name="dropdown">
                              <!-- Load in js -->
-                        <option value="option1">Option 1</option>
-                        <option value="option2">Option 2</option>
-                        <option value="option3">Option 3</option>
                     </select>
             
                 </div>  
@@ -39,33 +36,33 @@
 
                 <div class="right-side">
                     
-                    <label  for="due-date">Due date<span class="required">*</span></label>
-                    <input type="date" id="due-date" name="due-date">
+                    <label  for="date">Due date<span class="required">*</span></label>
+                    <input type="date" id="date" name="due-date">
 
                     
-                  <label>Prio</label>
+                    <label>Prio</label>
                     <div class="priority-buttons">
-                        <button type="button" id="urgent" class="priority-btn urgentPrio" onclick="selectPrio('urgent')">
+                        <button type="button" id="urgent" class="priority-btn " onclick="selectPrio('urgent')">
                             Urgent
-                            <img src="../assets/icons/PrioUrgent.svg" alt="Urgent Icon" class="icon">
+                            <img src="../assets/icons/PrioUrgent.svg" alt="Urgent Icon" >
                         </button>
-                        <button type="button" id="medium" class="priority-btn mediumPrio" onclick="selectPrio('medium')">
+                        <button type="button" id="medium" class="priority-btn medium-prio-active" onclick="selectPrio('medium')">
                             Medium
-                            <img src="../assets/icons/PrioMedium.svg" alt="Medium Icon" class="icon">
+                            <img src="../assets/icons/PrioMedium.svg" alt="Medium Icon" class="change-svg-color">
                         </button>
-                        <button type="button" id="low" class="priority-btn lowPrio" onclick="selectPrio('low')">
+                        <button type="button" id="low" class="priority-btn " onclick="selectPrio('low')">
                             Low
-                            <img src="../assets/icons/PrioLow.svg" alt="Low Icon" class="icon">
+                            <img src="../assets/icons/PrioLow.svg" alt="Low Icon" >
                         </button>
                     </div>
 
-                    <label for="dropdown">Category<span class="required">*</span></label>
-                    <select id="dropdown" name="dropdown" class="dropdownCategory">
-                        <option value="option1">Technical Task</option>
-                        <option value="option2">user Story</option>                        
+                    <label for="category">Category<span class="required">*</span></label>
+                    <select id="category" name="dropdown" class="dropdownCategory">
+                        <option value="TechnicalTask">Technical Task</option>
+                        <option value="UserStory">User Story</option>                        
                     </select>
 
-                    <form class="Subtasks" id="contactForm">
+                    <form class="Subtasks" id="subtasks">
                         <input id="name" class="Subtasks" type="text" placeholder="Add  new subtask"/>
                         <!-- <button type="submit"><i class="icon-name"></i></button> -->
                     </form>
@@ -78,8 +75,9 @@
                 </div>
                 <div class="footer-add-task-right">
                     <button class="clear-btn">clear <img src="../assets/icons/close.svg" alt="Clear Icon" class="icon"></button>
-                    <button class="create-task-btn">create Task <img src="../assets/icons/check.svg" alt="Create Icon" class="icon"></button>
-                    
+                    <button class="create-task-btn" onclick="addTask()">create Task <img src="../assets/icons/check.svg" alt="Create Icon" class="icon"></button>
+                    <input type="hidden" id="taskState" value="new">
+                    <input type="hidden" id="priority" value="low">
                     
                 </div>
             </div>
@@ -93,7 +91,8 @@
 
 
     </div>
-    <script src="addTask.js"></script>
+    <script src="./js/addTask.js"></script>
+    
     
 </body>
 </html>

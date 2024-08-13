@@ -89,6 +89,7 @@ select{
     display: flex;
     gap: 10px;
     margin-bottom: 32px;
+    
 }
 .priority-btn {
     flex: 1;
@@ -97,27 +98,41 @@ select{
     border-radius: 5px;
     cursor: pointer;
     font-size: 16px;
-    color: white;
+    color: rgb(0, 0, 0);
     font-size: 20px;
     font-weight: 400;
     height: 56px;
-    box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.3);
+    box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.1);
+    background-color: white;
+    
 }
+.priority-btn:hover {
+    box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+}
+.change-svg-color {
+    filter: brightness(0) invert(1); 
+ }
+
 .priority-btn img{
    padding-left: 8px;
 }
-.urgentPrio {
-    background-color: #FF3D00; 
+.urgent-pri-active {
+    background-color: #FF3D00;
+    color: white;
+    font-weight: 700;
 }
-.mediumPrio {
-    background-color: #FFA800; 
+.medium-prio-active {
+    background-color: #FFA800;
+    color: white;
+    font-weight: 700;
 }
-.lowPrio {
-    background-color: #7AE229;
+.low-prio-active {
+    background-color: #7AE229; 
+    color: white;
+    font-weight: 700;
 }
-.active {
-    border: 2px solid black;
-}
+
 .input-container {
     position: relative;
 }

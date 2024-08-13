@@ -40,6 +40,7 @@ async function addTask() {
 
   fields.forEach((id) => {
     newTask[id] = document.getElementById(id).value;
+    console.log(newTask[id],id);
     document.getElementById(id).value = ""; // Clear input field
   });
 
