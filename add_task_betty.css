@@ -51,11 +51,18 @@ body {
     width: 49%;
     display: flex;
     flex-direction: column;
+    padding-top:48px;
+    padding-left: 48px;
+    padding-right: 135px;
     
 }
+
+
+
 label{
     font-size: 20px;
     margin-bottom: 8px;
+    
     
 }
 .required {
@@ -64,14 +71,16 @@ label{
 
 input {
     font-size: 20px;
-    color: rgb(7, 255, 15);
+    color: #D1D1D1;
     border: 1px solid #D1D1D1;
     padding: 10px;
     min-width: 396px;
     height: 48px;
     border-radius: 10px;
+    margin-bottom: 32px;
 }
 textarea{
+    color: #D1D1D1;
     border-radius: 10px;
     height: 120px;
     min-height: 88px;
@@ -79,6 +88,7 @@ textarea{
     min-width: 396px;
     padding: 10px; 
     font-family: "Inter", sans-serif;
+    margin-bottom: 32px;
 }
 select{
     height: 48px;
@@ -86,6 +96,76 @@ select{
     padding: 10px; 
     font-size: 20px;
     font-family: "Inter", sans-serif;
+}
+.priority-buttons {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 32px;
+    
+}
+.priority-btn {
+    flex: 1;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    color: white;
+    font-size: 20px;
+    font-weight: 400;
+    height: 56px;
+    box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.3);
+    
+    
+}
+.priority-btn img{
+   padding-left: 8px;
+    
+}
+.urgent {
+    background-color: #ffffff;
+    color:black ;
+}
+.medium {
+    background-color: #ffffff;
+    color:black ;
+}
+.low {
+    background-color: #ffffff;
+    color:black ;
+}
+
+.input-container {
+    position: relative;
+    width: 300px; /* Adjust as needed */
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-right: 12px;
+}
+input {
+    margin-bottom: 10px;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    background-position: calc(100% - 12px) center; 
+    background-repeat: no-repeat;
+    background-size: 20px; 
+    border-radius: 8px;
+}
+.icon-name {
+    background-image: url("../assets/icons/addicon.svg");
+}
+
+.dropdownCategory{
+    margin-bottom: 32px;
+}
+.Subtasks{
+    font-size: 20px;
+    color: #D1D1D1;
 }
 
 .footer{
@@ -99,11 +179,15 @@ select{
 .clear-btn{
     width: 110px;
     height: 56px;
-    background-color: #2A3647;
-    color: white;
+    background-color: #ffffff;
+    color: #2A3647;
     font-size: 21px;
     font-weight: 700;
     border-radius: 16px;
+    cursor: pointer;
+}
+.clear-btn:hover{
+    cursor: pointer;
 }
 .create-task-btn{
     width: 183px;
@@ -113,5 +197,10 @@ select{
     font-size: 21px;
     font-weight: 700;
     border-radius: 16px;
+    cursor: pointer;
+
+}
+.create-task-btn{
+    cursor: pointer;
 
 }
