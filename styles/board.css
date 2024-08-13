@@ -111,6 +111,7 @@ input, button{
 }
 
 .board-popup-content {
+  height: 470px;
   background: #fff; 
   padding: 20px;
   border-radius: 8px;
@@ -148,7 +149,8 @@ input, button{
 }
 
 .board-popup-actions {
-  margin-top: 15px;
+
+  margin-top: 35px;
   display: flex;
   justify-content: end;
 }
@@ -191,4 +193,6 @@ input, button{
 
 }
 
-
+.place-board{
+  margin-right: 10px;
+}
