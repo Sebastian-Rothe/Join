@@ -73,6 +73,7 @@ input, button{
 .align-all-4{ 
     height: 20vh; 
     border: 1px solid black; 
+    border-radius: 8px;
     width: 20%;
 }
 
@@ -96,6 +97,7 @@ input, button{
     justify-content: center;
     align-items: center;
 }
+
 /* Popup styles adjusted to board-popup */
 .board-popup-overlay {
   display: none; 
@@ -158,21 +160,23 @@ input, button{
 /* css for drag and drop */
 
 .drag-area {
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.1);
-  border: 1px dashed black;
-  margin-bottom: 50px;
-  display: flex;
+  /* height: 100vh; */
+  /* background-color: rgba(8, 235, 99, 0.1); */
+  /* border: 1px dashed black; */
+  /* margin-bottom: 50px; */
+  /* display: flex; */
+  padding-top: 4px;
   flex-direction: column;
   align-items: flex-start;
 }
 
-.drag-area-highlight {
+/* .drag-area-highlight {
   background-color: rgba(0, 0, 0, 0.2);
-}
+} */
 
 .todo {
-  background-color: white;
+  /* background-color: white; */
+  background-color:  #9cd1e8;
   border: 1px solid black;
   border-radius: 5px;
   padding: 10px;
