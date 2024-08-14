@@ -19,24 +19,31 @@ async function onloadfunc() {
     
     if (users) {
         assignedDropdown(users);
+        
     }
-    
+    setMinDate();
 }
 
 // check that the date is not in the past!
-function checkDate(inputId) {
-    let dateInput = document.getElementById(inputId);
-    let today = new Date().toISOString().split("T")[0]; // Heutiges Datum im Format YYYY-MM-DD
+// function checkDate(inputId) {
+//     let dateInput = document.getElementById(inputId);
+//     let today = new Date().toISOString().split("T")[0]; // Heutiges Datum im Format YYYY-MM-DD
   
-    if (dateInput.value < today) {
-      alert("Das Datum darf nicht in der Vergangenheit liegen.");
-      return false;
-    }
+//     if (dateInput.value < today) {
+//       alert("Das Datum darf nicht in der Vergangenheit liegen.");
+//       return false;
+//     }
   
-    return true;
-  }
+//     return true;
+//   }
   
-  
+// minimum date of today and also checks that the selected date is not in the past
+function setMinDate() {
+  const today = new Date().toISOString().split("T")[0];
+  const dateInput = document.getElementById('date');
+  dateInput.setAttribute('min', today);
+}
+// window.onload = setMinDate();
 
 ///////////////////////////////////////////////////////////// Change background color when priority buttons is active
 function selectPrio(priority) {

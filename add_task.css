@@ -61,7 +61,7 @@ label{
 }
 input {
     font-size: 20px;
-    color: #D1D1D1;
+    color: #000000;
     border: 1px solid #D1D1D1;
     padding: 10px;
     height: 48px;
@@ -69,7 +69,7 @@ input {
     margin-bottom: 32px;
 }
 textarea{
-    color: #D1D1D1;
+    color: #000000;
     border-radius: 10px;
     height: 120px;
     min-height: 88px;
@@ -85,6 +85,33 @@ select{
     font-size: 20px;
     font-family: "Inter", sans-serif;
 }
+
+/************************************************************************* avatar-placeholder */
+.avatar-placeholder {
+    background-color: orange;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 3px solid white;
+    border-radius: 100%;
+    width: 42px;
+    height: 42px;
+    margin-left: 24px;
+  }
+  
+  .avatar-overlay {
+    font-size: 12px;
+    font-weight: 400;
+    color: white;
+  }
+  
+  .avatar-overlay-display {
+    font-size: 47px;
+    font-weight: 500;
+    color: white;
+  }
+/************************************************************************* priority-buttons */
 .priority-buttons {
     display: flex;
     gap: 10px;
@@ -145,12 +172,13 @@ form {
 input {
     margin-bottom: 10px;
     padding: 10px;
-    font-size: 16px;
+    font-size: 21px;
     border: 1px solid #ccc;
     background-position: calc(100% - 12px) center; 
     background-repeat: no-repeat;
     background-size: 20px; 
     border-radius: 8px;
+    color: #000000;
 }
 .icon-name {
     background-image: url("../assets/icons/addicon.svg");
