@@ -1,4 +1,6 @@
 // set minimum date
+
+// brauchen wir das noch hier???
 function setMinDate(inputId) {
   let dateInput = document.getElementById(inputId);
   let today = new Date().toISOString().split("T")[0]; // Heutiges Datum im Format YYYY-MM-DD
@@ -9,6 +11,10 @@ document.addEventListener("DOMContentLoaded", function () {
   setMinDate("date"); // Setzt das Mindestdatum für das Input-Feld mit der ID "date"
 });
 
+
+// -----------------------------
+
+// das brauchen wir dann auch nicht mehr
 // Popup management
 document.addEventListener("DOMContentLoaded", function () {
   let openButton = document.getElementById("openboardButton");
@@ -32,6 +38,9 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 });
+
+// ----------------------- 
+
 
 // Suchfunktionalität
 

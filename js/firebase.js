@@ -67,28 +67,48 @@ async function displayContacts(newUser = null) {
 }
 
 // tasks functions
+// updated loadtasks func.
 async function loadTasks(path = "/tasks") {
-  tasks = [];
-  let taskResponse = await fetch(BASE_URL + path + ".json");
-  let responseToJson = await taskResponse.json();
+    tasks = [];
+    try {
+        let taskResponse = await fetch(BASE_URL + path + ".json");
+        if (!taskResponse.ok) {
+            throw new Error(`HTTP error! Status: ${taskResponse.status}`);
+        }
+        let responseToJson = await taskResponse.json();
+        console.log('Tasks loaded:', responseToJson); // Debugging
 
-  if (responseToJson) {
-    Object.keys(responseToJson).forEach((key) => {
-      tasks.push({
-        id: key,
-        title: responseToJson[key]["title"],
-        description: responseToJson[key]["description"],
-        assigned: responseToJson[key]["contacts"], // don't know how this is going to work
-        date: responseToJson[key]["date"],
-        priority: responseToJson[key]["priority"],
-        category: responseToJson[key]["category"],
-        subtasks: responseToJson[key]["subtasks"], // also tricky
-        taskState: responseToJson[key]["taskState"],
-      });
-    });
-    return tasks;
-  }
+        if (responseToJson) {
+            Object.keys(responseToJson).forEach((key) => {
+                let task = responseToJson[key];
+                tasks.push({
+                    idNumber: key, // Verwende den Schlüssel als idNumber
+                    status: mapTaskStateToBoardStatus(task.taskState), // hope to take that out
+                    category: task.category || "Uncategorized",
+                    title: task.title,
+                    description: task.description,
+                    subtaskCount: task.subtaskCount || 0,
+                    completedSubtasks: task.completedSubtasks || 0,
+                    assignedTo: task.contacts ? task.contacts.split(", ") : [],
+                    priority: task.priority || "medium"
+                });
+            });
+        }
+    } catch (error) {
+        console.error('Error loading tasks:', error);
+    }
 }
+// hope to take this func out
+function mapTaskStateToBoardStatus(taskState) {
+    switch (taskState) {
+        case "new": return "todo";
+        case "inProgress": return "inProgress";
+        case "awaitingFeedback": return "awaitFeedback";
+        case "done": return "done";
+        default: return "todo";
+    }
+}
+// -------
 
 async function addTask() {
   if (!checkDate("date")) return;
