@@ -1,25 +1,103 @@
-
-  .avatar-in-edit{
-    margin-right: 0;
-    width: 134px;
-    height: 134px;
-  }
-
-
-/* css for contact slide */
-  #contact-details {
-    position: fixed;
-    width: 100%;
-    height: 100%;
-    transition: transform 0.5s ease-in-out;
-    transform: translateX(100%); 
+/* Container Styles */
+.task-card {
+  background-color: #fff;
+  border-radius: 8px;
+  padding: 16px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  margin-bottom: 16px;
+  cursor: pointer;
 }
-#contact-details.aktiv {
-    transform: translateX(0); 
+
+.task-label {
+  font-size: 12px;
+  padding: 2px 8px;
+  border-radius: 4px;
+  color: #fff;
+  display: inline-block;
+  margin-bottom: 8px;
 }
-.contact-details-section {
-    width: 352px;
-    height: 78px;
-    margin-left: 2px;
-    margin-top: 10px;     
+
+/* Label Colors */
+.task-label.user-story {
+  background-color: #0052cc;
+}
+
+.task-label.technical-task {
+  background-color: #00bfa5;
+}
+
+/* Task Title */
+.task-title {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+/* Task Description */
+.task-description {
+  font-size: 14px;
+  color: #6b7280;
+  margin-bottom: 16px;
+}
+
+/* Subtasks */
+.task-subtasks {
+  margin-bottom: 16px;
+}
+
+.progress-bar {
+  background-color: #e4e7eb;
+  border-radius: 4px;
+  height: 8px;
+  overflow: hidden;
+  margin-bottom: 4px;
+}
+
+.progress {
+  background-color: #0073e6;
+  height: 100%;
+  border-radius: 4px;
+}
+
+.subtask-info {
+  font-size: 12px;
+  color: #6b7280;
+}
+
+/* Footer */
+.task-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.task-assigned .avatar {
+  background-color: #f4f5f7;
+  border-radius: 50%;
+  width: 28px;
+  height: 28px;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 12px;
+  color: #172b4d;
+  margin-right: 4px;
+}
+
+/* Priority Icon */
+.priority-icon {
+  width: 20px;
+  height: 20px;
+}
+
+.priority-icon.low {
+  background-color: #00bfa5;
+}
+
+.priority-icon.medium {
+  background-color: #ffab00;
+}
+
+.priority-icon.high {
+  background-color: #ff5630;
 }

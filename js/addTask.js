@@ -1,21 +1,4 @@
 
-const BASE_URL = "https://joincontacts-e7692-default-rtdb.europe-west1.firebasedatabase.app/";
-
-async function loadAssignedPerson(path = "/contacts") {
-    let users = [];
-    let userResponse = await fetch(BASE_URL + path + ".json");
-    let responseToJson = await userResponse.json();
-console.log();
-    if (responseToJson) {
-        Object.keys(responseToJson).forEach((key) => {
-            users.push({
-                name: responseToJson[key]["name"],          
-            });
-        });
-    }
-    return users;
-}
-
 function assignedDropdown(users) {
     let dropdown = document.getElementById('contacts');    
     dropdown.innerHTML = "";
@@ -40,54 +23,6 @@ async function onloadfunc() {
     
 }
 
-/////////////////////////////////////////////////////////////// firebase
-async function addTask() {
-    if (!checkDate("date")) return;
-  
-    const fields = [
-      "title",
-      "description",
-      "contacts",
-      "date",
-      "priority",
-      "category",
-      "subtasks",
-      "taskState",
-    ];
-    const newTask = {};
-  
-    fields.forEach((id) => {
-      newTask[id] = document.getElementById(id).value;
-      console.log(newTask[id],id);
-      document.getElementById(id).value = ""; // Clear input field
-    });
-  
-    await postTask("/tasks", newTask);
-   
-  }
-  
-  async function postTask(path = "", data = {}) {
-    try {
-      let response = await fetch(BASE_URL + path + ".json", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
-      });
-  
-      if (!response.ok) {
-        throw new Error("Failed to post task");
-      }
-  
-      let responseData = await response.json();
-      return responseData;
-    } catch (error) {
-      console.error("Error posting task:", error);
-    }
-  }
-
-  
 // check that the date is not in the past!
 function checkDate(inputId) {
     let dateInput = document.getElementById(inputId);

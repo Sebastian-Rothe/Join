@@ -15,24 +15,6 @@ function init() {
   loadContacts("/contacts").then(displayContacts);
 }
 
-async function loadContacts(path = "/contacts") {
-  users = [];
-  let userResponse = await fetch(BASE_URL + path + ".json");
-  let responseToJson = await userResponse.json();
-
-  if (responseToJson) {
-    Object.keys(responseToJson).forEach((key) => {
-      users.push({
-        id: key,
-        name: responseToJson[key]["name"],
-        email: responseToJson[key]["email"],
-        phone: responseToJson[key]["phone"],
-      });
-    });
-    return users;
-  }
-}
-
 async function addUser() {
   let nameValue = document.getElementById("name").value;
   let phoneValue = document.getElementById("phone").value;
@@ -44,44 +26,6 @@ async function addUser() {
   await postContact("/contacts", newUser);
   await loadContacts("/contacts");
   displayContacts(newUser);
-}
-
-async function postContact(path = "", data = {}) {
-  await fetch(BASE_URL + path + ".json", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(data),
-  });
-}
-
-async function deleteContact(id) {
-  const detailDisplay = document.getElementById("contact-content");
-  let response = await fetch(BASE_URL + `/contacts/${id}.json`, {
-    method: "DELETE",
-  });
-  if (!response.ok) {
-    return null;
-  }
-  let responseToJson = await response.json();
-  await loadContacts("/contacts");
-  displayContacts();
-  detailDisplay.style.display = 'none';
-  return responseToJson;
-}
-
-async function displayContacts(newUser = null) {
-  await loadContacts("/contacts");
-  users.sort((a, b) => a.name.localeCompare(b.name));
-  let contactDisplay = document.getElementById("contact-list");
-  contactDisplay.innerHTML = "";
-
-  let sortAlphabet = '';
-  users.forEach(user => {
-    sortAlphabet = updateContactDisplay(contactDisplay, user, sortAlphabet, newUser);
-  });
-  highlightNewContact();
 }
 
 function showContactDetails(user) {
