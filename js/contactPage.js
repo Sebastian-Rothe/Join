@@ -112,7 +112,7 @@ function getInitials(fullName) {
 }
 
 function assignRandomColors() {
-  return profileColors[Math.floor(Math.random() * profileColors.length-1)]
+  return profileColors[Math.floor(Math.random() * profileColors.length)]
 }
 
 function backToContactList() {
