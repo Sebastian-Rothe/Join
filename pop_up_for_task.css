@@ -14,6 +14,7 @@
 
 .closeWindowImage:hover {
     cursor: pointer;
+    scale: 1.1;
 }
 
 .taskDetailsContain {
@@ -59,11 +60,37 @@
     word-wrap: break-word;
 }
 
+.titleDetails {
+    color: #727272;
+    font-size: 20px;
+}
+
+.dateTxtDetails {
+    font-size: 20px;
+    font-weight:450;
+    padding: 4px;
+}
+
+.priorityTxtDetails {
+    /* display: flex;
+    align-items: center;
+    gap: 5px; */
+    font-size: 20px;
+    font-weight:450;
+    padding-left: 24px;
+}
+
+.subtask-input:hover {
+    cursor: pointer;
+    scale: 1.1;
+}
+
 .deleteDetailsContain:hover,
 .editDetailsContain:hover {
     cursor: pointer;
     filter: invert(70%) sepia(74%) saturate(3560%) hue-rotate(165deg) brightness(95%) contrast(85%);
     font-weight: 700;
+    scale: 1.1;
 }
 
 .editOptionsDetailsContain,
