@@ -200,3 +200,138 @@ input, button{
 .place-board{
   margin-right: 10px;
 }
+
+
+/* new code for board card */
+/* ---------------- */
+/* Container Styles */
+.task-card {
+  background-color: #fff;
+  border-radius: 24px;
+  padding: 16px;
+  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
+  margin-bottom: 16px;
+  cursor: pointer;
+}
+
+.task-label {
+  font-size: 12px;
+  padding: 2px 8px;
+  border-radius: 4px;
+  color: #fff;
+  display: inline-block;
+  margin-bottom: 8px;
+}
+
+/* Label Colors */
+.task-label.user-story {
+  background-color: #0052cc;
+}
+
+.task-label.technical-task {
+  background-color: #00bfa5;
+}
+
+/* Task Title */
+.task-title {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+/* Task Description */
+.task-description {
+  font-size: 14px;
+  font-weight: 400;
+  color: #6b7280;
+  margin-bottom: 16px;
+}
+
+/* Subtasks */
+.task-subtasks {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.progress-bar {
+  background-color: #e4e7eb;
+  border-radius: 4px;
+  height: 8px;
+  flex: 1; /* Makes the progress bar take up available space */
+  margin-right: 8px;
+  overflow: hidden;
+}
+
+.progress {
+  background-color: #0073e6;
+  height: 100%;
+  border-radius: 4px;
+}
+
+.subtask-info {
+  font-size: 12px;
+  color: #6b7280;
+  white-space: nowrap; /* Prevents the text from wrapping */
+}
+
+/* Footer */
+.task-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* .task-assigned .avatar {
+  background-color: #f4f5f7;
+  border-radius: 50%;
+  width: 28px;
+  height: 28px;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 12px;
+  color: #172b4d;
+  margin-right: 4px;
+} */
+
+/* Priority Icon */
+.priority-icon {
+  width: 20px;
+  height: 20px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.priority-icon.low {
+  background-image: url('../assets/icons/PrioLow.svg');
+}
+
+.priority-icon.medium {
+  background-image: url('../assets/icons/PrioMedium.svg');
+}
+
+.priority-icon.urgent {
+  background-image: url('../assets/icons/PrioUrgent.svg');
+}
+
+/* Responsive Design Adjustments */
+@media (max-width: 600px) {
+  .task-subtasks {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .progress-bar {
+    margin-right: 0;
+    margin-bottom: 4px; /* Adds space between the progress bar and the subtask info */
+    width: 100%; /* Ensures the progress bar takes full width on smaller screens */
+  }
+
+  .subtask-info {
+    margin-top: 4px;
+  }
+}
+/* end of section: new code for board card */

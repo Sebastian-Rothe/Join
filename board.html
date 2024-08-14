@@ -7,10 +7,11 @@
     <link rel="stylesheet" href="./styles/board.css" />
     <title>Join Board</title>
   </head>
-  <body>
+  <body onload="initBoard()">
     <!-- include header and sidebar -->
 
     <div id="main-board" class="main-board">
+      
       <div id="head-board" class="head-board">
         <h2>Board</h2>
         <div class="search-container">
@@ -18,7 +19,8 @@
             type="text"
             id="search-input"
             placeholder="Find Task"
-            class="search-input" />
+            class="search-input"
+          />
           <button class="search-button">
             Add task
             <img src="./assets/icons/add.svg" alt="" />
@@ -33,14 +35,16 @@
             <img
               class="hover-to-blue"
               src="./assets/icons/add-button-board.svg"
-              alt="" />
+              alt=""
+            />
           </div>
-
-          <div id="to-do-content" class="task-section">
-            <div id="empty-section-note" class="empty-section-note">
-              <span>No tasks To do</span>
-            </div>
-          </div>
+          <div
+            id="todoBoard"
+            class="task-section drag-area"
+            ondrop="moveTo('todo')"
+            ondragleave="removeHighlight('todoBoard')"
+            ondragover="allowDrop(event); highlight('todoBoard')">
+          </div>  
         </div>
 
         <div id="in-progress-div" class="in-progress-div align-all-4">
@@ -49,13 +53,15 @@
             <img
               class="hover-to-blue"
               src="./assets/icons/add-button-board.svg"
-              alt="" />
+              alt=""
+            />
           </div>
-
-          <div id="in-progress-content" class="task-section">
-            <div id="empty-section-note" class="empty-section-note">
-              <span>No tasks In progress</span>
-            </div>
+          <div 
+            id="inProgressBoard" 
+            class="task-section drag-area"
+            ondrop="moveTo('inProgress')"
+            ondragleave="removeHighlight('inProgressBoard')"
+            ondragover="allowDrop(event); highlight('inProgressBoard')">
           </div>
         </div>
 
@@ -65,13 +71,15 @@
             <img
               class="hover-to-blue"
               src="./assets/icons/add-button-board.svg"
-              alt="" />
+              alt=""
+            />
           </div>
-
-          <div id="await-feedback-content" class="task-section">
-            <div id="empty-section-note" class="empty-section-note">
-              <span>No tasks Await feedback</span>
-            </div>
+          <div 
+          id="awaitFeedbackBoard" 
+          class="task-section drag-area"
+          ondrop="moveTo('awaitFeedback')"
+          ondragleave="removeHighlight('awaitFeedbackBoard')"
+          ondragover="allowDrop(event); highlight('awaitFeedbackBoard')">
           </div>
         </div>
 
@@ -79,15 +87,19 @@
           <div id="done-head" class="all4-style">
             <span>Done</span>
           </div>
-
-          <div id="done-content" class="task-section">
-            <div id="empty-section-note" class="empty-section-note">
-              <span>No tasks Done</span>
-            </div>
+          <div 
+          id="doneBoard" 
+          class="task-section drag-area"
+          ondrop="moveTo('done')"
+          ondragleave="removeHighlight('doneBoard')"
+          ondragover="allowDrop(event); highlight('doneBoard')">
           </div>
         </div>
+
       </div>
     </div>
+
+    
     <div class="test-pop">
       <div id="main-board" class="main-board">
         <button id="openboardButton">Open Popup</button>
@@ -124,26 +136,23 @@
 
             <div class="board-popup-actions">
               <div class="place-board">
-              <button>
-                <img src="assets\icons\Property 1=edit.png" alt="edit" /> Edit
-              </button>
+                <button>
+                  <img src="assets\icons\Property 1=edit.png" alt="edit" /> Edit
+                </button>
+              </div>
+              <div>
+                <button>
+                  <img
+                    src="assets\icons\Property 1=delete hover.png"
+                    alt="delete"
+                  />
+                  Delete
+                </button>
+              </div>
             </div>
-                <div>
-              <button>
-                <img
-                  src="assets\icons\Property 1=delete hover.png"
-                  alt="delete" />
-                Delete
-              </button>
-            </div>
-            </div>
-
           </div>
-
         </div>
-
       </div>
-
     </div>
 
     <script src="script.js"></script>
