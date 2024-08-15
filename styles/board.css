@@ -11,16 +11,16 @@ input, button{
 }
 
 .main-board{
-    width: 80%;
-    margin-top: 100px;
-    margin-left: 200px;
+  position: relative; 
+  margin-top: 100px;
+  margin-left: 248px;
+  padding: 32px;
 }
 
 .head-board{
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 24px;
 }
 
 .head-board h2{
@@ -31,7 +31,7 @@ input, button{
 .search-container {
     display: flex;
     align-items: center;
-    max-width: 60%; 
+    /* max-width: 60%;  */
     gap: 8%;
 }
 
@@ -67,14 +67,17 @@ input, button{
 .board-main-div{
     width: 100%;
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-between;
 }
 
 .align-all-4{ 
-    height: 20vh; 
-    border: 1px solid black; 
+    height: 20vh;
     border-radius: 8px;
-    width: 20%;
+    width: 24%;
+}
+
+.all4-style span{
+  color: #42526E;
 }
 
 .all4-style{
@@ -187,10 +190,10 @@ input, button{
   height: 100%;
 }
 
-.to-do-div {
+/* .to-do-div {
   height: 100vh;
 
-}
+} */
 
 .align-all-4 {
   height: 100vh;
@@ -316,6 +319,20 @@ input, button{
 .priority-icon.urgent {
   background-image: url('../assets/icons/PrioUrgent.svg');
 }
+
+/* css for adjusting to sindbar  */
+@media (max-width: 1030px) {
+  .main-board{
+    margin-left: 120px;
+  }
+}
+@media (max-width: 900px) {
+  .main-board{
+    margin-left: 0px;
+  }
+}
+/* end of: adjusting to sidebar */
+
 
 /* Responsive Design Adjustments */
 @media (max-width: 600px) {

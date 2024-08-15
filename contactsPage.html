@@ -10,68 +10,11 @@
 </head>
 <body onload="init(), includeHTML()">
   <div w3-include-html="./newContact.html"></div>
-    <div w3-include-html="./editContact.html"></div>
-    <!--------------------------------------------------------- header -->
-    <header>        
-        <div class="header-left-content">
-            <span class="header-title">Kanban Project Management Tool</span>
-            <span><img class="logo-small" src="./assets/icons/Capa 2.svg" alt="" /></span>
-        </div>
-        <div class="header-right-content">
-            <div class="help-icon"><a href="#"><img src="./assets/img/help.png" alt=""/></a></div>
-            <div class="profile-avatar"><a  href="#">SM</a></div>
-        </div>          
-    </header>
-    <!---------------------------------------------------------sidebar -->
-    <aside class="sidebar" id="sidebarMenu">
-
-        <figure class="logo-container">
-            <img class="logo-image" src="./assets/img/Capa 2.png" alt="" /> 
-        </figure>
-
-        <nav class="menu-container" id="main-content">
-          <ul class="menu-items">
-              <li class="menu-item">               
-                  <a href="summary.html">        
-                  <img src="./assets/icons/summary.svg" alt=""/>
-                  <span>Summary</span>
-                  </a>                
-              </li>
-              <li class="menu-item">               
-                  <a href="add_task.html">        
-                  <img src="./assets/icons/AddTask.svg" alt=""/>
-                  <span>Add Task</span>
-                  </a>               
-              </li>
-              <li class="menu-item">                
-                  <a href="board.html">     
-                  <img src="./assets/icons/Board.svg" alt=""/>
-                  <span>Board</span>
-                  </a>                
-              </li>
-              <li class="menu-item">               
-                  <a href="contactsPage.html">        
-                  <img src="./assets/icons/contacts.svg" alt=""/>
-                  <span>Contacts</span>
-                  </a>                
-              </li>    
-          </ul>
-
-          <div class="footer-container">
-              <a href="privacy.html">
-                  Privacy Policy
-              </a>
-              <br>
-              <a href="legal.html">
-                  Legal Notice
-              </a>
-          </div>
-      </nav>
-    </aside>
-
-    <!--------------------------------------------------------- Main content -->
+  <div w3-include-html="./editContact.html"></div>
+  <div w3-include-html="./head-side-foot.html"></div>
 
     <main class="container-main">
+
       <section class="contact-details-area" id="contact-detail">
           <div class="list-container">
             <div class="button-container">
@@ -88,6 +31,7 @@
             <img id="mobile-add2" class="mobile-hover-img" src="./assets/icons/nContactM2.svg" alt="" onclick="openNewContact()">
           </div>
       </section>
+
       <section id="contact-display" class="contact-display">
           <div class="contact-heading">
             <div class="row">
@@ -100,7 +44,6 @@
           </div>
           <article id="contact-content" class="contact-content"> 
               <!--Load in JS-->
-            
           </article>
           <div id="mobile-contact-option" class="mobile-contact-option" onclick="openMobileContactOption()"><img src="./assets/icons/more_vert.svg" alt="" /></div>
           <div id="overlay-option" class="overlay-option d-none" onclick="closeMobileContactOption()"></div>
@@ -109,85 +52,14 @@
                   <div class="mobile-contact-option-delete"><button id="mobile-button-delete" class="mobile-edit-delete-contact-button"><img src="./assets/img/delete.svg" alt="Delete">Delete</button></div>
           </div>
       </section>
-       <!--------------------------------------------------------- Menu Mobile Display -->
-      <!-- <div class="menu-mobile-display-container">
-       
-          <div class="menu-mobile-display-item">
-            <a href="#">        
-              <img src="./assets/icons/summary.svg" alt=""/> 
-              <span class="">Summary</span>        
-            </a>
-          </div>
-        
-          <div class="menu-mobile-display-item ">
-            <a href="#">        
-              <img src="./assets/icons/Board.svg" alt=""/>
-              <span>Board</span>         
-            </a>
-          </div>
-        
-          <div class="menu-mobile-display-item">
-            <a href="#">       
-              <img src="./assets/icons/AddTask.svg" alt=""/>     
-              <span>Add Task</span>   
-            </a>
-          </div>
-        
-          <div class="menu-mobile-display-item">
-            <a href="#">        
-              <img src="./assets/icons/contacts.svg" alt=""/> 
-              <span>Contacts</span>          
-            </a>
-          </div>
       
-        </div> -->
-  
-  
-  
-  
-  
-        
   </main>
   
-    <!--------------------------------------------------------- Menu Mobile Display -->
-        <div class="menu-mobile-display-container">
-     
-          <div class="menu-mobile-display-item">
-              <a href="summary.html">        
-              <img src="./assets/icons/summary.svg" alt=""/> 
-              <span class="">Summary</span>        
-            </a>
-          </div>
-        
-          <div class="menu-mobile-display-item ">
-              <a href="board.html">        
-              <img src="./assets/icons/Board.svg" alt=""/>
-              <span>Board</span>         
-            </a>
-          </div>
-        
-          <div class="menu-mobile-display-item">
-              <a href="add_task.html">       
-              <img src="./assets/icons/AddTask.svg" alt=""/>     
-              <span>Add Task</span>   
-            </a>
-          </div>
-        
-          <div class="menu-mobile-display-item">
-              <a href="contactsPage.html">        
-              <img src="./assets/icons/contacts.svg" alt=""/> 
-              <span>Contacts</span>          
-            </a>
-          </div>
-        
-        </div>
-    
-    <script src="script.js"></script>
-  <script src="./js/firebase.js"></script>
+      <script src="script.js"></script>
+      <script src="./js/firebase.js"></script>
       <script src="./js/contactPage.js"></script>
       <script src="./js/tampletes.js"></script>
       <script src="./js/newContact.js"></script>
       <script src="./js/editContact.js"></script>
-
 </body>
 </html>
