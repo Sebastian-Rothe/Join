@@ -1,4 +1,5 @@
 body {
+    overflow: auto; 
     /* padding-bottom: 30px;
     padding-left: 20px;
     padding-right: 20px; */
@@ -7,6 +8,7 @@ body {
 }
 
 .all {
+    overflow: auto; 
     padding-right: 20px;
     display: flex;
     justify-content: center;

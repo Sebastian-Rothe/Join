@@ -11,6 +11,7 @@ input, button{
 }
 
 .main-board{
+  overflow: auto; 
   position: relative; 
   margin-top: 100px;
   margin-left: 248px;
@@ -116,10 +117,11 @@ input, button{
 }
 
 .board-popup-content {
-  height: 470px;
+  height: 530px;
+  width: 350px;
   background: #fff; 
   padding: 20px;
-  border-radius: 8px;
+  border-radius: 20px;
   max-width: 500px; 
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
   position: relative;
@@ -154,11 +156,24 @@ input, button{
 }
 
 .board-popup-actions {
-
-  margin-top: 35px;
+  background-color: transparent; /* oder eine andere gewünschte Farbe */
   display: flex;
   justify-content: end;
+  transform: translateY(60px);
+  border-radius: 20px;
 }
+
+button {
+  display: inline-flex;
+  align-items: center;
+  background-color: transparent;
+  border: none; 
+}
+button img {
+  vertical-align: middle;
+}
+
+
 
 /* css for drag and drop */
 
@@ -319,6 +334,11 @@ input, button{
 .priority-icon.urgent {
   background-image: url('../assets/icons/PrioUrgent.svg');
 }
+h3{
+  font-size: 40px;
+  font-weight: bold
+}
+
 
 /* css for adjusting to sindbar  */
 @media (max-width: 1030px) {
@@ -336,6 +356,9 @@ input, button{
 
 /* Responsive Design Adjustments */
 @media (max-width: 600px) {
+  .board-popup-content{
+    height: 450px;
+  }
   .task-subtasks {
     flex-direction: column;
     align-items: flex-start;
