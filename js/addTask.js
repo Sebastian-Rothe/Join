@@ -1,16 +1,35 @@
-
 function assignedDropdown(users) {
-    let dropdown = document.getElementById('contacts');    
-    dropdown.innerHTML = "";
+    let dropdownContent = document.getElementById('contactsDropdown');
+    dropdownContent.innerHTML = '';
 
-    
-    for (let i = 0; i < users.length; i++) {
-        let user = users[i];
-        let option = document.createElement('option');
-        option.value = user.name;
-        option.textContent = user.name;
-        dropdown.appendChild(option);
-    }
+    users.forEach(user => {
+        let label = `
+            <label style="display: flex; align-items: center; padding: 8px;">
+                ${createProfileIcon(user.name)}
+                <span>${user.name}</span>
+                <input type="checkbox" value="${user.name}" style="margin-left: auto;" onclick="updateBadges()">
+            </label>
+        `;
+
+        dropdownContent.innerHTML += label;
+    });
+}
+
+function updateBadges() {
+    let selectedBadgesContainer = document.getElementById('selectedBadges');
+    selectedBadgesContainer.innerHTML = '';
+
+    let checkboxes = document.querySelectorAll('#contactsDropdown input[type="checkbox"]:checked');
+    checkboxes.forEach(checkbox => {
+        let profileIcon = createProfileIcon(checkbox.value);
+        selectedBadgesContainer.innerHTML+=profileIcon;
+    });
+}
+
+function toggleDropdown() {
+    console.log("toggle clicked");
+    let dropdownContent = document.getElementById('contactsDropdown');
+    dropdownContent.classList.toggle('show');
 }
 
 async function onloadfunc() {

@@ -229,6 +229,116 @@ input {
     align-items: center;
 }
 
+/******************************************************************* Dropdown wit multiple select */
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+}
+
+.dropdown-btn {
+    background-color: #ffffff;
+    color: black;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    cursor: pointer;
+    width: 100%;
+    text-align: left;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 8px;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #ffffff;
+    min-width: 100%;
+    border: 1px solid #ddd;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    z-index: 1;
+    max-height: 200px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    scrollbar-width: thin;
+    scrollbar-color: #ccc #f9f9f9;
+}
+
+.dropdown-content.show {
+    display: block;
+}
+
+.dropdown-content::-webkit-scrollbar {
+    width: 8px;
+}
+
+.dropdown-content::-webkit-scrollbar-track {
+    background: #f9f9f9;
+}
+
+.dropdown-content::-webkit-scrollbar-thumb {
+    background-color: #ccc;
+    border-radius: 4px;
+}
+
+.dropdown-content label {
+    display: flex;
+    align-items: center;
+    padding: 5px;
+    cursor: pointer;
+    width: 97%;
+}
+
+.dropdown-content label:hover {
+    background-color: #f1f1f1;
+}
+
+.profile-icon {
+    width: 44px; 
+    height: 24px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 12px;
+    color: #fff;
+    margin-right: 8px;
+}
+
+.dropdown-content span.name {
+    flex-grow: 1;
+}
+
+.dropdown-content input[type="checkbox"] {
+    margin-left: auto;
+    margin-right: 8px;
+    accent-color: #333;
+    transform: scale(1.2);
+}
+
+.selected-badges {
+    margin-top: 10px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.selected-badges .badge {
+    background-color: #eee;
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 5px;
+}
+
 /******************************************************************* Responsive */
 @media (max-width: 1660px) {
     .left-side {

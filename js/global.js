@@ -20,5 +20,28 @@ function getInitials(fullName) {
   }
   
   function assignRandomColors() {
-    return profileColors[Math.floor(Math.random() * profileColors.length-1)]
+    return profileColors[Math.floor(Math.random() * profileColors.length)]
   }
+
+  function createProfileIcon(fullName) {
+    let initials = getInitials(fullName);
+    let color = assignRandomColors();
+
+    return `
+        <div style="
+            background-color: ${color};
+            color: #ffffff;
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 12px;
+            margin-right: 8px;
+        ">
+            ${initials}
+        </div>
+    `;
+}
