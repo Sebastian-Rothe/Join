@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 body {
     padding-bottom: 30px;
     padding-left: 20px;
@@ -5,6 +6,8 @@ body {
     font-family: 'Inter', sans-serif;
     margin: 0;
 }
+=======
+>>>>>>> 38af6db8c5ff0b25f7807fa3e165956da65a41a7
 
 .all {
     padding-right: 20px;
@@ -25,71 +28,6 @@ body {
     font-weight: 700;
 }
 
-.sidebar {
-    position: fixed;
-    left: 0;
-    top: 0;
-    bottom: 0;
-    width: 250px;
-    background-color: #2B3A42;
-    color: white;
-    padding-top: 20px;
-    overflow-y: auto;
-}
-
-.sidebar img {
-    display: block;
-    margin: 0 auto;
-    width: 80%;
-    max-width: 150px;
-}
-
-.sidebar ul {
-    padding: 0;
-    list-style: none;
-    margin-top: 30px;
-}
-
-.sidebar ul li {
-    margin-bottom: 20px;
-}
-
-.sidebar ul li a {
-    color: white;
-    text-decoration: none;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.sidebar .nav-footer {
-    position: absolute;
-    bottom: 20px;
-    width: 100%;
-    text-align: center;
-}
-
-.sidebar .nav-footer a {
-    color: white;
-    text-decoration: none;
-    display: block;
-}
-
-.content {
-    margin-left: 250px;
-    padding: 20px;
-    width: calc(100% - 250px);
-    box-sizing: border-box;
-}
-
-.navbar {
-    background-color: white;
-    box-shadow: 0 4px 2px -2px gray;
-    padding: 10px 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
 
 .container-fluid h2, .container-fluid h1 {
     font-weight: 600;
@@ -130,24 +68,6 @@ body {
         padding-right: 0;
     }
 
-    .sidebar {
-        position: relative;
-        width: 100%;
-        height: auto;
-        margin-bottom: 20px;
-    }
-
-    .content {
-        margin-left: 0;
-        width: 100%;
-        padding: 0;
-    }
-
-    .navbar {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-
     .container-fluid h1 {
         font-size: 24px;
     }
@@ -165,9 +85,6 @@ body {
         margin-left: 5px;
     }
 
-    .sidebar .nav-footer a {
-        display: none;
-    }
 }
 
 @media (max-width: 700px) {
@@ -185,15 +102,7 @@ body {
 }
 
 @media (max-width: 320px) {
-    .sidebar {
-        width: 100%;
-        padding: 10px;
-    }
-
-    .sidebar img {
-        width: 100%;
-        max-width: 120px;
-    }
+   
 
     .container-fluid h1 {
         font-size: 22px;
@@ -213,7 +122,4 @@ body {
         margin-left: 0;
     }
 
-    .sidebar .nav-footer a {
-        display: none;
-    }
 }
