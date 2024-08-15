@@ -12,6 +12,12 @@
     "no-inline-styles": "off",
     "detect-css-reflows/composite": "off",
     "detect-css-reflows/paint": "off",
-    "disown-opener": "off"
+    "disown-opener": "off",
+    "axe/parsing": [
+      "default",
+      {
+        "duplicate-id": "off"
+      }
+    ]
   }
 }

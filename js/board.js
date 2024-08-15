@@ -94,8 +94,6 @@ document.getElementById("search-input").addEventListener("input", function () {
   }
 });
 
-
-
 // new code for rendering board
 let currentDraggedElement = null;
 
@@ -137,7 +135,6 @@ function renderBoard(statusType, boardElementId) {
                               .replace(/([A-Z])/g, " $1")
                               .toLowerCase()}</span>
                          </div>`;
-
   } else {
     filteredTasks.forEach((element) => {
       element.progress = calculateProgress(
@@ -220,3 +217,68 @@ function openDetailedTaskOverlay(taskId) {
 
 // end section of: new code for rendering board
 // --------------------------------------------
+document.addEventListener("DOMContentLoaded", function () {
+  let closeButton = document.getElementById("board-closePopup");
+  let popupOverlay = document.getElementById("board-popupOverlay");
+
+  function openPopup() {
+    popupOverlay.style.display = "flex";
+  }
+
+  function closePopup() {
+    popupOverlay.style.display = "none";
+  }
+
+  closeButton.addEventListener("click", closePopup);
+
+  popupOverlay.addEventListener("click", function (event) {
+    if (event.target === popupOverlay) {
+      closePopup();
+    }
+  });
+
+  window.openDetailedTaskOverlay = function (taskId) {
+    let task = tasks.find((t) => t.idNumber === taskId);
+
+    if (task) {
+      // Das Popup mit Aufgabeninformationen befüllen
+      document.getElementById("taskTitle").innerText = task.title || "No title";
+      document.getElementById("taskDescription").innerText =
+        task.description || "No description";
+      document.getElementById("taskDueDate").innerText =
+        task.dueDate || "No due date";
+      document.getElementById("taskPriority").innerText =
+        task.priority || "No priority";
+
+      let assignedToElement = document.getElementById("taskAssignedTo");
+      assignedToElement.innerHTML = "";
+      if (task.assignedTo && task.assignedTo.length > 0) {
+        task.assignedTo.forEach((person) => {
+          let li = document.createElement("li");
+          li.textContent = person;
+          assignedToElement.appendChild(li);
+        });
+      } else {
+        assignedToElement.innerHTML = "<li>No one assigned</li>";
+      }
+
+      let subtasksElement = document.getElementById("taskSubtasks");
+      subtasksElement.innerHTML = "<p>Subtasks:</p>";
+      if (task.subtasks && task.subtasks.length > 0) {
+        task.subtasks.forEach((subtask) => {
+          let label = document.createElement("label");
+          label.innerHTML = `<input type="checkbox" ${
+            subtask.completed ? "checked" : ""
+          } /> ${subtask.title}<br />`;
+          subtasksElement.appendChild(label);
+        });
+      } else {
+        subtasksElement.innerHTML += "<p>No subtasks</p>";
+      }
+
+      openPopup();
+    } else {
+      console.error("Task not found:", taskId);
+    }
+  };
+});

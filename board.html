@@ -11,7 +11,6 @@
     <!-- include header and sidebar -->
 
     <div id="main-board" class="main-board">
-      
       <div id="head-board" class="head-board">
         <h2>Board</h2>
         <div class="search-container">
@@ -19,12 +18,20 @@
             type="text"
             id="search-input"
             placeholder="Find Task"
-            class="search-input"
-          />
+            class="search-input" />
           <button class="search-button">
             Add task
             <img src="./assets/icons/add.svg" alt="" />
           </button>
+        </div>
+      </div>
+
+      <div id="taskDetailOverlay" class="task-detail-overlay">
+        <div class="overlay-content">
+          <span id="closeDetailOverlay" class="close-button">&times;</span>
+          <div id="taskDetailContent">
+            <!-- Task details will be populated here -->
+          </div>
         </div>
       </div>
 
@@ -35,16 +42,14 @@
             <img
               class="hover-to-blue"
               src="./assets/icons/add-button-board.svg"
-              alt=""
-            />
+              alt="" />
           </div>
           <div
             id="todoBoard"
             class="task-section drag-area"
             ondrop="moveTo('todo')"
             ondragleave="removeHighlight('todoBoard')"
-            ondragover="allowDrop(event); highlight('todoBoard')">
-          </div>  
+            ondragover="allowDrop(event); highlight('todoBoard')"></div>
         </div>
 
         <div id="in-progress-div" class="in-progress-div align-all-4">
@@ -53,16 +58,14 @@
             <img
               class="hover-to-blue"
               src="./assets/icons/add-button-board.svg"
-              alt=""
-            />
+              alt="" />
           </div>
-          <div 
-            id="inProgressBoard" 
+          <div
+            id="inProgressBoard"
             class="task-section drag-area"
             ondrop="moveTo('inProgress')"
             ondragleave="removeHighlight('inProgressBoard')"
-            ondragover="allowDrop(event); highlight('inProgressBoard')">
-          </div>
+            ondragover="allowDrop(event); highlight('inProgressBoard')"></div>
         </div>
 
         <div id="await-feedback-div" class="await-feedback-div align-all-4">
@@ -71,69 +74,52 @@
             <img
               class="hover-to-blue"
               src="./assets/icons/add-button-board.svg"
-              alt=""
-            />
+              alt="" />
           </div>
-          <div 
-          id="awaitFeedbackBoard" 
-          class="task-section drag-area"
-          ondrop="moveTo('awaitFeedback')"
-          ondragleave="removeHighlight('awaitFeedbackBoard')"
-          ondragover="allowDrop(event); highlight('awaitFeedbackBoard')">
-          </div>
+          <div
+            id="awaitFeedbackBoard"
+            class="task-section drag-area"
+            ondrop="moveTo('awaitFeedback')"
+            ondragleave="removeHighlight('awaitFeedbackBoard')"
+            ondragover="allowDrop(event); highlight('awaitFeedbackBoard')"></div>
         </div>
 
         <div id="done-div" class="done-div align-all-4">
           <div id="done-head" class="all4-style">
             <span>Done</span>
           </div>
-          <div 
-          id="doneBoard" 
-          class="task-section drag-area"
-          ondrop="moveTo('done')"
-          ondragleave="removeHighlight('doneBoard')"
-          ondragover="allowDrop(event); highlight('doneBoard')">
-          </div>
+          <div
+            id="doneBoard"
+            class="task-section drag-area"
+            ondrop="moveTo('done')"
+            ondragleave="removeHighlight('doneBoard')"
+            ondragover="allowDrop(event); highlight('doneBoard')"></div>
         </div>
-
       </div>
     </div>
 
-    
     <div class="test-pop">
       <div id="main-board" class="main-board">
-        <button id="openboardButton">Open Popup</button>
-        <div class="board-popup-overlay" id="board-popupOverlay">
+        <div
+          class="board-popup-overlay"
+          id="board-popupOverlay"
+          style="display: none">
           <div class="board-popup-content">
             <span class="board-popup-close" id="board-closePopup">&times;</span>
             <h2><img src="assets\icons\Frame 113.png" alt="" /></h2>
-            <h3>Kochwelt Page & Recipe Recommender</h3>
-            <p>Build start page with recipe recommendation.</p>
+            <h3 id="taskTitle"></h3>
+            <p id="taskDescription"></p>
             <p>
               <span class="board-popup-label">Due date:</span
-              ><span class="board-popup-data">13/08/2024</span>
+              ><span id="taskDueDate" class="board-popup-data"></span>
             </p>
             <p>
               <span class="board-popup-label">Priority:</span
-              ><span class="board-popup-data"
-                >Medium <img src="assets\icons\Capa 2.png" alt=""
-              /></span>
+              ><span id="taskPriority" class="board-popup-data"></span>
             </p>
             <p><span class="board-popup-label">Assigned To:</span></p>
-            <ul>
-              <li>Basti Test</li>
-              <li>Batool Test</li>
-              <li>Manuel Test</li>
-            </ul>
-            <div class="board-popup-subtasks">
-              <p>Subtasks:</p>
-              <label
-                ><input type="checkbox" checked /> Implement Recipe
-                Recommendation</label
-              ><br />
-              <label><input type="checkbox" /> Start Page Layout</label>
-            </div>
-
+            <ul id="taskAssignedTo"></ul>
+            <div class="board-popup-subtasks" id="taskSubtasks"></div>
             <div class="board-popup-actions">
               <div class="place-board">
                 <button>
@@ -144,8 +130,7 @@
                 <button>
                   <img
                     src="assets\icons\Property 1=delete hover.png"
-                    alt="delete"
-                  />
+                    alt="delete" />
                   Delete
                 </button>
               </div>
