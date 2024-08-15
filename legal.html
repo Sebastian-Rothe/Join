@@ -1,16 +1,76 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Legal Notice</title>
-
-    <link href="styles\legal.css" rel="stylesheet">
+    <title>Template mit Header, Sidebar und Main</title>
+    <link href="styles\legal.css" rel="stylesheet"> 
     <script src="js\legal.js"></script>  
-</head>
 
+    <link rel="stylesheet" href="contactsPage.css" /> 
+    <link rel="stylesheet" href="template.css" />
+</head>
 <body>
+    <!--------------------------------------------------------- header -->
+    <header>        
+        <div class="header-left-content">
+            <span class="header-title">Kanban Project Management Tool</span>
+            <span><img class="logo-small" src="./assets/icons/Capa 2.svg" alt="" /></span>
+        </div>
+        <div class="header-right-content">
+            <div class="help-icon"><a href="#"><img src="./assets/img/help.png" alt=""/></a></div>
+            <div class="profile-avatar"><a  href="#">SM</a></div>
+        </div>          
+    </header>
+    <!---------------------------------------------------------sidebar -->
+    <aside class="sidebar" id="sidebarMenu">
+
+        <figure class="logo-container">
+            <img class="logo-image" src="./assets/img/Capa 2.png" alt="" /> 
+        </figure>
+
+        <nav class="menu-container" id="main-content">
+            <ul class="menu-items">
+                <li class="menu-item">               
+                    <a href="summary.html">        
+                    <img src="./assets/icons/summary.svg" alt=""/>
+                    <span>Summary</span>
+                    </a>                
+                </li>
+                <li class="menu-item">               
+                    <a href="add_task.html">        
+                    <img src="./assets/icons/AddTask.svg" alt=""/>
+                    <span>Add Task</span>
+                    </a>               
+                </li>
+                <li class="menu-item">                
+                    <a href="board.html">     
+                    <img src="./assets/icons/Board.svg" alt=""/>
+                    <span>Board</span>
+                    </a>                
+                </li>
+                <li class="menu-item">               
+                    <a href="contactsPage.html">        
+                    <img src="./assets/icons/contacts.svg" alt=""/>
+                    <span>Contacts</span>
+                    </a>                
+                </li>    
+            </ul>
+
+            <div class="footer-container">
+                <a href="privacy.html">
+                    Privacy Policy
+                </a>
+                <br>
+                <a href="legal.html">
+                    Legal Notice
+                </a>
+            </div>
+        </nav>
+    </aside>
+
+    <!--------------------------------------------------------- Main content -->
+
     <div class="all">
         <!-- <div class="sidebar" id="sidebarMenu">
             <h2 class="text-center"><img class="capa-2" src="./assets/img/Capa 2.png" alt=""></h2>
@@ -164,6 +224,39 @@
 
     </div>
 
-</body>
+    <!--------------------------------------------------------- Menu Mobile Display -->
+        <div class="menu-mobile-display-container">
+     
+            <div class="menu-mobile-display-item">
+                <a href="summary.html">        
+                <img src="./assets/icons/summary.svg" alt=""/> 
+                <span class="">Summary</span>        
+              </a>
+            </div>
+          
+            <div class="menu-mobile-display-item ">
+                <a href="board.html">        
+                <img src="./assets/icons/Board.svg" alt=""/>
+                <span>Board</span>         
+              </a>
+            </div>
+          
+            <div class="menu-mobile-display-item">
+                <a href="add_task.html">       
+                <img src="./assets/icons/AddTask.svg" alt=""/>     
+                <span>Add Task</span>   
+              </a>
+            </div>
+          
+            <div class="menu-mobile-display-item">
+                <a href="contactsPage.html">        
+                <img src="./assets/icons/contacts.svg" alt=""/> 
+                <span>Contacts</span>          
+              </a>
+            </div>
+        
+          </div>
+    <script src="script.js"></script>
 
+</body>
 </html>

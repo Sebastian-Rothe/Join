@@ -3,19 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Join Dummy</title>
-    <link rel="apple-touch-icon" sizes="180x180" href="assets/icons/favicon_io/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="assets/icons/favicon_io/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="assets/icons/favicon_io/favicon-16x16.png">
-    <link rel="manifest" href="assets/icons/favicon_io/site.webmanifest">
-    <link rel="stylesheet" href="reset.css" />
-    <link rel="stylesheet" href="contactsPage.css" />
+    <title>Template mit Header, Sidebar und Main</title>
+    <link rel="stylesheet" href="contactsPage.css" /> 
+    <link rel="stylesheet" href="template.css" /> 
     <link rel="stylesheet" href="./styles/newContactMobile.css">
 </head>
 <body onload="init(), includeHTML()">
-    <div w3-include-html="./newContact.html"></div>
+  <div w3-include-html="./newContact.html"></div>
     <div w3-include-html="./editContact.html"></div>
-    <!-- <header>        
+    <!--------------------------------------------------------- header -->
+    <header>        
         <div class="header-left-content">
             <span class="header-title">Kanban Project Management Tool</span>
             <span><img class="logo-small" src="./assets/icons/Capa 2.svg" alt="" /></span>
@@ -24,132 +21,173 @@
             <div class="help-icon"><a href="#"><img src="./assets/img/help.png" alt=""/></a></div>
             <div class="profile-avatar"><a  href="#">SM</a></div>
         </div>          
-    </header> -->
-
-    <!-- <aside class="sidebar" id="sidebarMenu">
+    </header>
+    <!---------------------------------------------------------sidebar -->
+    <aside class="sidebar" id="sidebarMenu">
 
         <figure class="logo-container">
             <img class="logo-image" src="./assets/img/Capa 2.png" alt="" /> 
         </figure>
 
-        <nav class="menu-container">
-            <ul class="menu-items">
-                <li class="menu-item">               
-                    <a href="#">        
-                    <img src="./assets/icons/summary.svg" alt=""/>
-                    <span>Summary</span>
-                    </a>                
-                </li>
-                <li class="menu-item">               
-                    <a href="#">        
-                    <img src="./assets/icons/Board.svg" alt=""/>
-                    <span>Add Task</span>
-                    </a>               
-                </li>
-                <li class="menu-item">                
-                    <a href="#">        
-                    <img src="./assets/icons/AddTask.svg" alt=""/>
-                    <span>Board</span>
-                    </a>                
-                </li>
-                <li class="menu-item">               
-                    <a href="#">        
-                    <img src="./assets/icons/contacts.svg" alt=""/>
-                    <span>Contacts</span>
-                    </a>                
-                </li>    
-            </ul>
-
-            <div class="footer-container">
-                <a href="#">Privacy Policy</a>
-                <br>
-                <a href="#">Legal Notice</a>
-            </div>
-        </nav>
-    </aside> -->
-
-<main class="container-main">
-    <section class="contact-details-area" id="contact-detail">
-        <div class="list-container">
-          <div class="button-container">
-            <button id="openOverlayNC" class="primary-btn new-contact-button text-action-btn" onclick="openNewContact()">
-              Add new contact <img src="./assets/icons/person_add.svg" alt="">
-            </button>
-          </div>
-          <ul class="contact-list" id="contact-list">
-            <!-- Load contact list from JS -->
+        <nav class="menu-container" id="main-content">
+          <ul class="menu-items">
+              <li class="menu-item">               
+                  <a href="summary.html">        
+                  <img src="./assets/icons/summary.svg" alt=""/>
+                  <span>Summary</span>
+                  </a>                
+              </li>
+              <li class="menu-item">               
+                  <a href="add_task.html">        
+                  <img src="./assets/icons/AddTask.svg" alt=""/>
+                  <span>Add Task</span>
+                  </a>               
+              </li>
+              <li class="menu-item">                
+                  <a href="board.html">     
+                  <img src="./assets/icons/Board.svg" alt=""/>
+                  <span>Board</span>
+                  </a>                
+              </li>
+              <li class="menu-item">               
+                  <a href="contactsPage.html">        
+                  <img src="./assets/icons/contacts.svg" alt=""/>
+                  <span>Contacts</span>
+                  </a>                
+              </li>    
           </ul>
-        </div>
-        <div id="mobile-add-button" class="mobile-add-button">
-          <img id="mobile-add1" class="mobile-default-img" src="./assets/icons/nContactM1.svg" alt="">
-          <img id="mobile-add2" class="mobile-hover-img" src="./assets/icons/nContactM2.svg" alt="" onclick="openNewContact()">
-        </div>
-    </section>
-    <section id="contact-display" class="contact-display">
-        <div class="contact-heading">
-          <div class="row">
-            <span class="contacts-title">Contacts</span>
-            <span id="btnBack" onclick="backToContactList()" class="arrow-left-contacts d-none"><img src="./assets/img/arrow-left-line.png" alt=""></span>
+
+          <div class="footer-container">
+              <a href="privacy.html">
+                  Privacy Policy
+              </a>
+              <br>
+              <a href="legal.html">
+                  Legal Notice
+              </a>
           </div>
-          <div class="divider"></div>
-          <span>Better with a team</span>
-          <div class="divider-responsive"></div>
-        </div>
-        <article id="contact-content" class="contact-content"> 
-            <!--Load in JS-->
-          
-        </article>
-        <div id="mobile-contact-option" class="mobile-contact-option" onclick="openMobileContactOption()"><img src="./assets/icons/more_vert.svg" alt="" /></div>
-        <div id="overlay-option" class="overlay-option d-none" onclick="closeMobileContactOption()"></div>
-        <div class="mobile-contact-option-popup d-none" id="mobile-contact-option-popup">
-          <div class="mobile-contact-option-edit"><button id="mobile-button-edit" class="mobile-edit-delete-contact-button"><img src="./assets/img/edit.svg" alt="Edit">Edit</button></div>
-                <div class="mobile-contact-option-delete"><button id="mobile-button-delete" class="mobile-edit-delete-contact-button"><img src="./assets/img/delete.svg" alt="Delete">Delete</button></div>
-        </div>
-    </section>
-     <!--------------------------------------------------------- Menu Mobile Display -->
-    <!-- <div class="menu-mobile-display-container">
+      </nav>
+    </aside>
+
+    <!--------------------------------------------------------- Main content -->
+
+    <main class="container-main">
+      <section class="contact-details-area" id="contact-detail">
+          <div class="list-container">
+            <div class="button-container">
+              <button id="openOverlayNC" class="primary-btn new-contact-button text-action-btn" onclick="openNewContact()">
+                Add new contact <img src="./assets/icons/person_add.svg" alt="">
+              </button>
+            </div>
+            <ul class="contact-list" id="contact-list">
+              <!-- Load contact list from JS -->
+            </ul>
+          </div>
+          <div id="mobile-add-button" class="mobile-add-button">
+            <img id="mobile-add1" class="mobile-default-img" src="./assets/icons/nContactM1.svg" alt="">
+            <img id="mobile-add2" class="mobile-hover-img" src="./assets/icons/nContactM2.svg" alt="" onclick="openNewContact()">
+          </div>
+      </section>
+      <section id="contact-display" class="contact-display">
+          <div class="contact-heading">
+            <div class="row">
+              <span class="contacts-title">Contacts</span>
+              <span id="btnBack" onclick="backToContactList()" class="arrow-left-contacts d-none"><img src="./assets/img/arrow-left-line.png" alt=""></span>
+            </div>
+            <div class="divider"></div>
+            <span>Better with a team</span>
+            <div class="divider-responsive"></div>
+          </div>
+          <article id="contact-content" class="contact-content"> 
+              <!--Load in JS-->
+            
+          </article>
+          <div id="mobile-contact-option" class="mobile-contact-option" onclick="openMobileContactOption()"><img src="./assets/icons/more_vert.svg" alt="" /></div>
+          <div id="overlay-option" class="overlay-option d-none" onclick="closeMobileContactOption()"></div>
+          <div class="mobile-contact-option-popup d-none" id="mobile-contact-option-popup">
+            <div class="mobile-contact-option-edit"><button id="mobile-button-edit" class="mobile-edit-delete-contact-button"><img src="./assets/img/edit.svg" alt="Edit">Edit</button></div>
+                  <div class="mobile-contact-option-delete"><button id="mobile-button-delete" class="mobile-edit-delete-contact-button"><img src="./assets/img/delete.svg" alt="Delete">Delete</button></div>
+          </div>
+      </section>
+       <!--------------------------------------------------------- Menu Mobile Display -->
+      <!-- <div class="menu-mobile-display-container">
+       
+          <div class="menu-mobile-display-item">
+            <a href="#">        
+              <img src="./assets/icons/summary.svg" alt=""/> 
+              <span class="">Summary</span>        
+            </a>
+          </div>
+        
+          <div class="menu-mobile-display-item ">
+            <a href="#">        
+              <img src="./assets/icons/Board.svg" alt=""/>
+              <span>Board</span>         
+            </a>
+          </div>
+        
+          <div class="menu-mobile-display-item">
+            <a href="#">       
+              <img src="./assets/icons/AddTask.svg" alt=""/>     
+              <span>Add Task</span>   
+            </a>
+          </div>
+        
+          <div class="menu-mobile-display-item">
+            <a href="#">        
+              <img src="./assets/icons/contacts.svg" alt=""/> 
+              <span>Contacts</span>          
+            </a>
+          </div>
+      
+        </div> -->
+  
+  
+  
+  
+  
+        
+  </main>
+  
+    <!--------------------------------------------------------- Menu Mobile Display -->
+        <div class="menu-mobile-display-container">
      
-        <div class="menu-mobile-display-item">
-          <a href="#">        
-            <img src="./assets/icons/summary.svg" alt=""/> 
-            <span class="">Summary</span>        
-          </a>
-        </div>
-      
-        <div class="menu-mobile-display-item ">
-          <a href="#">        
-            <img src="./assets/icons/Board.svg" alt=""/>
-            <span>Board</span>         
-          </a>
-        </div>
-      
-        <div class="menu-mobile-display-item">
-          <a href="#">       
-            <img src="./assets/icons/AddTask.svg" alt=""/>     
-            <span>Add Task</span>   
-          </a>
-        </div>
-      
-        <div class="menu-mobile-display-item">
-          <a href="#">        
-            <img src="./assets/icons/contacts.svg" alt=""/> 
-            <span>Contacts</span>          
-          </a>
+          <div class="menu-mobile-display-item">
+              <a href="summary.html">        
+              <img src="./assets/icons/summary.svg" alt=""/> 
+              <span class="">Summary</span>        
+            </a>
+          </div>
+        
+          <div class="menu-mobile-display-item ">
+              <a href="board.html">        
+              <img src="./assets/icons/Board.svg" alt=""/>
+              <span>Board</span>         
+            </a>
+          </div>
+        
+          <div class="menu-mobile-display-item">
+              <a href="add_task.html">       
+              <img src="./assets/icons/AddTask.svg" alt=""/>     
+              <span>Add Task</span>   
+            </a>
+          </div>
+        
+          <div class="menu-mobile-display-item">
+              <a href="contactsPage.html">        
+              <img src="./assets/icons/contacts.svg" alt=""/> 
+              <span>Contacts</span>          
+            </a>
+          </div>
+        
         </div>
     
-      </div> -->
+    <script src="script.js"></script>
+  <script src="./js/firebase.js"></script>
+      <script src="./js/contactPage.js"></script>
+      <script src="./js/tampletes.js"></script>
+      <script src="./js/newContact.js"></script>
+      <script src="./js/editContact.js"></script>
 
-
-
-
-
-      
-</main>
-<script src="script.js"></script>
-<script src="./js/firebase.js"></script>
-    <script src="./js/contactPage.js"></script>
-    <script src="./js/tampletes.js"></script>
-    <script src="./js/newContact.js"></script>
-    <script src="./js/editContact.js"></script>
 </body>
 </html>
