@@ -85,6 +85,7 @@ async function loadTasks(path = "/tasks") {
                     category: task.category || "Uncategorized",
                     title: task.title,
                     description: task.description || "Task without a description",
+                    date: task.date,
                     subtaskCount: task.subtaskCount || 0,
                     completedSubtasks: task.completedSubtasks || 0,
                     assignedTo: typeof task.contacts === 'string' ? task.contacts.split(", ") : [], // Typprüfung hinzugefügt 

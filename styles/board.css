@@ -11,10 +11,11 @@ input, button{
 }
 
 .main-board{
-  overflow: auto; 
+  /* overflow: auto; */
+  /* height: auto;  */
   position: relative; 
   margin-top: 100px;
-  margin-left: 248px;
+  margin-left: 232px;
   padding: 32px;
 }
 
@@ -44,7 +45,7 @@ input, button{
   border-radius: 10px;
   padding: 8px 16px 8px 16px;
   gap: 10px;
-  width: 312px;
+  /* width: 312px; */
   height: 34px;
   background-color: #ffffff;
 }
@@ -53,10 +54,10 @@ input, button{
     padding: 10px;
     border-right: 1px solid #A8A8A8;
     font-size: 20px;
-    width: 80%;
+    /* width: 80%;
     background-position: calc(100% - 12px) center; 
     background-repeat: no-repeat;
-    flex-grow: 1;   
+    flex-grow: 1;    */
 }
 
 .search-input-img {
@@ -67,6 +68,8 @@ input, button{
 .search-input-img:hover {
   border-radius: 50%;
   background-color: rgba(0, 0, 0, 0.1);
+  transform: scale(1.1);
+  cursor: pointer;
 }
 
 
@@ -139,8 +142,8 @@ input, button{
 }
 
 .board-popup-content {
-  height: 530px;
-  width: 350px;
+  height: 70%;
+  width: 40%;
   background: #fff; 
   padding: 20px;
   border-radius: 20px;
@@ -158,7 +161,7 @@ input, button{
   color: #333; 
 }
 
-#openboardButton {
+/* #openboardButton {
   background-color: #007BFF; 
   color: #fff;
   border: none;
@@ -166,80 +169,77 @@ input, button{
   border-radius: 5px;
   cursor: pointer;
   font-size: 16px;
-}
-#openboardButton:hover {
-  background-color: #0056b3; 
-}
+} */
 
-.test-pop {
+
+/* .task-details-popup {
   display: flex;
   align-items: center;
   flex-direction: column;
-}
+} */
 
 .board-popup-actions {
-  background-color: transparent; /* oder eine andere gewünschte Farbe */
+  /* background-color: transparent;  */
   display: flex;
   justify-content: end;
   transform: translateY(60px);
-  border-radius: 20px;
+  border-radius: 24px;
 }
 
-button {
+/* button {
   display: inline-flex;
   align-items: center;
   background-color: transparent;
   border: none; 
-}
-button img {
+} */
+/* button img {
   vertical-align: middle;
-}
+} */
 
 
 
 /* css for drag and drop */
 
 .drag-area {
-  /* height: 100vh; */
-  /* background-color: rgba(8, 235, 99, 0.1); */
-  /* border: 1px dashed black; */
-  /* margin-bottom: 50px; */
+  height: 80vh; /* die höhe ist etwas kompliziert, vil. findest du da eine gute lösung (vil. calc() oder so) */
+  background-color: rgba(8, 235, 99, 0.1);
+  border: 1px dashed black;
+  margin-bottom: 50px;
   /* display: flex; */
   padding-top: 4px;
-  flex-direction: column;
+  /* flex-direction: column; */
   align-items: flex-start;
 }
 
-/* .drag-area-highlight {
+.drag-area-highlight {
   background-color: rgba(0, 0, 0, 0.2);
-} */
+}
 
-.todo {
-  /* background-color: white; */
+/* .todo {
+  background-color: white;
   background-color:  #9cd1e8;
   border: 1px solid black;
   border-radius: 5px;
   padding: 10px;
   margin: 10px;
-}
+} */
 
-.task-section {
+/* .task-section {
   height: 100%;
-}
+} */
 
 /* .to-do-div {
   height: 100vh;
 
 } */
 
-.align-all-4 {
-  height: 100vh;
+/* .align-all-4 {
+  height: ;
+} */
 
-}
-
-.place-board{
+/* .place-board{
   margin-right: 10px;
-}
+} */
 
 
 /* new code for board card */
@@ -252,6 +252,8 @@ button img {
   box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
   margin-bottom: 16px;
   cursor: pointer;
+  flex: 1;
+  max-width: 300px;
 }
 
 .task-label {
@@ -362,7 +364,7 @@ h3{
 }
 
 
-/* css for adjusting to sindbar  */
+/* css for adjusting to sidebar  */
 @media (max-width: 1030px) {
   .main-board{
     margin-left: 120px;
@@ -397,3 +399,33 @@ h3{
   }
 }
 /* end of section: new code for board card */
+
+/* responsive */
+@media (max-width: 1080px) {
+  .head-board{
+    flex-direction: column;
+    margin-bottom: 16px;
+  }
+  .head-board h2{
+    margin: 0;
+  }
+}
+@media (max-width: 800px) {
+  .board-main-div{
+    flex-direction: column;
+    overflow: hidden;
+  }
+  /* .align-all-4{
+    height: inherit;
+  } */
+  .task-section{
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+    width: 100%;
+  }
+  .align-all-4{
+    width: 100%;
+    margin-bottom: 12px;
+  }
+}

@@ -35,7 +35,7 @@
                   
                     <label for="dropdown">Assigned to</label>
                     <div class="dropdown">
-                        <button onclick="toggleDropdown()" class="dropdown-btn">Select contacts to assign <span>▼</span></button>
+                        <button onclick="toggleDropdown()" class="dropdown-btn">Select contacts to assign <span><img src="../assets/icons/arrow_drop_down .svg" alt=""></span></button>
                         <div id="contactsDropdown" class="dropdown-content">
                             <!-- Load in JS -->
                         </div>
@@ -52,7 +52,7 @@
                 <div class="right-side">
                     
                     <label  for="date">Due date<span class="required">*</span></label>
-                    <input type="date" id="date" name="due-date">
+                    <input type="date" id="date" name="due-date" class="date-style">
 
                     
                     <label>Prio</label>
@@ -71,17 +71,64 @@
                         </button>
                     </div>
 
-                    <label for="category">Category<span class="required">*</span></label>
+                    <!-- <label for="category">Category<span class="required">*</span></label>
                     <select id="category" name="dropdown" class="dropdownCategory">
                         <option value="" disabled selected>Select task category</option>
                         <option value="TechnicalTask">Technical Task</option>
                         <option value="UserStory">User Story</option>                        
-                    </select>
+                    </select> -->
 
-                    <form class="Subtasks" id="subtasks">
-                        <input id="name" class="Subtasks" type="text" placeholder="Add  new subtask"/>
-                        <!-- <button type="submit"><i class="icon-name"></i></button> -->
+                    <label for="category">Category<span class="required">*</span></label>
+                    <div class="dropdown-category">
+                        <select id="category" name="dropdown" class="dropdownCategory">
+                            <option value="" disabled selected>Select task category</option>
+                            <option value="TechnicalTask">Technical Task</option>
+                            <option value="UserStory">User Story</option>                        
+                        </select>
+                       <img src="../assets/icons/arrow_drop_down .svg" alt="Dropdown Icon" class="custom-dropdown-icon">
+                    </div>
+
+                    
+                    <form class="subtask-form" action="">
+                        <input type="text" name="" id="" placeholder="Add new subtask">
+                        <button  type="button" class="subtask-btn">
+                            <span class="subtask-btn-plus"><img src="../assets/icons/addblack.svg" alt=""></span>
+                           
+                            <span class="subtask-btn-checked"><img src="../assets/icons/CheckAddTask.svg" alt="" class="toggle-display"></span>
+                            <div class="subtask-btn-divider toggle-display"></div>
+                            <span class="subtask-btn-cancel"><img src="../assets/icons/CloseAddTask.svg" alt="" class="toggle-display"></span>
+                        </button>
+
                     </form>
+       
+
+                    <div class="subtask-list-container">
+                        <ul>
+                            <li class="subtask-list">
+                                <div class="subtask-list-left">
+                                    <span>Contact Form</span>
+                                </div>
+                                <div class="subtask-list-right">
+                                    <span><img src="../assets/icons/EditAddTask.svg" alt="" class="toggle-display"></span>
+                                    <div class="subtask-list-divider toggle-display"></div>
+                                    <span><img src="../assets/icons/delete.svg" alt="" class="toggle-display"></span>
+                                </div>
+                            </li>
+
+                            <li class="subtask-list">
+                                <div class="subtask-list-left">
+                                    <span>Write Legal imprint</span>
+                                </div>
+                                <div class="subtask-list-right">
+                                    <span><img src="../assets/icons/EditAddTask.svg" alt="" class="toggle-display"></span>
+                                    <div class="subtask-list-divider toggle-display"></div>
+                                    <span><img src="../assets/icons/delete.svg" alt="" class="toggle-display"></span>
+                                </div>
+                            </li>
+                         
+                        
+                        </ul>
+                    </div>
                 </div>
 
             </div>
@@ -90,7 +137,7 @@
                     <span><span class="required">*</span>This field is required</span>
                 </div>
                 <div class="footer-add-task-right">
-                    <button class="clear-btn">clear <img src="../assets/icons/close.svg" alt="Clear Icon" class="icon"></button>
+                    <button class="clear-btn" >clear <img src="../assets/icons/close.svg" alt="Clear Icon" class="icon"></button>
                     <button class="create-task-btn" onclick="addTask()">create Task <img src="../assets/icons/check.svg" alt="Create Icon" class="icon"></button>
                     <input type="hidden" id="status" value="todo">
                     <input type="hidden" id="priority" value="low">

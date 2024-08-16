@@ -41,7 +41,8 @@ function updateSelectedBadges() {
         let profileIcon = createProfileIcon(contact);
         let badge = document.createElement('div');
         badge.classList.add('badge');
-        badge.innerHTML = profileIcon + `<span>${contact}</span>`;
+        // badge.innerHTML = profileIcon + `<span>${contact}</span>`;
+        badge.innerHTML = profileIcon;
         selectedBadgesContainer.appendChild(badge);
     });
 }

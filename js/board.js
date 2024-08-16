@@ -1,42 +1,3 @@
-// set minimum date
-
-// brauchen wir das noch hier???
-// function setMinDate(inputId) {
-//   let dateInput = document.getElementById(inputId);
-//   let today = new Date().toISOString().split("T")[0]; // Heutiges Datum im Format YYYY-MM-DD
-//   dateInput.setAttribute("min", today);
-// }
-
-// document.addEventListener("DOMContentLoaded", function () {
-//   setMinDate("date"); // Setzt das Mindestdatum für das Input-Feld mit der ID "date"
-// });
-
-// -----------------------------
-
-// das brauchen wir dann auch nicht mehr
-// Popup management
-document.addEventListener("DOMContentLoaded", function () {
-  // let openButton = document.getElementById("openboardButton");
-  let closeButton = document.getElementById("board-closePopup");
-  let popupOverlay = document.getElementById("board-popupOverlay");
-
-  function openPopup() {
-    popupOverlay.style.display = "flex";
-  }
-
-  function closePopup() {
-    popupOverlay.style.display = "none";
-  }
-
-  // openButton.addEventListener("click", openPopup);
-  closeButton.addEventListener("click", closePopup);
-
-  popupOverlay.addEventListener("click", function (event) {
-    if (event.target === popupOverlay) {
-      closePopup();
-    }
-  });
-});
 // new code for rendering board
 let currentDraggedElement = null;
 
@@ -48,19 +9,6 @@ async function initBoard() {
 function calculateProgress(completedSubtasks, subtaskCount) {
   return (completedSubtasks / subtaskCount) * 100;
 }
-// -----------------------
-
-
-// function getCategoryStyle(category) {
-//     switch (category) {
-//         case "User Story":
-//             return { labelClass: "user-story-label", labelText: "User Story" };
-//         case "Technical Task":
-//             return { labelClass: "technical-task-label", labelText: "Technical Task" };
-//         default:
-//             return { labelClass: "default-label", labelText: category };
-//     }
-// }
 
 function updateBoard() {
   renderBoard("todo", "todoBoard");
@@ -86,9 +34,6 @@ function renderBoard(statusType, boardElementId) {
         element.completedSubtasks,
         element.subtaskCount
       );
-      // const categoryStyle = getCategoryStyle(element.category);
-      // element.labelClass = categoryStyle.labelClass;
-      // element.labelText = categoryStyle.labelText;
       content.innerHTML += generateTaskCardHTML(element);
     });
   }
@@ -163,68 +108,116 @@ function openDetailedTaskOverlay(taskId) {
 
 // end section of: new code for rendering board
 // --------------------------------------------
-document.addEventListener("DOMContentLoaded", function () {
-  let closeButton = document.getElementById("board-closePopup");
-  let popupOverlay = document.getElementById("board-popupOverlay");
 
-  function openPopup() {
-    popupOverlay.style.display = "flex";
+// Funktion zur Generierung des HTML-Inhalts für das Popup
+function getPopupHTML(task) {
+  const priority = task?.priority || "No priority";
+  const assignedTo = task?.assignedTo?.length
+    ? task.assignedTo.map(person => `<li>${person}</li>`).join("")
+    : "<li>No one assigned</li>";
+  const subtasks = task?.subtasks?.length
+    ? task.subtasks.map(subtask => `
+      <label>
+        <input type="checkbox" ${subtask.completed ? "checked" : ""} />
+        ${subtask.title}<br />
+      </label>`).join("")
+    : "<p>No subtasks</p>";
+  const dueDate = task?.date ? formatDate(task.date) : "No due date";
+
+  return `
+    <div class="task-details-popup">
+      <div class="board-popup-overlay" id="board-popupOverlay" style="display: none">
+        <div class="board-popup-content">
+          <span class="board-popup-close" id="board-closePopup">&times;</span>
+          <h2><img src="assets/icons/Frame 113.png" alt="Icon" /></h2>
+          <h3 id="taskTitle">${task.title || "No title"}</h3>
+          <p id="taskDescription">${task.description || "No description"}</p>
+          <p><span class="board-popup-label">Due date:</span> <span id="taskDueDate" class="board-popup-data">${dueDate}</span></p>
+          <p><span class="board-popup-label">Priority:</span> <div class="priority-icon ${priority}"></div> <span id="taskPriority" class="board-popup-data">${priority}</span></p>
+          <p><span class="board-popup-label">Assigned To:</span></p>
+          <ul id="taskAssignedTo">${assignedTo}</ul>
+          <div class="board-popup-subtasks" id="taskSubtasks">
+            <p>Subtasks:</p>
+            ${subtasks}
+          </div>
+          <div class="board-popup-actions">
+            <div class="place-board">
+              <button><img src="assets/icons/Property 1=edit.png" alt="edit" /> Edit</button>
+            </div>
+            <div>
+              <button><img src="assets/icons/Property 1=delete hover.png" alt="delete" /> Delete</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>`;
+}
+
+
+// Funktion zur Formatierung des Datums von "YYYY-MM-DD" zu "DD.MM.YYYY"
+function formatDate(dateString) {
+  if (!dateString) return "No due date";
+  const [year, month, day] = dateString.split("-");
+  return `${day}.${month}.${year}`;
+}
+
+// Funktion zum Erstellen des Popups im DOM
+function createPopup(task) {
+  document.body.insertAdjacentHTML("beforeend", getPopupHTML(task));
+}
+
+// Funktion zum Aktualisieren des Popups im DOM
+function updatePopup(task) {
+  const dueDate = task?.date ? formatDate(task.date) : "No due date";
+  
+  document.getElementById("taskTitle").innerText = task.title || "No title";
+  document.getElementById("taskDescription").innerText = task.description || "No description";
+  document.getElementById("taskDueDate").innerText = dueDate;
+  document.getElementById("taskPriority").innerText = task.priority || "No priority";
+
+  const assignedToElement = document.getElementById("taskAssignedTo");
+  assignedToElement.innerHTML = task.assignedTo?.length
+    ? task.assignedTo.map(person => `<li>${person}</li>`).join("")
+    : "<li>No one assigned</li>";
+
+  const subtasksElement = document.getElementById("taskSubtasks");
+  subtasksElement.innerHTML = "<p>Subtasks:</p>" + (task.subtasks?.length
+    ? task.subtasks.map(subtask => `
+      <label>
+        <input type="checkbox" ${subtask.completed ? "checked" : ""} />
+        ${subtask.title}<br />
+      </label>`).join("")
+    : "<p>No subtasks</p>");
+}
+
+// Funktion zum Öffnen des Popups
+function openPopup(task) {
+  if (!document.getElementById("board-popupOverlay")) {
+    createPopup(task);
+  } else {
+    updatePopup(task);
   }
+  document.getElementById("board-popupOverlay").style.display = "flex";
+}
 
-  function closePopup() {
-    popupOverlay.style.display = "none";
-  }
+// Funktion zum Schließen des Popups
+function closePopup() {
+  const popupOverlay = document.getElementById("board-popupOverlay");
+  if (popupOverlay) popupOverlay.style.display = "none";
+}
 
-  closeButton.addEventListener("click", closePopup);
-
-  popupOverlay.addEventListener("click", function (event) {
-    if (event.target === popupOverlay) {
+// Event-Listener für das Schließen des Popups
+document.addEventListener("DOMContentLoaded", () => {
+  document.body.addEventListener("click", (event) => {
+    if (event.target.id === "board-closePopup" || event.target.classList.contains("board-popup-overlay")) {
       closePopup();
     }
   });
-
-  window.openDetailedTaskOverlay = function (taskId) {
-    let task = tasks.find((t) => t.idNumber === taskId);
-
-    if (task) {
-      // Das Popup mit Aufgabeninformationen befüllen
-      document.getElementById("taskTitle").innerText = task.title || "No title";
-      document.getElementById("taskDescription").innerText =
-        task.description || "No description";
-      document.getElementById("taskDueDate").innerText =
-        task.dueDate || "No due date";
-      document.getElementById("taskPriority").innerText =
-        task.priority || "No priority";
-
-      let assignedToElement = document.getElementById("taskAssignedTo");
-      assignedToElement.innerHTML = "";
-      if (task.assignedTo && task.assignedTo.length > 0) {
-        task.assignedTo.forEach((person) => {
-          let li = document.createElement("li");
-          li.textContent = person;
-          assignedToElement.appendChild(li);
-        });
-      } else {
-        assignedToElement.innerHTML = "<li>No one assigned</li>";
-      }
-
-      let subtasksElement = document.getElementById("taskSubtasks");
-      subtasksElement.innerHTML = "<p>Subtasks:</p>";
-      if (task.subtasks && task.subtasks.length > 0) {
-        task.subtasks.forEach((subtask) => {
-          let label = document.createElement("label");
-          label.innerHTML = `<input type="checkbox" ${
-            subtask.completed ? "checked" : ""
-          } /> ${subtask.title}<br />`;
-          subtasksElement.appendChild(label);
-        });
-      } else {
-        subtasksElement.innerHTML += "<p>No subtasks</p>";
-      }
-
-      openPopup();
-    } else {
-      console.error("Task not found:", taskId);
-    }
-  };
 });
+
+// Globale Funktion zum Öffnen des Popups von außen
+window.openDetailedTaskOverlay = (taskId) => {
+  const task = tasks.find(t => t.idNumber === taskId);
+  if (task) openPopup(task);
+  else console.error("Task not found:", taskId);
+};

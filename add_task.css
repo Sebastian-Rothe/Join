@@ -23,6 +23,10 @@ body {
     padding-top:96px;
     padding-bottom: 32px;
 }
+.title input:focus {   
+    border-color:#29ABE2;
+    outline: none; /* Remove default outline */
+}
 .left-right-container{
     display: flex;
     flex-direction: row;
@@ -100,17 +104,17 @@ select{
     margin-left: 24px;
   }
   
-  .avatar-overlay {
+.avatar-overlay {
     font-size: 12px;
     font-weight: 400;
     color: white;
-  }
-  
-  .avatar-overlay-display {
+}
+
+.avatar-overlay-display {
     font-size: 47px;
     font-weight: 500;
     color: white;
-  }
+}
 /************************************************************************* priority-buttons */
 .priority-buttons {
     display: flex;
@@ -179,17 +183,175 @@ input {
     background-size: 20px; 
     border-radius: 8px;
     color: #000000;
+    font-family: "Inter", sans-serif;
 }
+.date-style{
+    color: #a8a8a8;
+}
+input[type="text"]:focus {
+    border-color: #007BFF;
+    outline: none; /* Remove default outline */
+}
+input[type="date"]:focus {
+    border-color: #007BFF;
+    outline: none; /* Remove default outline */
+}
+textarea:focus{
+    border-color: #007BFF;
+    outline: none; /* Remove default outline */
+}
+
 .icon-name {
     background-image: url("../assets/icons/addicon.svg");
 }
 .dropdownCategory{
     margin-bottom: 32px;
 }
-.Subtasks{
-    font-size: 20px;
-    color: #D1D1D1;
+
+
+/********************************************************************* dropdown-category */
+
+.dropdown-category {
+    position: relative;
+    display: inline-block;
+    width: 100%;
 }
+.dropdownCategory {
+    width: 100%;
+    padding-right: 40px;
+    font-size: 20px;
+    appearance: none;
+    -webkit-appearance: none; /* Remove default arrow in Safari */
+    -moz-appearance: none; /* Remove default arrow in Firefox */
+    background-color: #fff;
+    border: 1px solid #ccc; 
+    border-radius: 5px; 
+    height: 48px;    
+    cursor: pointer;
+}
+.custom-dropdown-icon {
+    position: absolute;
+    right: 20px;
+    top: 25%;    
+    width: 10px;
+    height: 10px;
+    pointer-events: none; /* Prevent icon from interfering with select dropdown */
+}
+/****************************************************************** Subtask Style */
+.subtask-form{
+    border-radius: 25px;
+    position: relative;
+}
+.subtask-form input{   
+    display: block;
+    height: 38px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 21px;
+    padding: 10px;    
+    box-shadow: #7AE229;
+    color: #000000;
+}
+.subtask-form input:focus {   
+    border-color:#29ABE2;
+    outline: none; /* Remove default outline */
+}
+.subtask-form button{
+    position: absolute;
+    top: 0;
+    right: 10px;    
+    height: calc(100% - 10px);    
+    border-radius: 50%;
+    cursor: pointer;
+    border: none;
+    background: none;
+}
+.subtask-btn{
+    display: flex;
+    align-items: center;
+    flex-direction: row-reverse;
+    gap: 10px;
+    margin-top: 0px;
+}
+.subtask-btn img{
+    width:14px;
+    height: 14px;
+    padding: 5px;
+    cursor: pointer;     
+ }
+ .subtask-btn-cancel img{
+    width:14px;
+    height: 14px;
+ }
+.subtask-btn img:hover{
+    background-color: #EEEEEE;
+    border-radius: 50px; 
+}
+.subtask-btn-divider{
+    width: 1px;
+    height: 40px;
+    background-color: #EEEEEE;
+}
+/****************************************************************** Subtask list Style */
+
+.subtask-list-container ul {
+    padding-left:30px;
+}
+.subtask-list-container ul li {
+    position: relative;
+    padding-left: 20px;
+    cursor: pointer;
+    margin-bottom: 10px;
+    height: 38px;
+    display: flex;
+    align-items: center;
+}
+.subtask-list-container ul li:hover {
+    background-color: #EEEEEE;
+    border-radius: 8px;
+ }
+ .toggle-display {
+     display: none; 
+ }
+ .subtask-list:hover .toggle-display {
+    display: block;
+}
+ .subtask-list-right:hover .toggle-display {
+     display: inline-block; 
+ }
+ .subtask-list-container ul li:hover .toggle-display {
+    display: inline-block;
+}
+.subtask-list-container ul li::before {
+    content: "\2022"; /* Unicode for bullet point */
+    position: absolute;
+    left: 0;
+    font-size:16px;
+    line-height: 1em;
+    color: black;
+}
+.subtask-list-container ul li:last-child::before {
+    list-style-type: circle;
+}
+.subtask-list{
+    display: flex;
+    justify-content: space-between;
+}
+.subtask-list-divider {  
+    width: 1px;
+    height: 20px;
+    background-color: #ccc;
+    margin: 0 10px;
+}
+.subtask-list-right{
+    display: flex;
+    align-items: center;
+    gap: 1px;
+    padding-right: 20px;
+}
+
+/************************************************************** footer */
+
 .footer-add-task{
     display: flex;
     flex-direction: row;
@@ -197,6 +359,7 @@ input {
     padding-left:137px;
     padding-right: 137px;
     margin-bottom: 80px;
+    margin-top: 80px;
 }
 .clear-btn{
     width: 110px;
@@ -240,16 +403,31 @@ input {
 .dropdown-btn {
     background-color: #ffffff;
     color: black;
-    padding: 10px;
-    font-size: 16px;
+    padding: 10px;    
+    font-size: 20px;
     border: 1px solid #ccc;
     cursor: pointer;
     width: 100%;
+    height: 48px;
     text-align: left;
     display: flex;
     align-items: center;
     justify-content: space-between;
     border-radius: 8px;
+}
+.dropdown-btn:hover {
+    box-shadow: 0px 1px 3px 0px rgba(0,0,0,0.2);
+}
+.dropdown-btn img:hover{
+    background-color: #EEEEEE;
+    border-radius: 50px;
+    
+}
+.dropdown-btn img{
+   width:10px;
+   height: 10px;
+   padding: 5px; 
+   
 }
 
 .dropdown-content {
@@ -331,13 +509,14 @@ input {
 .selected-badges .badge {
     background-color: #eee;
     border-radius: 50%;
-    width: 32px;
+    /* width: 32px; */
     height: 32px;
     display: inline-flex;
     align-items: center;
     justify-content: center;
     margin-right: 5px;
 }
+
 
 /******************************************************************* Responsive */
 @media (max-width: 1660px) {
@@ -378,6 +557,7 @@ input {
     }
     .right-side {
         margin-top: 10px;
+        
     }
     .title {
         padding-top: 0px;
@@ -385,7 +565,7 @@ input {
     .footer-add-task {
         padding-left: 107px;
         padding-right: 65px;
-        margin-top: 20px;
+        margin-top: 200px;
         width: calc(100% - 182px);
     }
 }
