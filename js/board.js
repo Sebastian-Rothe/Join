@@ -37,7 +37,17 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 });
+// new code for rendering board
+let currentDraggedElement = null;
 
+async function initBoard() {
+  await loadTasks(); // Daten von Firebase laden
+  updateBoard(); // Board aktualisieren
+}
+
+function calculateProgress(completedSubtasks, subtaskCount) {
+  return (completedSubtasks / subtaskCount) * 100;
+}
 // -----------------------
 
 
