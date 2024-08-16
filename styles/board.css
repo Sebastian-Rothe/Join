@@ -11,10 +11,11 @@ input, button{
 }
 
 .main-board{
-  overflow: auto; 
+  /* overflow: auto; */
+  /* height: auto;  */
   position: relative; 
   margin-top: 100px;
-  margin-left: 248px;
+  margin-left: 232px;
   padding: 32px;
 }
 
@@ -171,7 +172,7 @@ input, button{
 } */
 
 
-/* .test-pop {
+/* .task-details-popup {
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -200,19 +201,19 @@ input, button{
 /* css for drag and drop */
 
 .drag-area {
-  /* height: 100vh; */
-  /* background-color: rgba(8, 235, 99, 0.1); */
-  /* border: 1px dashed black; */
-  /* margin-bottom: 50px; */
+  height: 80vh; /* die höhe ist etwas kompliziert, vil. findest du da eine gute lösung (vil. calc() oder so) */
+  background-color: rgba(8, 235, 99, 0.1);
+  border: 1px dashed black;
+  margin-bottom: 50px;
   /* display: flex; */
   padding-top: 4px;
-  flex-direction: column;
+  /* flex-direction: column; */
   align-items: flex-start;
 }
 
-/* .drag-area-highlight {
+.drag-area-highlight {
   background-color: rgba(0, 0, 0, 0.2);
-} */
+}
 
 /* .todo {
   background-color: white;
@@ -232,10 +233,9 @@ input, button{
 
 } */
 
-.align-all-4 {
-  height: inherit;
-
-}
+/* .align-all-4 {
+  height: ;
+} */
 
 /* .place-board{
   margin-right: 10px;
