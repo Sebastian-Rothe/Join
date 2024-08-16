@@ -110,29 +110,29 @@ function mapTaskStateToBoardStatus(taskState) {
 }
 // -------
 
-async function addTask() {
-  if (!checkDate("date")) return;
+// async function addTask() {
+//   if (!checkDate("date")) return;
 
-  const fields = [
-    "title",
-    "description",
-    "contacts",
-    "date",
-    "priority",
-    "category",
-    "subtasks",
-    "taskState",
-  ];
-  const newTask = {};
+//   const fields = [
+//     "title",
+//     "description",
+//     "contacts",
+//     "date",
+//     "priority",
+//     "category",
+//     "subtasks",
+//     "taskState",
+//   ];
+//   const newTask = {};
 
-  fields.forEach((id) => {
-    newTask[id] = document.getElementById(id).value;
-    console.log(newTask[id], id);
-    document.getElementById(id).value = ""; // Clear input field
-  });
+//   fields.forEach((id) => {
+//     newTask[id] = document.getElementById(id).value;
+//     console.log(newTask[id], id);
+//     document.getElementById(id).value = ""; // Clear input field
+//   });
 
-  await postTask("/tasks", newTask);
-}
+//   await postTask("/tasks", newTask);
+// }
 
 async function postTask(path = "", data = {}) {
   try {
