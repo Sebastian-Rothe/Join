@@ -16,7 +16,7 @@
 // das brauchen wir dann auch nicht mehr
 // Popup management
 document.addEventListener("DOMContentLoaded", function () {
-  let openButton = document.getElementById("openboardButton");
+  // let openButton = document.getElementById("openboardButton");
   let closeButton = document.getElementById("board-closePopup");
   let popupOverlay = document.getElementById("board-popupOverlay");
 
@@ -28,7 +28,7 @@ document.addEventListener("DOMContentLoaded", function () {
     popupOverlay.style.display = "none";
   }
 
-  openButton.addEventListener("click", openPopup);
+  // openButton.addEventListener("click", openPopup);
   closeButton.addEventListener("click", closePopup);
 
   popupOverlay.addEventListener("click", function (event) {
@@ -139,11 +139,12 @@ function allowDrop(ev) {
   ev.preventDefault();
 }
 
-function moveTo(category) {
+async function moveTo(category) {
   let task = tasks.find((t) => t.idNumber === currentDraggedElement);
   if (task) {
     task.status = category;
     updateBoard();
+    putData(`/tasks/${task.idNumber}`, task);
   }
 }
 

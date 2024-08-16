@@ -66,14 +66,12 @@ async function displayContacts(newUser = null) {
   highlightNewContact();
 }
 
-// tasks functions
-// updated loadtasks func.
 async function loadTasks(path = "/tasks") {
     tasks = [];
     try {
         let taskResponse = await fetch(BASE_URL + path + ".json");
         if (!taskResponse.ok) {
-            throw new Error(`HTTP error! Status: ${taskResponse.status}`);
+            throw new Error(`HTTP error! status: ${taskResponse.status}`);
         }
         let responseToJson = await taskResponse.json();
         console.log('Tasks loaded:', responseToJson); // Debugging
@@ -83,13 +81,13 @@ async function loadTasks(path = "/tasks") {
                 let task = responseToJson[key];
                 tasks.push({
                     idNumber: key, // Verwende den Schlüssel als idNumber
-                    status: mapTaskStateToBoardStatus(task.taskState), // hope to take that out
+                    status: task.status,
                     category: task.category || "Uncategorized",
                     title: task.title,
-                    description: task.description,
+                    description: task.description || "Task without a description",
                     subtaskCount: task.subtaskCount || 0,
                     completedSubtasks: task.completedSubtasks || 0,
-                    assignedTo: task.contacts ? task.contacts.split(", ") : [],
+                    assignedTo: typeof task.contacts === 'string' ? task.contacts.split(", ") : [], // Typprüfung hinzugefügt 
                     priority: task.priority || "medium"
                 });
             });
@@ -97,42 +95,8 @@ async function loadTasks(path = "/tasks") {
     } catch (error) {
         console.error('Error loading tasks:', error);
     }
+
 }
-// hope to take this func out
-function mapTaskStateToBoardStatus(taskState) {
-    switch (taskState) {
-        case "new": return "todo";
-        case "inProgress": return "inProgress";
-        case "awaitingFeedback": return "awaitFeedback";
-        case "done": return "done";
-        default: return "todo";
-    }
-}
-// -------
-
-// async function addTask() {
-//   if (!checkDate("date")) return;
-
-//   const fields = [
-//     "title",
-//     "description",
-//     "contacts",
-//     "date",
-//     "priority",
-//     "category",
-//     "subtasks",
-//     "taskState",
-//   ];
-//   const newTask = {};
-
-//   fields.forEach((id) => {
-//     newTask[id] = document.getElementById(id).value;
-//     console.log(newTask[id], id);
-//     document.getElementById(id).value = ""; // Clear input field
-//   });
-
-//   await postTask("/tasks", newTask);
-// }
 
 async function postTask(path = "", data = {}) {
   try {
@@ -168,4 +132,22 @@ async function loadAssignedPerson(path = "/contacts") {
     });
   }
   return users;
+}
+
+async function putData(path = "", data) {
+  try {
+    let response = await fetch(BASE_URL + path + ".json", {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    });
+    if (!response.ok) {
+      throw new Error('Network response was not ok ' + response.statusText);
+    }
+    console.log('Data successfully updated:', response);
+  } catch (error) {
+    console.error('There has been a problem with your fetch operation:', error);
+  }
 }

@@ -199,3 +199,70 @@ function closeMobileContactOption() {
     addMobileAddB();
   }, 300);
 }
+
+
+// async function loadTasks(path = "/tasks") {
+//   tasks = [];
+//   try {
+//       let taskResponse = await fetch(BASE_URL + path + ".json");
+//       if (!taskResponse.ok) {
+//           throw new Error(`HTTP error! status: ${taskResponse.status}`);
+//       }
+//       let responseToJson = await taskResponse.json();
+//       console.log('Tasks loaded:', responseToJson); // Debugging
+
+//       if (responseToJson) {
+//           Object.keys(responseToJson).forEach((key) => {
+//               let task = responseToJson[key];
+//               tasks.push({
+//                   idNumber: key, // Schlüssel als idNumber
+//                   status: task.status,
+//                   category: task.category || "Uncategorized",
+//                   title: task.title,
+//                   description: task.description,
+//                   subtaskCount: task.subtaskCount || 0,
+//                   completedSubtasks: task.completedSubtasks || 0,
+//                   assignedTo: Array.isArray(task.contacts) ? task.contacts : task.contacts?.split(", ") || [], // Typprüfung
+//                   priority: task.priority || "medium"
+//               });
+//           });
+//       }
+//   } catch (error) {
+//       console.error('Error loading tasks:', error);
+//   }
+// }
+// hope to take this func out
+// function mapstatusToBoardstatus(status) {
+//     switch (status) {
+//         case "new": return "todo";
+//         case "inProgress": return "inProgress";
+//         case "awaitingFeedback": return "awaitFeedback";
+//         case "done": return "done";
+//         default: return "todo";
+//     }
+// }
+// -------
+
+// async function addTask() {
+//   if (!checkDate("date")) return;
+
+//   const fields = [
+//     "title",
+//     "description",
+//     "contacts",
+//     "date",
+//     "priority",
+//     "category",
+//     "subtasks",
+//     "status",
+//   ];
+//   const newTask = {};
+
+//   fields.forEach((id) => {
+//     newTask[id] = document.getElementById(id).value;
+//     console.log(newTask[id], id);
+//     document.getElementById(id).value = ""; // Clear input field
+//   });
+
+//   await postTask("/tasks", newTask);
+// }

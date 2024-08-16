@@ -98,7 +98,7 @@ async function addTask() {
         "priority",
         "category",
         "subtasks",
-        "taskState",
+        "status",
     ];
     const newTask = {};
 
