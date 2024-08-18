@@ -1,4 +1,14 @@
 let selectedContacts = [];
+let createdSubTasks = [];
+const fields = [
+    "title",
+    "description",
+    "date",
+    "priority",
+    "category",
+    "subtasks",
+    "status",
+];
 
 function assignedDropdown(users) {
     let dropdownContent = document.getElementById('contactsDropdown');
@@ -92,31 +102,137 @@ function selectPrio(priority) {
 }
 
 async function addTask() {
-    const fields = [
-        "title",
-        "description",
-        "date",
-        "priority",
-        "category",
-        "subtasks",
-        "status",
-    ];
+    
     const newTask = {};
 
     fields.forEach(id => {
         const element = document.getElementById(id);
         newTask[id] = element ? element.value : '';
-        if (element) element.value = ""; // Clear input field
+        if (element) element.value = ""; 
     });
 
-    // Add selected contacts to the newTask object
     newTask.contacts = selectedContacts;
-
-    console.log("New Task: ", newTask);
-
-    // Clear the selected contacts array and badges after task creation
-    selectedContacts = [];
-    updateSelectedBadges();
+    newTask.subtasks = createdSubTasks;
+    newTask.status = "todo";
 
     await postTask("/tasks", newTask);
+    clearAddTaskForm();
+
 }
+
+////////////////////////////////////////////////////////// subTask function whenever the input value changes. 
+function subTaskInput(){
+    let subTaskValue = document.getElementById("sub-task-input").value.trim();
+
+    let plusIcon = document.querySelector('.subtask-btn-plus img');
+    let checkedIcon = document.querySelector('.subtask-btn-checked img');
+    let divider = document.querySelector('.subtask-btn-divider');
+    let cancelIcon = document.querySelector('.subtask-btn-cancel img');
+
+    if (subTaskValue === '') {       
+        plusIcon.classList.remove('toggle-display');
+        checkedIcon.classList.add('toggle-display');
+        divider.classList.add('toggle-display');
+        cancelIcon.classList.add('toggle-display');
+    } else {       
+        plusIcon.classList.add('toggle-display');
+        checkedIcon.classList.remove('toggle-display');
+        divider.classList.remove('toggle-display');
+        cancelIcon.classList.remove('toggle-display');
+    }
+}
+
+// ///////////////////////////////////////////////////when the user clicks on the image the input field will be cleared
+function clearInput(){
+    document.getElementById("sub-task-input").value= '';  
+    subTask();
+}
+
+
+////////////////////////////////////////////////////// addSubTask 
+
+
+function addSubTask() {
+    let subTaskValue = document.getElementById("sub-task-input").value.trim();
+    
+    if (subTaskValue !== '') {
+
+        if (!createdSubTasks.includes(subTaskValue)) {
+            createdSubTasks.push(subTaskValue);
+        }
+
+        let subtaskListContainer = document.getElementById('subtask-list-container');
+        let subtaskList = subtaskListContainer.querySelector('ul');
+
+        
+        subtaskList.classList.remove('toggle-display');
+        
+       
+        subtaskList.innerHTML += `
+        <li id="${subTaskValue}" class="subtask-list">
+            <div class="subtask-list-left">
+                <span>${subTaskValue}</span>
+            </div>
+            <div class="subtask-list-right">
+                <span><img src="../assets/icons/EditAddTask.svg" alt="" class="toggle-display"></span>
+                <div class="subtask-list-divider toggle-display"></div>
+                <span><img src="../assets/icons/delete.svg" alt="" class="toggle-display" onclick="removeSubTask(${subTaskValue})"></span>
+            </div>
+        </li>`;
+
+        
+        document.getElementById("sub-task-input").value = '';
+    }
+}
+
+function removeSubTask(id)
+{
+    document.getElementById(id).remove();
+    createdSubTasks = createdSubTasks.filter(subtask => subtask !== id);
+}
+//////////////////////////////////////////////////////clear all input value in add task page 
+
+function clearAddTaskForm()
+{
+    //clear all input values
+    fields.forEach(id => {
+        const element = document.getElementById(id);
+        if (element) element.value = ""; 
+    });
+
+    //clear all selected contacts and uncheck them
+    selectedContacts = [];
+    let dropdownContent = document.getElementById('contactsDropdown');
+    let checkboxes = dropdownContent.querySelectorAll('input[type="checkbox"]');
+    checkboxes.forEach(checkbox => {
+        checkbox.checked = false;
+    });
+    updateSelectedBadges();
+
+
+    //clear subtasks and remove all of them
+    createdSubTasks = [];
+    let subTasks = document.querySelectorAll(".subtask-list");
+    subTasks.forEach(function(subTask) {
+        subTask.remove();
+    });
+
+    // Reset all buttons
+    const urgentBtn = document.getElementById('urgent');
+    const mediumBtn = document.getElementById('medium');
+    const lowBtn = document.getElementById('low');
+
+    urgentBtn.className = 'priority-btn';
+    mediumBtn.className = 'priority-btn';
+    lowBtn.className = 'priority-btn';
+    mediumBtn.classList.add('medium-prio-active');
+}
+
+// /////////////////////////////////////////////////*css*/`
+    
+function saveAddTaskArray(){
+    let subTaskValue = document.getElementById("sub-task-input").value
+    createdSubTasks.push(subTaskValue);
+
+}
+

@@ -88,45 +88,23 @@
                        <img src="../assets/icons/arrow_drop_down .svg" alt="Dropdown Icon" class="custom-dropdown-icon">
                     </div>
 
-                    
+                   
                     <form class="subtask-form" action="">
-                        <input type="text" name="" id="" placeholder="Add new subtask">
+                        <input type="text" name="" id="sub-task-input" placeholder="Add new subtask" oninput="subTaskInput()">  <!-- oninput whenever the input value changes. -->
                         <button  type="button" class="subtask-btn">
                             <span class="subtask-btn-plus"><img src="../assets/icons/addblack.svg" alt=""></span>
                            
-                            <span class="subtask-btn-checked"><img src="../assets/icons/CheckAddTask.svg" alt="" class="toggle-display"></span>
+                            <span class="subtask-btn-checked"><img src="../assets/icons/CheckAddTask.svg" alt="" class="toggle-display" onclick="addSubTask()"></span>
                             <div class="subtask-btn-divider toggle-display"></div>
-                            <span class="subtask-btn-cancel"><img src="../assets/icons/CloseAddTask.svg" alt="" class="toggle-display"></span>
+                            <span class="subtask-btn-cancel"><img src="../assets/icons/CloseAddTask.svg" alt="" class="toggle-display" onclick="clearInput()"></span>
                         </button>
 
                     </form>
        
 
-                    <div class="subtask-list-container">
-                        <ul>
-                            <li class="subtask-list">
-                                <div class="subtask-list-left">
-                                    <span>Contact Form</span>
-                                </div>
-                                <div class="subtask-list-right">
-                                    <span><img src="../assets/icons/EditAddTask.svg" alt="" class="toggle-display"></span>
-                                    <div class="subtask-list-divider toggle-display"></div>
-                                    <span><img src="../assets/icons/delete.svg" alt="" class="toggle-display"></span>
-                                </div>
-                            </li>
-
-                            <li class="subtask-list">
-                                <div class="subtask-list-left">
-                                    <span>Write Legal imprint</span>
-                                </div>
-                                <div class="subtask-list-right">
-                                    <span><img src="../assets/icons/EditAddTask.svg" alt="" class="toggle-display"></span>
-                                    <div class="subtask-list-divider toggle-display"></div>
-                                    <span><img src="../assets/icons/delete.svg" alt="" class="toggle-display"></span>
-                                </div>
-                            </li>
-                         
-                        
+                    <div class="subtask-list-container" id="subtask-list-container">
+                        <ul class="toggle-display">
+                           <!-- load in js -->
                         </ul>
                     </div>
                 </div>
@@ -137,7 +115,7 @@
                     <span><span class="required">*</span>This field is required</span>
                 </div>
                 <div class="footer-add-task-right">
-                    <button class="clear-btn" >clear <img src="../assets/icons/close.svg" alt="Clear Icon" class="icon"></button>
+                    <button class="clear-btn" onclick="clearAddTaskForm()">clear <img src="../assets/icons/close.svg" alt="Clear Icon" class="icon"></button>
                     <button class="create-task-btn" onclick="addTask()">create Task <img src="../assets/icons/check.svg" alt="Create Icon" class="icon"></button>
                     <input type="hidden" id="status" value="todo">
                     <input type="hidden" id="priority" value="low">
