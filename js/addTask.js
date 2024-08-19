@@ -173,17 +173,29 @@ function addSubTask() {
             <div class="subtask-list-right">
                 <span><img src="../assets/icons/EditAddTask.svg" alt="" class="toggle-display"></span>
                 <div class="subtask-list-divider toggle-display"></div>
-                <span><img src="../assets/icons/delete.svg" alt="" class="toggle-display" onclick="removeSubTask(${subTaskValue})"></span>
+                <span><img src="../assets/icons/delete.svg" alt="" class="toggle-display" onclick="removeSubTask('${subTaskValue}')"></span>
             </div>
         </li>`;
         document.getElementById("sub-task-input").value = '';
     }
 }
 ////////////////////////////////////////////////////////////////////RemoveSubTask
-function removeSubTask(id)
-{
-    document.getElementById(id).remove();
-    createdSubTasks = createdSubTasks.filter(subtask => subtask !== id);
+
+
+function removeSubTask(subTaskValue) {
+   
+    let subTaskElement = document.getElementById(subTaskValue);
+    if (subTaskElement) {
+        subTaskElement.remove();
+    }
+
+    // remove the subtask
+    for (let i = 0; i < createdSubTasks.length; i++) {
+        if (createdSubTasks[i] === subTaskValue) {
+            createdSubTasks.splice(i, 1);
+            break;
+        }
+    }
 }
 //////////////////////////////////////////////////////clear all input value in add task page 
 
@@ -222,7 +234,7 @@ function clearAddTaskForm()
     mediumBtn.classList.add('medium-prio-active');
 }
 
-// /////////////////////////////////////////////////*css*/`
+// /////////////////////////////////////////////////*css*/
     
 function saveAddTaskArray(){
     let subTaskValue = document.getElementById("sub-task-input").value
@@ -260,7 +272,7 @@ function formvalidation() {
         dateInput.classList.remove('invalid');
         errorDivDate.classList.add('toggle-display');
     }
-       // Checking the drop-down Category
+    // Checking the drop-down Category
        if (categorySelect.value === "") {
         errorDivCategory.classList.remove('toggle-display');
         categorySelect.classList.add('invalid');
