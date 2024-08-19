@@ -307,11 +307,11 @@ input, button{
   margin-bottom: 16px;
 }
 
-.progress-bar {
+/* .progress-bar {
   background-color: #e4e7eb;
   border-radius: 4px;
   height: 8px;
-  flex: 1; /* Makes the progress bar take up available space */
+  flex: 1; Makes the progress bar take up available space
   margin-right: 8px;
   overflow: hidden;
 }
@@ -320,7 +320,24 @@ input, button{
   background-color: #0073e6;
   height: 100%;
   border-radius: 4px;
+} */
+
+/* Container für die Fortschrittsanzeige */
+.progress-bar {
+  width: 100%; /* Breite der Fortschrittsleiste */
+  background-color: #f3f3f3; /* Hintergrundfarbe der Fortschrittsleiste */
+  border-radius: 5px; /* Abrundung der Ecken */
+  overflow: hidden; /* Verhindert, dass der Fortschritt außerhalb des Containers angezeigt wird */
 }
+
+/* Fortschrittsanzeige selbst */
+.progress {
+  height: 8px; /* Höhe der Fortschrittsanzeige */
+  background-color: #0073e6; /* Farbe des Fortschrittsbalkens */
+  width: 0%; /* Anfangsbreite, wird durch inline style überschrieben */
+  transition: width 0.3s ease; /* Sanfter Übergang beim Ändern der Breite */
+}
+
 
 .subtask-info {
   font-size: 12px;
@@ -441,7 +458,7 @@ h3{
 }
 
 /* CSS for popup Muaz */
-
+/* #region */
 .closeWindowImage{
   position: absolute;
   top: 48px;
@@ -528,3 +545,4 @@ h3{
 }
 
 /* end of: popup style */
+/* #endregion */

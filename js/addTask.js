@@ -152,22 +152,58 @@ function clearInput(){
 ////////////////////////////////////////////////////// addSubTask 
 
 
+// function addSubTask() {
+//     let subTaskValue = document.getElementById("sub-task-input").value.trim();
+    
+//     if (subTaskValue !== '') {
+
+//         if (!createdSubTasks.includes(subTaskValue)) {
+//             createdSubTasks.push(subTaskValue);
+//         }
+
+//         let subtaskListContainer = document.getElementById('subtask-list-container');
+//         let subtaskList = subtaskListContainer.querySelector('ul');
+
+        
+//         subtaskList.classList.remove('toggle-display');
+        
+       
+//         subtaskList.innerHTML += `
+//         <li id="${subTaskValue}" class="subtask-list">
+//             <div class="subtask-list-left">
+//                 <span>${subTaskValue}</span>
+//             </div>
+//             <div class="subtask-list-right">
+//                 <span><img src="../assets/icons/EditAddTask.svg" alt="" class="toggle-display"></span>
+//                 <div class="subtask-list-divider toggle-display"></div>
+//                 <span><img src="../assets/icons/delete.svg" alt="" class="toggle-display" onclick="removeSubTask(${subTaskValue})"></span>
+//             </div>
+//         </li>`;
+
+        
+//         document.getElementById("sub-task-input").value = '';
+//     }
+// }
+
 function addSubTask() {
     let subTaskValue = document.getElementById("sub-task-input").value.trim();
     
     if (subTaskValue !== '') {
 
-        if (!createdSubTasks.includes(subTaskValue)) {
-            createdSubTasks.push(subTaskValue);
+        // Check if the subtask is already in the array
+        let existingSubtask = createdSubTasks.find(subtask => subtask.title === subTaskValue);
+
+        if (!existingSubtask) {
+            // Push a new object with title and completed status
+            createdSubTasks.push({ title: subTaskValue, completed: false });
         }
 
         let subtaskListContainer = document.getElementById('subtask-list-container');
         let subtaskList = subtaskListContainer.querySelector('ul');
 
-        
         subtaskList.classList.remove('toggle-display');
-        
-       
+
+        // Use the title of the subtask object for display
         subtaskList.innerHTML += `
         <li id="${subTaskValue}" class="subtask-list">
             <div class="subtask-list-left">
@@ -176,14 +212,14 @@ function addSubTask() {
             <div class="subtask-list-right">
                 <span><img src="../assets/icons/EditAddTask.svg" alt="" class="toggle-display"></span>
                 <div class="subtask-list-divider toggle-display"></div>
-                <span><img src="../assets/icons/delete.svg" alt="" class="toggle-display" onclick="removeSubTask(${subTaskValue})"></span>
+                <span><img src="../assets/icons/delete.svg" alt="" class="toggle-display" onclick="removeSubTask('${subTaskValue}')"></span>
             </div>
         </li>`;
 
-        
         document.getElementById("sub-task-input").value = '';
     }
 }
+
 
 function removeSubTask(id)
 {

@@ -6,9 +6,16 @@ async function initBoard() {
   updateBoard(); // Board aktualisieren
 }
 
-function calculateProgress(completedSubtasks, subtaskCount) {
-  return (completedSubtasks / subtaskCount) * 100;
+// function calculateProgress(completedSubtasks, subtaskCount) {
+//   return (completedSubtasks / subtaskCount) * 100;
+// }
+function calculateSubtaskStats(subtasks) {
+  const completedSubtasks = subtasks.filter(subtask => subtask.completed).length;
+  const subtaskCount = subtasks.length;
+  const progress = subtaskCount > 0 ? (completedSubtasks / subtaskCount) * 100 : 0;
+  return { completedSubtasks, subtaskCount, progress };
 }
+
 
 function updateBoard() {
   renderBoard("todo", "todoBoard");
@@ -30,51 +37,52 @@ function renderBoard(statusType, boardElementId) {
                          </div>`;
   } else {
     filteredTasks.forEach((element) => {
-      element.progress = calculateProgress(
-        element.completedSubtasks,
-        element.subtaskCount
-      );
-      content.innerHTML += generateTaskCardHTML(element);
+      // Berechnung der Subtasks-Statistiken
+      const { completedSubtasks, subtaskCount, progress } = calculateSubtaskStats(element.subtasks);
+
+      // Erstellung des HTML-Codes für die Aufgabe
+      content.innerHTML += generateTaskCardHTML({
+        ...element, // Kopiere alle Eigenschaften von `element`
+        completedSubtasks, // Berechnete Werte hinzufügen
+        subtaskCount,
+        progress
+      });
     });
   }
 }
 
+
 function generateTaskCardHTML(element) {
+  const { completedSubtasks, subtaskCount, progress } = calculateSubtaskStats(element.subtasks);
+
   return `
-        <div class="task-card" draggable="true" ondragstart="startDragging('${
-          element.idNumber
-        }')" onclick="openDetailedTaskOverlay('${element.idNumber}')">
-            <div class="task-label ${
-              element.category === "UserStory"
-                ? "user-story"
-                : element.category === "TechnicalTask"
-                ? "technical-task"
-                : "default-label"
-            }">${element.category}</div>
-            <div class="task-title">${element.title}</div>
-            <div class="task-description">${element.description}</div>
-            
-            <div class="task-subtasks">
-                <div class="progress-bar">
-                    <div class="progress" style="width: ${
-                      element.progress
-                    }%;"></div>
-                </div>
-                <div class="subtask-info">${element.completedSubtasks}/${
-    element.subtaskCount
-  } Subtasks</div>
-            </div>
-            
-            <div class="task-footer">
-                <div class="task-assigned">
-                    ${element.assignedTo
-                      .map((person) => `<span class="avatar">${person}</span>`)
-                      .join("")}
-                </div>
-                <div class="priority-icon ${element.priority}"></div>
-            </div>
-        </div>`;
+    <div class="task-card" draggable="true" ondragstart="startDragging('${element.idNumber}')" onclick="openDetailedTaskOverlay('${element.idNumber}')">
+      <div class="task-label ${
+        element.category === "UserStory"
+          ? "user-story"
+          : element.category === "TechnicalTask"
+          ? "technical-task"
+          : "default-label"
+        }">${element.category}</div>
+      <div class="task-title">${element.title}</div>
+      <div class="task-description">${element.description}</div>
+
+      <div class="task-subtasks">
+        <div class="progress-bar">
+          <div class="progress" style="width: ${progress}%;"></div>
+        </div>
+        <div class="subtask-info">${completedSubtasks}/${subtaskCount} Subtasks</div>
+      </div>
+
+      <div class="task-footer">
+        <div class="task-assigned">
+          ${element.assignedTo.map(person => `<span class="avatar">${person}</span>`).join("")}
+        </div>
+        <div class="priority-icon ${element.priority}"></div>
+      </div>
+    </div>`;
 }
+
 
 function startDragging(id) {
   currentDraggedElement = id;
@@ -109,7 +117,6 @@ function openDetailedTaskOverlay(taskId) {
 // end section of: new code for rendering board
 // --------------------------------------------
 
-// Funktion zur Generierung des HTML-Inhalts für das Popup
 function getPopupHTML(task) {
   const priority = task?.priority || "No priority";
   const assignedTo = task?.assignedTo?.length
@@ -119,7 +126,7 @@ function getPopupHTML(task) {
     ? task.subtasks.map(subtask => `
       <label>
         <input type="checkbox" ${subtask.completed ? "checked" : ""} />
-        ${subtask.title}<br />
+        ${subtask.title || "No Title"}<br />
       </label>`).join("")
     : "<p>No subtasks</p>";
   const dueDate = task?.date ? formatDate(task.date) : "No due date";
@@ -180,6 +187,8 @@ function getPopupHTML(task) {
 }
 
 
+
+
 // Funktion zur Formatierung des Datums von "YYYY-MM-DD" zu "DD.MM.YYYY"
 function formatDate(dateString) {
   if (!dateString) return "No due date";
@@ -207,14 +216,15 @@ function updatePopup(task) {
     : "<li>No one assigned</li>";
 
   const subtasksElement = document.getElementById("taskSubtasks");
-  subtasksElement.innerHTML = "<p>Subtasks:</p>" + (task.subtasks?.length
+  subtasksElement.innerHTML = "<p class='titleDetails'>Subtasks:</p>" + (task.subtasks?.length
     ? task.subtasks.map(subtask => `
       <label>
         <input type="checkbox" ${subtask.completed ? "checked" : ""} />
-        ${subtask.title}<br />
+        ${subtask.title || "No Title"}<br />
       </label>`).join("")
     : "<p>No subtasks</p>");
 }
+
 
 // Funktion zum Öffnen des Popups
 function openPopup(task) {

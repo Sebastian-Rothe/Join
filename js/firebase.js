@@ -67,37 +67,45 @@ async function displayContacts(newUser = null) {
 }
 
 async function loadTasks(path = "/tasks") {
-    tasks = [];
-    try {
-        let taskResponse = await fetch(BASE_URL + path + ".json");
-        if (!taskResponse.ok) {
-            throw new Error(`HTTP error! status: ${taskResponse.status}`);
-        }
-        let responseToJson = await taskResponse.json();
-        console.log('Tasks loaded:', responseToJson); // Debugging
+  tasks = [];
+  try {
+      let taskResponse = await fetch(BASE_URL + path + ".json");
+      if (!taskResponse.ok) {
+          throw new Error(`HTTP error! status: ${taskResponse.status}`);
+      }
+      let responseToJson = await taskResponse.json();
+      console.log('Tasks loaded:', responseToJson); // Debugging
 
-        if (responseToJson) {
-            Object.keys(responseToJson).forEach((key) => {
-                let task = responseToJson[key];
-                tasks.push({
-                    idNumber: key, // Verwende den Schlüssel als idNumber
-                    status: task.status,
-                    category: task.category || "Uncategorized",
-                    title: task.title,
-                    description: task.description || "Task without a description",
-                    date: task.date,
-                    subtaskCount: task.subtaskCount || 0,
-                    completedSubtasks: task.completedSubtasks || 0,
-                    assignedTo: typeof task.contacts === 'string' ? task.contacts.split(", ") : [], // Typprüfung hinzugefügt 
-                    priority: task.priority || "medium"
-                });
-            });
-        }
-    } catch (error) {
-        console.error('Error loading tasks:', error);
-    }
-
+      if (responseToJson) {
+          Object.keys(responseToJson).forEach((key) => {
+              let task = responseToJson[key];
+              
+              // Sicherstellen, dass subtasks immer ein Array ist
+              let subtasks = Array.isArray(task.subtasks) ? task.subtasks : [];
+              
+              tasks.push({
+                  idNumber: key, // Verwende den Schlüssel als idNumber
+                  status: task.status || "todo", // Setze einen Default-Wert für status
+                  category: task.category || "Uncategorized",
+                  title: task.title || "No Title", // Setze einen Default-Wert für title
+                  description: task.description || "Task without a description",
+                  date: task.date || null, // Setze null für ein nicht vorhandenes Datum
+                  subtasks: subtasks.map(subtask => ({
+                      title: subtask.title || "No Title", // Default-Wert für den Titel der Subtask
+                      completed: subtask.completed || false // Default-Wert für den Completed-Status
+                  })),
+                  assignedTo: Array.isArray(task.assignedTo) ? task.assignedTo : (typeof task.assignedTo === 'string' ? task.assignedTo.split(", ") : []),
+                  priority: task.priority || "medium"
+              });
+          });
+      }
+  } catch (error) {
+      console.error('Error loading tasks:', error);
+  }
 }
+
+
+
 
 async function postTask(path = "", data = {}) {
   try {
