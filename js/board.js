@@ -122,13 +122,17 @@ function getPopupHTML(task) {
   const assignedTo = task?.assignedTo?.length
     ? task.assignedTo.map(person => `<li>${person}</li>`).join("")
     : "<li>No one assigned</li>";
+  
+  // Subtasks with checkbox and onclick event to toggle status
   const subtasks = task?.subtasks?.length
-    ? task.subtasks.map(subtask => `
+    ? task.subtasks.map((subtask, index) => `
       <label>
-        <input type="checkbox" ${subtask.completed ? "checked" : ""} />
+        <input type="checkbox" ${subtask.completed ? "checked" : ""} 
+        onclick="toggleSubtaskStatus('${task.idNumber}', ${index})" />
         ${subtask.title || "No Title"}<br />
       </label>`).join("")
     : "<p>No subtasks</p>";
+  
   const dueDate = task?.date ? formatDate(task.date) : "No due date";
 
   return `
@@ -185,6 +189,51 @@ function getPopupHTML(task) {
       </div>
     </div>`;
 }
+function toggleSubtaskStatus(taskId, subtaskIndex) {
+  let task = tasks.find(t => t.idNumber === taskId);
+  task.subtasks[subtaskIndex].completed = !task.subtasks[subtaskIndex].completed;
+
+  // Update progress
+  updateProgress(taskId);
+
+  // Save changes to Firebase
+  saveTaskProgress(taskId);
+}
+function updateProgress(taskId) {
+  let task = tasks.find(t => t.idNumber === taskId);
+  let completedCount = task.subtasks.filter(subtask => subtask.completed).length;
+  let totalCount = task.subtasks.length;
+
+  let progress = totalCount > 0 ? (completedCount / totalCount) * 100 : 0;
+
+  // Update the task's progress property
+  task.progress = progress;
+
+  // Update the progress bar in the task card
+  let progressBar = document.getElementById(`progress-bar-${taskId}`);
+  if (progressBar) {
+      progressBar.style.width = `${progress}%`;
+  }
+}
+async function saveTaskProgress(taskId) {
+  let task = tasks.find(t => t.idNumber === taskId);
+  let path = `/tasks/${taskId}`;
+
+  try {
+      await fetch(BASE_URL + path + ".json", {
+          method: 'PUT',
+          body: JSON.stringify(task),
+          headers: {
+              'Content-Type': 'application/json'
+          }
+      });
+      console.log("Task progress updated successfully!");
+  } catch (error) {
+      console.error('Error saving task progress:', error);
+  }
+}
+
+
 
 
 
@@ -197,12 +246,12 @@ function formatDate(dateString) {
 }
 
 // Funktion zum Erstellen des Popups im DOM
-function createPopup(task) {
+function createTaskPopup(task) {
   document.body.insertAdjacentHTML("beforeend", getPopupHTML(task));
 }
 
 // Funktion zum Aktualisieren des Popups im DOM
-function updatePopup(task) {
+function updateTaskPopup(task) {
   const dueDate = task?.date ? formatDate(task.date) : "No due date";
   
   document.getElementById("taskTitle").innerText = task.title || "No title";
@@ -229,9 +278,9 @@ function updatePopup(task) {
 // Funktion zum Öffnen des Popups
 function openPopup(task) {
   if (!document.getElementById("board-popupOverlay")) {
-    createPopup(task);
+    createTaskPopup(task);
   } else {
-    updatePopup(task);
+    updateTaskPopup(task);
   }
   document.getElementById("board-popupOverlay").style.display = "flex";
 }
@@ -244,6 +293,7 @@ function closePopup() {
   }
   const popupOverlay = document.getElementById("board-popupOverlay");
   if (popupOverlay) popupOverlay.style.display = "none";
+  updateBoard();
 }
 
 // Event-Listener für das Schließen des Popups
