@@ -152,3 +152,18 @@ async function putData(path = "", data) {
     console.error('There has been a problem with your fetch operation:', error);
   }
 }
+
+async function deleteTask(id) {
+  let response = await fetch(BASE_URL + `/tasks/${id}.json`, {
+    method: "DELETE",
+  });
+  if (!response.ok) {
+    return null;
+  }
+  let responseToJson = await response.json();
+  await loadTasks("/tasks");
+  updateBoard();
+  closePopup();
+  return responseToJson;
+}
+

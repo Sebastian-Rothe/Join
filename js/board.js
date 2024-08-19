@@ -165,11 +165,11 @@ function getPopupHTML(task) {
           </div>
 
           <div class="editOptionsDetailsContain">
-            <div onclick="editTask()" class="deleteDetailsContain">
+            <div onclick="deleteTask('${task.idNumber}')" class="deleteDetailsContain">
                 <img src="../assets/icons/Property 1=Default.png" alt="delete"/>
             </div>
             <div class="seperator"></div>
-            <div onclick="deleteTask()" class="editDetailsContain">
+            <div onclick="editTask()" class="editDetailsContain">
                 <img src="assets/icons/Property 1=Edit2.png" alt="edit"/>
             </div>
           </div>
