@@ -17,6 +17,7 @@ body {
     padding-top: 96px;
     padding-left: 232px;
 }
+/******************************************************* title input style */
 .title{
     font-size: 61px;
     font-weight: 700;   
@@ -27,6 +28,19 @@ body {
     border-color:#29ABE2;
     outline: none; /* Remove default outline */
 }
+input[type="text"] {
+    border-color: #ccc;
+    outline: none; 
+}
+
+input[type="text"].invalid {
+    border-color: #FF0000;
+}
+.error-validation-title{
+    color:#FF8190;
+    margin-bottom: 10px;
+}
+/*********************************************************** container */
 .left-right-container{
     display: flex;
     flex-direction: row;
@@ -63,6 +77,13 @@ label{
 .required {
     color:#FF8190;
 }
+
+.error-validation-date{
+    color:#FF8190;
+    margin-bottom: 10px;
+    
+}
+
 input {
     font-size: 20px;
     color: #000000;
@@ -188,14 +209,22 @@ input {
 .date-style{
     color: #a8a8a8;
 }
-input[type="text"]:focus {
-    border-color: #007BFF;
-    outline: none; /* Remove default outline */
+
+input[type="date"] {
+    border-color: #ccc;
+    outline: none; 
 }
+
 input[type="date"]:focus {
-    border-color: #007BFF;
-    outline: none; /* Remove default outline */
+    border-color: #007BFF; 
 }
+
+input[type="date"].invalid {
+    border-color: #FF0000;
+}
+
+
+
 textarea:focus{
     border-color: #007BFF;
     outline: none; /* Remove default outline */
@@ -204,12 +233,12 @@ textarea:focus{
 .icon-name {
     background-image: url("../assets/icons/addicon.svg");
 }
-.dropdownCategory{
-    margin-bottom: 32px;
-}
 
 
 /********************************************************************* dropdown-category */
+.dropdownCategory{
+    margin-bottom: 32px;
+}
 
 .dropdown-category {
     position: relative;
@@ -237,6 +266,18 @@ textarea:focus{
     height: 10px;
     pointer-events: none; /* Prevent icon from interfering with select dropdown */
 }
+select.dropdownCategory:focus {
+    border-color: #007BFF; 
+}
+
+select.dropdownCategory.invalid {
+    border-color: #FF0000; 
+}
+.error-validation-category{
+    color:#FF8190;
+    margin-bottom: 10px;
+}
+
 /****************************************************************** Subtask Style */
 .subtask-form{
     border-radius: 25px;

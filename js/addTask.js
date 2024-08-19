@@ -51,7 +51,6 @@ function updateSelectedBadges() {
         let profileIcon = createProfileIcon(contact);
         let badge = document.createElement('div');
         badge.classList.add('badge');
-        // badge.innerHTML = profileIcon + `<span>${contact}</span>`;
         badge.innerHTML = profileIcon;
         selectedBadgesContainer.appendChild(badge);
     });
@@ -100,9 +99,14 @@ function selectPrio(priority) {
     }
     document.getElementById("priority").value = priority;
 }
-
+//////////////////////////////////////////////////////////////////////Create Task
 async function addTask() {
-    
+
+     // If validation fails, the task will not be added
+       if (!formvalidation()) {       
+        return;
+    }
+
     const newTask = {};
 
     fields.forEach(id => {
@@ -117,7 +121,6 @@ async function addTask() {
 
     await postTask("/tasks", newTask);
     clearAddTaskForm();
-
 }
 
 ////////////////////////////////////////////////////////// subTask function whenever the input value changes. 
@@ -143,14 +146,12 @@ function subTaskInput(){
 }
 
 // ///////////////////////////////////////////////////when the user clicks on the image the input field will be cleared
+
 function clearInput(){
     document.getElementById("sub-task-input").value= '';  
     subTask();
 }
-
-
 ////////////////////////////////////////////////////// addSubTask 
-
 
 function addSubTask() {
     let subTaskValue = document.getElementById("sub-task-input").value.trim();
@@ -163,11 +164,7 @@ function addSubTask() {
 
         let subtaskListContainer = document.getElementById('subtask-list-container');
         let subtaskList = subtaskListContainer.querySelector('ul');
-
-        
         subtaskList.classList.remove('toggle-display');
-        
-       
         subtaskList.innerHTML += `
         <li id="${subTaskValue}" class="subtask-list">
             <div class="subtask-list-left">
@@ -179,12 +176,10 @@ function addSubTask() {
                 <span><img src="../assets/icons/delete.svg" alt="" class="toggle-display" onclick="removeSubTask(${subTaskValue})"></span>
             </div>
         </li>`;
-
-        
         document.getElementById("sub-task-input").value = '';
     }
 }
-
+////////////////////////////////////////////////////////////////////RemoveSubTask
 function removeSubTask(id)
 {
     document.getElementById(id).remove();
@@ -209,7 +204,6 @@ function clearAddTaskForm()
     });
     updateSelectedBadges();
 
-
     //clear subtasks and remove all of them
     createdSubTasks = [];
     let subTasks = document.querySelectorAll(".subtask-list");
@@ -233,6 +227,52 @@ function clearAddTaskForm()
 function saveAddTaskArray(){
     let subTaskValue = document.getElementById("sub-task-input").value
     createdSubTasks.push(subTaskValue);
-
 }
+
+/////////////////////////////////////////////////////form validation
+
+function formvalidation() {
+    let titleInput = document.getElementById("title");
+    let dateInput = document.getElementById("date");
+    let categorySelect = document.getElementById("category");
+    let errorDivDate = document.querySelector(".error-validation-date");
+    let errorDivTitle = document.querySelector(".error-validation-title");
+    let errorDivCategory = document.querySelector(".error-validation-category");
+    
+    let isValid = true;
+
+    // Checking the title field
+    if (titleInput.value.trim() === "") {
+        titleInput.classList.add('invalid');
+        errorDivTitle.classList.remove('toggle-display');
+        
+        isValid = false;
+    } else {
+        titleInput.classList.remove('invalid');
+        errorDivTitle.classList.add('toggle-display');
+    }
+    // Checking the date field
+    if (dateInput.value.trim() === "") {
+        errorDivDate.classList.remove('toggle-display');
+        dateInput.classList.add('invalid');
+        isValid = false;
+    } else {
+        dateInput.classList.remove('invalid');
+        errorDivDate.classList.add('toggle-display');
+    }
+       // Checking the drop-down Category
+       if (categorySelect.value === "") {
+        errorDivCategory.classList.remove('toggle-display');
+        categorySelect.classList.add('invalid');
+        isValid = false;
+    } else {
+        categorySelect.classList.remove('invalid');
+        errorDivCategory.classList.add('toggle-display');
+    }
+    return isValid;
+}
+    
+
+
+
 
