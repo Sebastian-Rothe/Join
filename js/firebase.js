@@ -83,6 +83,14 @@ async function loadTasks(path = "/tasks") {
               // Sicherstellen, dass subtasks immer ein Array ist
               let subtasks = Array.isArray(task.subtasks) ? task.subtasks : [];
               
+              // Prüfen und konvertieren von assignedTo
+              let assignedTo = [];
+              if (Array.isArray(task.assignedTo)) {
+                  assignedTo = task.assignedTo;
+              } else if (typeof task.assignedTo === 'string') {
+                  assignedTo = task.assignedTo.split(", ").map(name => name.trim());
+              }
+              
               tasks.push({
                   idNumber: key, // Verwende den Schlüssel als idNumber
                   status: task.status || "todo", // Setze einen Default-Wert für status
@@ -94,7 +102,7 @@ async function loadTasks(path = "/tasks") {
                       title: subtask.title || "No Title", // Default-Wert für den Titel der Subtask
                       completed: subtask.completed || false // Default-Wert für den Completed-Status
                   })),
-                  assignedTo: Array.isArray(task.assignedTo) ? task.assignedTo : (typeof task.assignedTo === 'string' ? task.assignedTo.split(", ") : []),
+                  assignedTo: assignedTo.length > 0 ? assignedTo : ["N/A"],
                   priority: task.priority || "medium"
               });
           });
@@ -103,6 +111,7 @@ async function loadTasks(path = "/tasks") {
       console.error('Error loading tasks:', error);
   }
 }
+
 
 
 

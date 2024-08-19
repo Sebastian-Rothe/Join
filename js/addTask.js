@@ -115,7 +115,7 @@ async function addTask() {
         if (element) element.value = ""; 
     });
 
-    newTask.contacts = selectedContacts;
+    newTask.assignedTo = selectedContacts;
     newTask.subtasks = createdSubTasks;
     newTask.status = "todo";
 

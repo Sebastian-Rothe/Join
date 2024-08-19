@@ -39,7 +39,7 @@ function renderBoard(statusType, boardElementId) {
     filteredTasks.forEach((element) => {
       // Berechnung der Subtasks-Statistiken
       const { completedSubtasks, subtaskCount, progress } = calculateSubtaskStats(element.subtasks);
-
+      
       // Erstellung des HTML-Codes für die Aufgabe
       content.innerHTML += generateTaskCardHTML({
         ...element, // Kopiere alle Eigenschaften von `element`
@@ -54,10 +54,10 @@ function renderBoard(statusType, boardElementId) {
 
 function generateTaskCardHTML(element) {
   const { completedSubtasks, subtaskCount, progress } = calculateSubtaskStats(element.subtasks);
-
+  
   return `
-    <div class="task-card" draggable="true" ondragstart="startDragging('${element.idNumber}')" onclick="openDetailedTaskOverlay('${element.idNumber}')">
-      <div class="task-label ${
+  <div class="task-card" draggable="true" ondragstart="startDragging('${element.idNumber}')" onclick="openDetailedTaskOverlay('${element.idNumber}')">
+  <div class="task-label ${
         element.category === "UserStory"
           ? "user-story"
           : element.category === "TechnicalTask"
@@ -76,12 +76,14 @@ function generateTaskCardHTML(element) {
 
       <div class="task-footer">
         <div class="task-assigned">
-          ${element.assignedTo.map(person => `<span class="avatar">${person}</span>`).join("")}
-        </div>
+  ${element.assignedTo.map(person => `<span class="avatar">${createProfileIcon(person)}</span>`).join("")}
+</div>
+
         <div class="priority-icon ${element.priority}"></div>
       </div>
     </div>`;
 }
+
 
 
 function startDragging(id) {
