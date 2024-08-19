@@ -202,7 +202,7 @@ input, button{
 
 .drag-area {
   height: 80vh; /* die höhe ist etwas kompliziert, vil. findest du da eine gute lösung (vil. calc() oder so) */
-  background-color: rgba(8, 235, 99, 0.1);
+  /* background-color: rgba(8, 235, 99, 0.1); */
   border: 1px dashed black;
   margin-bottom: 50px;
   /* display: flex; */
@@ -212,7 +212,7 @@ input, button{
 }
 
 .drag-area-highlight {
-  background-color: rgba(0, 0, 0, 0.2);
+  /* background-color: rgba(0, 0, 0, 0.2); */
 }
 
 /* .todo {
@@ -264,13 +264,23 @@ input, button{
   display: inline-block;
   margin-bottom: 8px;
 }
+.task-label-popup{
+  margin-top: 16px;
+  font-size: 23px;
+  font-weight: 400;
+  padding: 8px 16px;
+  border-radius: 8px;
+  color: #fff;
+  display: inline-block;
+  margin-bottom: 8px;
+}
 
 /* Label Colors */
-.task-label.user-story {
+.user-story {
   background-color: #0052cc;
 }
 
-.task-label.technical-task {
+.technical-task {
   background-color: #00bfa5;
 }
 
@@ -429,3 +439,92 @@ h3{
     margin-bottom: 12px;
   }
 }
+
+/* CSS for popup Muaz */
+
+.closeWindowImage{
+  position: absolute;
+  top: 48px;
+  right: 40px;
+}
+.closeWindowImage:hover {
+  cursor: pointer;
+  scale: 1.1;
+}
+
+.taskTitleDetails {
+  font-size: 44px;
+  font-weight: 700;
+  line-height: 50px;
+  word-wrap: break-word;
+  max-height: 130px;
+}
+
+.taskDescriptionDetails {
+  color: black;
+  font-size: 20px;
+  line-height: 19.2px;
+  margin-top: 16px;
+  max-height: 120px;
+  word-wrap: break-word;
+}
+
+.titleDetails {
+  color: #727272;
+  font-size: 20px;
+}
+
+.dateTxtDetails {
+  font-size: 20px;
+  font-weight:450;
+  padding: 4px;
+}
+
+.align-priority {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 20px;
+  font-weight:450;
+  padding-left: 24px;
+}
+.align-priority-inline{
+  display: flex;
+  flex-direction: row;
+}
+
+.subtask-input:hover {
+  cursor: pointer;
+  scale: 1.1;
+}
+
+.deleteDetailsContain:hover,
+.editDetailsContain:hover {
+  cursor: pointer;
+  filter: invert(70%) sepia(74%) saturate(3560%) hue-rotate(165deg) brightness(95%) contrast(85%);
+  font-weight: 700;
+  scale: 1.1;
+}
+
+.editOptionsDetailsContain {
+  display: flex;
+  position: absolute;
+  bottom: 32px;
+  right: 16px;
+
+}
+
+.deleteDetailsContain, .editDetailsContain {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.seperator {
+  height: 20px;
+  width: 1px;
+  background-color: #ccc; 
+  margin: 0 10px;
+}
+
+/* end of: popup style */

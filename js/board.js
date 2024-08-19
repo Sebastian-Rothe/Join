@@ -128,26 +128,52 @@ function getPopupHTML(task) {
     <div class="task-details-popup">
       <div class="board-popup-overlay" id="board-popupOverlay" style="display: none">
         <div class="board-popup-content">
-          <span class="board-popup-close" id="board-closePopup">&times;</span>
-          <h2><img src="assets/icons/Frame 113.png" alt="Icon" /></h2>
-          <h3 id="taskTitle">${task.title || "No title"}</h3>
-          <p id="taskDescription">${task.description || "No description"}</p>
-          <p><span class="board-popup-label">Due date:</span> <span id="taskDueDate" class="board-popup-data">${dueDate}</span></p>
-          <p><span class="board-popup-label">Priority:</span> <div class="priority-icon ${priority}"></div> <span id="taskPriority" class="board-popup-data">${priority}</span></p>
-          <p><span class="board-popup-label">Assigned To:</span></p>
+          
+          <div class="task-label-popup ${
+          task.category === "UserStory"
+                ? "user-story"
+                : task.category === "TechnicalTask"
+                ? "technical-task"
+                : "default-label"
+            }">${task.category}
+          </div>
+          
+          <img class="closeWindowImage" src="./assets/icons/close.svg" onclick="closePopup()">
+
+          <h3 id="taskTitle" class="taskTitleDetails">${task.title || "No title"}</h3>
+
+          <p id="taskDescription" class="taskDescriptionDetails">${task.description || "No description"}</p>
+          <p><span class=" titleDetails">Due date:</span> <span id="taskDueDate" class="board-popup-data dateTxtDetails">${dueDate}</span></p>
+        
+        
+          <span class="align-priority-inline">
+            <div class="titleDetails align-priority-inline"> Priority: 
+            </div>
+            <div class="align-priority">
+              <div class="priority-icon ${task.priority}">
+              </div>
+              <span id="taskPriority" class="board-popup-data">${priority}
+              </span>
+            </div>
+          </span>
+        
+          <p><span class="titleDetails">Assigned To:</span></p>
           <ul id="taskAssignedTo">${assignedTo}</ul>
           <div class="board-popup-subtasks" id="taskSubtasks">
-            <p>Subtasks:</p>
+            <p class="titleDetails">Subtasks:</p>
             ${subtasks}
           </div>
-          <div class="board-popup-actions">
-            <div class="place-board">
-              <button><img src="assets/icons/Property 1=edit.png" alt="edit" /> Edit</button>
+
+          <div class="editOptionsDetailsContain">
+            <div onclick="editTask()" class="deleteDetailsContain">
+                <img src="../assets/icons/Property 1=Default.png" alt="delete"/>
             </div>
-            <div>
-              <button><img src="assets/icons/Property 1=delete hover.png" alt="delete" /> Delete</button>
+            <div class="seperator"></div>
+            <div onclick="deleteTask()" class="editDetailsContain">
+                <img src="assets/icons/Property 1=Edit2.png" alt="edit"/>
             </div>
           </div>
+          
         </div>
       </div>
     </div>`;
@@ -202,6 +228,10 @@ function openPopup(task) {
 
 // Funktion zum Schließen des Popups
 function closePopup() {
+  const existingPopup = document.querySelector('.task-details-popup');
+  if (existingPopup) {
+    existingPopup.remove();
+  }
   const popupOverlay = document.getElementById("board-popupOverlay");
   if (popupOverlay) popupOverlay.style.display = "none";
 }
