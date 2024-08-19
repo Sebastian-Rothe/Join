@@ -9,10 +9,15 @@ body {
 }
 
 .all {
+    height: 850px;
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: end;
     width: 100%;
+    margin-bottom: 20px
+}
+.summary-tasks{
+    margin-bottom: 20px;
 }
 
 .summary-todo-and-tasks {
@@ -173,7 +178,6 @@ body {
 
 
 .greeting {
-    margin-top: 30px;
     font-size: 24px;
 }
 
