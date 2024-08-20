@@ -122,74 +122,74 @@ function openDetailedTaskOverlay(taskId) {
 function getPopupHTML(task) {
   const priority = task?.priority || "No priority";
   const assignedTo = task?.assignedTo?.length
-    ? task.assignedTo.map(person => `<li>${person}</li>`).join("")
+    ? task.assignedTo.map(person => `
+      <li class="assigned-person">
+        <span class="avatar">${createProfileIcon(person)}</span>
+        <span class="person-name">${person}</span>
+      </li>`).join("")
     : "<li>No one assigned</li>";
-  
-  // Subtasks with checkbox and onclick event to toggle status
+
+  // Subtasks mit Checkbox und onchange-Event, um den Status zu toggeln
   const subtasks = task?.subtasks?.length
     ? task.subtasks.map((subtask, index) => `
-      <label>
-        <input type="checkbox" ${subtask.completed ? "checked" : ""} 
-        onclick="toggleSubtaskStatus('${task.idNumber}', ${index})" />
+      <label class="custom-checkbox align-checkbox-subtasks">
+        <input type="checkbox" ${subtask.completed ? "checked" : ""} onchange="toggleSubtaskStatus('${task.idNumber}', ${index})" />
+        <svg width="19" height="18" viewBox="0 0 19 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect class="unchecked" x="1.38818" y="1" width="16" height="16" rx="3" stroke="#2A3647" stroke-width="2"></rect>
+          <path class="checked" d="M17.3882 8V14C17.3882 15.6569 16.045 17 14.3882 17H4.38818C2.73133 17 1.38818 15.6569 1.38818 14V4C1.38818 2.34315 2.73133 1 4.38818 1H12.3882" stroke="#2A3647" stroke-width="2" stroke-linecap="round"></path>
+          <path class="checked" d="M5.38818 9L9.38818 13L17.3882 1.5" stroke="#2A3647" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+        </svg>
         ${subtask.title || "No Title"}<br />
       </label>`).join("")
     : "<p>No subtasks</p>";
-  
+
   const dueDate = task?.date ? formatDate(task.date) : "No due date";
 
   return `
     <div class="task-details-popup">
       <div class="board-popup-overlay" id="board-popupOverlay" style="display: none">
         <div class="board-popup-content">
-          
+
           <div class="task-label-popup ${
-          task.category === "UserStory"
-                ? "user-story"
-                : task.category === "TechnicalTask"
-                ? "technical-task"
-                : "default-label"
-            }">${task.category}
-          </div>
-          
+            task.category === "UserStory"
+              ? "user-story"
+              : task.category === "TechnicalTask"
+              ? "technical-task"
+              : "default-label"
+          }">${task.category}</div>
+
           <img class="closeWindowImage" src="./assets/icons/close.svg" onclick="closePopup()">
 
           <h3 id="taskTitle" class="taskTitleDetails">${task.title || "No title"}</h3>
 
           <p id="taskDescription" class="taskDescriptionDetails">${task.description || "No description"}</p>
-          <p><span class=" titleDetails">Due date:</span> <span id="taskDueDate" class="board-popup-data dateTxtDetails">${dueDate}</span></p>
-        
-        
+          <p><span class="titleDetails">Due date:</span> <span id="taskDueDate" class="board-popup-data dateTxtDetails">${dueDate}</span></p>
+
           <span class="align-priority-inline">
-            <div class="titleDetails align-priority-inline"> Priority: 
-            </div>
+            <div class="titleDetails align-priority-inline">Priority:</div>
             <div class="align-priority">
-              <div class="priority-icon ${task.priority}">
-              </div>
-              <span id="taskPriority" class="board-popup-data">${priority}
-              </span>
+              <div class="priority-icon ${task.priority}"></div>
+              <span id="taskPriority" class="board-popup-data">${priority}</span>
             </div>
           </span>
+
           <p><span class="titleDetails">Assigned To:</span></p>
           <ul id="taskAssignedTo">
-            ${task.assignedTo.map(person => `
-              <li class="assigned-person">
-                <span class="avatar">${createProfileIcon(person)}</span>
-                <span class="person-name">${person}</span>
-              </li>`).join('')}
+            ${assignedTo}
           </ul>
+
           <div class="board-popup-subtasks" id="taskSubtasks">
             <p class="titleDetails">Subtasks:</p>
             ${subtasks}
           </div>
 
-
           <div class="editOptionsDetailsContain">
             <div onclick="deleteTask('${task.idNumber}')" class="deleteDetailsContain">
-                <img src="../assets/icons/Property 1=Default.png" alt="delete"/>
+              <img src="../assets/icons/Property 1=Default.png" alt="delete"/>
             </div>
             <div class="seperator"></div>
             <div onclick="editTask()" class="editDetailsContain">
-                <img src="assets/icons/Property 1=Edit2.png" alt="edit"/>
+              <img src="assets/icons/Property 1=Edit2.png" alt="edit"/>
             </div>
           </div>
           
@@ -197,16 +197,24 @@ function getPopupHTML(task) {
       </div>
     </div>`;
 }
+
+
+
 function toggleSubtaskStatus(taskId, subtaskIndex) {
   let task = tasks.find(t => t.idNumber === taskId);
+  
   task.subtasks[subtaskIndex].completed = !task.subtasks[subtaskIndex].completed;
 
-  // Update progress
   updateProgress(taskId);
-
-  // Save changes to Firebase
   saveTaskProgress(taskId);
+
+  const checkbox = document.querySelector(`input[type="checkbox"][data-task-id="${taskId}"][data-subtask-index="${subtaskIndex}"]`);
+  if (checkbox) {
+    checkbox.checked = task.subtasks[subtaskIndex].completed;
+  }
 }
+
+
 function updateProgress(taskId) {
   let task = tasks.find(t => t.idNumber === taskId);
   let completedCount = task.subtasks.filter(subtask => subtask.completed).length;
@@ -319,3 +327,16 @@ window.openDetailedTaskOverlay = (taskId) => {
   if (task) openPopup(task);
   else console.error("Task not found:", taskId);
 };
+
+
+// update checkbox
+// function updateSubtaskFromDetails(index, taskId) {
+//   const checkbox = document.getElementById(`checkbox${index}`);
+//   const icon = checkbox.nextElementSibling.querySelector('img');
+
+//   if (checkbox.checked) {
+//       icon.src = "./assets/icons/checkbox-icon.svg";  // Pfad zum "checked" SVG
+//   } else {
+//       icon.src = "./assets/icons/checkbox-icon.svg";  // Pfad zum "unchecked" SVG
+//   }
+// }
