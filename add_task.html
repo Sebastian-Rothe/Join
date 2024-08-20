@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="add_task.css" />
 </head>
 <body onload="onloadfunc(),includeHTML()">
-    <div w3-include-html="./head-side-foot.html"></div>
+    <div id="head-side-foot" w3-include-html="./head-side-foot.html"></div>
 
    
     <!--------------------------------------------------------- Main content -->
@@ -25,7 +25,7 @@
             <div class="left-side">
                     <div class="title">Add Task</div>    
                     <label  for="title">Titel<span class="required">*</span></label>
-                    <input type="text" id="title" name="entertitle" placeholder="Enter a title" >
+                    <input class="input-style" type="text" id="title" name="entertitle" placeholder="Enter a title" >
                     <div class="error-validation-title toggle-display">This field is required</div>
 
                     <label for="textarea">Description</label>
@@ -53,7 +53,7 @@
                 <div class="right-side">
                     
                     <label  for="date">Due date<span class="required">*</span></label>
-                    <input type="date" id="date" name="due-date" class="date-style">
+                    <input class="input-style" type="date" id="date" name="due-date" class="date-style">
                     <div class="error-validation-date toggle-display">This field is required</div>
                     
                     <label>Prio</label>
@@ -86,7 +86,7 @@
 
                    
                     <form class="subtask-form" action="">
-                        <input type="text" name="" id="sub-task-input" placeholder="Add new subtask" oninput="subTaskInput()">  <!-- oninput whenever the input value changes. -->
+                        <input class="input-style" type="text" name="" id="sub-task-input" placeholder="Add new subtask" oninput="subTaskInput()">  <!-- oninput whenever the input value changes. -->
                         <button  type="button" class="subtask-btn">
                             <span class="subtask-btn-plus"><img src="../assets/icons/addblack.svg" alt=""></span>
                            
@@ -143,6 +143,16 @@
             document.getElementById('content-frame').src = page;
         }
     </script>
+
+<script>
+    function checkIfPopup() {
+        // Check if the page is opened as a popup
+        const urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.get('popup') === 'true') {
+            document.getElementById('head-side-foot').style.display = 'none';
+        }
+    }
+</script>
 
 </body>
 </html>

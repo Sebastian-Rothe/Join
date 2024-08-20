@@ -522,3 +522,46 @@ window.openDetailedTaskOverlay = (taskId) => {
   if (task) openPopup(task);
   else console.error("Task not found:", taskId);
 };
+
+
+///////////////////////////////////////////////////////////////////////////// Popup (Add Task) control functions 
+
+function openPopupAddTask() {
+    // Show the overlay and popup
+    document.getElementById('modalOverlay').style.display = 'block';
+    document.getElementById('addTaskModal').style.display = 'block';
+
+    // Load the content of add_task.html into the popup
+    fetch('add_task.html')
+        .then(response => response.text())
+        .then(html => {
+            // Parse the HTML string into a document
+            const parser = new DOMParser();
+            const doc = parser.parseFromString(html, 'text/html');
+
+            // Remove the #head-side-foot div
+            const headSideFootDiv = doc.getElementById('head-side-foot');
+            if (headSideFootDiv) {
+                headSideFootDiv.remove();
+            }
+
+            // Extract the main content
+            const content = doc.querySelector('.container-main');
+            if (content) {
+                document.getElementById('addTaskContent').innerHTML = content.outerHTML;
+            }
+            onloadfunc();
+        })
+       
+}
+
+function closePopupAddTask() {
+    // Hide the overlay and popup
+    document.getElementById('modalOverlay').style.display = 'none';
+    document.getElementById('addTaskModal').style.display = 'none';
+
+    // Clear the content to avoid loading the same content multiple times
+    document.getElementById('addTaskContent').innerHTML = '';
+}
+
+

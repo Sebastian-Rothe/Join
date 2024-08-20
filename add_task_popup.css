@@ -1,0 +1,66 @@
+
+/*************************************************************** Modal styling */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1001;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+    height: 80%;
+    background-color: white;
+    border-radius: 20px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+.modal-content {
+    position: relative;
+}
+.close {
+    position: absolute;
+    top: 20px;
+    right: 45px;
+    font-size: 34px;
+    cursor: pointer;
+}
+/***************************************************************** Overlay styling */
+.overlay {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+}
+/***************************************************************** overwrite in Add Task css file for popup */
+/* *{ 
+    border: 1px solid red;    
+}  */
+.container-main{
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    overflow-x: hidden;
+    border-radius: 20px;
+}
+.title  {
+    padding-top: 16px;
+}
+.right-side {
+    margin-top: 120px;
+}
+.divider {
+    margin-top: 120px;
+}
+.left-right-container {
+        height: 60vh;
+}
+/* @media (max-width: 1373px) {
+
+    .left-right-container {
+        min-height: 100vh;
+    }
+
+} */

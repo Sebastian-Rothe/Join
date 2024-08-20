@@ -84,7 +84,7 @@ label{
     
 }
 
-input {
+input.input-style {
     font-size: 20px;
     color: #000000;
     border: 1px solid #D1D1D1;
@@ -136,7 +136,7 @@ select{
     font-weight: 500;
     color: white;
 }
-/************************************************************************* priority-buttons */
+/*************************************************************************start priority-buttons */
 .priority-buttons {
     display: flex;
     gap: 10px;
@@ -184,7 +184,7 @@ select{
     color: white;
     font-weight: 700;
 }
-
+/*************************************************************************Ende priority-buttons */
 .input-container {
     position: relative;
 }
@@ -194,7 +194,7 @@ form {
     width: 100%;
     margin-right: 12px;
 }
-input {
+/* input {
     margin-bottom: 10px;
     padding: 10px;
     font-size: 21px;
@@ -205,7 +205,7 @@ input {
     border-radius: 8px;
     color: #000000;
     font-family: "Inter", sans-serif;
-}
+} */
 .date-style{
     color: #a8a8a8;
 }

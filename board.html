@@ -8,6 +8,9 @@
     <link rel="stylesheet" href="template.css" />
     <link rel="stylesheet" href="style.css" />
     <link rel="stylesheet" href="./styles/board.css" />
+    <link rel="stylesheet" href="./add_task.css" />
+    <link rel="stylesheet" href="./add_task_popup.css" />
+ 
 </head>
 <body onload="initBoard(), includeHTML()">
   <div w3-include-html="./head-side-foot.html"></div>
@@ -24,12 +27,14 @@
             class="search-input" />
             <img class="search-input-img" src="./assets/icons/Property 1=search.svg" alt="">
           </div>
-          <button class="search-button">
+          <button class="search-button" onclick="openPopupAddTask()">
             Add task
             <img src="./assets/icons/add.svg" alt="" />
           </button>
         </div>
       </div>
+
+
 
       <div id="taskDetailOverlay" class="task-detail-overlay">
         <div class="overlay-content">
@@ -47,7 +52,7 @@
             <img
               class="hover-to-blue"
               src="./assets/icons/add-button-board.svg"
-              alt="" />
+              alt="" onclick="openPopupAddTask()"/>
           </div>
           <div
             id="todoBoard"
@@ -63,7 +68,7 @@
             <img
               class="hover-to-blue"
               src="./assets/icons/add-button-board.svg"
-              alt="" />
+              alt="" onclick="openPopupAddTask()"/>
           </div>
           <div
             id="inProgressBoard"
@@ -79,7 +84,7 @@
             <img
               class="hover-to-blue"
               src="./assets/icons/add-button-board.svg"
-              alt="" />
+              alt="" onclick="openPopupAddTask()"/>
           </div>
           <div
             id="awaitFeedbackBoard"
@@ -102,12 +107,26 @@
         </div>
       </div>
     </div>
+<!-- ---------------------------------------------------------------------------------------Start Add Task popup -->
 
- 
+<div id="addTaskModal" class="modal">
+  <div class="modal-content">
+      <span class="close" onclick="closePopupAddTask()">&times;</span>
+      <div id="addTaskContent"></div>
+  </div>
+</div>
+
+<!--------------------------------------------- Overlay -->
+<div id="modalOverlay" class="overlay" onclick="closePopupAddTask()"></div>
+
+<!-- --------------------------------------------------------------------------------------- End Add Task popup -->
+
+
 
     <script src="script.js"></script>
     <script src="./js/global.js"></script>
     <script src="./js/firebase.js"></script>
     <script src="./js/board.js"></script>
+    <script src="./js/addTask.js"></script>
   </body>
 </html>

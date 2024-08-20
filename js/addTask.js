@@ -57,6 +57,7 @@ function updateSelectedBadges() {
 }
 
 function toggleDropdown() {
+    console.log("clicked");
     let dropdownContent = document.getElementById('contactsDropdown');
     dropdownContent.classList.toggle('show');
 }
