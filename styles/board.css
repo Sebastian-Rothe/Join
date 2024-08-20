@@ -459,6 +459,8 @@ h3{
 
 /* CSS for popup Muaz */
 /* #region */
+
+
 .closeWindowImage{
   position: absolute;
   top: 48px;
@@ -546,3 +548,33 @@ h3{
 
 /* end of: popup style */
 /* #endregion */
+
+/* aligning avatar in card */
+/* #region */
+
+.task-assigned{
+  display: flex;
+}
+.style-avatar-overlap{
+    border-radius: 50%;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    margin-right: -22px; /* Sorgt für die Überlappung */
+    z-index: 1;
+    border: 2px solid white; /* Optional: weißer Rand für klare Abgrenzung */
+    font-size: 0.8rem; /* Größe der Initialen */
+}
+
+.style-avatar-overlap:nth-child(1) { z-index: 1; }
+.style-avatar-overlap:nth-child(2) { z-index: 2; }
+.style-avatar-overlap:nth-child(3) { z-index: 3; }
+.style-avatar-overlap:nth-child(4) { z-index: 4; }
+.style-avatar-overlap:nth-child(5) { z-index: 5; }
+.style-avatar-overlap:nth-child(6) { z-index: 6; }
+.style-avatar-overlap:nth-child(7) { z-index: 7; }
+.style-avatar-overlap:nth-child(8) { z-index: 8; }
+.style-avatar-overlap:nth-child(9) { z-index: 9; }
+.style-avatar-overlap:nth-child(10) { z-index: 10; }

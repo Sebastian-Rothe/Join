@@ -76,7 +76,7 @@ function generateTaskCardHTML(element) {
 
       <div class="task-footer">
         <div class="task-assigned">
-  ${element.assignedTo.map(person => `<span class="avatar">${createProfileIcon(person)}</span>`).join("")}
+  ${element.assignedTo.map(person => `<span class="avatar style-avatar-overlap">${createProfileIcon(person)}</span>`).join("")}
 </div>
 
         <div class="priority-icon ${element.priority}"></div>
