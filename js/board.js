@@ -565,3 +565,37 @@ function closePopupAddTask() {
 }
 
 
+
+document.querySelectorAll('.task-section').forEach(section => {
+  let isDragging = false;
+  let startX;
+  let scrollLeft;
+
+  section.addEventListener('mousedown', (e) => {
+    isDragging = true;
+    startX = e.pageX - section.offsetLeft;
+    scrollLeft = section.scrollLeft;
+    section.style.cursor = 'grabbing';
+  });
+
+  section.addEventListener('mouseleave', () => {
+    isDragging = false;
+    section.style.cursor = 'grab';
+  });
+
+  section.addEventListener('mouseup', () => {
+    isDragging = false;
+    section.style.cursor = 'grab';
+  });
+
+  section.addEventListener('mousemove', (e) => {
+    if (!isDragging) return;
+    e.preventDefault();
+    const x = e.pageX - section.offsetLeft;
+    const walk = (x - startX) * 2; // Scrollgeschwindigkeit anpassen
+    section.scrollLeft = scrollLeft - walk;
+  });
+});
+
+
+

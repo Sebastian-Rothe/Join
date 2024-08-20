@@ -11,8 +11,7 @@ input, button{
 }
 
 .main-board{
-  /* overflow: auto; */
-  /* height: auto;  */
+  height: calc(100% - 96px);
   position: relative; 
   margin-top: 100px;
   margin-left: 232px;
@@ -33,19 +32,16 @@ input, button{
 .search-container {
     display: flex;
     align-items: center;
-    /* max-width: 60%;  */
     gap: 8%;
 }
 
 .input-div {
   display: flex;
-  /* align-items: center; */
   justify-content: space-between;
   border: 1px solid #A8A8A8;
   border-radius: 10px;
   padding: 8px 16px 8px 16px;
   gap: 10px;
-  /* width: 312px; */
   height: 34px;
   background-color: #ffffff;
 }
@@ -54,10 +50,6 @@ input, button{
     padding: 10px;
     border-right: 1px solid #A8A8A8;
     font-size: 20px;
-    /* width: 80%;
-    background-position: calc(100% - 12px) center; 
-    background-repeat: no-repeat;
-    flex-grow: 1;    */
 }
 
 .search-input-img {
@@ -154,94 +146,31 @@ input, button{
 }
 
 .board-popup-actions {
-  /* background-color: transparent;  */
-  /* display: flex;
-  justify-content: end; */
   transform: translateY(0);
-  /* border-radius: 24px; */
 }
-
-/* .board-popup-close {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  font-size: 20px;
-  cursor: pointer;
-  color: #333; 
-} */
-
-/* #openboardButton {
-  background-color: #007BFF; 
-  color: #fff;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 16px;
-} */
-
-
-/* .task-details-popup {
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-} */
-
-
-/* button {
-  display: inline-flex;
-  align-items: center;
-  background-color: transparent;
-  border: none; 
-} */
-/* button img {
-  vertical-align: middle;
-} */
-
-
 
 /* css for drag and drop */
 
 .drag-area {
-  height: 80vh; /* die höhe ist etwas kompliziert, vil. findest du da eine gute lösung (vil. calc() oder so) */
-  /* background-color: rgba(8, 235, 99, 0.1); */
+  height: 65vh; 
   margin-bottom: 50px;
-  /* display: flex; */
   padding-top: 4px;
-  /* flex-direction: column; */
   align-items: flex-start;
 }
 
 .drag-area-highlight {
   border: 1px dashed black;
-  /* background-color: rgba(0, 0, 0, 0.2); */
 }
 
-/* .todo {
-  background-color: white;
-  background-color:  #9cd1e8;
-  border: 1px solid black;
-  border-radius: 5px;
-  padding: 10px;
-  margin: 10px;
-} */
+.task-section {
+  padding: 0 2px;
+  overflow-y: scroll;
+  box-sizing: content-box; 
+}
 
-/* .task-section {
-  height: 100%;
-} */
-
-/* .to-do-div {
-  height: 100vh;
-
-} */
-
-/* .align-all-4 {
-  height: ;
-} */
-
-/* .place-board{
-  margin-right: 10px;
-} */
+.task-section::-webkit-scrollbar {
+  display: none;
+}
 
 
 /* new code for board card */
@@ -251,13 +180,16 @@ input, button{
   background-color: #fff;
   border-radius: 24px;
   padding: 16px;
-  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
+  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2);
   margin-bottom: 16px;
   cursor: pointer;
   flex: 1;
   max-width: 300px;
+  max-height: 300px;
 }
-
+.task-card:hover {
+  transform: scale(0.99);
+}
 .task-label {
   font-size: 12px;
   padding: 2px 8px;
@@ -288,9 +220,14 @@ input, button{
 
 /* Task Title */
 .task-title {
-  font-size: 16px;
+  font-size: 18px;
   font-weight: 600;
   margin-bottom: 8px;
+  display: -webkit-box; /* Für Flexbox-Layout */
+  -webkit-line-clamp: 3; /* Maximal 3 Zeilen anzeigen */
+  -webkit-box-orient: vertical; /* Box-Orientierung auf vertikal setzen */
+  overflow: hidden; /* Überlauf verstecken */
+  text-overflow: ellipsis; /* Ellipsis hinzufügen, wenn der Text abgeschnitten wird */
 }
 
 /* Task Description */
@@ -299,6 +236,11 @@ input, button{
   font-weight: 400;
   color: #6b7280;
   margin-bottom: 16px;
+  display: -webkit-box; /* Für Flexbox-Layout */
+  -webkit-line-clamp: 3; /* Maximal 3 Zeilen anzeigen */
+  -webkit-box-orient: vertical; /* Box-Orientierung auf vertikal setzen */
+  overflow: hidden; /* Überlauf verstecken */
+  text-overflow: ellipsis; /* Ellipsis hinzufügen, wenn der Text abgeschnitten wird */
 }
 
 /* Subtasks */
@@ -307,37 +249,22 @@ input, button{
   align-items: center;
   justify-content: space-between;
   margin-bottom: 16px;
+  white-space: nowrap; /* Prevents wrapping */
 }
 
-/* .progress-bar {
-  background-color: #e4e7eb;
-  border-radius: 4px;
-  height: 8px;
-  flex: 1; Makes the progress bar take up available space
-  margin-right: 8px;
-  overflow: hidden;
-}
-
-.progress {
-  background-color: #0073e6;
-  height: 100%;
-  border-radius: 4px;
-} */
-
-/* Container für die Fortschrittsanzeige */
 .progress-bar {
-  width: 100%; /* Breite der Fortschrittsleiste */
-  background-color: #f3f3f3; /* Hintergrundfarbe der Fortschrittsleiste */
-  border-radius: 5px; /* Abrundung der Ecken */
-  overflow: hidden; /* Verhindert, dass der Fortschritt außerhalb des Containers angezeigt wird */
+  width: 100%;
+  background-color: #f3f3f3;
+  border-radius: 5px; 
+  overflow: hidden; 
 }
 
-/* Fortschrittsanzeige selbst */
+
 .progress {
-  height: 8px; /* Höhe der Fortschrittsanzeige */
-  background-color: #0073e6; /* Farbe des Fortschrittsbalkens */
-  width: 0%; /* Anfangsbreite, wird durch inline style überschrieben */
-  transition: width 0.3s ease; /* Sanfter Übergang beim Ändern der Breite */
+  height: 8px; 
+  background-color: #0073e6; 
+  width: 0%; 
+  transition: width 0.3s ease; 
 }
 
 
@@ -353,19 +280,6 @@ input, button{
   justify-content: space-between;
   align-items: center;
 }
-
-/* .task-assigned .avatar {
-  background-color: #f4f5f7;
-  border-radius: 50%;
-  width: 28px;
-  height: 28px;
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 12px;
-  color: #172b4d;
-  margin-right: 4px;
-} */
 
 /* Priority Icon */
 .priority-icon {
@@ -392,72 +306,135 @@ h3{
   font-weight: bold
 }
 
+.addButton-mobileBoard{
+  display: none;
+}
 
 /* css for adjusting to sidebar  */
-@media (max-width: 1030px) {
-  .main-board{
-    margin-left: 120px;
+/* Adjusting to Sidebar */
+/* Head Board Responsive Adjustments */
+@media (max-width: 1080px) {
+  .head-board {
+    flex-direction: column; 
+    margin-bottom: 16px; 
   }
-}
-@media (max-width: 900px) {
-  .main-board{
-    margin-left: 0px;
-  }
-}
-/* end of: adjusting to sidebar */
 
+  .head-board h2 {
+    margin: 0; /* Resets margin for headings */
+  }
+}
+
+@media (max-width: 1030px) {
+  .main-board {
+    margin-left: 120px; 
+  }
+}
+
+@media (max-width: 900px) {
+  .main-board {
+    margin-left: 0px; 
+    margin-bottom: 200px;
+    max-height: calc(100vh - 192px); 
+  }
+  .drag-area {
+    /* height: 60vh;  */
+  }
+  .task-card{
+    min-width: 200px;
+    max-width: 250px;
+  }
+  .task-section{
+    cursor: grab; 
+  }
+}
+/* Main Board Adjustments for Smaller Screens */
+@media (max-width: 800px) {
+  .drag-area {
+    /* height: 30vh;  */
+  }
+  .main-board{
+    overflow-y: scroll; 
+    scrollbar-width: none; 
+    padding: 12px;
+  }
+  .main-board::-webkit-scrollbar {
+    display: none; 
+  }
+  .board-main-div {
+    flex-direction: column; 
+    overflow: hidden;
+  }
+
+  .task-section {
+    display: flex; 
+    flex-direction: row; 
+    gap: 8px; 
+    width: 100%; 
+    margin-top: 100px 0;
+  }
+
+  .align-all-4 {
+    width: 100%; 
+    margin-bottom: 12px; 
+    height: 300px;
+  }
+}
 
 /* Responsive Design Adjustments */
 @media (max-width: 600px) {
-  .board-popup-content{
-    height: 450px;
+  .board-popup-content {
+    height: 450px; 
   }
+
   .task-subtasks {
-    flex-direction: column;
-    align-items: flex-start;
+    flex-direction: column; 
+    align-items: flex-start; 
   }
 
   .progress-bar {
-    margin-right: 0;
-    margin-bottom: 4px; /* Adds space between the progress bar and the subtask info */
-    width: 100%; /* Ensures the progress bar takes full width on smaller screens */
+    margin-right: 0; 
+    margin-bottom: 4px; 
+    width: 100%; 
   }
 
   .subtask-info {
-    margin-top: 4px;
+    margin-top: 4px; 
   }
-}
-/* end of section: new code for board card */
-
-/* responsive */
-@media (max-width: 1080px) {
-  .head-board{
-    flex-direction: column;
-    margin-bottom: 16px;
+  .search-button{
+    display: none;
   }
-  .head-board h2{
-    margin: 0;
+  .search-container{
+    width: 100%;
   }
-}
-@media (max-width: 800px) {
-  .board-main-div{
-    flex-direction: column;
-    overflow: hidden;
+  .input-div{
+    width: 100%;
   }
-  /* .align-all-4{
-    height: inherit;
-  } */
-  .task-section{
+  .search-input{
+    width: 100%;
+  }
+  .align-board-headline{
     display: flex;
-    flex-direction: row;
-    gap: 8px;
+    justify-content: space-between;
+    align-items: center;
     width: 100%;
   }
-  .align-all-4{
-    width: 100%;
-    margin-bottom: 12px;
+  .addButton-mobileBoard{
+    background-color: #091931;
+    color: white;
+    border-radius: 10px;
+    width: 44px;
+    height: 44px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .addButton-mobileBoard:hover{
+    background-color: #29ABE2;
   }
 }
+/* End of Responsive Design Adjustments */
+
 
 /* CSS for popup Muaz */
 /* #region */
@@ -479,7 +456,7 @@ h3{
   font-weight: 700;
   line-height: 50px;
   word-wrap: break-word;
-  max-height: 130px;
+  max-height: 150px;
 }
 
 .taskDescriptionDetails {
