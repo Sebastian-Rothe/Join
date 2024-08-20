@@ -169,13 +169,19 @@ function getPopupHTML(task) {
               </span>
             </div>
           </span>
-        
           <p><span class="titleDetails">Assigned To:</span></p>
-          <ul id="taskAssignedTo">${assignedTo}</ul>
+          <ul id="taskAssignedTo">
+            ${task.assignedTo.map(person => `
+              <li class="assigned-person">
+                <span class="avatar">${createProfileIcon(person)}</span>
+                <span class="person-name">${person}</span>
+              </li>`).join('')}
+          </ul>
           <div class="board-popup-subtasks" id="taskSubtasks">
             <p class="titleDetails">Subtasks:</p>
             ${subtasks}
           </div>
+
 
           <div class="editOptionsDetailsContain">
             <div onclick="deleteTask('${task.idNumber}')" class="deleteDetailsContain">

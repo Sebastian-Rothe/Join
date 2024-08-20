@@ -578,3 +578,9 @@ h3{
 .style-avatar-overlap:nth-child(8) { z-index: 8; }
 .style-avatar-overlap:nth-child(9) { z-index: 9; }
 .style-avatar-overlap:nth-child(10) { z-index: 10; }
+
+
+.assigned-person{
+  margin-bottom: 8px;
+  margin-left: 16px;
+}
