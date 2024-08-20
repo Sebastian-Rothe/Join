@@ -35,9 +35,9 @@
     background-color: rgba(0, 0, 0, 0.8);
 }
 /***************************************************************** overwrite in Add Task css file for popup */
-/* *{ 
+ /* *{ 
     border: 1px solid red;    
-}  */
+}   */
 .container-main{
     padding: 0;
     width: 100%;
@@ -57,10 +57,64 @@
 .left-right-container {
         height: 60vh;
 }
-/* @media (max-width: 1373px) {
-
+ @media (max-width: 1540px) {
+    .priority-btn {
+        font-size: 16px;
+    }
+} 
+@media (max-width: 1373px) {
+    .right-side {
+        margin-top: 10px;
+    }
+    .footer-add-task {
+        position: fixed;
+        bottom:0px;
+        margin-bottom: 30px;
+     
+    }
     .left-right-container {
-        min-height: 100vh;
+        height: 70vh;
+    }
+}
+@media (max-width: 818px) {
+    .clear-btn {
+       display: none;
+    }
+    .title {
+        font-size: 41px;
+    }
+}
+@media (max-width: 660px) {
+   
+    .footer-add-task {
+        padding-left: 20px;
+        padding-right: 20px;
+        width: calc(100% - 40px);
+    }
+}
+@media (max-width: 510px) {
+    .footer-add-task-left span {
+       display: none;
+    }
+    .footer-add-task {
+        justify-content: center;
+    }
+    .dropdown-btn {
+        font-size: 16px;
+    }
+    textarea {
+        font-size: 16px;
+    }
+    input.input-style {
+        font-size: 16px;
+    }
+    .dropdownCategory {
+        font-size: 16px;
+    }
     }
 
-} */
+
+
+
+
+
