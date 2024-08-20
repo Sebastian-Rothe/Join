@@ -79,11 +79,7 @@ async function loadTasks(path = "/tasks") {
       if (responseToJson) {
           Object.keys(responseToJson).forEach((key) => {
               let task = responseToJson[key];
-              
-              // Sicherstellen, dass subtasks immer ein Array ist
               let subtasks = Array.isArray(task.subtasks) ? task.subtasks : [];
-              
-              // Prüfen und konvertieren von assignedTo
               let assignedTo = [];
               if (Array.isArray(task.assignedTo)) {
                   assignedTo = task.assignedTo;
@@ -92,15 +88,15 @@ async function loadTasks(path = "/tasks") {
               }
               
               tasks.push({
-                  idNumber: key, // Verwende den Schlüssel als idNumber
-                  status: task.status || "todo", // Setze einen Default-Wert für status
+                  idNumber: key, 
+                  status: task.status || "todo", 
                   category: task.category || "Uncategorized",
-                  title: task.title || "No Title", // Setze einen Default-Wert für title
+                  title: task.title || "No Title", 
                   description: task.description || "Task without a description",
-                  date: task.date || null, // Setze null für ein nicht vorhandenes Datum
+                  date: task.date || null, 
                   subtasks: subtasks.map(subtask => ({
-                      title: subtask.title || "No Title", // Default-Wert für den Titel der Subtask
-                      completed: subtask.completed || false // Default-Wert für den Completed-Status
+                      title: subtask.title || "No Title", 
+                      completed: subtask.completed || false 
                   })),
                   assignedTo: assignedTo.length > 0 ? assignedTo : ["N/A"],
                   priority: task.priority || "medium"
