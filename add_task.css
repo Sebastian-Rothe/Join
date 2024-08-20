@@ -222,18 +222,13 @@ input[type="date"]:focus {
 input[type="date"].invalid {
     border-color: #FF0000;
 }
-
-
-
 textarea:focus{
     border-color: #007BFF;
     outline: none; /* Remove default outline */
 }
-
 .icon-name {
     background-image: url("../assets/icons/addicon.svg");
 }
-
 
 /********************************************************************* dropdown-category */
 .dropdownCategory{
@@ -296,6 +291,8 @@ select.dropdownCategory.invalid {
 .subtask-form input:focus {   
     border-color:#29ABE2;
     outline: none; /* Remove default outline */
+    border: solid 1px;
+    
 }
 .subtask-form button{
     position: absolute;
@@ -342,7 +339,7 @@ select.dropdownCategory.invalid {
     position: relative;
     padding-left: 20px;
     cursor: pointer;
-    margin-bottom: 10px;
+    margin-bottom: 30px;
     height: 38px;
     display: flex;
     align-items: center;
@@ -373,6 +370,7 @@ select.dropdownCategory.invalid {
 }
 .subtask-list-container ul li:last-child::before {
     list-style-type: circle;
+
 }
 .subtask-list{
     display: flex;
@@ -390,6 +388,80 @@ select.dropdownCategory.invalid {
     gap: 1px;
     padding-right: 20px;
 }
+/****************************************************************** Subtask list Style in edite style */
+
+.subtask-list-form{
+    border-radius: 25px;
+    position: relative;
+}
+
+.subtask-list-form input{   
+    display: block;
+    height: 32px;
+    border: none;
+    border-bottom: 2px solid #29ABE2;
+    border-radius: 8px;
+    font-size: 21px;
+    padding: 10px;    
+    margin-top: 20px;
+    box-shadow: #7AE229;
+    color: #000000;
+    width:calc(100% - 10px);
+    background-color: #FFFFFF;
+    box-shadow: 0 4px 6px rgba(0, 123, 255, 0.2);
+    
+    
+}
+.subtask-list-form input:focus {   
+    border-color:#29ABE2;
+    outline: none; /* Remove default outline */
+}
+.subtask-list-form button{
+    position: absolute;
+    top: 0;
+    right: 10px;    
+    height: calc(100% - 10px);    
+    border-radius: 50%;
+    cursor: pointer;
+    border: none;
+    background: none;
+}
+.subtask-btn-list{
+    display: flex;
+    align-items: center;
+    flex-direction: row-reverse;
+    gap: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    
+}
+.subtask-btn-list img{
+    width:14px;
+    height: 14px;
+    padding: 5px;
+    cursor: pointer;     
+ }
+ /* .subtask-btn-list-delete  img:hover{
+    background-color: #EEEEEE;
+    border-radius: 50px; 
+} */
+.subtask-btn-list-delete  img{
+    width:16px;
+    height: 16px;
+    padding: 5px;
+    cursor: pointer; 
+}
+/* .subtask-btn-list img:hover{
+    background-color: #EEEEEE;
+    border-radius: 50px;
+    border: 1px; 
+} */
+.subtask-btn-list-divider{
+    width: 1px;
+    height: 40px;
+    background-color: #EEEEEE;
+}
+
 
 /************************************************************** footer */
 

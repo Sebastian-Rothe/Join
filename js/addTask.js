@@ -75,7 +75,7 @@ function setMinDate() {
     const dateInput = document.getElementById('date');
     dateInput.setAttribute('min', today);
 }
-
+///////////////////////////////////////////////////////////////////////// priority
 function selectPrio(priority) {
     const urgentBtn = document.getElementById('urgent');
     const mediumBtn = document.getElementById('medium');
@@ -90,12 +90,19 @@ function selectPrio(priority) {
     if (priority === 'urgent') {
         urgentBtn.classList.add('urgent-pri-active');
         urgentBtn.firstElementChild.classList.add('change-svg-color');
+        mediumBtn.firstElementChild.classList.remove('change-svg-color');
+        lowBtn.firstElementChild.classList.remove('change-svg-color');
+        
     } else if (priority === 'medium') {
         mediumBtn.classList.add('medium-prio-active');
         mediumBtn.firstElementChild.classList.add('change-svg-color');
+        urgentBtn.firstElementChild.classList.remove('change-svg-color');
+        lowBtn.firstElementChild.classList.remove('change-svg-color');
     } else if (priority === 'low') {
         lowBtn.classList.add('low-prio-active');
         lowBtn.firstElementChild.classList.add('change-svg-color');
+        urgentBtn.firstElementChild.classList.remove('change-svg-color');
+        mediumBtn.firstElementChild.classList.remove('change-svg-color');
     }
     document.getElementById("priority").value = priority;
 }
@@ -151,6 +158,13 @@ function clearInput(){
     document.getElementById("sub-task-input").value= '';  
     subTask();
 }
+// ///////////////////////////////////////////////////when the user clicks on the image the input field will be cleared
+
+function clearSubTaskListInput(){
+    let listItem = document.getElementById(subTaskValue);
+    let currentText = listItem.querySelector('span').textContent;
+ 
+}
 ////////////////////////////////////////////////////// addSubTask 
 
 function addSubTask() {
@@ -175,7 +189,7 @@ function addSubTask() {
                 <span>${subTaskValue}</span>
             </div>
             <div class="subtask-list-right">
-                <span><img src="../assets/icons/EditAddTask.svg" alt="" class="toggle-display"></span>
+                <span><img src="../assets/icons/EditAddTask.svg" alt="" class="toggle-display" onclick="editSubTask('${subTaskValue}')"></span>
                 <div class="subtask-list-divider toggle-display"></div>
                 <span><img src="../assets/icons/delete.svg" alt="" class="toggle-display" onclick="removeSubTask('${subTaskValue}')"></span>
             </div>
@@ -183,7 +197,8 @@ function addSubTask() {
         document.getElementById("sub-task-input").value = '';
     }
 }
-////////////////////////////////////////////////////////////////////RemoveSubTask
+
+////////////////////////////////////////////////////////////////////Remove SubTask
 
 
 function removeSubTask(subTaskValue) {
@@ -199,6 +214,52 @@ function removeSubTask(subTaskValue) {
             createdSubTasks.splice(i, 1);
             break;
         }
+    }
+}
+
+////////////////////////////////////////////////////////////////////Edite SubTask
+
+
+function editSubTask(subTaskValue) {
+    let listItem = document.getElementById(subTaskValue);
+    let currentText = listItem.querySelector('span').textContent;
+
+    // Versteckt den Punkt in der Liste
+    listItem.style.paddingLeft = '0px';
+
+    listItem.innerHTML = `
+        <form class="subtask-list-form" action="">
+            <input type="text" name="" id="sub-task-list-input" value="${currentText}" oninput="handleInputChange('${subTaskValue}')">  
+            <button type="button" class="subtask-btn-list">
+                <span class="subtask-btn-list-checked">
+                    <img src="../assets/icons/CheckAddTask.svg" alt="" onclick="addSubTask('${subTaskValue}')">
+                </span>
+                <div class="subtask-btn-list-divider"></div>
+                <span class="subtask-btn-list-delete">
+                    <img src="../assets/icons/delete.svg" id="delete-icon-${subTaskValue}" alt="" onclick="clearSubTaskListInput('${subTaskValue}')">
+                </span>
+            </button>
+        </form>
+    `;
+}
+////////////////////////////////////////////////////////////// clearSubTaskListInput
+function clearSubTaskListInput(subTaskValue) {
+    let inputField = document.getElementById('sub-task-list-input');
+    if (inputField) {
+        inputField.value = '';
+        handleInputChange(subTaskValue);
+    }
+}
+//////////////////////////////////////////////////////////////  Change Img(Button) if the current input changes
+function handleInputChange(subTaskValue) {
+    let inputField = document.getElementById('sub-task-list-input');
+    let deleteIcon = document.getElementById(`delete-icon-${subTaskValue}`);
+    if (inputField.value.trim() !== '') {
+       
+        deleteIcon.src = "../assets/icons/CloseAddTask.svg";
+    } else {
+       
+        deleteIcon.src = "../assets/icons/delete.svg";
     }
 }
 //////////////////////////////////////////////////////clear all input value in add task page 
