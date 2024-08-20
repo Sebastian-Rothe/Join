@@ -298,7 +298,7 @@ select.dropdownCategory.invalid {
     position: absolute;
     top: 0;
     right: 10px;    
-    height: calc(100% - 10px);    
+    height: calc(70%);    
     border-radius: 50%;
     cursor: pointer;
     border: none;
@@ -420,7 +420,7 @@ select.dropdownCategory.invalid {
     position: absolute;
     top: 0;
     right: 10px;    
-    height: calc(100% - 10px);    
+    height: calc(100%);    
     border-radius: 50%;
     cursor: pointer;
     border: none;
@@ -648,6 +648,12 @@ select.dropdownCategory.invalid {
         width: 35%;
     }
 }
+@media (max-width: 1407px) {
+    .priority-btn {
+        
+        font-size: 19px;
+    }
+    }
 @media (max-width: 1373px) {
     .left-right-container {       
         flex-direction: column;

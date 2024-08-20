@@ -196,6 +196,17 @@ function addSubTask() {
             </div>
         </li>`;
         document.getElementById("sub-task-input").value = '';
+        //Reset icon in the input when subtask is added
+        let plusIcon = document.querySelector('.subtask-btn-plus img');
+        let checkedIcon = document.querySelector('.subtask-btn-checked img');
+        let divider = document.querySelector('.subtask-btn-divider');
+        let cancelIcon = document.querySelector('.subtask-btn-cancel img');
+
+        plusIcon.classList.remove('toggle-display');
+        checkedIcon.classList.add('toggle-display');
+        divider.classList.add('toggle-display');
+        cancelIcon.classList.add('toggle-display');
+
     }
 }
 
@@ -225,7 +236,7 @@ function editSubTask(subTaskValue) {
     let listItem = document.getElementById(subTaskValue);
     let currentText = listItem.querySelector('span').textContent;
 
-    // Versteckt den Punkt in der Liste
+   // Hides the point in the list
     listItem.style.paddingLeft = '0px';
 
     listItem.innerHTML = `
@@ -233,7 +244,7 @@ function editSubTask(subTaskValue) {
             <input type="text" name="" id="sub-task-list-input" value="${currentText}" oninput="handleInputChange('${subTaskValue}')">  
             <button type="button" class="subtask-btn-list">
                 <span class="subtask-btn-list-checked">
-                    <img src="../assets/icons/CheckAddTask.svg" alt="" onclick="addSubTask('${subTaskValue}')">
+                    <img src="../assets/icons/CheckAddTask.svg" alt="" onclick="saveSubTask('${subTaskValue}')">
                 </span>
                 <div class="subtask-btn-list-divider"></div>
                 <span class="subtask-btn-list-delete">
@@ -262,6 +273,27 @@ function handleInputChange(subTaskValue) {
        
         deleteIcon.src = "../assets/icons/delete.svg";
     }
+}
+//////////////////////////////////////////////////////////////  save subtask text after edite
+function saveSubTask(subTaskValue) {
+    let listItem = document.getElementById(subTaskValue);
+    let inputField = listItem.querySelector('.subtask-list-form input');
+    let newValue = inputField.value;
+
+    listItem.innerHTML = `
+        <span>${newValue}</span>
+    </div>
+    <div class="subtask-list-right">
+        <span><img src="../assets/icons/EditAddTask.svg" alt="" class="toggle-display" onclick="editSubTask('${subTaskValue}')"></span>
+        <div class="subtask-list-divider toggle-display"></div>
+        <span><img src="../assets/icons/delete.svg" alt="" class="toggle-display" onclick="removeSubTask('${subTaskValue}')"></span>
+     `;
+    // show again the point in the list
+    listItem.style.paddingLeft = '20px';
+
+    // Hides the form
+    let form = listItem.querySelector('.subtask-list-form');
+    form.style.display = 'none';
 }
 //////////////////////////////////////////////////////clear all input value in add task page 
 
