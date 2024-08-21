@@ -16,78 +16,83 @@
     <div w3-include-html="./head-side-foot.html"></div>
 
     <div class="all">
-      <div class="summary-tasks">
-        <div class="main-headline">
-          <p>Join 360</p>
-          <img src="assets\img\Vector 5.png" alt="" />
-          <span class="key">Key Metrics at a Glance</span>
-        </div>
-        <div class="summary-todo-and-tasks">
-          <div class="todo" onclick="window.location.href='board.html'">
-            <img class="icon-sm" src="assets\icons\Frame 59 (1).png" alt="" />
-            <div class="amount-and-todo">
-              <h3 id="count-todo"></h3>
-              <p>To-do</p>
+      <div class="container">
+        <div class="summary-tasks">
+          <div class="main-headline">
+            <p>Join 360</p>
+            <img src="assets\img\Vector 5.png" alt="" />
+            <span class="key">Key Metrics at a Glance</span>
+          </div>
+          <div class="summary-todo-and-tasks">
+            <div class="todo" onclick="window.location.href='board.html'">
+              <img class="icon-sm" src="assets\icons\Frame 59 (1).png" alt="" />
+              <div class="amount-and-todo">
+                <h3 id="count-todo"></h3>
+                <p>To-do</p>
+              </div>
+            </div>
+
+            <div class="done" onclick="window.location.href='board.html'">
+              <img class="icon-sm" src="assets\icons\Frame 59 (3).png" alt="" />
+              <div class="amount-and-todo">
+                <h3 id="count-done"></h3>
+                <p>Done</p>
+              </div>
             </div>
           </div>
 
-          <div class="done" onclick="window.location.href='board.html'">
-            <img class="icon-sm" src="assets\icons\Frame 59 (3).png" alt="" />
-            <div class="amount-and-todo">
-              <h3 id="count-done"></h3>
-              <p>Done</p>
+          <div
+            class="summary-urgent-tasks"
+            onclick="window.location.href='board.html'">
+            <img class="icon-sm" src="assets\icons\Frame 59.png" alt="" />
+
+            <div class="diso">
+              <h3 id="count-priority"></h3>
+              <p>Urgent</p>
+            </div>
+            <img src="assets\img\Vector 5 (1).png" alt="" />
+            <div class="date">
+              <h3 id="upcoming-deadline"></h3>
+              <p>Upcoming Deadline</p>
+            </div>
+          </div>
+
+          <div class="summary-all-tasks">
+            <div
+              class="task-container"
+              onclick="window.location.href='board.html'">
+              <h3 id="count-board"></h3>
+              <p>
+                Tasks in <br />
+                Board
+              </p>
+            </div>
+
+            <div
+              class="task-container"
+              onclick="window.location.href='board.html'">
+              <h3 id="count-inProgress"></h3>
+              <p>
+                Tasks In <br />
+                Progress
+              </p>
+            </div>
+
+            <div
+              class="task-container"
+              onclick="window.location.href='board.html'">
+              <h3 id="count-awaitFeedback"></h3>
+              <p>Awaiting Feedback</p>
             </div>
           </div>
         </div>
 
-        <div
-          class="summary-urgent-tasks"
-          onclick="window.location.href='board.html'">
-          <img class="icon-sm" src="assets\icons\Frame 59.png" alt="" />
-
-          <div class="diso">
-            <h3 id="count-priority"></h3>
-            <p>Urgent</p>
-          </div>
-          <img src="assets\img\Vector 5 (1).png" alt="" />
-          <div class="date">
-            <h3 id="upcoming-deadline"></h3>
-            <p>Upcoming Deadline</p>
-          </div>
-        </div>
-
-        <div class="summary-all-tasks">
-          <div
-            class="task-container"
-            onclick="window.location.href='board.html'">
-            <h3 id="count-board"></h3>
-            <p>
-              Tasks in <br />
-              Board
-            </p>
-          </div>
-
-          <div
-            class="task-container"
-            onclick="window.location.href='board.html'">
-            <h3 id="count-inProgress"></h3>
-            <p>
-              Tasks In <br />
-              Progress
-            </p>
-          </div>
-
-          <div
-            class="task-container"
-            onclick="window.location.href='board.html'">
-            <h3 id="count-awaitFeedback"></h3>
-            <p>Awaiting Feedback</p>
-          </div>
-        </div>
+        <div class="greeting">
+          GOOD MORNING, <br> <span style="color:rgba(41, 171, 226, 1);font-size: 64px; ">Sophia Müller</span>
       </div>
-      <!-- <div class="greeting" onclick="window.location.href='board.html'">
-        <p>Good morning, <span></span></p>
-      </div> -->
+      
+      </div>
     </div>
+    
   </body>
 </html>
