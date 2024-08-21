@@ -177,6 +177,7 @@ body {
 }
 
 .greeting {
+  margin-top: 200px;
   font-weight: 500;
   margin-right: 0;
   margin-left: 47px;
