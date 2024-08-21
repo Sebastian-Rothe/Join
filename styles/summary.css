@@ -193,7 +193,7 @@ body {
   width: 69px;
 }
 .icon-sm:hover {
-  background-image:url("C:\Users\manue\Documents\GitHub\Join-dummy\assets\img\Frame59.png");
+  background-image: url("C:\Users\manue\Documents\GitHub\Join-dummy\assets\img\Frame59.png");
   height: 69px;
   width: 69px;
 }
@@ -232,49 +232,293 @@ body {
 }
 @media screen and (max-width: 902px) {
   .summary-tasks {
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     margin-bottom: 80px;
   }
-}
-
-@media screen and (max-width: 560px) {
-  .body {
-    height: auto;
-  }
-  .sidebar {
-    width: 100%;
-    height: auto;
-    position: relative;
-  }
-
-  .content {
+  .summary-todo-and-tasks {
+    margin: 0;
+    padding: 0;
     display: flex;
-    flex-direction: column;
+    justify-content: space-between;
   }
-
+  .greeting {
+    display: none;
+  }
   .all {
-    height: auto;
-    display: contents;
-  }
-  .main-headline {
-    gap: inherit;
-    margin-top: 100px;
+    padding: 0;
+    margin-top: 5px;
+    height: 160vh;
     display: flex;
-    flex-direction: column;
+    justify-content: center;
     align-items: center;
-    text-align: center;
+    margin-bottom: 20px;
   }
-  .main-headline img {
-    display: none;
+  .container {
+    padding: 0;
   }
-  .summary-tasks {
-    margin: auto;
-    display: flex;
-    flex-direction: column;
-    justify-content: end;
+
+  @media screen and (max-width: 650px) {
+    .body {
+      height: auto;
+    }
+    .sidebar {
+      width: 100%;
+      height: auto;
+      position: relative;
+    }
+
+    .content {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .all {
+      height: 130vh;
+    }
+    .main-headline {
+      gap: inherit;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+    .main-headline img {
+      display: none;
+    }
+    .summary-tasks {
+      margin: auto;
+      display: flex;
+      flex-direction: column;
+      justify-content: end;
+    }
+    .greeting {
+      display: none;
+    }
+    .container {
+      display: flex;
+      align-items: center;
+    }
+
+    .done {
+      height: 110px;
+      width: 186px;
+      
+    }
+    .done p {
+      font-weight: 400;
+      font-size: 14px;
+    }
+    .done h3{
+      font-size: 47px;
+      font-weight: 600;
+    }
+
+    .todo {
+      font-weight: 400;
+      height: 110px;
+      width: 186px;
+      
+    }
+    .todo p {
+      font-weight: 400;
+      font-size: 14px;
+    }
+    .todo h3{
+      font-size: 47px;
+      font-weight: 600;
+    }
+    .icon-sm{
+      height: 40px;
+      width: 40px;
+    }
+
+    .summary-urgent-tasks {
+      font-weight: 400;
+      height: 110px;
+      width: 396px;
+      
+    }
+    .summary-urgent-tasks p {
+      font-size: 14px;
+    }
+
+    #upcoming-deadline{
+    font-weight: 700;
+    font-size: 16px;
+    }
+
+    .summary-urgent-tasks h3{
+      margin: 0;
+      font-size: 47px;
+      font-weight: 600;
+    }
+
+    .task-container {
+      font-weight: 400;
+      height: 116px;
+      width: 116px;
+      
+    }
+
+    .task-container p {
+      font-weight: 400;
+      font-size: 14px;
+    }
+    .task-container h3 {
+      font-size: 47px;
+      font-weight: 600;
+    }
+
   }
-  .greeting{
-    display: none;
+  @media screen and (max-width: 580px) {
+    .summary-tasks{
+      margin-left: 24px;
+    }
+    .done {
+      height: 110px;
+      width: 186px;
+      
+    }
+    .done p {
+      font-weight: 400;
+      font-size: 14px;
+    }
+    .done h3{
+      font-size: 47px;
+      font-weight: 600;
+    }
+
+    .todo {
+      font-weight: 400;
+      height: 110px;
+      width: 186px;
+      
+    }
+    .todo p {
+      font-weight: 400;
+      font-size: 14px;
+    }
+    .todo h3{
+      font-size: 47px;
+      font-weight: 600;
+    }
+    .icon-sm{
+      height: 40px;
+      width: 40px;
+    }
+
+    .summary-urgent-tasks {
+      font-weight: 400;
+      height: 110px;
+      width: 396px;
+      
+    }
+    .summary-urgent-tasks p {
+      font-size: 14px;
+    }
+
+    #upcoming-deadline{
+    font-weight: 700;
+    font-size: 16px;
+    }
+
+    .summary-urgent-tasks h3{
+      margin: 0;
+      font-size: 47px;
+      font-weight: 600;
+    }
+
+    .task-container {
+      font-weight: 400;
+      height: 116px;
+      width: 116px;
+      
+    }
+
+    .task-container p {
+      font-weight: 400;
+      font-size: 14px;
+    }
+    .task-container h3 {
+      font-size: 47px;
+      font-weight: 600;
+    }
+    
   }
+  @media screen and (max-width: 400px){
+   .done {
+      height: 110px;
+      width: 186px;
+   
+    }
+    .done p {
+      font-weight: 400;
+      font-size: 14px;
+    }
+    .done h3{
+      font-size: 47px;
+      font-weight: 600;
+    }
+
+    .todo {
+      font-weight: 400;
+      height: 110px;
+      width: 186px;
+      
+    }
+    .todo p {
+      font-weight: 400;
+      font-size: 14px;
+    }
+    .todo h3{
+      font-size: 47px;
+      font-weight: 600;
+    }
+    .icon-sm{
+      height: 40px;
+      width: 40px;
+    }
+
+    .summary-urgent-tasks {
+      font-weight: 400;
+      height: 110px;
+      width: 396px;
+      
+    }
+    .summary-urgent-tasks p {
+      font-size: 14px;
+    }
+
+    #upcoming-deadline{
+    font-weight: 700;
+    font-size: 16px;
+    }
+
+    .summary-urgent-tasks h3{
+      margin: 0;
+      font-size: 47px;
+      font-weight: 600;
+    }
+
+    .task-container {
+      font-weight: 400;
+      height: 116px;
+      width: 116px;
+      
+    }
+
+    .task-container p {
+      font-weight: 400;
+      font-size: 14px;
+    }
+    .task-container h3 {
+      font-size: 47px;
+      font-weight: 600;
+    }
+  }
+
 }
-@media screen and (max-width: 440px) {
-}
+
