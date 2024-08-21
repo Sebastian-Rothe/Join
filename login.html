@@ -61,9 +61,13 @@
 
             <div class="input-section-signup">
                 <input type="text" placeholder="Name" class="icon-name" id="username-signup">
-                <input type="text" placeholder="Email" class="icon-email" id="email-signup">
-                <input type="text" name="" id="password-signup" placeholder="Password" class="icon-password">
-                <input type="text" name="" id="confirm-password-signup" placeholder="Confirm Password" class="icon-password">
+                <div class="error-username toggle-display">This field is required</div>
+                <input type="email" placeholder="Email" class="icon-email" id="email-signup">
+                <div class="error-email toggle-display">This field is required</div>
+                <input type="password" name="" id="password-signup" placeholder="Password" class="icon-password">
+                <div class="error-Password toggle-display">This field is required</div>
+                <input type="password" name="" id="confirm-password-signup" placeholder="Confirm Password" class="icon-password">
+                <div class="error-confirm-password toggle-display">This field is required</div>
             </div>
             <div class="check-policy-section">
                 <input type="checkbox" id="policy-checkbox">

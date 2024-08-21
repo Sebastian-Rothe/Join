@@ -148,7 +148,7 @@ body {
 .button-section{
     display: flex;
     margin-top:90px ;
-    gap:35px ;
+    /* gap:35px ; */
 }
 .Login-btn {
     width:110px;
@@ -180,20 +180,36 @@ body {
     outline: none; /* Remove default outline */
 
 }
-input[type="text"] {
-    border-color: #ccc;
-    outline: none; 
+.input-section-signup input:focus {   
+    border-color:#29ABE2;
+    outline: none; /* Remove default outline */
+
 }
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+    border-color: #ccc;
+    outline: none;
+}
+
 
 input[type="text"].invalid {
     border-color: #FF0000;
 }
-.error-validation-email{
-    color:#FF8190;
-    margin-bottom: 3px;
+input[type="email"].invalid {
+    border-color: #FF0000;
 }
-.error-validation-password{
-    color:#FF8190;
+input[type="password"].invalid {
+    border-color: #FF0000;
+}
+.error-validation-email,
+.error-validation-password,
+.error-validation-password,
+.error-username,
+.error-email,
+.error-Password,
+.error-confirm-password {
+    color: #FF8190;
     margin-bottom: 3px;
 }
 
@@ -245,7 +261,7 @@ input[type="text"].invalid {
     flex-direction: column;
     width: 100%;
     /* height:296px; */
-    gap: 32px;
+    /* gap: 32px; */   
     margin-top: 40px;
 }
 .input-section-signup input{
@@ -254,6 +270,7 @@ input[type="text"].invalid {
     background-position: calc(100% - 12px) center;
     background-repeat: no-repeat;
     background-size: 20px;
+    margin-top: 15px;
 }
 
 .check-policy-section{
