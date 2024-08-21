@@ -192,6 +192,11 @@ body {
   height: 69px;
   width: 69px;
 }
+.icon-sm {
+  background-image:url("C:\Users\manue\Documents\GitHub\Join-dummy\assets\img\Frame59.png");
+  height: 69px;
+  width: 69px;
+}
 
 .date {
   display: flex;
