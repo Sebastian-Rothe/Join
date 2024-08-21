@@ -192,7 +192,7 @@ body {
   height: 69px;
   width: 69px;
 }
-.icon-sm {
+.icon-sm:hover {
   background-image:url("C:\Users\manue\Documents\GitHub\Join-dummy\assets\img\Frame59.png");
   height: 69px;
   width: 69px;
@@ -271,6 +271,9 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: end;
+  }
+  .greeting{
+    display: none;
   }
 }
 @media screen and (max-width: 440px) {
