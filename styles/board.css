@@ -177,6 +177,7 @@ input, button{
 /* ---------------- */
 /* Container Styles */
 .task-card {
+  position: relative;
   background-color: #fff;
   border-radius: 24px;
   padding: 16px;
@@ -187,12 +188,38 @@ input, button{
   max-width: 300px;
   max-height: 300px;
 }
+
+
+.align-task-card-head{
+  display: flex;
+  justify-content: space-between;
+}
+.task-head-menu-background{
+  display: none;
+}
+.task-head-menu-background:hover{
+  display: flex;
+  background-color: lightgray;
+  border-radius: 50%;
+  justify-content: center;
+  align-items: center;
+  height: 24px;
+  width: 24px;
+}
+.task-head-menu-background img{
+  height: 24px;
+  width: 24px;
+}
+.task-head-menu-background img:hover  {
+    filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(180deg) brightness(100) contrast(1);
+}
+
 .task-card:hover {
   transform: scale(0.99);
 }
 .task-label {
   font-size: 12px;
-  padding: 2px 8px;
+  padding: 4px 8px;
   border-radius: 4px;
   color: #fff;
   display: inline-block;
@@ -339,10 +366,6 @@ h3{
   .drag-area {
     /* height: 60vh;  */
   }
-  .task-card{
-    min-width: 200px;
-    max-width: 250px;
-  }
   .task-section{
     cursor: grab; 
   }
@@ -377,6 +400,10 @@ h3{
     width: 100%; 
     margin-bottom: 12px; 
     height: 300px;
+  }
+  .task-card{
+    min-width: 200px;
+    max-width: 250px;
   }
 }
 
@@ -431,6 +458,9 @@ h3{
   }
   .addButton-mobileBoard:hover{
     background-color: #29ABE2;
+  }
+  .task-head-menu-background{
+    display: flex;
   }
 }
 /* End of Responsive Design Adjustments */
@@ -600,3 +630,34 @@ h3{
 }
 
 /* end of checkbax css */
+
+
+
+/* ----------------- */
+
+.task-menu {
+  position: absolute;
+  top: 16%; /* Positioniert das Menü direkt unter dem Button */
+  right: 4px; /* Verschiebt das Menü nach links (anpassen je nach Bedarf) */
+  background-color: white;
+  border: 1px solid #ccc;
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  z-index: 1000; 
+  width: 120px;
+  display: none; /* Menü wird standardmäßig ausgeblendet */
+}
+
+/* Menü-Inhalte */
+.task-menu .menu-content div {
+  padding: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  border-radius: 8px;
+  transition: background-color 0.2s;
+}
+
+/* Hover-Effekt für Menü-Elemente */
+.task-menu .menu-content div:hover {
+  background-color: #f0f0f0;
+}

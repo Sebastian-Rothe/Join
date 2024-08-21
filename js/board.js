@@ -106,13 +106,26 @@ function generateTaskCardHTML(element) {
   <div class="task-card" draggable="true" ondragstart="startDragging('${
     element.idNumber
   }')" onclick="openDetailedTaskOverlay('${element.idNumber}')">
-  <div class="task-label ${
-    element.category === "UserStory"
-      ? "user-story"
-      : element.category === "TechnicalTask"
-      ? "technical-task"
-      : "default-label"
-  }">${element.category}</div>
+  <div class="align-task-card-head">
+    <div class="task-label ${
+      element.category === "UserStory"
+        ? "user-story"
+        : element.category === "TechnicalTask"
+        ? "technical-task"
+        : "default-label"
+    }">${element.category}</div>
+    <div class="task-head-menu-background" onclick="toggleTaskMenu(event, '${element.idNumber}')">
+    <img src="./assets/icons/menu-mobile-board.svg" alt="">
+    <div class="task-menu" style="display: none;" id="task-menu-${element.idNumber}">
+        <div class="menu-content">
+            <div onclick="moveTaskTo(event, 'todo', '${element.idNumber}');">To Do</div>
+            <div onclick="moveTaskTo(event, 'inProgress', '${element.idNumber}');">In Progress</div>
+            <div onclick="moveTaskTo(event, 'awaitFeedback', '${element.idNumber}');">Await Feedback</div>
+            <div onclick="moveTaskTo(event, 'done', '${element.idNumber}');">Done</div>
+        </div>
+    </div>
+</div>
+  </div>
       <div class="task-title">${element.title}</div>
       <div class="task-description">${element.description}</div>
 
@@ -592,10 +605,25 @@ document.querySelectorAll('.task-section').forEach(section => {
     if (!isDragging) return;
     e.preventDefault();
     const x = e.pageX - section.offsetLeft;
-    const walk = (x - startX) * 2; // Scrollgeschwindigkeit anpassen
+    const walk = (x - startX) * 2; 
     section.scrollLeft = scrollLeft - walk;
   });
 });
 
 
 
+function moveTaskTo(event, newStatus, taskId) {
+  event.stopPropagation(); 
+  let task = tasks.find((t) => t.idNumber === taskId);
+  if (task) {
+    task.status = newStatus;
+    updateBoard();
+    putData(`/tasks/${task.idNumber}`, task)
+  }
+}
+
+function toggleTaskMenu(event, taskId) {
+  event.stopPropagation(); 
+  const taskMenu = document.getElementById(`task-menu-${taskId}`);
+  taskMenu.style.display = taskMenu.style.display === "block" ? "none" : "block";
+}
