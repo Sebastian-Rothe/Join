@@ -77,19 +77,44 @@ async function loginUser() {
     let users = await userResponse.json();
     
     let userFound = false;
-    
+    let userName = "";
+
     if (users) {
         for (let key in users) {
             if (users[key].email === email && users[key].password === password) {
                 userFound = true;
+                userName = users[key].username; 
                 break;
             }
         }
     }
 
     if (userFound) {
+        // Store the logged-in username
+        localStorage.setItem("loggedInUserName", userName);
+    
+        // Determine the current time of day
+        let currentHour = new Date().getHours();
+        let timeOfDay = '';
+    
+        if (currentHour >= 5 && currentHour < 12) {
+            timeOfDay = 'morning';
+        } else if (currentHour >= 12 && currentHour < 17) {
+            timeOfDay = 'afternoon';
+        } else if (currentHour >= 17 && currentHour < 21) {
+            timeOfDay = 'evening';
+        } else {
+            timeOfDay = 'night';
+        }
+    
+        // Store time of day in localStorage
+        console.log("Stored time of day:", timeOfDay);
+localStorage.setItem("timeOfDay", timeOfDay);
+    
+        // Redirect to summary page
         window.location.replace("summary.html");
-    } else {
+    }
+    else {
         
         document.querySelector(".error-validation-email").classList.remove('toggle-display');
         document.querySelector(".error-validation-password").classList.remove('toggle-display');

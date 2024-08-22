@@ -1,3 +1,4 @@
+
 async function initBoard() {
   await loadTasks();
   countStatus();
@@ -90,3 +91,44 @@ document.addEventListener("DOMContentLoaded", () => {
     );
   });
 });
+
+// /////////////////////////////////////////////////////////////updateGreeting
+function updateGreeting() {
+  let userName = localStorage.getItem("loggedInUserName");
+  let timeOfDay = localStorage.getItem("timeOfDay");
+  
+  console.log('Time of Day:', timeOfDay);  
+  console.log('User Name:', userName);    
+
+  let greetingText = '';
+
+  if (timeOfDay === 'morning') {
+      greetingText = 'GOOD MORNING';
+  } else if (timeOfDay === 'afternoon') {
+      greetingText = 'GOOD AFTERNOON';
+  } else if (timeOfDay === 'evening') {
+      greetingText = 'GOOD EVENING';
+  } else if (timeOfDay === 'night') {
+      greetingText = 'GOOD NIGHT';
+  } else {
+      greetingText = 'WellCome';
+  }
+
+  if (userName) {
+      document.getElementById("greetingText").textContent = greetingText;
+      document.getElementById("greetingName").textContent = userName;
+  }
+}
+
+
+
+// //////////////////////////////////////////////////////////////updateGreetingName
+
+function updateGreetingName() {
+  let userName = localStorage.getItem("loggedInUserName");
+  if (userName) {
+      document.getElementById("greetingName").textContent = userName;
+  }
+}
+
+document.addEventListener("DOMContentLoaded", updateGreeting);

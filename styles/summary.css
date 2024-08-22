@@ -183,10 +183,17 @@ body {
   margin-left: 47px;
   font-size: 30px;
 }
-
-.greeting span {
-  color: #1e90ff;
+.greeting-text{
+  color: black;
+  font-size: 47px;
 }
+.greeting-name{
+  color: #1e90ff;
+  font-size: 64px
+}
+
+
+
 
 .icon-sm {
   height: 69px;
