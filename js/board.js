@@ -322,7 +322,7 @@ function getPopupHTML(task) {
               <img src="../assets/icons/Property 1=Default.png" alt="delete"/>
             </div>
             <div class="seperator"></div>
-            <div onclick="editTask()" class="editDetailsContain">
+            <div onclick="openPopupEditTask('${task.idNumber}')" class="editDetailsContain">
               <img src="assets/icons/Property 1=Edit2.png" alt="edit"/>
             </div>
           </div>
@@ -627,3 +627,176 @@ function toggleTaskMenu(event, taskId) {
   const taskMenu = document.getElementById(`task-menu-${taskId}`);
   taskMenu.style.display = taskMenu.style.display === "block" ? "none" : "block";
 }
+
+
+// --------------------------------------------->>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>________________-------------->>>>>>>
+
+function openPopupEditTask(taskId) {
+  console.log('Opening edit task popup for task ID:', taskId);
+
+  document.getElementById('modalOverlay').style.display = 'block';
+  document.getElementById('addTaskModal').style.display = 'block';
+
+  fetch('add_task.html')
+      .then(response => response.text())
+      .then(html => {
+          const parser = new DOMParser();
+          const doc = parser.parseFromString(html, 'text/html');
+
+          const content = doc.querySelector('.container-main');
+          if (content) {
+              document.getElementById('addTaskContent').innerHTML = content.outerHTML;
+          }
+          let newHeadline = document.getElementById('titleHeaderAdust');
+          if (newHeadline) {
+              newHeadline.innerHTML = "Edit Task"; 
+          } else {
+              console.error('Element mit ID titleHeaderAdust nicht gefunden');
+          }
+          const task = tasks.find(t => t.idNumber === taskId);
+
+          if (task) {
+              document.getElementById('title').value = task.title || '';
+              document.getElementById('description').value = task.description || '';
+              document.getElementById('date').value = task.date || '';
+              document.getElementById('category').value = task.category || '';
+
+              const priorityButton = document.getElementById(task.priority);
+              if (priorityButton) {
+                  priorityButton.classList.add('priority-btn-active');
+              }
+
+              fillAssignedToDropdown(task.assignedTo || []);
+              fillSubtasks(task.subtasks || []);
+
+              const selectedBadgesContainer = document.getElementById('selectedBadges');
+              selectedBadgesContainer.innerHTML = ''; 
+              task.assignedTo.forEach(contact => {
+                  selectedBadgesContainer.innerHTML += createProfileIcon(contact);
+              });
+          }
+
+          const saveButton = document.querySelector('.create-task-btn');
+          saveButton.textContent = 'Save Task';
+          saveButton.onclick = function() {
+              updateTask(taskId);
+          };
+
+          onloadfunc(); 
+      })
+      .catch(error => {
+          console.error('Error loading add_task.html:', error);
+      });
+}
+
+
+function fillAssignedToDropdown(assignedTo) {
+  const dropdown = document.getElementById('contactsDropdown');
+  const selectedBadgesContainer = document.getElementById('selectedBadges');
+  selectedBadgesContainer.innerHTML = '';
+  const options = [...dropdown.querySelectorAll('.dropdown-option')];
+
+  options.forEach(option => {
+      const contactName = option.textContent.trim(); 
+
+      if (assignedTo.includes(contactName)) {
+          const checkbox = option.querySelector('input[type="checkbox"]');
+          if (checkbox) {
+              checkbox.checked = true;
+              addBadge(contactName, selectedBadgesContainer); 
+          }
+      } else {
+          const checkbox = option.querySelector('input[type="checkbox"]');
+          if (checkbox) {
+              checkbox.checked = false;
+          }
+      }
+  });
+}
+
+function addBadge(fullname, container) {
+  const badge = document.createElement('span');
+  badge.className = 'badge';
+  badge.textContent = fullname;
+  badge.setAttribute('data-fullname', fullname);
+  badge.onclick = () => {
+      badge.remove();
+      const checkbox = document.querySelector(`input[type="checkbox"][value="${fullname}"]`);
+      if (checkbox) {
+          checkbox.checked = false; 
+      }
+  };
+
+  container.appendChild(badge);
+}
+
+function fillSubtasks(subtasks) {
+  const subtaskContainer = document.getElementById('subtask-list-container');
+  const subtaskList = subtaskContainer.querySelector('ul');
+  subtaskList.innerHTML = ''; 
+
+  if (subtasks.length > 0) {
+      subtaskList.classList.remove('toggle-display'); 
+  } else {
+      subtaskList.classList.add('toggle-display'); 
+  }
+
+  subtasks.forEach(subtask => {
+      const li = document.createElement('li');
+      li.id = subtask.title; 
+      li.classList.add('subtask-list');
+
+      li.innerHTML = `
+        <div class="subtask-list-left">
+            <span>${subtask.title}</span>
+        </div>
+        <div class="subtask-list-right">
+            <span><img src="../assets/icons/EditAddTask.svg" alt="" class="toggle-display" onclick="editSubTask('${subtask.title}')"></span>
+            <div class="subtask-list-divider toggle-display"></div>
+            <span><img src="../assets/icons/delete.svg" alt="" class="toggle-display" onclick="removeSubTask('${subtask.title}')"></span>
+        </div>
+      `;
+
+      subtaskList.appendChild(li);
+  });
+}
+
+function updateTask(taskId) {
+  const task = tasks.find(t => t.idNumber === taskId); 
+
+  if (task) {
+      task.title = document.getElementById('title').value.trim(); 
+      task.description = document.getElementById('description').value.trim(); 
+      task.date = document.getElementById('date').value;
+      task.category = document.getElementById('category').value;
+
+      const selectedPriority = [...document.querySelectorAll('.priority-btn')].find(btn => btn.classList.contains('priority-btn-active'));
+      task.priority = selectedPriority ? selectedPriority.id : 'low'; 
+      const contactsDropdown = document.getElementById('contactsDropdown');
+
+      if (contactsDropdown) {
+          const selectedOptions = [...contactsDropdown.querySelectorAll('input[type="checkbox"]:checked')];
+          task.assignedTo = selectedOptions.map(option => option.value);
+      } else {
+          console.error("Das Dropdown-Element mit der ID 'contactsDropdown' wurde nicht gefunden.");
+      }
+      const subtasks = [...document.getElementById('subtask-list-container').querySelectorAll('li')].map(li => ({
+          title: li.textContent.trim(),
+          completed: false
+      }));
+      task.subtasks = subtasks;
+
+      putData(`/tasks/${taskId}`, task).then(() => {
+          closePopupAddTask(); 
+          closePopup();
+          updateBoard(); 
+      });
+  }
+}
+
+
+
+
+
+
+
