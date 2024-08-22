@@ -8,16 +8,13 @@ body {
     justify-content: center;
     align-items: center;
 }
-
 .main-section {
     display: flex;
     height: 100vh;
     width: 100%;
     overflow-y: auto;
 }
-
 .logo-sidebar {
-   
     width: 10%;
     display: flex;
     flex-direction: column;
@@ -27,35 +24,29 @@ body {
     top: 0;
     left: 0;
 }
-
 .content {
     width: 90%;
     display: flex;
-    justify-content: flex-end; /* Nach rechts ausrichten */
+    justify-content: flex-end; 
     flex-direction: column;
-    align-items: center; /* Inhalt zentrieren */
-    justify-content: center; /* Inhalt zentrieren */
+    align-items: center;
+    justify-content: center;
     height: 100vh;
-  
 }
-
 .header-login-content {
     display: flex;
     justify-content: flex-end;
     align-items: center;
     padding-right: 20px;
     padding-top: 20px;
-    width: 90%;
+    width: 85%;
     height: 67px;
     position: fixed;
     top: 0;
     gap: 35px;
     margin-bottom: 149px;
-  
     margin-left: 10%;
-    
 }
-
 .signup-btn {
     width: 91px;
     height: 49px;
@@ -67,7 +58,6 @@ body {
     cursor: pointer;
     border: none;
 }
-
 .signup-btn:hover {
     background-color: #29ABE2;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.3);
@@ -76,8 +66,8 @@ body {
     gap: 30px;
 }
 .footer-links a{
-   text-decoration: none;
-   color: #A8A8A8;
+    text-decoration: none;
+    color: #A8A8A8;
 }
 /* ************************************************************login section */
 .login-section {
@@ -116,8 +106,7 @@ body {
 .input-section{
     display: flex;
     flex-direction: column;
-    width: 100%;
-    /* height:196px; */
+    width: 80%;
     gap: 10px;
     margin-top: 40px;
 }
@@ -127,14 +116,16 @@ body {
     background-position: calc(100% - 12px) center;
     background-repeat: no-repeat;
     background-size: 20px;
-    
+    margin-top: 15px;
+    border: 1px solid #ccc;
+    font-size:20px;
+    padding-left: 10px;
 }
 .icon-email {
     background-image: url(../assets/icons/mailicon.svg);
 }
 .icon-name {
     background-image: url(../assets/icons/person.svg);
-   
 }
 .icon-password {
     background-image: url(../assets/icons/lock.svg);
@@ -142,13 +133,12 @@ body {
 .remember-password-section{
     display: flex;
     justify-content: flex-start;
-    width: 100%;
+    width: 80%;
     margin-top: 10px;
 }
 .button-section{
     display: flex;
     margin-top:90px ;
-    /* gap:35px ; */
 }
 .Login-btn {
     width:110px;
@@ -191,8 +181,6 @@ input[type="password"] {
     border-color: #ccc;
     outline: none;
 }
-
-
 input[type="text"].invalid {
     border-color: #FF0000;
 }
@@ -212,12 +200,10 @@ input[type="password"].invalid {
     color: #FF8190;
     margin-bottom: 3px;
 }
-
 /* **************************************************sign up section */
 .signup-section {
     width: 50%;
     max-width: 692px;
-    /* height: 493px; */
     padding: 20px;
     border-radius: 20px;
     box-shadow: 0px 0px 10px 3px rgba(0, 0, 0, 0.08);
@@ -241,12 +227,10 @@ input[type="password"].invalid {
     display: flex;
     justify-content: flex-start;
     width: 10%;
-
 }
 .title-section-left img{
    cursor: pointer;
 }
-
 .title-section-right{
     display: flex;
     text-align: center;
@@ -254,14 +238,11 @@ input[type="password"].invalid {
     justify-content: center;
     width: 90%;
     align-items: center;
-    
 }
 .input-section-signup{
     display: flex;
     flex-direction: column;
-    width: 100%;
-    /* height:296px; */
-    /* gap: 32px; */   
+    width: 80%; 
     margin-top: 40px;
 }
 .input-section-signup input{
@@ -271,8 +252,13 @@ input[type="password"].invalid {
     background-repeat: no-repeat;
     background-size: 20px;
     margin-top: 15px;
+    border: 1px solid #ccc;
+    font-size:20px;
+    padding-left: 10px;
 }
-
+input::placeholder {
+    color:#D1D1D1;
+  }
 .check-policy-section{
     display: flex;
     justify-content:center;
@@ -282,14 +268,11 @@ input[type="password"].invalid {
 .button-section-signup{
     display: flex;
     margin-top:30px ;
-   
 }
 .check-policy-section a{
     text-decoration: none;
     color: #29ABE2;
-
 }
-
 .footer-links {
     height: 5vh;
     display: flex;
@@ -314,19 +297,16 @@ input[type="checkbox"]:invalid + span {
         height: auto;
         padding: 20px;
     }
-
     .content {
         width: 100%;
         height: auto;
         padding: 20px;
     }
-
     .header-login-content {
         justify-content: center;
         padding-right: 0;
         height: auto;
     }
-
     .login-section {
         width: 90%;
         max-width: none;

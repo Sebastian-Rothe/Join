@@ -11,22 +11,32 @@
       <link rel="stylesheet" href="./template.css"> 
       <link rel="stylesheet" href="./privacy.css">
       <script src="./js/legal.js"></script>  
-      
+      <script>
+        // back to login page
+        document.addEventListener("DOMContentLoaded", function () {
+        const backIcon = document.querySelector(".backIcon");
+        if (backIcon) {
+        backIcon.addEventListener("click", function () {
+        window.location.href = "login.html";
+        });
+        }
+        });
+    </script> 
     </head>
   </head>
 <body onload="includeHTML()">
-  <div w3-include-html="./head-side-foot.html"></div>
+  <div w3-include-html="./head-side-foot-guest.html"></div>
 
     <div class="all">
       <div class="container-fluid mt-5 pt-3">
         <div>
-          <div class="title"><img class="backIcon" src="/assets/icons/left-icon.png" alt="back"></div>
+          <div class="title"></div>
       
         <div>
-          <div class="title">
-            Privacy policy
+          <div class="title"> Privacy policy <img class="backIcon" src="/assets/icons/left-icon.png" alt="back">
             </div>
           <p>
+           
             Information according to § 5 DDG<br />
             Muaz Yildiz<br />
             Kranefeldstr. 12<br />
