@@ -64,45 +64,7 @@ function getUpcomingDeadline(tasks) {
     ? nextDeadline.toLocaleDateString()
     : "No upcoming deadlines";
 }
-document.addEventListener("DOMContentLoaded", () => {
-  // Bildpfade für Hover-Effekte
-  const todoHoverImg = "assets/icons/Frame 59 (2).png";
-  const doneHoverImg = "assets/icons/Frame 59 (4).png";
 
-  // Bildpfade für Originalbilder
-  const todoOriginalImg = "assets/icons/Frame 59 (1).png";
-  const doneOriginalImg = "assets/icons/Frame 59 (3).png";
-
-  // Abfrage der Bild-Elemente
-  const todoImg = document.querySelector(".todo img");
-  const doneImg = document.querySelector(".done img");
-
-  // Hover-Ereignisse für To-do
-  document.querySelector(".todo").addEventListener("mouseover", () => {
-    if (todoImg) {
-      todoImg.src = todoHoverImg;
-    }
-  });
-
-  document.querySelector(".todo").addEventListener("mouseout", () => {
-    if (todoImg) {
-      todoImg.src = todoOriginalImg;
-    }
-  });
-
-  // Hover-Ereignisse für Done
-  document.querySelector(".done").addEventListener("mouseover", () => {
-    if (doneImg) {
-      doneImg.src = doneHoverImg;
-    }
-  });
-
-  document.querySelector(".done").addEventListener("mouseout", () => {
-    if (doneImg) {
-      doneImg.src = doneOriginalImg;
-    }
-  });
-});
 document.addEventListener("DOMContentLoaded", () => {
   const hoverImgs = {
     ".todo": "assets/icons/Frame 59 (2).png",
