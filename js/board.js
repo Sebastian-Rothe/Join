@@ -30,11 +30,16 @@ function calculateSubtaskStats(subtasks) {
  * @function updateBoard
  * @description Updates the board by rendering tasks for different status types.
  */
-function updateBoard() {
-  renderBoard("todo", "todoBoard");
-  renderBoard("inProgress", "inProgressBoard");
-  renderBoard("awaitFeedback", "awaitFeedbackBoard");
-  renderBoard("done", "doneBoard");
+/**
+ * @function updateBoard
+ * @description Updates the board by rendering tasks for different status types.
+ * @param {Array} filteredTasks - Array of tasks to be displayed on the boards.
+ */
+function updateBoard(filteredTasks = tasks) {
+  renderBoard("todo", "todoBoard", filteredTasks);
+  renderBoard("inProgress", "inProgressBoard", filteredTasks);
+  renderBoard("awaitFeedback", "awaitFeedbackBoard", filteredTasks);
+  renderBoard("done", "doneBoard", filteredTasks);
 }
 
 /**
@@ -76,8 +81,9 @@ function renderTaskCard(element) {
  * @description Renders the board by updating the content for a specified status type.
  * @param {string} statusType - The status type to render tasks for.
  * @param {string} boardElementId - The ID of the HTML element to render the tasks in.
+ * @param {Array} tasks - Array of task objects to be filtered and displayed.
  */
-function renderBoard(statusType, boardElementId) {
+function renderBoard(statusType, boardElementId, tasks) {
   const filteredTasks = filterTasksByStatus(tasks, statusType);
   const content = document.getElementById(boardElementId);
   content.innerHTML = "";
@@ -508,6 +514,8 @@ function closePopup() {
   const popupOverlay = document.getElementById("board-popupOverlay");
   if (popupOverlay) popupOverlay.style.display = "none";
   updateBoard();
+  let searchInput = document.getElementById('search-input');
+  searchInput.value = '';
 }
 
 /**
@@ -795,8 +803,15 @@ function updateTask(taskId) {
 }
 
 
+function searchTasks() {
+  let searchInput = document.getElementById('search-input');
+  let searchedTask = searchInput.value.trim().toLowerCase();
 
-
-
+  let filteredTasks = tasks.filter(task =>
+      task.title.toLowerCase().includes(searchedTask) ||
+      (task.description && task.description.toLowerCase().includes(searchedTask))
+  );
+  updateBoard(filteredTasks);
+}
 
 
