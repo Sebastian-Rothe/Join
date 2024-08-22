@@ -376,7 +376,7 @@ body {
 
   @media screen and (max-width: 580px) {
     .summary-tasks {
-      margin-left: 24px;
+      margin-left: 28px;
     }
     .done {
       height: 110px;
