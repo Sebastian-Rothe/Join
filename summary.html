@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="contactsPage.css" />
     <link rel="stylesheet" href="template.css" />
     <link rel="stylesheet" href="./styles/summary.css" />
-    <script src="js\summary.js"></script>
+    <script src="js/summary.js"></script>
     <script src="./js/firebase.js"></script>
     <script src="script.js"></script>
   </head>
@@ -20,12 +20,15 @@
         <div class="summary-tasks">
           <div class="main-headline">
             <p>Join 360</p>
-            <img src="assets\img\Vector 5.png" alt="" />
+            <img src="assets/img/Vector 5.png" alt="" />
             <span class="key">Key Metrics at a Glance</span>
           </div>
           <div class="summary-todo-and-tasks">
             <div class="todo" onclick="window.location.href='board.html'">
-              <img class="icon-sm" src="assets\icons\Frame 59 (1).png" alt="" />
+              <img
+                class="icon-sm"
+                src="assets/icons/Frame 59 (1).png"
+                alt="To-do Icon" />
               <div class="amount-and-todo">
                 <h3 id="count-todo"></h3>
                 <p>To-do</p>
@@ -33,7 +36,10 @@
             </div>
 
             <div class="done" onclick="window.location.href='board.html'">
-              <img class="icon-sm" src="assets\icons\Frame 59 (3).png" alt="" />
+              <img
+                class="icon-sm"
+                src="assets/icons/Frame 59 (3).png"
+                alt="Done Icon" />
               <div class="amount-and-todo">
                 <h3 id="count-done"></h3>
                 <p>Done</p>
@@ -44,13 +50,13 @@
           <div
             class="summary-urgent-tasks"
             onclick="window.location.href='board.html'">
-            <img class="icon-sm" src="assets\icons\Frame 59.png" alt="" />
+            <img class="icon-sm" src="assets/icons/Frame 59.png" alt="" />
 
             <div class="diso">
               <h3 id="count-priority"></h3>
               <p>Urgent</p>
             </div>
-            <img src="assets\img\Vector 5 (1).png" alt="" />
+            <img src="assets/img/Vector 5 (1).png" alt="" />
             <div class="date">
               <p id="upcoming-deadline"></p>
               <p>Upcoming Deadline</p>

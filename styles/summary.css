@@ -305,13 +305,14 @@ body {
     .done {
       height: 110px;
       width: 186px;
-      
     }
+
     .done p {
       font-weight: 400;
       font-size: 14px;
     }
-    .done h3{
+
+    .done h3 {
       font-size: 47px;
       font-weight: 600;
     }
@@ -320,17 +321,19 @@ body {
       font-weight: 400;
       height: 110px;
       width: 186px;
-      
     }
+
     .todo p {
       font-weight: 400;
       font-size: 14px;
     }
-    .todo h3{
+
+    .todo h3 {
       font-size: 47px;
       font-weight: 600;
     }
-    .icon-sm{
+
+    .icon-sm {
       height: 40px;
       width: 40px;
     }
@@ -339,18 +342,17 @@ body {
       font-weight: 400;
       height: 110px;
       width: 396px;
-      
     }
     .summary-urgent-tasks p {
       font-size: 14px;
     }
 
-    #upcoming-deadline{
-    font-weight: 700;
-    font-size: 16px;
+    #upcoming-deadline {
+      font-weight: 700;
+      font-size: 16px;
     }
 
-    .summary-urgent-tasks h3{
+    .summary-urgent-tasks h3 {
       margin: 0;
       font-size: 47px;
       font-weight: 600;
@@ -360,7 +362,6 @@ body {
       font-weight: 400;
       height: 116px;
       width: 116px;
-      
     }
 
     .task-container p {
@@ -371,22 +372,21 @@ body {
       font-size: 47px;
       font-weight: 600;
     }
-
   }
+
   @media screen and (max-width: 580px) {
-    .summary-tasks{
+    .summary-tasks {
       margin-left: 24px;
     }
     .done {
       height: 110px;
       width: 186px;
-      
     }
     .done p {
       font-weight: 400;
       font-size: 14px;
     }
-    .done h3{
+    .done h3 {
       font-size: 47px;
       font-weight: 600;
     }
@@ -395,17 +395,16 @@ body {
       font-weight: 400;
       height: 110px;
       width: 186px;
-      
     }
     .todo p {
       font-weight: 400;
       font-size: 14px;
     }
-    .todo h3{
+    .todo h3 {
       font-size: 47px;
       font-weight: 600;
     }
-    .icon-sm{
+    .icon-sm {
       height: 40px;
       width: 40px;
     }
@@ -414,18 +413,17 @@ body {
       font-weight: 400;
       height: 110px;
       width: 396px;
-      
     }
     .summary-urgent-tasks p {
       font-size: 14px;
     }
 
-    #upcoming-deadline{
-    font-weight: 700;
-    font-size: 16px;
+    #upcoming-deadline {
+      font-weight: 700;
+      font-size: 16px;
     }
 
-    .summary-urgent-tasks h3{
+    .summary-urgent-tasks h3 {
       margin: 0;
       font-size: 47px;
       font-weight: 600;
@@ -435,79 +433,6 @@ body {
       font-weight: 400;
       height: 116px;
       width: 116px;
-      
-    }
-
-    .task-container p {
-      font-weight: 400;
-      font-size: 14px;
-    }
-    .task-container h3 {
-      font-size: 47px;
-      font-weight: 600;
-    }
-    
-  }
-  @media screen and (max-width: 400px){
-   .done {
-      height: 110px;
-      width: 186px;
-   
-    }
-    .done p {
-      font-weight: 400;
-      font-size: 14px;
-    }
-    .done h3{
-      font-size: 47px;
-      font-weight: 600;
-    }
-
-    .todo {
-      font-weight: 400;
-      height: 110px;
-      width: 186px;
-      
-    }
-    .todo p {
-      font-weight: 400;
-      font-size: 14px;
-    }
-    .todo h3{
-      font-size: 47px;
-      font-weight: 600;
-    }
-    .icon-sm{
-      height: 40px;
-      width: 40px;
-    }
-
-    .summary-urgent-tasks {
-      font-weight: 400;
-      height: 110px;
-      width: 396px;
-      
-    }
-    .summary-urgent-tasks p {
-      font-size: 14px;
-    }
-
-    #upcoming-deadline{
-    font-weight: 700;
-    font-size: 16px;
-    }
-
-    .summary-urgent-tasks h3{
-      margin: 0;
-      font-size: 47px;
-      font-weight: 600;
-    }
-
-    .task-container {
-      font-weight: 400;
-      height: 116px;
-      width: 116px;
-      
     }
 
     .task-container p {
@@ -520,5 +445,71 @@ body {
     }
   }
 
+  @media screen and (max-width: 400px) {
+    .done {
+      height: 110px;
+      width: 186px;
+    }
+    .done p {
+      font-weight: 400;
+      font-size: 14px;
+    }
+    .done h3 {
+      font-size: 47px;
+      font-weight: 600;
+    }
+
+    .todo {
+      font-weight: 400;
+      height: 110px;
+      width: 186px;
+    }
+    .todo p {
+      font-weight: 400;
+      font-size: 14px;
+    }
+    .todo h3 {
+      font-size: 47px;
+      font-weight: 600;
+    }
+    .icon-sm {
+      height: 40px;
+      width: 40px;
+    }
+
+    .summary-urgent-tasks {
+      font-weight: 400;
+      height: 110px;
+      width: 396px;
+    }
+    .summary-urgent-tasks p {
+      font-size: 14px;
+    }
+
+    #upcoming-deadline {
+      font-weight: 700;
+      font-size: 16px;
+    }
+
+    .summary-urgent-tasks h3 {
+      margin: 0;
+      font-size: 47px;
+      font-weight: 600;
+    }
+
+    .task-container {
+      font-weight: 400;
+      height: 116px;
+      width: 116px;
+    }
+
+    .task-container p {
+      font-weight: 400;
+      font-size: 14px;
+    }
+    .task-container h3 {
+      font-size: 47px;
+      font-weight: 600;
+    }
+  }
 }
-
