@@ -8,6 +8,7 @@ function backToLoginPage(){
     document.getElementById('signupSection').style.display = 'none';
     document.getElementById('loginSection').style.display = 'flex';
 }
+// //////////////////////////////////////////////////////////////////sign up
 async function SignUp() {
      // If validation fails, the task will not be added
      if (!formvalidationSignUp()) {       
@@ -20,20 +21,9 @@ async function SignUp() {
     let policyCheckbox = document.getElementById("policy-checkbox");
     let policyError = document.getElementById("policy-error");
 
-
      // Clear any previous error message
      policyError.style.display = "none";
 
-    // Basic validation
-    if (username === "" || email === "" || password === "" || confirmPassword === "") {
-        alert("Please enter a username, email, and password.");
-        return;
-    }
-
-    if (password !== confirmPassword) {
-        alert("Passwords do not match.");
-        return;
-    }
     if (!policyCheckbox.checked) {
         policyError.textContent = "You must accept the Privacy policy to sign up.";
         policyError.style.display = "inline";
@@ -46,10 +36,9 @@ async function SignUp() {
         password: password
     };
 
-
     // save to fire abse
     await postContact("/users", newUser);
-    alert("Sign-up data saved successfully!");
+    // alert("Sign-up data saved successfully!");
         
     // Save to local storage
     // localStorage.setItem("user", JSON.stringify(newUser));
@@ -60,13 +49,14 @@ async function SignUp() {
     document.getElementById("email-signup").value = "";
     document.getElementById("password-signup").value = "";
     document.getElementById("confirm-password-signup").value = "";
-
     
     policyCheckbox.checked = false;
     policyError.style.display = "none";
     
     backToLoginPage();
 }
+// //////////////////////////////////////////////////////////////////////////////login
+
 async function loginUser() {
      // If validation fails, the task will not be added
      if (!formvalidationLogIn()) {       
@@ -76,47 +66,41 @@ async function loginUser() {
     let password = document.getElementById("password").value.trim();
 
     // let savedUser = JSON.parse(localStorage.getItem("user"));
-
     // if (savedUser && savedUser.email === email && savedUser.password === password) {
-    //     alert("Login successful!");
-        
+    //     alert("Login successful!");        
     // } else {
     //     alert("Invalid email or password.");
     // }
-
-    if (email === "" || password === "") {
-        alert("Please enter both email and password.");
-        return;
-    }
-
    
-        // Fetch all users from Firebase
-        let userResponse = await fetch(BASE_URL + "/users.json");
-        let users = await userResponse.json();
-
-        
-        let userFound = false;
-        
-        if (users) {
-            for (let key in users) {
-                if (users[key].email === email && users[key].password === password) {
-                    userFound = true;
-                    break;
-                }
+    // Fetch all users from Firebase
+    let userResponse = await fetch(BASE_URL + "/users.json");
+    let users = await userResponse.json();
+    
+    let userFound = false;
+    
+    if (users) {
+        for (let key in users) {
+            if (users[key].email === email && users[key].password === password) {
+                userFound = true;
+                break;
             }
         }
+    }
 
-        if (userFound) {
-            alert("Login successful!");
-            window.location.replace("summary.html");
-        } else {
-            alert("Invalid email or password.");
-        }
-
-       
+    if (userFound) {
+        window.location.replace("summary.html");
+    } else {
+        
+        document.querySelector(".error-validation-email").classList.remove('toggle-display');
+        document.querySelector(".error-validation-password").classList.remove('toggle-display');
+    } 
 }
-    
+/////////////////////////////////////////////////////login Guest
+function loginGuest(){
+    window.location.replace("summary.html");
+}
 /////////////////////////////////////////////////////form validation login
+
 function formvalidationLogIn() {
     let emailInput = document.getElementById("username");
     let passwordInput = document.getElementById("password");
@@ -148,6 +132,7 @@ function formvalidationLogIn() {
     return isValid;
 }
 /////////////////////////////////////////////////////form validation sign up
+
 function formvalidationSignUp() {
     let usernameSignup = document.getElementById("username-signup");
     let emailSignup = document.getElementById("email-signup");
