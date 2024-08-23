@@ -18,53 +18,66 @@ body {
     justify-content: center;
     align-items: center;
 }
-
-/* .logo-sidebar {
-    width: 10%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 64px 0;
-    position: sticky;
-    top: 0;
-    left: 0;
-    margin-left: 20px;
-} */
-
 .logo-sidebar {
   position: absolute;
   top: 20px;
   left: 20px;
+  width: 100px;
+  height: 100px;
+  z-index: 1000;
+}
+/* *******************************************************************start Logo animation */
+.logo-image {
+  position: absolute;
+  top: 50vh; /* Start position*/
+  left: 50vw;
+  transform: translate(-50%, -50%) scale(4);
+  animation: LogoAnimate 0.9s forwards ease-in-out; /* Starts the image animation */
+  width: 100%;
+  height: auto;
+  z-index: 1;
+}
+/* Background div behind the logo image */
+.background-overlay {
+  position: absolute;
+  width: 100vw; 
+  height: 100vh;
+  background-color: #f6f7f8;
+  transform: translate(-50vw, -50vh) scale(4.9);
+  animation: fadeBackground 0.9s forwards ease-in-out; /* Starts the background animation fade*/
+  z-index: -1;
 }
 
-/* .content {
-    width: 90%;
-    display: flex;
-    justify-content: flex-end; 
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-} */
+@keyframes LogoAnimate {
+  0% {
+    top: 50vh; /* Start position */
+    left: 50vw;
+    transform: translate(-50%, -50%) scale(4); /* Start: Enlarged */
+  }
+  100% {
+    top: 20px; /* End position (vertical) */
+    left: 20px;
+    transform: translate(0, 0) scale(1); /* End position: Normal size */
+  }
+}
 
+
+@keyframes fadeBackground {
+  0% {
+    width: 50vw; /* Start size of the background */
+    height: 50vh; 
+    opacity: 1;
+  }
+  100% {
+    width: 50vw; /* End size of the background */
+    height: 50vh;
+    opacity: 0;
+  }
+}
+/* *******************************************************************End Logo animation */
 .content {
   width: 100%;
 }
-
-/* .header-login-content {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    padding-right: 20px;
-    padding-top: 20px;
-    width: 85%;
-    height: 67px;
-    position: fixed;
-    top: 0;
-    gap: 35px;
-    margin-bottom: 149px;
-    margin-left: 10%;
-} */
 
 .header-login-content {
   position: absolute;
@@ -317,28 +330,6 @@ input[type="checkbox"]:invalid + span {
   color: red; /* Highlight the label if the checkbox is not checked */
 }
 
-/* @media (max-width: 768px) {
-  .logo-sidebar {
-    width: 100%;
-    height: auto;
-    padding: 20px;
-  }
-  .content {
-    width: 100%;
-    height: auto;
-    padding: 20px;
-  }
-  .header-login-content {
-    justify-content: center;
-    padding-right: 0;
-    height: auto;
-  }
-  .login-section {
-    width: 90%;
-    max-width: none;
-  }
-} */
-
 
 @media (max-width: 660px) {
     .logo-sidebar img {
@@ -351,5 +342,8 @@ input[type="checkbox"]:invalid + span {
 
     .button-section {
         margin-top: 30px;
+    }
+    .background-overlay {
+      background-color: #2a3647;
     }
 }
