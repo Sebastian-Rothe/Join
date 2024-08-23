@@ -58,24 +58,15 @@ async function SignUp() {
 // //////////////////////////////////////////////////////////////////////////////login
 
 async function loginUser() {
-     // If validation fails, the task will not be added
-     if (!formvalidationLogIn()) {       
+    if (!formvalidationLogIn()) {
         return;
     }
     let email = document.getElementById("username").value.trim();
     let password = document.getElementById("password").value.trim();
 
-    // let savedUser = JSON.parse(localStorage.getItem("user"));
-    // if (savedUser && savedUser.email === email && savedUser.password === password) {
-    //     alert("Login successful!");        
-    // } else {
-    //     alert("Invalid email or password.");
-    // }
-   
-    // Fetch all users from Firebase
     let userResponse = await fetch(BASE_URL + "/users.json");
     let users = await userResponse.json();
-    
+
     let userFound = false;
     let userName = "";
 
@@ -88,37 +79,17 @@ async function loginUser() {
             }
         }
     }
-
     if (userFound) {
-        // Store the logged-in username
         localStorage.setItem("loggedInUserName", userName);
     
-        // Determine the current time of day
-        let currentHour = new Date().getHours();
-        let timeOfDay = '';
-    
-        if (currentHour >= 5 && currentHour < 12) {
-            timeOfDay = 'morning';
-        } else if (currentHour >= 12 && currentHour < 17) {
-            timeOfDay = 'afternoon';
-        } else if (currentHour >= 17 && currentHour < 21) {
-            timeOfDay = 'evening';
-        } else {
-            timeOfDay = 'night';
-        }
-    
-        // Store time of day in localStorage
-        console.log("Stored time of day:", timeOfDay);
-localStorage.setItem("timeOfDay", timeOfDay);
-    
+   
         // Redirect to summary page
         window.location.replace("summary.html");
-    }
+    } 
     else {
-        
         document.querySelector(".error-validation-email").classList.remove('toggle-display');
         document.querySelector(".error-validation-password").classList.remove('toggle-display');
-    } 
+    }
 }
 /////////////////////////////////////////////////////login Guest
 function loginGuest(){
