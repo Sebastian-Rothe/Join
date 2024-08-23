@@ -332,7 +332,30 @@ input[type="checkbox"]:invalid + span {
   color: red; /* Highlight the label if the checkbox is not checked */
 }
 
+/******************************************************************Start Style for popup Successfully signed up  */
+.popup-successfully {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(131, 131, 131, 0.7);
+  z-index: 2000;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
 
+.popup-successfully-content {
+  background-color: #2a3647;
+  color: #ffffff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  text-align: center;
+}
+/******************************************************************End Style for popup Successfully signed up  */
 @media (max-width: 660px) {
     .logo-sidebar img {
         width: 64px;

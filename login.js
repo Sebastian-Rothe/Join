@@ -38,13 +38,17 @@ async function SignUp() {
 
     // save to fire abse
     await postContact("/users", newUser);
-    // alert("Sign-up data saved successfully!");
         
-    // Save to local storage
-    // localStorage.setItem("user", JSON.stringify(newUser));
-    // alert("Sign up successful!");
-
+    // Show saved successfully popup
+    document.getElementById("success-popup").style.display = "flex";
     
+
+    // Hide the popup after 3 seconds
+    setTimeout(() => {
+        document.getElementById("success-popup").style.display = "none";
+        backToLoginPage();
+    }, 2000);
+
     document.getElementById("username-signup").value = "";
     document.getElementById("email-signup").value = "";
     document.getElementById("password-signup").value = "";
@@ -53,7 +57,7 @@ async function SignUp() {
     policyCheckbox.checked = false;
     policyError.style.display = "none";
     
-    backToLoginPage();
+    
 }
 // //////////////////////////////////////////////////////////////////////////////login
 
