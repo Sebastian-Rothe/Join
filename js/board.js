@@ -318,7 +318,7 @@ function getPopupHTML(task) {
             <p class="titleDetails">Subtasks:</p>
             ${subtasks}
           </div>
-
+        
           <div class="editOptionsDetailsContain">
             <div onclick="deleteTask('${task.idNumber}')" class="deleteDetailsContain">
               <img src="../assets/icons/Property 1=Default.png" alt="delete"/>
@@ -328,7 +328,8 @@ function getPopupHTML(task) {
               <img src="assets/icons/Property 1=Edit2.png" alt="edit"/>
             </div>
           </div>
-          
+      
+        
         </div>
       </div>
     </div>`;
