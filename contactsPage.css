@@ -154,6 +154,7 @@ header {
   align-items: center;
   padding-right: 40px;
   gap: 12px;
+  cursor: pointer;
 }
 .logo-small {
   display: none;
@@ -174,6 +175,34 @@ header {
 }
 .help-icon:hover img {
   transform: scale(1.2);
+}
+/* ********************************************************Dropdown Menu Profile Avatar */
+.dropdown-menu-profile-avatar{
+  display: none; 
+  background-color: #2a3647;  
+  flex-direction: column;
+  gap: 10px;
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  font-size: 16px;
+  position: absolute;
+  right: 45px;
+  top:100px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  padding: 20px;
+
+}
+.dropdown-menu-profile-avatar a{
+  background-color: #2a3647;
+  color: #ffffff;
+  text-decoration: none;
+  padding: 10px; 
+  border-radius: 5px;
+}
+.dropdown-menu-profile-avatar a:hover{
+  background-color: #091931;
+  padding: 10px;
 }
 .profile-avatar {
   width: 56px;

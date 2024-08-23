@@ -126,6 +126,7 @@ document.getElementById("password").addEventListener('input', clearErrorMessages
 function loginGuest(){
     window.location.replace("summary.html");
 }
+
 /////////////////////////////////////////////////////form validation login
 
 function formvalidationLogIn() {

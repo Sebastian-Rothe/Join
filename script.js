@@ -11,3 +11,28 @@ async function includeHTML() {
       }
   }
 }
+// //////////////////////////////////////////////////
+ function openDropdownMenu(){
+    let dropdownMenu = document.getElementById('dropdown-menu');
+    if (dropdownMenu.style.display === 'none' || dropdownMenu.style.display === '') {
+        dropdownMenu.style.display = 'flex'; 
+    } else {
+        dropdownMenu.style.display = 'none'; 
+    }
+}
+// Add an event listener to the document to close the dropdown when clicking outside
+document.addEventListener('click', function(event) {
+    const dropdownMenu = document.getElementById('dropdown-menu');
+    const profileAvatar = document.getElementById('profile-avatar');
+
+    if (!profileAvatar.contains(event.target) && !dropdownMenu.contains(event.target)) {
+        dropdownMenu.style.display = 'none'; // Hide dropdown if clicking outside
+    }
+});
+
+// //////////////////////////////////////////////////////////////////////log uot
+function logoutUser() {
+    localStorage.clear();
+    window.location.replace("login.html");
+  }
+ 
