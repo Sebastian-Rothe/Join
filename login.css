@@ -58,6 +58,7 @@ body {
     top: 20px; /* End position (vertical) */
     left: 20px;
     transform: translate(0, 0) scale(1); /* End position: Normal size */
+    
   }
 }
 
@@ -72,6 +73,7 @@ body {
     width: 50vw; /* End size of the background */
     height: 50vh;
     opacity: 0;
+    display: none;
   }
 }
 /* *******************************************************************End Logo animation */
