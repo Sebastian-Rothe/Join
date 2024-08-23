@@ -60,41 +60,68 @@ async function SignUp() {
     
 }
 // //////////////////////////////////////////////////////////////////////////////login
+// Function to clear error messages based on which field is being typed into
+function clearErrorMessages(event) {
+    if (event.target.id === "username") {
+        document.querySelector(".error-validation-email").classList.add('toggle-display');
+    }
+    if (event.target.id === "password") {
+        document.querySelector(".error-validation-password").classList.add('toggle-display');
+    }
+}
 
+// Function to handle the login process
 async function loginUser() {
     if (!formvalidationLogIn()) {
         return;
     }
+
     let email = document.getElementById("username").value.trim();
     let password = document.getElementById("password").value.trim();
 
-    let userResponse = await fetch(BASE_URL + "/users.json");
-    let users = await userResponse.json();
+    try {
+        let userResponse = await fetch(BASE_URL + "/users.json");
+        let users = await userResponse.json();
 
-    let userFound = false;
-    let userName = "";
+        let userFound = false;
+        let userName = "";
 
-    if (users) {
-        for (let key in users) {
-            if (users[key].email === email && users[key].password === password) {
-                userFound = true;
-                userName = users[key].username; 
-                break;
+        if (users) {
+            for (let key in users) {
+                if (users[key].email === email) {
+                    if (users[key].password === password) {
+                        userFound = true;
+                        userName = users[key].username; 
+                        break;
+                    } else {
+                        // Password is incorrect
+                        document.querySelector(".error-validation-password").textContent = "Incorrect password.";
+                        document.querySelector(".error-validation-password").classList.remove('toggle-display');
+                        return; 
+                    }
+                }
+            }
+
+            if (!userFound) {
+                // Email is not found
+                document.querySelector(".error-validation-email").textContent = "Email not found.";
+                document.querySelector(".error-validation-email").classList.remove('toggle-display');
+                return;
             }
         }
-    }
-    if (userFound) {
+
+        // If user is found and password is correct
         localStorage.setItem("loggedInUserName", userName);
-    
-   
-        // Redirect to summary page
         window.location.replace("summary.html");
-    } 
-    else {
-        document.querySelector(".error-validation-email").classList.remove('toggle-display');
-        document.querySelector(".error-validation-password").classList.remove('toggle-display');
+    } catch (error) {
+        console.error('Error logging in:', error);
+        
     }
 }
+
+// Add event listeners to clear errors when user starts typing
+document.getElementById("username").addEventListener('input', clearErrorMessages);
+document.getElementById("password").addEventListener('input', clearErrorMessages);
 /////////////////////////////////////////////////////login Guest
 function loginGuest(){
     window.location.replace("summary.html");
