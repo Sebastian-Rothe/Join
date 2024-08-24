@@ -208,12 +208,10 @@ input, button{
   border-radius: 24px;
   padding: 16px;
   box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2);
-  /* box-shadow:  0 0 8px 0 rgba(0, 0, 0, 0.2); */
   margin-bottom: 16px;
   cursor: pointer;
   flex: 1;
-  /* max-width: 252px;
-  max-height: 263px; */
+  min-width: 160px;
   gap: 10px;
 
   
@@ -465,6 +463,12 @@ h3{
 
 .task-assigned{
   display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.align-assignedTo-count{
+  margin-left: 20px;
+  font-size: 18px;
 }
 .style-avatar-overlap{
     border-radius: 50%;
@@ -535,6 +539,11 @@ h3{
 /* css for adjusting to sidebar  */
 /* Adjusting to Sidebar */
 /* Head Board Responsive Adjustments */
+@media (max-width: 1120px) {
+  .main-board{
+    padding: 16px;
+  }
+}
 @media (max-width: 1080px) {
   .head-board {
     flex-direction: column; 
@@ -547,6 +556,12 @@ h3{
   .board-popup-content {
     height: 80%;
     width: 45%;
+  }
+  .align-all-4{ 
+    width: 24.9%;
+  }
+  .main-board{
+    padding: 2px;
   }
 }
 
@@ -562,9 +577,10 @@ h3{
     font-size: 24px;
     margin-top: 14px;
 }
+
 }
 
-@media (max-width: 900px) {
+@media (max-width: 902px) {
   .main-board {
     margin-left: 0px; 
     margin-bottom: 200px;
