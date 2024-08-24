@@ -153,19 +153,13 @@ input, button{
 .board-popup-content::-webkit-scrollbar {
   display: none;
 }
-.taskDescriptionDetails{
+/* .taskDescriptionDetails{
   overflow: scroll;
 }
 .taskDescriptionDetails::-webkit-scrollbar {
   display: none;
-}
-#taskAssignedTo{
-  max-height: 150px;
-  overflow: scroll;
-}
-#taskAssignedTo::-webkit-scrollbar{
-  display: none;
-}
+} */
+
 /* .board-popup-subtasks{
   max-height: 30px !important;
 } */
@@ -397,7 +391,12 @@ h3{
   margin-top: 16px;
   max-height: 120px;
   word-wrap: break-word;
+  overflow: scroll;
 }
+.taskDescriptionDetails::-webkit-scrollbar {
+  display: none;
+}
+
 
 .titleDetails {
   color: #727272;

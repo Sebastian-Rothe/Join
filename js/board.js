@@ -115,6 +115,15 @@ function generateTaskCardHTML(element) {
     ? `<span class="align-assignedTo-count">+${extraAvatarsCount}</span>` 
     : "";
 
+  // Nur anzeigen, wenn es Subtasks gibt
+  const subtasksHTML = subtaskCount > 0 ? `
+    <div class="task-subtasks">
+      <div class="progress-bar">
+        <div class="progress" style="width: ${progress}%;"></div>
+      </div>
+      <div class="subtask-info">${completedSubtasks}/${subtaskCount} Subtasks</div>
+    </div>` : '';
+
   return `
     <div class="task-card" draggable="true" ondragstart="startDragging('${element.idNumber}')" onclick="openDetailedTaskOverlay('${element.idNumber}')">
       <div class="align-task-card-head">
@@ -139,12 +148,7 @@ function generateTaskCardHTML(element) {
       </div>
       <div class="task-title">${element.title}</div>
       <div class="task-description">${element.description}</div>
-      <div class="task-subtasks">
-        <div class="progress-bar">
-          <div class="progress" style="width: ${progress}%;"></div>
-        </div>
-        <div class="subtask-info">${completedSubtasks}/${subtaskCount} Subtasks</div>
-      </div>
+      ${subtasksHTML}
       <div class="task-footer">
         <div class="task-assigned">
           ${avatarsHTML}
@@ -154,6 +158,7 @@ function generateTaskCardHTML(element) {
       </div>
     </div>`;
 }
+
 
 
 /**

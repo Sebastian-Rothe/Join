@@ -232,7 +232,6 @@ function sendUpdatedTask(taskId, task) {
 
 
 function resetPopupEditTask() {
-
   document.getElementById('modalOverlay').style.display = 'none';
   document.getElementById('addTaskModal').style.display = 'none';
   document.getElementById('addTaskModal').style.padding = ''; 

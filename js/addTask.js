@@ -129,7 +129,6 @@ async function addTask() {
 
     await postTask("/tasks", newTask);
     clearAddTaskForm();
-    
 }
 
 ////////////////////////////////////////////////////////// subTask function whenever the input value changes. 
@@ -331,7 +330,6 @@ function clearAddTaskForm()
     mediumBtn.className = 'priority-btn';
     lowBtn.className = 'priority-btn';
     mediumBtn.classList.add('medium-prio-active');
-    resetPopupEditTask();
 }
 
 // /////////////////////////////////////////////////*css*/
