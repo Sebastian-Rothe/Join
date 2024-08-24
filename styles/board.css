@@ -137,8 +137,8 @@ input, button{
 }
 
 .board-popup-content {
-  height: 80%;
-  width: 40%;
+  height: 80% !important;
+  width: 40% !important;
   max-width: 800px;
   background: #fff; 
   padding: 20px;
@@ -146,6 +146,7 @@ input, button{
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
   position: relative;
   overflow: scroll;
+  z-index: 1200 !important;
 }
 /* code for popup responsive */
 
@@ -207,11 +208,12 @@ input, button{
   background-color: #fff;
   border-radius: 24px;
   padding: 16px;
-  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2);
+  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2), -2px -2px  white;
   margin-bottom: 16px;
   cursor: pointer;
   flex: 1;
   min-width: 160px;
+  max-width: 400px;
   gap: 10px;
 
   
@@ -554,8 +556,8 @@ h3{
     margin: 0; /* Resets margin for headings */
   }
   .board-popup-content {
-    height: 80%;
-    width: 45%;
+    height: 80% !important;
+    width: 45% !important;
   }
   .align-all-4{ 
     width: 24.9%;
@@ -590,8 +592,8 @@ h3{
     cursor: grab; 
   }
   .board-popup-content {
-    height: 80%;
-    width: 50%;
+    height: 80% !important;
+    width: 50% !important;
   }
   .taskTitleDetails {
     margin: 16px 0;
@@ -640,8 +642,8 @@ h3{
     max-width: 250px;
   }
   .board-popup-content {
-    height: 80%;
-    width: 60%;
+    height: 80% !important;
+    width: 60% !important;
   }
   .taskTitleDetails {
     margin: 12px 0;
@@ -664,9 +666,9 @@ h3{
 
 /* Responsive Design Adjustments */
 @media (max-width: 600px) {
-  .board-popup-content {
+  /* .board-popup-content {
     height: 450px; 
-  }
+  } */
 
   .task-subtasks {
     flex-direction: column; 
@@ -718,8 +720,8 @@ h3{
     display: flex;
   }
   .board-popup-content {
-    height: 85%;
-    width: 70%;
+    height: 85% !important;
+    width: 70% !important;
   }
   .taskTitleDetails {
     margin: 8px 0;
@@ -741,8 +743,8 @@ h3{
 }
 @media (max-width: 424px) {
   .board-popup-content {
-    height: 90%;
-    width: 80%;
+    height: 90% !important;
+    width: 80% !important;
   }
   .taskTitleDetails {
     margin: 2px 0;

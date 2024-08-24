@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="contactsPage.css" /> 
     <link rel="stylesheet" href="template.css" /> 
     <link rel="stylesheet" href="add_task.css" />
+    <link rel="stylesheet" href="./styles/editTask.css">
 </head>
 <body onload="onloadfunc(),includeHTML()">
     <div id="head-side-foot" w3-include-html="./head-side-foot.html"></div>
@@ -21,8 +22,8 @@
     <div class="container-main">
         <!-- <div class="title">Add Task</div> -->
 
-        <div class="left-right-container">
-            <div class="left-side">
+        <div id="left-right-container" class="left-right-container">
+            <div id="left-side" class="left-side">
                     <div id="titleHeaderAdust" class="title">Add Task</div>    
                     <label  for="title">Titel<span class="required">*</span></label>
                     <input class="input-style" type="text" id="title" name="entertitle" placeholder="Enter a title" >
@@ -45,12 +46,12 @@
 
                 </div>  
             
-                <div class="divider"></div>
+                <div id="divider" class="divider"></div>
                     
                 
            
 
-                <div class="right-side">
+                <div id="right-side" class="right-side">
                     
                     <label  for="date">Due date<span class="required">*</span></label>
                     <input class="input-style" type="date" id="date" name="due-date" class="date-style">
@@ -115,11 +116,11 @@
                 </div>
 
             </div>
-            <div class="footer-add-task">
-                <div class="footer-add-task-left">
+            <div id="footer-add-task" class="footer-add-task">
+                <div id="footer-add-task-left" class="footer-add-task-left">
                     <span><span class="required">*</span>This field is required</span>
                 </div>
-                <div class="footer-add-task-right">
+                <div id="footer-add-task-right" class="footer-add-task-right">
                     <button class="clear-btn" onclick="clearAddTaskForm()">clear <img src="../assets/icons/close.svg" alt="Clear Icon" class="icon"></button>
                     <button class="create-task-btn" onclick="addTask()">create Task <img src="../assets/icons/check.svg" alt="Create Icon" class="icon"></button>
                     <input type="hidden" id="status" value="todo">

@@ -1,8 +1,9 @@
 function openPopupEditTask(taskId) {
-  console.log('Opening edit task popup for task ID:', taskId);
-
+  closePopup();
   document.getElementById('modalOverlay').style.display = 'block';
   document.getElementById('addTaskModal').style.display = 'block';
+  document.getElementById('addTaskModal').style.padding = '0';
+  document.getElementById('addTaskModal').classList.add('board-popup-content');
 
   fetch('add_task.html')
       .then(response => response.text())
@@ -13,13 +14,22 @@ function openPopupEditTask(taskId) {
           const content = doc.querySelector('.container-main');
           if (content) {
               document.getElementById('addTaskContent').innerHTML = content.outerHTML;
-          }
-          let newHeadline = document.getElementById('titleHeaderAdust');
-          if (newHeadline) {
-              newHeadline.innerHTML = "Edit Task";
-          } else {
-              console.error('Element mit ID titleHeaderAdust nicht gefunden');
-          }
+              document.getElementById('titleHeaderAdust').innerHTML = "Edit Task";
+              document.getElementById('left-right-container').classList.add('left-right-container-to-edit');
+              document.getElementById('left-right-container').classList.remove('left-right-container');
+              document.getElementById('left-side').classList.add('left-side-to-edit');
+              document.getElementById('left-side').classList.remove('left-side');
+              document.getElementById('right-side').classList.add('right-side-to-edit');
+              document.getElementById('right-side').classList.remove('right-side');
+              document.getElementById('footer-add-task-left').style.display = "none";
+              document.getElementById('divider').style.display = "none";
+              document.getElementById('footer-add-task').classList.add('footer-add-task-to-edit');
+              document.getElementById('footer-add-task').classList.remove('footer-add-task');
+              document.getElementById('footer-add-task-right').classList.add('footer-add-task-right-to-edit');
+              document.getElementById('footer-add-task-right').classList.remove('footer-add-task');
+
+            }
+          
           const task = tasks.find(t => t.idNumber === taskId);
 
           if (task) {
@@ -56,117 +66,7 @@ function openPopupEditTask(taskId) {
       });
 }
 
-// function openPopupEditTask(taskId) {
-//     console.log('Opening edit task popup for task ID:', taskId);
-  
-//     // Modal anzeigen
-//     document.getElementById('modalOverlay').style.display = 'block';
-//     document.getElementById('addTaskModal').style.display = 'block';
-  
-//     loadTaskContent(taskId); // Lade den Inhalt der Aufgabe
-//   }
-  
-//   function loadTaskContent(taskId) {
-//     fetch('add_task.html')
-//       .then(response => response.text())
-//       .then(html => {
-//         const content = extractContent(html);
-//         if (content) {
-//           document.getElementById('addTaskContent').innerHTML = content.outerHTML;
-//         }
-//         populateTaskDetails(taskId); // Fülle die Details der Aufgabe aus
-//       })
-//       .catch(error => {
-//         console.error('Error loading add_task.html:', error);
-//       });
-//   }
-  
-//   function extractContent(html) {
-//     const parser = new DOMParser();
-//     const doc = parser.parseFromString(html, 'text/html');
-//     return doc.querySelector('.container-main');
-//   }
-  
-//   function populateTaskDetails(taskId) {
-//     const task = tasks.find(t => t.idNumber === taskId);
-//     if (!task) {
-//       console.error('Task not found for ID:', taskId);
-//       return;
-//     }
-  
-//     // Setze die Titel und Beschreibung
-//     setTaskFormValues(task);
-//     fillDropdownsAndBadges(task);
-//     configureSaveButton(taskId);
-//   }
-  
-//   function setTaskFormValues(task) {
-//     document.getElementById('titleHeaderAdust').innerHTML = "Edit Task";
-//     document.getElementById('title').value = task.title || '';
-//     document.getElementById('description').value = task.description || '';
-//     document.getElementById('date').value = task.date || '';
-//     document.getElementById('category').value = task.category || '';
-  
-//     // Setze den Prioritäts-Button
-//     const priorityButton = document.getElementById(task.priority);
-//     if (priorityButton) {
-//       priorityButton.classList.add('priority-btn-active');
-//     }
-//   }
-  
-//   function fillDropdownsAndBadges(task) {
-//     fillAssignedToDropdown(task.assignedTo || []);
-//     fillSubtasks(task.subtasks || []);
-//     updateSelectedBadges(task.assignedTo || []);
-//   }
-  
-//   function updateSelectedBadges(assignedTo) {
-//     const selectedBadgesContainer = document.getElementById('selectedBadges');
-//     selectedBadgesContainer.innerHTML = ''; // Leeren vor dem Hinzufügen
-  
-//     if (Array.isArray(assignedTo)) {
-//       assignedTo.forEach(contact => {
-//         selectedBadgesContainer.innerHTML += createProfileIcon(contact);
-//       });
-//     } else {
-//       console.warn("assignedTo is not an array or is undefined:", assignedTo);
-//     }
-//   }
-  
-//   function configureSaveButton(taskId) {
-//     const saveButton = document.querySelector('.create-task-btn');
-//     saveButton.textContent = 'Save Task';
-//     saveButton.onclick = function() {
-//       updateTask(taskId);
-//     };
-  
-//     onloadfunc(); // Falls notwendig
-//   }
-  
 
-// function fillAssignedToDropdown(assignedTo) {
-//   const dropdown = document.getElementById('contactsDropdown');
-//   const selectedBadgesContainer = document.getElementById('selectedBadges');
-//   selectedBadgesContainer.innerHTML = '';
-//   const options = [...dropdown.querySelectorAll('.dropdown-option')];
-
-//   options.forEach(option => {
-//       const contactName = option.textContent.trim();
-
-//       if (assignedTo.includes(contactName)) {
-//           const checkbox = option.querySelector('input[type="checkbox"]');
-//           if (checkbox) {
-//               checkbox.checked = true;
-//               addBadge(contactName, selectedBadgesContainer);
-//           }
-//       } else {
-//           const checkbox = option.querySelector('input[type="checkbox"]');
-//           if (checkbox) {
-//               checkbox.checked = false;
-//           }
-//       }
-//   });
-// }
 
 function fillAssignedToDropdown(assignedTo) {
   const dropdown = document.getElementById("contactsDropdown");
@@ -223,36 +123,6 @@ function addBadge(fullname, container) {
   container.appendChild(badge);
 }
 
-// function fillSubtasks(subtasks) {
-//   const subtaskContainer = document.getElementById('subtask-list-container');
-//   const subtaskList = subtaskContainer.querySelector('ul');
-//   subtaskList.innerHTML = '';
-
-//   if (subtasks.length > 0) {
-//       subtaskList.classList.remove('toggle-display');
-//   } else {
-//       subtaskList.classList.add('toggle-display');
-//   }
-
-//   subtasks.forEach(subtask => {
-//       const li = document.createElement('li');
-//       li.id = subtask.title;
-//       li.classList.add('subtask-list');
-
-//       li.innerHTML = `
-//         <div class="subtask-list-left">
-//             <span>${subtask.title}</span>
-//         </div>
-//         <div class="subtask-list-right">
-//             <span><img src="../assets/icons/EditAddTask.svg" alt="" class="toggle-display" onclick="editSubTask('${subtask.title}')"></span>
-//             <div class="subtask-list-divider toggle-display"></div>
-//             <span><img src="../assets/icons/delete.svg" alt="" class="toggle-display" onclick="removeSubTask('${subtask.title}')"></span>
-//         </div>
-//       `;
-
-//       subtaskList.appendChild(li);
-//   });
-// }
 
 function fillSubtasks(subtasks) {
   const subtaskContainer = document.getElementById("subtask-list-container");
@@ -295,38 +165,6 @@ function createSubtaskListItem(subtask) {
   return li;
 }
 
-// function updateTask(taskId) {
-//   const task = tasks.find(t => t.idNumber === taskId);
-
-//   if (task) {
-//       task.title = document.getElementById('title').value.trim();
-//       task.description = document.getElementById('description').value.trim();
-//       task.date = document.getElementById('date').value;
-//       task.category = document.getElementById('category').value;
-
-//       const selectedPriority = [...document.querySelectorAll('.priority-btn')].find(btn => btn.classList.contains('priority-btn-active'));
-//       task.priority = selectedPriority ? selectedPriority.id : 'low';
-//       const contactsDropdown = document.getElementById('contactsDropdown');
-
-//       if (contactsDropdown) {
-//           const selectedOptions = [...contactsDropdown.querySelectorAll('input[type="checkbox"]:checked')];
-//           task.assignedTo = selectedOptions.map(option => option.value);
-//       } else {
-//           console.error("Das Dropdown-Element mit der ID 'contactsDropdown' wurde nicht gefunden.");
-//       }
-//       const subtasks = [...document.getElementById('subtask-list-container').querySelectorAll('li')].map(li => ({
-//           title: li.textContent.trim(),
-//           completed: false
-//       }));
-//       task.subtasks = subtasks;
-
-//       putData(`/tasks/${taskId}`, task).then(() => {
-//           closePopupAddTask();
-//           closePopup();
-//           updateBoard();
-//       });
-//   }
-// }
 
 function updateTask(taskId) {
   const task = findTaskById(taskId);
