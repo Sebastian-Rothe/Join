@@ -67,6 +67,15 @@ function openPopupEditTask(taskId) {
 }
 
 
+// function selectPrio(priority) {
+//   document.querySelectorAll('.priority-btn').forEach(button => {
+//       button.classList.remove('priority-btn-active');
+//   });
+//   document.getElementById(priority).classList.add('priority-btn-active');
+// }
+
+
+
 
 function fillAssignedToDropdown(assignedTo) {
   const dropdown = document.getElementById("contactsDropdown");
@@ -165,6 +174,38 @@ function createSubtaskListItem(subtask) {
   return li;
 }
 
+// function updateTask(taskId) {
+//   const task = tasks.find(t => t.idNumber === taskId);
+
+//   if (task) {
+//       task.title = document.getElementById('title').value.trim();
+//       task.description = document.getElementById('description').value.trim();
+//       task.date = document.getElementById('date').value;
+//       task.category = document.getElementById('category').value;
+
+//       const selectedPriority = [...document.querySelectorAll('.priority-btn')].find(btn => btn.classList.contains('priority-btn-active'));
+//       task.priority = selectedPriority ? selectedPriority.id : 'low';
+//       const contactsDropdown = document.getElementById('contactsDropdown');
+
+//       if (contactsDropdown) {
+//           const selectedOptions = [...contactsDropdown.querySelectorAll('input[type="checkbox"]:checked')];
+//           task.assignedTo = selectedOptions.map(option => option.value);
+//       } else {
+//           console.error("Das Dropdown-Element mit der ID 'contactsDropdown' wurde nicht gefunden.");
+//       }
+//       const subtasks = [...document.getElementById('subtask-list-container').querySelectorAll('li')].map(li => ({
+//           title: li.textContent.trim(),
+//           completed: false
+//       }));
+//       task.subtasks = subtasks;
+
+//       putData(`/tasks/${taskId}`, task).then(() => {
+//           closePopupAddTask();
+//           closePopup();
+//           updateBoard();
+//       });
+//   }
+// }
 
 function updateTask(taskId) {
   const task = findTaskById(taskId);

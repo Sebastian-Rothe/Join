@@ -330,6 +330,7 @@ function clearAddTaskForm()
     mediumBtn.className = 'priority-btn';
     lowBtn.className = 'priority-btn';
     mediumBtn.classList.add('medium-prio-active');
+    resetPopupEditTask();
 }
 
 // /////////////////////////////////////////////////*css*/
