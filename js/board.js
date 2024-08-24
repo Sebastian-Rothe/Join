@@ -186,6 +186,7 @@ async function moveTo(category) {
     updateBoard();
     await putData(`/tasks/${task.idNumber}`, task);
   }
+  removeHighlightFromAll()
 }
 
 /**
@@ -196,6 +197,16 @@ async function moveTo(category) {
 function highlight(id) {
   document.getElementById(id).classList.add("drag-area-highlight");
 }
+
+
+// new function
+
+function removeHighlightFromAll() {
+  document.querySelectorAll('.drag-area-highlight, .dragging').forEach((element) => {
+    element.classList.remove('drag-area-highlight', 'dragging');
+  });
+}
+
 
 /**
  * @function removeHighlight
