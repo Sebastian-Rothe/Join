@@ -74,7 +74,6 @@ async function loadTasks(path = "/tasks") {
           throw new Error(`HTTP error! status: ${taskResponse.status}`);
       }
       let responseToJson = await taskResponse.json();
-      console.log('Tasks loaded:', responseToJson); // Debugging
 
       if (responseToJson) {
           Object.keys(responseToJson).forEach((key) => {
@@ -160,7 +159,6 @@ async function putData(path = "", data) {
     if (!response.ok) {
       throw new Error('Network response was not ok ' + response.statusText);
     }
-    console.log('Data successfully updated:', response);
   } catch (error) {
     console.error('There has been a problem with your fetch operation:', error);
   }

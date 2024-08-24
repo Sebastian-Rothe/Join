@@ -225,7 +225,19 @@ function updateSubtasks(task) {
 function sendUpdatedTask(taskId, task) {
   putData(`/tasks/${taskId}`, task).then(() => {
     closePopupAddTask();
-    closePopup();
     updateBoard();
+    resetPopupEditTask();
   });
 }
+
+
+function resetPopupEditTask() {
+
+  document.getElementById('modalOverlay').style.display = 'none';
+  document.getElementById('addTaskModal').style.display = 'none';
+  document.getElementById('addTaskModal').style.padding = ''; 
+  document.getElementById('addTaskModal').classList.remove('board-popup-content');
+  document.getElementById('addTaskContent').innerHTML = '';
+
+}
+
