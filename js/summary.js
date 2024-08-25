@@ -94,29 +94,30 @@ document.addEventListener("DOMContentLoaded", () => {
 
 // /////////////////////////////////////////////////////////////updateGreeting
 function updateGreeting() {
+  // Get the current hour using the Date object
+  let currentHour = new Date().getHours();
   let userName = localStorage.getItem("loggedInUserName");
-  let timeOfDay = localStorage.getItem("timeOfDay");
-  
-  console.log('Time of Day:', timeOfDay);  
-  console.log('User Name:', userName);    
 
   let greetingText = '';
 
-  if (timeOfDay === 'morning') {
+  if (currentHour >= 6 && currentHour < 12) {
       greetingText = 'GOOD MORNING';
-  } else if (timeOfDay === 'afternoon') {
+  } else if (currentHour >= 12 && currentHour < 18) {
       greetingText = 'GOOD AFTERNOON';
-  } else if (timeOfDay === 'evening') {
+  } else if (currentHour >= 18 && currentHour < 22) {
       greetingText = 'GOOD EVENING';
-  } else if (timeOfDay === 'night') {
-      greetingText = 'GOOD NIGHT';
   } else {
-      greetingText = 'WellCome';
+      greetingText = 'GOOD NIGHT';
   }
 
+  // Display the greeting text and user's name
   if (userName) {
       document.getElementById("greetingText").textContent = greetingText;
       document.getElementById("greetingName").textContent = userName;
+  } else {
+      
+      document.getElementById("greetingText").textContent = 'Welcome';
+      document.getElementById("greetingName").textContent = 'Guest';
   }
 }
 
