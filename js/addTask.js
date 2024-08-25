@@ -42,18 +42,30 @@ function toggleContactSelection(checkbox) {
 
     updateSelectedBadges();
 }
-
+// /////////////////////////////////////////////////////////////////////////////Display Selected Contacts as Badges with Overflow Indicator
 function updateSelectedBadges() {
     let selectedBadgesContainer = document.getElementById('selectedBadges');
     selectedBadgesContainer.innerHTML = '';
 
-    selectedContacts.forEach(contact => {
+    const maxVisibleBadges = 5; // Maximum number of profile icons to display
+
+    // Display profile icons up to the maxVisibleBadges limit
+    selectedContacts.slice(0, maxVisibleBadges).forEach(contact => {
         let profileIcon = createProfileIcon(contact);
         let badge = document.createElement('div');
         badge.classList.add('badge');
         badge.innerHTML = profileIcon;
         selectedBadgesContainer.appendChild(badge);
     });
+
+    // If there are more contacts than maxVisibleBadges, show a "+n" badge
+    if (selectedContacts.length > maxVisibleBadges) {
+        let remainingCount = selectedContacts.length - maxVisibleBadges;
+        let extraBadge = document.createElement('div');
+        extraBadge.classList.add('badge', 'extra-badge');
+        extraBadge.innerText = `+${remainingCount}`;
+        selectedBadgesContainer.appendChild(extraBadge);
+    }
 }
 
 function toggleDropdown() {
@@ -61,6 +73,16 @@ function toggleDropdown() {
     let dropdownContent = document.getElementById('contactsDropdown');
     dropdownContent.classList.toggle('show');
 }
+    // Close dropdown if clicked outside
+    document.addEventListener('click', function(event) {
+        let dropdownContent = document.getElementById('contactsDropdown');
+        let dropdownButton = document.querySelector('.dropdown-btn');
+
+        // Check if the click was outside the dropdown button or the dropdown content
+        if (!dropdownButton.contains(event.target) && !dropdownContent.contains(event.target)) {
+            dropdownContent.classList.remove('show');
+        }
+    });
 
 async function onloadfunc() {
     let users = await loadAssignedPerson("/contacts");
@@ -128,6 +150,13 @@ async function addTask() {
     newTask.status = "todo";
 
     await postTask("/tasks", newTask);
+     // Show success popup after task is added successfully
+     document.getElementById("success-popup").style.display = "flex";
+
+     // Hide the popup after 2 seconds
+     setTimeout(() => {
+         document.getElementById("success-popup").style.display = "none";
+     }, 2000);
     clearAddTaskForm();
 }
 

@@ -213,6 +213,7 @@ form {
 input[type="date"] {
     border-color: #ccc;
     outline: none; 
+    font-family: "Inter", sans-serif;
 }
 
 input[type="date"]:focus {
@@ -504,7 +505,28 @@ select.dropdownCategory.invalid {
     display: flex;
     align-items: center;
 }
-
+/* //////////////////////////////////////////////////popup Add Task successfully */
+.popup-successfully {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(131, 131, 131, 0.7);
+    z-index: 2000;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .popup-successfully-content {
+    background-color: #2a3647;
+    color: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    text-align: center;
+  }
 /******************************************************************* Dropdown wit multiple select */
 
 .dropdown {
@@ -620,7 +642,7 @@ select.dropdownCategory.invalid {
 }
 
 .selected-badges .badge {
-    background-color: #eee;
+    /* background-color: #eee; */
     border-radius: 50%;
     /* width: 32px; */
     height: 32px;
@@ -630,6 +652,19 @@ select.dropdownCategory.invalid {
     margin-right: 5px;
 }
 
+/* ***********************************************************+5 in Dropdown Assigned to*/
+.badge.extra-badge {
+    /* background-color: #ccc; */
+    color: #2A3647;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    font-weight: bold;
+    font-size: 18px;
+}
 
 /******************************************************************* Responsive */
 @media (max-width: 1660px) {

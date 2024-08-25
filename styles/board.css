@@ -534,7 +534,29 @@ h3{
 .align-checkbox-subtasks{
   margin: 8px 0 4px 16px;
 }
+/* //////////////////////////////////////////////////Start popup Add Task successfully */
+.popup-successfully {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(131, 131, 131, 0.7);
+  z-index: 2000;
+  align-items: center;
+  justify-content: center;
+}
 
+.popup-successfully-content {
+  background-color: #2a3647;
+  color: #ffffff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  text-align: center;
+}
+/* ////////////////////////////////////////////////// End popup Add Task successfully */
 /* end of checkbax css */
 
 /* css for adjusting to sidebar  */
