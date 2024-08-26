@@ -1,4 +1,3 @@
-
 async function initBoard() {
   await loadTasks();
   countStatus();
@@ -29,23 +28,6 @@ function countStatus() {
 
   const upcomingDeadline = getUpcomingDeadline(tasks);
   document.getElementById("upcoming-deadline").innerHTML = upcomingDeadline;
-
-  console.log(
-    "done: " +
-      done.length +
-      ", todo: " +
-      todo.length +
-      ", priority: " +
-      priority.length +
-      ", awaitFeedback: " +
-      awaitFeedback.length +
-      ", inProgress: " +
-      inProgress.length +
-      ", total: " +
-      totalTasks +
-      ", upcoming deadline: " +
-      upcomingDeadline
-  );
 }
 
 function getUpcomingDeadline(tasks) {
@@ -92,43 +74,35 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-// /////////////////////////////////////////////////////////////updateGreeting
 function updateGreeting() {
-  // Get the current hour using the Date object
   let currentHour = new Date().getHours();
   let userName = localStorage.getItem("loggedInUserName");
 
-  let greetingText = '';
+  let greetingText = "";
 
   if (currentHour >= 6 && currentHour < 12) {
-      greetingText = 'Good morning';
+    greetingText = "Good morning";
   } else if (currentHour >= 12 && currentHour < 18) {
-      greetingText = 'Good afternoon';
+    greetingText = "Good afternoon";
   } else if (currentHour >= 18 && currentHour < 22) {
-      greetingText = 'Good evening';
+    greetingText = "Good evening";
   } else {
-      greetingText = 'Good night';
+    greetingText = "Good night";
   }
 
-  // Display the greeting text and user's name
   if (userName) {
-      document.getElementById("greetingText").textContent = greetingText;
-      document.getElementById("greetingName").textContent = userName;
+    document.getElementById("greetingText").textContent = greetingText;
+    document.getElementById("greetingName").textContent = userName;
   } else {
-      
-      document.getElementById("greetingText").textContent = 'Welcome';
-      document.getElementById("greetingName").textContent = 'Guest';
+    document.getElementById("greetingText").textContent = "Welcome";
+    document.getElementById("greetingName").textContent = "Guest";
   }
 }
-
-
-
-// //////////////////////////////////////////////////////////////updateGreetingName
 
 function updateGreetingName() {
   let userName = localStorage.getItem("loggedInUserName");
   if (userName) {
-      document.getElementById("greetingName").textContent = userName;
+    document.getElementById("greetingName").textContent = userName;
   }
 }
 

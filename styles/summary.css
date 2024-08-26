@@ -109,8 +109,6 @@ body {
   color: white;
 }
 
-
-
 .task-container {
   display: flex;
   flex-direction: column;
@@ -245,11 +243,13 @@ body {
   .greeting {
     display: none;
   }
+  .summary-tasks {
+    padding-left: 1px;
+  }
 }
 
 @media screen and (max-width: 902px) {
   .summary-tasks {
-    padding: 0;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -393,9 +393,6 @@ body {
   }
 
   @media screen and (max-width: 580px) {
-    .summary-tasks {
-      margin-left: 56px;
-    }
     .done {
       height: 110px;
       width: 186px;
@@ -466,7 +463,7 @@ body {
   @media screen and (max-width: 400px) {
     .done {
       height: 110px;
-      width: 176px;
+      width: 170px;
     }
     .done p {
       font-weight: 400;
@@ -480,7 +477,7 @@ body {
     .todo {
       font-weight: 400;
       height: 110px;
-      width: 176px;
+      width: 170px;
     }
     .todo p {
       font-weight: 400;
@@ -498,7 +495,8 @@ body {
     .summary-urgent-tasks {
       font-weight: 400;
       height: 110px;
-      width: 366px;
+      width: 355px;
+    
     }
     .summary-urgent-tasks p {
       font-size: 14px;
@@ -518,7 +516,7 @@ body {
     .task-container {
       font-weight: 400;
       height: 116px;
-      width: 106px;
+      width: 90px;
     }
 
     .task-container p {
@@ -528,6 +526,17 @@ body {
     .task-container h3 {
       font-size: 42px;
       font-weight: 600;
+    }
+    .summary-all-tasks{
+      margin-top: 10px;
+      gap: 25px;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-around;
+      transition: background-color 0.3s ease;
+    }
+    .summary-tasks {
+      margin-left: 5px;    
     }
   }
 }
