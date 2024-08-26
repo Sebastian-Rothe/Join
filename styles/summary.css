@@ -16,7 +16,6 @@ body {
 }
 
 .all {
-  padding-left: 96px;
   height: 850px;
   display: flex;
   justify-content: center;
@@ -25,7 +24,7 @@ body {
   margin-bottom: 20px;
 }
 .summary-tasks {
-  padding-left: 186px;
+  padding-left: 96px;
   margin-bottom: 40px;
 }
 .container {
@@ -129,6 +128,10 @@ body {
   margin: 0;
   font-weight: 600;
   font-size: 64px;
+}
+#upcoming-deadline{
+  font-weight: 700;
+  font-size: 21px;
 }
 
 .task-container p {
@@ -250,7 +253,7 @@ body {
     margin: 0;
     padding: 0;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
   }
   .greeting {
     display: none;
