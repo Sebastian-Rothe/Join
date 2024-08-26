@@ -37,10 +37,18 @@ function updateContact(id) {
     sendUpdateRequest(id, updatedContact)
       .then(response => {
         if (response.ok) {
-          handleUpdateSuccess();
+          // Hier rufst du die aktualisierte Liste der Kontakte ab
+          loadContacts("/contacts").then(contacts => {
+              const freshContact = contacts.find(contact => contact.id === id); // Finde den aktualisierten Kontakt
+              showContactDetails(freshContact); // Zeige die aktualisierten Details
+              handleUpdateSuccess();
+          });
+
+          closeEditedContact(); // Schließe das Edit-Popup
         }
       });
- }
+}
+
 
 function getUpdatedContactData() {
     return {
@@ -64,7 +72,7 @@ function handleUpdateSuccess() {
     loadContacts("/contacts").then(displayContacts);
     closeEditedContact();
 }
-  
+
 function closeEditedContact(){
     let popup = document.getElementById('edit-contact-overlay');
     popup.classList.remove('aktiv');

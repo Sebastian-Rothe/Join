@@ -97,7 +97,7 @@ async function loadTasks(path = "/tasks") {
                       title: subtask.title || "No Title", 
                       completed: subtask.completed || false 
                   })),
-                  assignedTo: assignedTo.length > 0 ? assignedTo : ["N/A"],
+                  assignedTo: assignedTo.length > 0 ? assignedTo : [],
                   priority: task.priority || "medium"
               });
           });

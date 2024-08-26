@@ -57,13 +57,7 @@ function getUserIdForMobile(user){
   deleteButton.setAttribute("onclick", `deleteContact(${JSON.stringify(user.id)})`);
 }
 
-function getUserIdForMobile(user){
-  const editButton = document.getElementById("mobile-button-edit");
-  const deleteButton = document.getElementById("mobile-button-delete");
 
-  editButton.setAttribute("onclick", `editContact(${JSON.stringify(user.id)})`);
-  deleteButton.setAttribute("onclick", `deleteContact(${JSON.stringify(user.id)})`);
-}
 
 function isDetailDisplayActive(detailDisplay) {
   return detailDisplay.classList.contains('aktiv');
