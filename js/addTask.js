@@ -156,9 +156,12 @@ async function addTask() {
      // Hide the popup after 2 seconds
      setTimeout(() => {
          document.getElementById("success-popup").style.display = "none";
+         window.location.reload();
      }, 2000);
     clearAddTaskForm();
+   
 }
+
 
 ////////////////////////////////////////////////////////// subTask function whenever the input value changes. 
 function subTaskInput(){

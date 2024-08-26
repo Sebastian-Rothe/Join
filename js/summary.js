@@ -101,13 +101,13 @@ function updateGreeting() {
   let greetingText = '';
 
   if (currentHour >= 6 && currentHour < 12) {
-      greetingText = 'GOOD MORNING';
+      greetingText = 'Good morning';
   } else if (currentHour >= 12 && currentHour < 18) {
-      greetingText = 'GOOD AFTERNOON';
+      greetingText = 'Good afternoon';
   } else if (currentHour >= 18 && currentHour < 22) {
-      greetingText = 'GOOD EVENING';
+      greetingText = 'Good evening';
   } else {
-      greetingText = 'GOOD NIGHT';
+      greetingText = 'Good night';
   }
 
   // Display the greeting text and user's name
