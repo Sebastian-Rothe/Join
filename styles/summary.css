@@ -238,6 +238,22 @@ body {
   font-size: 61px;
   font-weight: 700;
 }
+@media screen and (min-width: 1920px) {
+  .container, .summary-tasks {
+    margin-left: 150px;
+    padding-left: 0;
+    justify-content: flex-start; 
+  }
+
+  .all {
+    justify-content: flex-start; 
+  }
+
+  .summary-todo-and-tasks {
+    justify-content: flex-start; 
+  }
+}
+
 
 @media screen and (max-width: 1079px) {
   .greeting {
@@ -461,82 +477,105 @@ body {
   }
 
   @media screen and (max-width: 400px) {
+
+    .all {
+      width: 100%;
+      margin-top: 5px;
+      height: 160vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+    .container{
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
     .done {
-      height: 110px;
-      width: 170px;
+      height: 108px;
+      width: 150px;
     }
     .done p {
       font-weight: 400;
-      font-size: 14px;
+      font-size: 12px;
     }
     .done h3 {
-      font-size: 42px;
+      font-size: 40px;
       font-weight: 600;
     }
-
+    
     .todo {
       font-weight: 400;
-      height: 110px;
-      width: 170px;
+      height: 108px;
+      width: 150px;
     }
     .todo p {
       font-weight: 400;
-      font-size: 14px;
+      font-size: 12px;
     }
     .todo h3 {
-      font-size: 42px;
+      font-size: 40px;
       font-weight: 600;
     }
-    .icon-sm {
-      height: 40px;
-      width: 40px;
-    }
-
-    .summary-urgent-tasks {
-      font-weight: 400;
-      height: 110px;
-      width: 355px;
     
+    .icon-sm {
+      height: 38px;
+      width: 38px;
+    }
+    
+    .summary-urgent-tasks {
+      margin-left: 4px;
+      font-weight: 400;
+      height: 108px;
+      width: 315px;
     }
     .summary-urgent-tasks p {
-      font-size: 14px;
+      font-size: 12px;
     }
-
+    
     #upcoming-deadline {
       font-weight: 700;
-      font-size: 16px;
-    }
-
-    .summary-urgent-tasks h3 {
-      margin: 0;
-      font-size: 42px;
-      font-weight: 600;
-    }
-
-    .task-container {
-      font-weight: 400;
-      height: 116px;
-      width: 90px;
-    }
-
-    .task-container p {
-      font-weight: 400;
       font-size: 14px;
     }
-    .task-container h3 {
-      font-size: 42px;
+    
+    .summary-urgent-tasks h3 {
+      margin: 0;
+      font-size: 40px;
       font-weight: 600;
     }
-    .summary-all-tasks{
+    
+    .task-container {
+      font-weight: 400;
+      height: 114px;
+      width: 88px;
+    }
+    
+    .task-container p {
+      font-weight: 400;
+      font-size: 12px;
+    }
+    .task-container h3 {
+      font-size: 40px;
+      font-weight: 600;
+    }
+    
+    .summary-all-tasks {
       margin-top: 10px;
       gap: 25px;
       cursor: pointer;
       display: flex;
-      justify-content: space-around;
+      justify-content: space-between;
       transition: background-color 0.3s ease;
     }
+    
     .summary-tasks {
-      margin-left: 5px;    
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
     }
+    
   }
 }
