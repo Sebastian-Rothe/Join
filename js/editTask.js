@@ -161,8 +161,13 @@ function createSubtaskListItem(subtask) {
   const li = document.createElement("li");
   li.id = subtask.title;
   li.classList.add("subtask-list");
+  
+  const checkedClass = subtask.completed ? "subtask-completed" : "";
+
   li.innerHTML = `
-      <div class="subtask-list-left">
+      <div class="subtask-list-left ${checkedClass}">
+          <input type="checkbox" ${subtask.completed ? "checked" : ""} 
+          onchange="toggleSubtaskCompletion(this, '${subtask.title}')" class="d-none">
           <span>${subtask.title}</span>
       </div>
       <div class="subtask-list-right">
@@ -174,38 +179,38 @@ function createSubtaskListItem(subtask) {
   return li;
 }
 
-// function updateTask(taskId) {
-//   const task = tasks.find(t => t.idNumber === taskId);
+function toggleSubtaskCompletion(checkbox) {
+  const subtaskElement = checkbox.closest('li');
+  const subtaskTitleElement = subtaskElement.querySelector('.subtask-list-left span');
 
-//   if (task) {
-//       task.title = document.getElementById('title').value.trim();
-//       task.description = document.getElementById('description').value.trim();
-//       task.date = document.getElementById('date').value;
-//       task.category = document.getElementById('category').value;
+  if (checkbox.checked) {
+    subtaskTitleElement.classList.add('subtask-completed');
+  } else {
+    subtaskTitleElement.classList.remove('subtask-completed');
+  }
+}
 
-//       const selectedPriority = [...document.querySelectorAll('.priority-btn')].find(btn => btn.classList.contains('priority-btn-active'));
-//       task.priority = selectedPriority ? selectedPriority.id : 'low';
-//       const contactsDropdown = document.getElementById('contactsDropdown');
+function updateSubtasks(task) {
+  const subtasks = [
+    ...document.getElementById("subtask-list-container").querySelectorAll("li"),
+  ].map((li) => {
+    const checkbox = li.querySelector('input[type="checkbox"]');
+    const subtaskTitleElement = li.querySelector('.subtask-list-left span');
+    
+    return {
+      title: subtaskTitleElement ? subtaskTitleElement.textContent.trim() : '',
+      completed: checkbox ? checkbox.checked : false,
+    };
+  });
 
-//       if (contactsDropdown) {
-//           const selectedOptions = [...contactsDropdown.querySelectorAll('input[type="checkbox"]:checked')];
-//           task.assignedTo = selectedOptions.map(option => option.value);
-//       } else {
-//           console.error("Das Dropdown-Element mit der ID 'contactsDropdown' wurde nicht gefunden.");
-//       }
-//       const subtasks = [...document.getElementById('subtask-list-container').querySelectorAll('li')].map(li => ({
-//           title: li.textContent.trim(),
-//           completed: false
-//       }));
-//       task.subtasks = subtasks;
+  task.subtasks = subtasks;
+}
 
-//       putData(`/tasks/${taskId}`, task).then(() => {
-//           closePopupAddTask();
-//           closePopup();
-//           updateBoard();
-//       });
-//   }
-// }
+
+
+
+// end of subtasks
+
 
 function updateTask(taskId) {
   const task = findTaskById(taskId);
@@ -218,6 +223,7 @@ function updateTask(taskId) {
 
     sendUpdatedTask(taskId, task);
   }
+  updateBoard();
 }
 
 function findTaskById(taskId) {
@@ -253,15 +259,6 @@ function updateAssignedContacts(task) {
   }
 }
 
-function updateSubtasks(task) {
-  const subtasks = [
-    ...document.getElementById("subtask-list-container").querySelectorAll("li"),
-  ].map((li) => ({
-    title: li.textContent.trim(),
-    completed: false,
-  }));
-  task.subtasks = subtasks;
-}
 
 function sendUpdatedTask(taskId, task) {
   putData(`/tasks/${taskId}`, task).then(() => {
