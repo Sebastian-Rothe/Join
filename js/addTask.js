@@ -68,21 +68,26 @@ function updateSelectedBadges() {
     }
 }
 
-function toggleDropdown() {
-    console.log("clicked");
+function toggleDropdown() {    
     let dropdownContent = document.getElementById('contactsDropdown');
-    dropdownContent.classList.toggle('show');
+    if (dropdownContent) {
+        dropdownContent.classList.toggle('show');
+    }
 }
-    // Close dropdown if clicked outside
-    document.addEventListener('click', function(event) {
-        let dropdownContent = document.getElementById('contactsDropdown');
-        let dropdownButton = document.querySelector('.dropdown-btn');
 
+// Close dropdown if clicked outside
+document.addEventListener('click', function(event) {
+    let dropdownContent = document.getElementById('contactsDropdown');
+    let dropdownButton = document.querySelector('.dropdown-btn');
+
+    // Check if both elements exist
+    if (dropdownContent && dropdownButton) {
         // Check if the click was outside the dropdown button or the dropdown content
         if (!dropdownButton.contains(event.target) && !dropdownContent.contains(event.target)) {
             dropdownContent.classList.remove('show');
         }
-    });
+    }
+});
 
 async function onloadfunc() {
     let users = await loadAssignedPerson("/contacts");
