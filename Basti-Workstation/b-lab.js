@@ -266,3 +266,186 @@ function closeMobileContactOption() {
 
 //   await postTask("/tasks", newTask);
 // }
+// ##################################################
+// #########################################
+// ##################################################
+
+
+function openPopupEditTask(taskId) {
+  closePopup();
+  document.getElementById('modalOverlay').style.display = 'block';
+  document.getElementById('addTaskModal').style.display = 'block';
+  document.getElementById('addTaskModal').style.padding = '0';
+  document.getElementById('addTaskModal').classList.add('board-popup-content');
+
+  fetch('add_task.html')
+      .then(response => response.text())
+      .then(html => {
+          const parser = new DOMParser();
+          const doc = parser.parseFromString(html, 'text/html');
+
+          const content = doc.querySelector('.container-main');
+          if (content) {
+              document.getElementById('addTaskContent').innerHTML = content.outerHTML;
+              document.getElementById('titleHeaderAdust').innerHTML = "Edit Task";
+              document.getElementById('left-right-container').classList.add('left-right-container-to-edit');
+              document.getElementById('left-right-container').classList.remove('left-right-container');
+              document.getElementById('left-side').classList.add('left-side-to-edit');
+              document.getElementById('left-side').classList.remove('left-side');
+              document.getElementById('right-side').classList.add('right-side-to-edit');
+              document.getElementById('right-side').classList.remove('right-side');
+              document.getElementById('footer-add-task-left').style.display = "none";
+              document.getElementById('divider').style.display = "none";
+              document.getElementById('footer-add-task').classList.add('footer-add-task-to-edit');
+              document.getElementById('footer-add-task').classList.remove('footer-add-task');
+              document.getElementById('footer-add-task-right').classList.add('footer-add-task-right-to-edit');
+              document.getElementById('footer-add-task-right').classList.remove('footer-add-task');
+
+            }
+          
+          const task = tasks.find(t => t.idNumber === taskId);
+
+          if (task) {
+              document.getElementById('title').value = task.title || '';
+              document.getElementById('description').value = task.description || '';
+              document.getElementById('date').value = task.date || '';
+              document.getElementById('category').value = task.category || '';
+
+              const priorityButton = document.getElementById(task.priority);
+              if (priorityButton) {
+                  priorityButton.classList.add('priority-btn-active');
+              }
+
+              fillSubtasks(task.subtasks || []);
+
+              const selectedBadgesContainer = document.getElementById('selectedBadges');
+              selectedBadgesContainer.innerHTML = '';
+              task.assignedTo.forEach(contact => {
+                  selectedBadgesContainer.innerHTML += createProfileIcon(contact);
+              });
+              
+          }
+
+          const saveButton = document.querySelector('.create-task-btn');
+          saveButton.textContent = 'Save Task';
+          saveButton.onclick = function() {
+              updateTask(taskId);
+          };
+
+          onloadfunc(taskId);
+      })
+      .catch(error => {
+          console.error('Error loading add_task.html:', error);
+      });
+}
+async function onloadfunc(taskId) {
+  let users = await loadAssignedPerson("/contacts");
+  const task = tasks.find(t => t.idNumber === taskId);
+  if (users) {
+      assignedDropdown(users, task.assignedTo);
+  }
+  setMinDate();
+}
+
+
+function updateBadgeState(checkbox, contactName, container) {
+  if (checkbox.checked) {
+    container.innerHTML += createProfileIcon(contactName);
+  } else {
+    removeBadge(contactName, container);
+  }
+}
+
+function addBadge(fullname, container) {
+  const badge = document.createElement("span");
+  badge.className = "badge";
+  badge.textContent = fullname;
+  badge.setAttribute("data-fullname", fullname);
+  
+  badge.onclick = () => {
+      badge.remove();
+      const checkbox = document.querySelector(
+          `input[type="checkbox"][value="${fullname}"]`
+      );
+      if (checkbox) {
+          checkbox.checked = false;
+      }
+      const index = assignedTo.indexOf(fullname);
+      if (index > -1) {
+          assignedTo.splice(index, 1);
+      }
+  };
+  
+  container.appendChild(badge);
+}
+
+function removeBadge(contactName, container) {
+  const badge = container.querySelector(`[data-fullname="${contactName}"]`);
+  if (badge) {
+      badge.remove();
+  }
+}
+
+function updateAssignedContacts(task) {
+  const contactsDropdown = document.getElementById("contactsDropdown");
+  
+  if (contactsDropdown) {
+      const selectedOptions = [
+          ...contactsDropdown.querySelectorAll('input[type="checkbox"]:checked'),
+      ].map(option => option.value);
+      
+      task.assignedTo = Array.from(new Set(selectedOptions));
+  } else {
+      console.error(
+          "Das Dropdown-Element mit der ID 'contactsDropdown' wurde nicht gefunden."
+      );
+  }
+}
+
+// Fills a dropdown with users' profile icons, names, and checkboxes, clearing any existing content.
+function assignedDropdown(users, assignedTo = []) {
+  // Stelle sicher, dass assignedTo ein Array ist
+  if (!Array.isArray(assignedTo)) {
+      assignedTo = [];
+  }
+
+  let dropdownContent = document.getElementById('contactsDropdown');
+  dropdownContent.innerHTML = '';
+  
+  users.forEach(user => {
+      let isChecked = assignedTo.includes(user.name) ? 'checked' : '';
+      let label = `
+          <label style="display: flex; align-items: center; padding: 8px;">
+              ${createProfileIcon(user.name)}
+              <span>${user.name}</span>
+              <input type="checkbox" value="${user.name}" style="margin-left: auto;" ${isChecked} onclick="toggleContactSelection(this)">
+          </label>
+      `;
+      dropdownContent.innerHTML += label;
+  });
+}
+
+
+
+//Toggles the selection of a contact, adding or removing it from the selected contacts list, and updates the display. 
+function toggleContactSelection(checkbox, contactName) {
+  const selectedBadgesContainer = document.getElementById('selectedBadges');
+  
+  // Initialize assignedTo if it doesn't exist
+  if (typeof assignedTo === 'undefined') {
+      assignedTo = [];
+  }
+  
+  if (checkbox.checked) {
+      addBadge(contactName, selectedBadgesContainer);
+      assignedTo.push(contactName);
+  } else {
+      removeBadge(contactName, selectedBadgesContainer);
+      const index = assignedTo.indexOf(contactName);
+      if (index > -1) {
+          assignedTo.splice(index, 1);
+      }
+  }
+
+  console.log('Aktualisiertes assignedTo:', assignedTo); // Debug-Ausgabe
+}
