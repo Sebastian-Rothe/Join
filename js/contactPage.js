@@ -18,6 +18,8 @@ function init() {
 
 
 async function addUser() {
+  console.log("updated");
+
   let nameValue = document.getElementById("name").value;
   let phoneValue = document.getElementById("phone").value;
   let emailValue = document.getElementById("email").value;

@@ -27,6 +27,7 @@ function closeNewContact(){
   setTimeout(() => {
     popup.classList.add('d-none');
   }, 500);
+  console.log("closed");
 }
 
 function submitAndClose(){
@@ -34,6 +35,8 @@ function submitAndClose(){
 }
 
 function checkForm(){
+  console.log("check form");
+
   let form = document.getElementById('contactForm');
   if (form.checkValidity()){
     submitAndClose();

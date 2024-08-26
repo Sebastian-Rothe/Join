@@ -33,7 +33,8 @@
               <form class="align-form" id="contactForm">
                 <input id="name" class="icon-name" type="text" placeholder="Name" required oninvalid="onInvalid(this)"/>
                 <input id="email" class="icon-email" type="email" placeholder="Email" required oninvalid="onInvalid(this)"/>
-                <input id="phone" class="icon-phone" type="tel" placeholder="Phone" required oninvalid="onInvalid(this)"/>
+                <!-- Using the input Event to Filter Non-Numeric Input -->
+                <input id="phone" class="icon-phone" type="tel" placeholder="Phone" required oninput="this.value = this.value.replace(/[^0-9]/g, '')"/>
                 <div class="align-form-buttons">
                   <button class="cancel-button" type="button" id="cancelPopup" onclick="closeNewContact()">
                     Cancel
