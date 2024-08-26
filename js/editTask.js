@@ -132,6 +132,26 @@ function addBadge(fullname, container) {
   container.appendChild(badge);
 }
 
+function updateAssignedContacts(task) {
+    const contactsDropdown = document.getElementById("contactsDropdown");
+
+    if (contactsDropdown) {
+        const selectedOptions = [
+            ...contactsDropdown.querySelectorAll('input[type="checkbox"]:checked'),
+        ].map(option => option.value);
+
+        // Setze die zugewiesenen Kontakte zusammen
+        task.assignedTo = Array.from(new Set([...task.assignedTo, ...selectedOptions]));
+    } else {
+        console.error(
+            "Das Dropdown-Element mit der ID 'contactsDropdown' wurde nicht gefunden."
+        );
+    }
+}
+
+
+// #########################################################
+
 
 function fillSubtasks(subtasks) {
   const subtaskContainer = document.getElementById("subtask-list-container");
@@ -242,21 +262,6 @@ function updateTaskPriority(task) {
     (btn) => btn.classList.contains("priority-btn-active")
   );
   task.priority = selectedPriority ? selectedPriority.id : "low";
-}
-
-function updateAssignedContacts(task) {
-  const contactsDropdown = document.getElementById("contactsDropdown");
-
-  if (contactsDropdown) {
-    const selectedOptions = [
-      ...contactsDropdown.querySelectorAll('input[type="checkbox"]:checked'),
-    ];
-    task.assignedTo = selectedOptions.map((option) => option.value);
-  } else {
-    console.error(
-      "Das Dropdown-Element mit der ID 'contactsDropdown' wurde nicht gefunden."
-    );
-  }
 }
 
 

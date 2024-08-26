@@ -414,7 +414,6 @@ async function saveTaskProgress(taskId) {
         "Content-Type": "application/json",
       },
     });
-    console.log("Task progress updated successfully!");
   } catch (error) {
     console.error("Error saving task progress:", error);
   }

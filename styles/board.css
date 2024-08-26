@@ -11,17 +11,18 @@ input, button{
 }
 
 .main-board{
-  height: calc(100% - 96px);
+  height: calc(100vh - 96px);
   position: relative; 
   margin-top: 100px;
   margin-left: 232px;
-  padding: 32px;
+  padding: 32px 32px 0 32px;
 }
 
 .head-board{
     display: flex;
     justify-content: space-between;
     align-items: center;
+    height: 20vh;
 }
 
 .head-board h2{
@@ -172,7 +173,7 @@ input, button{
 /* css for drag and drop */
 
 .drag-area {
-  height: 68vh; 
+  height: calc(80vh - 164px); 
   margin-bottom: 50px;
   padding-top: 4px;
   align-items: flex-start;
@@ -570,7 +571,9 @@ h3{
 @media (max-width: 1080px) {
   .head-board {
     flex-direction: column; 
+    justify-content: center;
     margin-bottom: 16px; 
+    gap: 16px;
   }
 
   .head-board h2 {
@@ -623,7 +626,11 @@ h3{
   .taskDescriptionDetails {
     font-size: 22px;
     margin-top: 12px;
-}
+  }
+  .drag-area {
+    height: calc(80vh - 240px); 
+   
+  }
 }
 /* Main Board Adjustments for Smaller Screens */
 @media (max-width: 800px) {
