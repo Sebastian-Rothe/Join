@@ -72,38 +72,57 @@ function openPopupEditTask(taskId) {
 
 function fillAssignedToDropdown(assignedTo) {
   const dropdown = document.getElementById("contactsDropdown");
-  const selectedBadgesContainer = document.getElementById("selectedBadges");
-  selectedBadgesContainer.innerHTML = "";
-  
-  updateDropdownOptions(dropdown, assignedTo, selectedBadgesContainer);
+
+  setTimeout(() => {
+      const labels = dropdown.querySelectorAll("label");
+
+      if (labels.length === 0) {
+          console.warn("No labels found. Possible timing issue.");
+      } else {
+          const selectedBadgesContainer = document.getElementById("selectedBadges");
+          selectedBadgesContainer.innerHTML = "";
+
+          // Only add badges for contacts in the assignedTo array
+          labels.forEach((label) => {
+              const checkbox = label.querySelector('input[type="checkbox"]');
+              const contactName = checkbox.value.trim();
+
+              if (checkbox && assignedTo.includes(contactName)) {
+                  checkbox.checked = true;
+                  // Add a badge for this contact
+                  selectedBadgesContainer.innerHTML += createProfileIcon(contactName);
+              } else {
+                  checkbox.checked = false;
+              }
+          });
+      }
+  }, 100);
 }
 
-function updateDropdownOptions(dropdown, assignedTo, selectedBadgesContainer) {
-  const options = [...dropdown.querySelectorAll(".dropdown-option")];
-  
-  options.forEach((option) => {
-    const contactName = option.textContent.trim();
-    const checkbox = option.querySelector('input[type="checkbox"]');
-    
-    if (checkbox) {
-      checkbox.checked = assignedTo.includes(contactName);
-      updateBadgeState(checkbox, contactName, selectedBadgesContainer);
-    }
-  });
+function toggleContactSelection(checkbox) {
+  const contactName = checkbox.value.trim();
+
+  const selectedBadgesContainer = document.getElementById("selectedBadges");
+  // Update the badge state based on the checkbox state
+  updateBadgeState(checkbox, contactName, selectedBadgesContainer);
 }
 
 function updateBadgeState(checkbox, contactName, container) {
   if (checkbox.checked) {
-    container.innerHTML += createProfileIcon(contactName);
+      // Add the badge if the checkbox is checked and doesn't already exist
+      if (!container.querySelector(`[data-contact="${contactName}"]`)) {
+          container.innerHTML += createProfileIcon(contactName);
+      }
   } else {
-    removeBadge(contactName, container);
+      // Remove the badge if the checkbox is unchecked
+      removeBadge(contactName, container);
   }
 }
 
 function removeBadge(contactName, container) {
   const badge = container.querySelector(`[data-contact="${contactName}"]`);
   if (badge) {
-    badge.remove();
+      badge.remove();
   }
 }
 
@@ -129,12 +148,12 @@ function updateAssignedContacts(task) {
   const contactsDropdown = document.getElementById("contactsDropdown");
   
   if (contactsDropdown) {
-    const selectedOptions = [
-      ...contactsDropdown.querySelectorAll('input[type="checkbox"]:checked'),
-    ].map(option => option.value);
-    
-    // Setze die zugewiesenen Kontakte zusammen
-    task.assignedTo = Array.from(new Set([...task.assignedTo, ...selectedOptions]));
+      const selectedOptions = [
+          ...contactsDropdown.querySelectorAll('input[type="checkbox"]:checked'),
+      ].map(option => option.value);
+      
+      // Setze die zugewiesenen Kontakte zusammen
+      task.assignedTo = selectedOptions;
   } else {
     console.error(
       "Das Dropdown-Element mit der ID 'contactsDropdown' wurde nicht gefunden."
@@ -229,12 +248,12 @@ function updateTask(taskId) {
   const task = findTaskById(taskId);
   
   if (task) {
-    updateTaskDetails(task);
-    updateTaskPriority(task);
-    updateAssignedContacts(task);
-    updateSubtasks(task);
-    
-    sendUpdatedTask(taskId, task);
+      updateTaskDetails(task);
+      updateTaskPriority(task);
+      updateAssignedContacts(task); 
+      updateSubtasks(task);
+      
+      sendUpdatedTask(taskId, task);
   }
   updateBoard();
 }
@@ -261,9 +280,9 @@ function updateTaskPriority(task) {
 
 function sendUpdatedTask(taskId, task) {
   putData(`/tasks/${taskId}`, task).then(() => {
-    closePopupAddTask();
-    updateBoard();
-    resetPopupEditTask();
+      closePopupAddTask();
+      updateBoard();
+      resetPopupEditTask();
   });
 }
 
