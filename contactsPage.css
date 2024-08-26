@@ -843,50 +843,6 @@ header {
   cursor: pointer;
 }
 
-/* mobile */
-/* 
-  .menu-mobile-display-container {
-    display: flex;
-    justify-content: space-between; 
-    background-color: #2A3647;
-    width: 100%;
-    height: 80px;      
-    position: fixed;
-    bottom: 0px;    
-    z-index: 1080;
-    color: #f8f9fa;
-    padding-right: 5%;
-    padding-left: 5%;
-    display: none;
-}
-
-.menu-mobile-display-item {
-   
-    flex: 1;
-    margin-top: 16px;
-}
-
-.menu-mobile-display-item a {
-    flex-direction: column;
-    text-decoration: none;
-    color: #f8f9fa;
-    display: flex;
-    align-content: center;
-    align-items: center;
-}
-
-.menu-mobile-display-item a img {
-   
-    margin-bottom: 4px;
-    width: 30px;
-    height: 30px;
-}
-
-.menu-mobile-display-item a span {
-    display: block;
-    margin-top: 2px;
-} */
-
 .arrow-left-contacts {
   margin-top: 20px;
   margin-left: 90px;
@@ -927,7 +883,7 @@ header {
   filter: invert(40%) sepia(100%) saturate(500%) hue-rotate(160deg);
 }
 
-/* Responsive */
+/************************************************************************* Responsive */
 @media (max-width: 1650px) {
   .header-left-content {
     justify-content: end;
@@ -1208,6 +1164,29 @@ header {
   .contact-name-large {
     font-size: 18px;
   }
+}
+/* *****************************************iphone SE */
+@media (max-width: 375px) {
+  .mobile-add-button {
+    
+    display: none !important;
+   
+}
+.single-contact {
+  width: 80%;
+ gap:5px
+  
+}
+.contact-separator {
+  height: 1px;
+  width: 55%;
+  
+}
+.contact-details span {
+  font-size: 14px;
+
+}
+
 }
 @media (max-width: 370px) {
   .contact-list {

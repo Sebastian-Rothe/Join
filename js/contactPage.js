@@ -13,7 +13,9 @@ let profileColors = [
 
 function init() {
   loadContacts("/contacts").then(displayContacts);
+  handleResize();
 }
+
 
 async function addUser() {
   let nameValue = document.getElementById("name").value;

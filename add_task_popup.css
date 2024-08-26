@@ -35,9 +35,6 @@
     background-color: rgba(0, 0, 0, 0.8);
 }
 /***************************************************************** overwrite in Add Task css file for popup */
- /* *{ 
-    border: 1px solid red;    
-}   */
 .container-main{
     padding: 0;
     width: 100%;
@@ -55,8 +52,35 @@
     margin-top: 120px;
 }
 .left-right-container {
-        height: 60vh;
+    height: 60vh;
 }
+.footer-add-task {
+    position: fixed;
+    bottom:0px;
+    margin-bottom: 20px;
+    width: 80%;
+ 
+}
+.right-side {
+    margin-top:70px;
+}
+.footer-add-task {
+    position: fixed;
+    bottom:0px;
+    margin-bottom: 30px;
+}
+.left-right-container {
+    height: 70vh;
+}
+.title {
+    font-size: 41px;
+}
+.divider {
+  
+    height: 400px;   
+    margin-top: 90px;
+}
+
  @media (max-width: 1540px) {
     .priority-btn {
         font-size: 16px;
