@@ -15,10 +15,11 @@
         <div class="header-right-content">
             <div class="help-icon"><a href="#"><img src="./assets/img/help.png" alt=""/></a></div>
             <div class="profile-avatar" id="profile-avatar" onclick="openDropdownMenu()">
-                <a href="#">PN</a>
+                <a id="init-name" href="#">
+                    <!-- The initials will be dynamically updated here -->
+                </a> 
             </div>
-            
-        </div> 
+        </div>
         <div class="dropdown-menu-profile-avatar" id="dropdown-menu">
             <a href="legal.html">Legal Notice</a>
             <a href="privacy.html">Privacy Policy</a>
@@ -108,5 +109,8 @@
 
 
 <script src="script.js"></script>
+<script>
+    console.log("Header loaded");
+</script>
 </body>
 </html>

@@ -13,8 +13,13 @@ let profileColors = [
 
 function getInitials(fullName) {
     let nameParts = fullName.split(" ");
-    let firstLetters = nameParts.map((part) => part.charAt(0));
-    let initials = firstLetters.join("");
+    let initials;
+    if(nameParts.length==1)
+      initials = nameParts[0].substring(0, 2).toUpperCase();
+    else{
+      let firstLetters = nameParts.map((part) => part.charAt(0));
+      initials = firstLetters.join("");
+    }
     assignRandomColors();
     return initials;
   }
@@ -44,4 +49,14 @@ function getInitials(fullName) {
             ${initials}
         </div>
     `;
+}
+
+
+function initialProfileIcon(){
+  console.log(localStorage.getItem("loggedInUserName"));
+  let userName = localStorage.getItem("loggedInUserName");
+  let initName = getInitials(userName);
+  let initNameElement = document.getElementById("init-name");
+  if(initNameElement)
+      initNameElement.innerHTML = initName?initName:"";
 }

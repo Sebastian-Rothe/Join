@@ -181,6 +181,11 @@ async function loginUser() {
     }
 }
 
+function loginGuest(){
+    localStorage.setItem("loggedInUserName", "Guest");
+    window.location.replace("summary.html");
+}
+
 
 // formvalidationLogIn
 function validateLoginEmail() {

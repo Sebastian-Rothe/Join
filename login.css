@@ -198,6 +198,8 @@ body {
   border-radius: 16px;
   cursor: pointer;
   border: none;
+  width: 126px;
+  height: 55px;
 }
 .Guest-btn {
   background-color: #ffffff;
