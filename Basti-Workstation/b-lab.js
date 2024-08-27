@@ -514,3 +514,72 @@ function generateTaskCardHTML(element) {
       </div>
     </div>`;
 }
+
+
+function openPopupEditTask(taskId) {
+  closePopup();
+  document.getElementById('modalOverlay').style.display = 'block';
+  document.getElementById('addTaskModal').style.display = 'block';
+  document.getElementById('addTaskModal').style.padding = '0';
+  document.getElementById('addTaskModal').classList.add('board-popup-content');
+
+  fetch('add_task.html')
+      .then(response => response.text())
+      .then(html => {
+          const parser = new DOMParser();
+          const doc = parser.parseFromString(html, 'text/html');
+
+          const content = doc.querySelector('.container-main');
+          if (content) {
+              document.getElementById('addTaskContent').innerHTML = content.outerHTML;
+              document.getElementById('titleHeaderAdust').innerHTML = "Edit Task";
+              document.getElementById('left-right-container').classList.add('left-right-container-to-edit');
+              document.getElementById('left-right-container').classList.remove('left-right-container');
+              document.getElementById('left-side').classList.add('left-side-to-edit');
+              document.getElementById('left-side').classList.remove('left-side');
+              document.getElementById('right-side').classList.add('right-side-to-edit');
+              document.getElementById('right-side').classList.remove('right-side');
+              document.getElementById('footer-add-task-left').style.display = "none";
+              document.getElementById('divider').style.display = "none";
+              document.getElementById('footer-add-task').classList.add('footer-add-task-to-edit');
+              document.getElementById('footer-add-task').classList.remove('footer-add-task');
+              document.getElementById('footer-add-task-right').classList.add('footer-add-task-right-to-edit');
+              document.getElementById('footer-add-task-right').classList.remove('footer-add-task');
+
+            }
+          
+          const task = tasks.find(t => t.idNumber === taskId);
+
+          if (task) {
+              document.getElementById('title').value = task.title || '';
+              document.getElementById('description').value = task.description || '';
+              document.getElementById('date').value = task.date || '';
+              document.getElementById('category').value = task.category || '';
+
+              const priorityButton = document.getElementById(task.priority);
+              if (priorityButton) {
+                  priorityButton.classList.add('priority-btn-active');
+              }
+
+              fillAssignedToDropdown(task.assignedTo || []);
+              fillSubtasks(task.subtasks || []);
+
+              const selectedBadgesContainer = document.getElementById('selectedBadges');
+              selectedBadgesContainer.innerHTML = '';
+              task.assignedTo.forEach(contact => {
+                  selectedBadgesContainer.innerHTML += createProfileIcon(contact);
+              });
+          }
+
+          const saveButton = document.querySelector('.create-task-btn');
+          saveButton.textContent = 'Save Task';
+          saveButton.onclick = function() {
+              updateTask(taskId);
+          };
+
+          onloadfunc();
+      })
+      .catch(error => {
+          console.error('Error loading add_task.html:', error);
+      });
+}
