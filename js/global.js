@@ -12,18 +12,22 @@ let profileColors = [
   ];
 
 function getInitials(fullName) {
-    let nameParts = fullName.split(" ");
-    let initials;
-    if(nameParts.length==1)
-      initials = nameParts[0].substring(0, 2).toUpperCase();
-    else{
-      let firstLetters = nameParts.map((part) => part.charAt(0));
-      initials = firstLetters.join("");
-    }
-    assignRandomColors();
-    return initials;
+  if (!fullName || typeof fullName !== 'string') {
+      return "";
   }
-  
+  let nameParts = fullName.trim().split(" ");
+  let initials;
+
+  if (nameParts.length === 1) {
+      initials = nameParts[0].substring(0, 2).toUpperCase();
+  } else {
+      let firstLetters = nameParts.map((part) => part.charAt(0).toUpperCase());
+      initials = firstLetters.join("");
+  }
+  assignRandomColors();
+  return initials;
+}
+
   function assignRandomColors() {
     return profileColors[Math.floor(Math.random() * profileColors.length)]
   }
@@ -33,7 +37,9 @@ function getInitials(fullName) {
     let color = assignRandomColors();
 
     return `
-        <div style="
+        <div class="badge" 
+            data-contact="${fullName}" 
+            style="
             background-color: ${color};
             color: #ffffff;
             width: 42px;
@@ -53,7 +59,7 @@ function getInitials(fullName) {
 
 
 function initialProfileIcon(){
-  console.log(localStorage.getItem("loggedInUserName"));
+  // console.log(localStorage.getItem("loggedInUserName"));
   let userName = localStorage.getItem("loggedInUserName");
   let initName = getInitials(userName);
   let initNameElement = document.getElementById("init-name");

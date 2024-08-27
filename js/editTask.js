@@ -101,20 +101,18 @@ function fillAssignedToDropdown(assignedTo) {
 
 function toggleContactSelection(checkbox) {
   const contactName = checkbox.value.trim();
-
   const selectedBadgesContainer = document.getElementById("selectedBadges");
-  // Update the badge state based on the checkbox state
+
   updateBadgeState(checkbox, contactName, selectedBadgesContainer);
 }
 
 function updateBadgeState(checkbox, contactName, container) {
   if (checkbox.checked) {
-      // Add the badge if the checkbox is checked and doesn't already exist
       if (!container.querySelector(`[data-contact="${contactName}"]`)) {
-          container.innerHTML += createProfileIcon(contactName);
+          const badgeHTML = createProfileIcon(contactName);
+          container.insertAdjacentHTML('beforeend', badgeHTML); 
       }
   } else {
-      // Remove the badge if the checkbox is unchecked
       removeBadge(contactName, container);
   }
 }
@@ -123,7 +121,7 @@ function removeBadge(contactName, container) {
   const badge = container.querySelector(`[data-contact="${contactName}"]`);
   if (badge) {
       badge.remove();
-  }
+  } 
 }
 
 function addBadge(fullname, container) {
