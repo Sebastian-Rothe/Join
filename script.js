@@ -1,3 +1,9 @@
+/**
+ * Loads HTML content from external files into elements that have the 'w3-include-html' attribute.
+ * Fetches the content asynchronously and inserts it into the element's innerHTML.
+ * If the content cannot be loaded, displays a 'Page not found' message.
+ * After including the content, it initializes the profile icon.
+ */
 async function includeHTML() {
   let includeElements = document.querySelectorAll('[w3-include-html]');
   for (let i = 0; i < includeElements.length; i++) {
@@ -12,7 +18,12 @@ async function includeHTML() {
       initialProfileIcon();
   }
 }
-// //////////////////////////////////////////////////
+
+/**
+ * Toggles the visibility of the dropdown menu.
+ * If the dropdown menu is hidden or not displayed, it sets the display to 'flex'.
+ * If the dropdown menu is visible, it hides it.
+ */
  function openDropdownMenu(){
     let dropdownMenu = document.getElementById('dropdown-menu');
     if (dropdownMenu.style.display === 'none' || dropdownMenu.style.display === '') {
@@ -21,7 +32,11 @@ async function includeHTML() {
         dropdownMenu.style.display = 'none'; 
     }
 }
-// Add an event listener to the document to close the dropdown when clicking outside
+
+/**
+ * Adds an event listener to the document that closes the dropdown menu when clicking outside of it.
+ * If the user clicks outside of the profile avatar or the dropdown menu, the menu will be hidden.
+ */
 document.addEventListener('click', function(event) {
     const dropdownMenu = document.getElementById('dropdown-menu');
     const profileAvatar = document.getElementById('profile-avatar');
@@ -31,7 +46,10 @@ document.addEventListener('click', function(event) {
     }
 });
 
-// //////////////////////////////////////////////////////////////////////log uot
+/**
+ * Logs out the user by clearing localStorage and redirecting to the login page.
+ * Clears all data stored in localStorage and navigates the user to 'login.html'.
+ */
 function logoutUser() {
     localStorage.clear();
     window.location.replace("login.html");

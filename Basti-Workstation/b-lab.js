@@ -10,8 +10,7 @@ function init() {
 async function loadContacts(path = "/contacts") {
   users = [];
   let userResponse = await fetch(BASE_URL + path + ".json");
-  let responseToJson = await userResponse.json();
-  console.log(responseToJson);
+  let responseToJson = await userResponse.json();  
 
   if (responseToJson) {
     Object.keys(responseToJson).forEach((key) => {
@@ -21,8 +20,7 @@ async function loadContacts(path = "/contacts") {
         email: responseToJson[key]["email"],
         phone: responseToJson[key]["phone"],
       });
-    });
-    console.log(users);
+    });    
     return users;
   }
 }
@@ -54,12 +52,11 @@ async function deleteContact(id) {
   let response = await fetch(BASE_URL + `/contacts/${id}.json`, {
     method: "DELETE",
   });
-  if (!response.ok) {
-    // console.error(`Fehler beim Löschen des Kontakts: ${response.statusText}`);
+  if (!response.ok) {    
     return null;
   }
   let responseToJson = await response.json();
-  // console.log(`Kontakt mit ID ${id} gelöscht:`, responseToJson);
+  
 
   await loadContacts("/contacts");
   displayContacts();
@@ -174,8 +171,7 @@ function updateDisplayStates(contactDetails, contactContent, mobileContactOption
 
 
 
-function openMobileContactOption() {
-  console.log('Opening popup...');
+function openMobileContactOption() {  
   const popup = document.getElementById('mobile-contact-option-popup');
   const overlay = document.getElementById('overlay-option');
   closeMobileAddB();
@@ -187,8 +183,7 @@ function openMobileContactOption() {
   }, 10);
 }
 
-function closeMobileContactOption() {
-  console.log('Closing popup...');
+function closeMobileContactOption() {  
   const popup = document.getElementById('mobile-contact-option-popup');
   const overlay = document.getElementById('overlay-option');
   popup.classList.remove('aktiv');
@@ -445,7 +440,139 @@ function toggleContactSelection(checkbox, contactName) {
       if (index > -1) {
           assignedTo.splice(index, 1);
       }
-  }
+  }  
+}
 
-  console.log('Aktualisiertes assignedTo:', assignedTo); // Debug-Ausgabe
+
+
+
+// ##################
+// save funciton in big
+
+function generateTaskCardHTML(element) {
+  const { completedSubtasks, subtaskCount, progress } = calculateSubtaskStats(element.subtasks);
+
+  const maxAvatarsToShow = 3;
+  const avatarsHTML = element.assignedTo
+    .slice(0, maxAvatarsToShow)
+    .map((person) => 
+      `<span class="avatar style-avatar-overlap">${createProfileIcon(person)}</span>`
+    )
+    .join("");
+
+  const extraAvatarsCount = element.assignedTo.length - maxAvatarsToShow;
+  const extraAvatarsHTML = extraAvatarsCount > 0 
+    ? `<span class="align-assignedTo-count">+${extraAvatarsCount}</span>` 
+    : "";
+
+  const subtasksHTML = subtaskCount > 0 ? `
+    <div class="task-subtasks">
+      <div class="progress-bar">
+        <div class="progress" style="width: ${progress}%;"></div>
+      </div>
+      <div class="subtask-info">${completedSubtasks}/${subtaskCount} Subtasks</div>
+    </div>` : '';
+
+  return `
+    <div class="task-card" draggable="true" ondragstart="startDragging('${element.idNumber}')" onclick="openDetailedTaskOverlay('${element.idNumber}')">
+      <div class="align-task-card-head">
+        <div class="task-label ${
+          element.category === "UserStory"
+            ? "user-story"
+            : element.category === "TechnicalTask"
+            ? "technical-task"
+            : "default-label"
+        }">${element.category}</div>
+        <div class="task-head-menu-background" onclick="toggleTaskMenu(event, '${element.idNumber}')">
+          <img src="./assets/icons/menu-mobile-board.svg" alt="">
+          <div class="task-menu" style="display: none;" id="task-menu-${element.idNumber}">
+            <div class="menu-content">
+              <div onclick="moveTaskTo(event, 'todo', '${element.idNumber}');">To Do</div>
+              <div onclick="moveTaskTo(event, 'inProgress', '${element.idNumber}');">In Progress</div>
+              <div onclick="moveTaskTo(event, 'awaitFeedback', '${element.idNumber}');">Await Feedback</div>
+              <div onclick="moveTaskTo(event, 'done', '${element.idNumber}');">Done</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="task-title">${element.title}</div>
+      <div class="task-description">${element.description}</div>
+      ${subtasksHTML}
+      <div class="task-footer">
+        <div class="task-assigned">
+          ${avatarsHTML}
+          ${extraAvatarsHTML}
+        </div>
+        <div class="priority-icon ${element.priority}"></div>
+      </div>
+    </div>`;
+}
+
+
+function openPopupEditTask(taskId) {
+  closePopup();
+  document.getElementById('modalOverlay').style.display = 'block';
+  document.getElementById('addTaskModal').style.display = 'block';
+  document.getElementById('addTaskModal').style.padding = '0';
+  document.getElementById('addTaskModal').classList.add('board-popup-content');
+
+  fetch('add_task.html')
+      .then(response => response.text())
+      .then(html => {
+          const parser = new DOMParser();
+          const doc = parser.parseFromString(html, 'text/html');
+
+          const content = doc.querySelector('.container-main');
+          if (content) {
+              document.getElementById('addTaskContent').innerHTML = content.outerHTML;
+              document.getElementById('titleHeaderAdust').innerHTML = "Edit Task";
+              document.getElementById('left-right-container').classList.add('left-right-container-to-edit');
+              document.getElementById('left-right-container').classList.remove('left-right-container');
+              document.getElementById('left-side').classList.add('left-side-to-edit');
+              document.getElementById('left-side').classList.remove('left-side');
+              document.getElementById('right-side').classList.add('right-side-to-edit');
+              document.getElementById('right-side').classList.remove('right-side');
+              document.getElementById('footer-add-task-left').style.display = "none";
+              document.getElementById('divider').style.display = "none";
+              document.getElementById('footer-add-task').classList.add('footer-add-task-to-edit');
+              document.getElementById('footer-add-task').classList.remove('footer-add-task');
+              document.getElementById('footer-add-task-right').classList.add('footer-add-task-right-to-edit');
+              document.getElementById('footer-add-task-right').classList.remove('footer-add-task');
+
+            }
+          
+          const task = tasks.find(t => t.idNumber === taskId);
+
+          if (task) {
+              document.getElementById('title').value = task.title || '';
+              document.getElementById('description').value = task.description || '';
+              document.getElementById('date').value = task.date || '';
+              document.getElementById('category').value = task.category || '';
+
+              const priorityButton = document.getElementById(task.priority);
+              if (priorityButton) {
+                  priorityButton.classList.add('priority-btn-active');
+              }
+
+              fillAssignedToDropdown(task.assignedTo || []);
+              fillSubtasks(task.subtasks || []);
+
+              const selectedBadgesContainer = document.getElementById('selectedBadges');
+              selectedBadgesContainer.innerHTML = '';
+              task.assignedTo.forEach(contact => {
+                  selectedBadgesContainer.innerHTML += createProfileIcon(contact);
+              });
+          }
+
+          const saveButton = document.querySelector('.create-task-btn');
+          saveButton.textContent = 'Save Task';
+          saveButton.onclick = function() {
+              updateTask(taskId);
+          };
+
+          onloadfunc();
+      })
+      .catch(error => {
+          console.error('Error loading add_task.html:', error);
+      });
 }

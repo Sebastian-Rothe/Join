@@ -1,8 +1,16 @@
+/**
+ * Initializes the board by loading tasks and counting their statuses.
+ * Awaits the loading of tasks before counting the status.
+ */
 async function initBoard() {
   await loadTasks();
   countStatus();
 }
 
+/**
+ * Counts the number of tasks in each status category and updates the corresponding HTML elements.
+ * Also calculates and displays the total number of tasks and the upcoming deadline.
+ */
 function countStatus() {
   const statusDone = "done";
   const statustodo = "todo";
@@ -30,6 +38,12 @@ function countStatus() {
   document.getElementById("upcoming-deadline").innerHTML = upcomingDeadline;
 }
 
+/**
+ * Finds the nearest upcoming deadline from the list of tasks and returns it as a formatted date string.
+ * If no deadlines are present, returns a message indicating no upcoming deadlines.
+ * @param {Array} tasks - The array of task objects.
+ * @returns {string} - The upcoming deadline as a formatted date string, or a message if none exist.
+ */
 function getUpcomingDeadline(tasks) {
   let nextDeadline = null;
 
@@ -48,6 +62,10 @@ function getUpcomingDeadline(tasks) {
     : "No upcoming deadlines";
 }
 
+/**
+ * Sets up event listeners on page load to change the images of elements with certain classes on hover.
+ * Changes the image source on mouseover and mouseout events.
+ */
 document.addEventListener("DOMContentLoaded", () => {
   const hoverImgs = {
     ".todo": "assets/icons/Frame 59 (2).png",
@@ -69,11 +87,15 @@ document.addEventListener("DOMContentLoaded", () => {
     const element = document.querySelector(selector);
     element.addEventListener("mouseover", () => changeImg(selector, hoverSrc));
     element.addEventListener("mouseout", () =>
-      changeImg(selector, originalSrc)
+    changeImg(selector, originalSrc)
     );
   });
 });
 
+/**
+ * Updates the greeting message based on the current time of day and displays the user's name if available.
+ * Retrieves the username from localStorage and updates the greeting accordingly.
+ */
 function updateGreeting() {
   let currentHour = new Date().getHours();
   let userName = localStorage.getItem("loggedInUserName");
@@ -90,6 +112,10 @@ function updateGreeting() {
     greetingText = "Good night";
   }
 
+/**
+ * Updates the displayed greeting name with the username stored in localStorage.
+ * If no username is found, the function does nothing.
+ */
   if (userName) {
     document.getElementById("greetingText").textContent = greetingText;
     document.getElementById("greetingName").textContent = userName;
@@ -99,6 +125,9 @@ function updateGreeting() {
   }
 }
 
+/**
+ * Adds an event listener to update the greeting when the DOM is fully loaded.
+ */
 function updateGreetingName() {
   let userName = localStorage.getItem("loggedInUserName");
   if (userName) {

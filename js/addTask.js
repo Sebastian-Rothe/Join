@@ -10,7 +10,6 @@ const fields = [
     "status",
 ];
 
-
 // Fills a dropdown with users' profile icons, names, and checkboxes, clearing any existing content.
 function assignedDropdown(users) {
     let dropdownContent = document.getElementById('contactsDropdown');
@@ -27,7 +26,6 @@ function assignedDropdown(users) {
     });
 }
 
-
 //Toggles the selection of a contact, adding or removing it from the selected contacts list, and updates the display. 
 function toggleContactSelection(checkbox) {
     const contactName = checkbox.value;
@@ -43,7 +41,6 @@ function toggleContactSelection(checkbox) {
     }
     updateSelectedBadges();
 }
-
 
 //Display Selected Contacts as Badges with Overflow Indicator
 function updateSelectedBadges() {
@@ -71,14 +68,13 @@ function updateSelectedBadges() {
     }
 }
 
-
+//Toggles the visibility of the dropdown menu.
 function toggleDropdown() {    
     let dropdownContent = document.getElementById('contactsDropdown');
     if (dropdownContent) {
         dropdownContent.classList.toggle('show');
     }
 }
-
 
 // Close dropdown if clicked outside
 document.addEventListener('click', function(event) {
@@ -94,7 +90,7 @@ document.addEventListener('click', function(event) {
     }
 });
 
-
+// Initializes the page by loading assigned users and setting the minimum date for the date input.
 async function onloadfunc() {
     let users = await loadAssignedPerson("/contacts");
     
@@ -104,12 +100,17 @@ async function onloadfunc() {
     setMinDate();
 }
 
+// Sets the minimum date for the date input to today's date.
 function setMinDate() {
     const today = new Date().toISOString().split("T")[0];
     const dateInput = document.getElementById('date');
     dateInput.setAttribute('min', today);
 }
-///////////////////////////////////////////////////////////////////////// priority
+
+/**
+ * Applies the active priority to the corresponding button and updates the hidden input field to save the current priority.
+ * @param {string} priority - The priority level to apply ('urgent', 'medium', 'low').
+ */
 function resetButtons() {
     const urgentBtn = document.getElementById('urgent');
     const mediumBtn = document.getElementById('medium');
@@ -125,7 +126,6 @@ function resetButtons() {
     mediumBtn.firstElementChild.classList.remove('change-svg-color');
     lowBtn.firstElementChild.classList.remove('change-svg-color');
 }
-
 
 // applies the active priority to the corresponding button and updates the hidden input field to save the current priority.
 function applyActivePriority(priority) {
@@ -146,13 +146,11 @@ function applyActivePriority(priority) {
     document.getElementById("priority").value = priority;
 }
 
-
 // This function combines the two previous functions
 function selectPrio(priority) {
     resetButtons();
     applyActivePriority(priority);
 }
-
 
 ////Creates a new task after validation, sends it to the server, displays a success popup and reloads the page.
 async function addTask() {
@@ -186,7 +184,6 @@ async function addTask() {
     clearAddTaskForm();   
 }
 
-
 // subTask function whenever the input value changes. 
 function subTaskInput(){
     let subTaskValue = document.getElementById("sub-task-input").value.trim();
@@ -208,20 +205,17 @@ function subTaskInput(){
     }
 }
 
-
 //when the user clicks on the image the input field will be cleared
 function clearInput(){
     document.getElementById("sub-task-input").value= '';  
     subTask();
 }
 
-
 //when the user clicks on the image the input field will be cleared
 function clearSubTaskListInput(){
     let listItem = document.getElementById(subTaskValue);
     let currentText = listItem.querySelector('span').textContent; 
 }
-
 
 // Adds a new subtask if the input field is not empty
 function addSubTask() {
@@ -234,7 +228,6 @@ function addSubTask() {
     }
 }
 
-
 // Adds the subtask to the array if it does not yet exist
 function addSubTaskToArray(subTaskValue) {
     // Check if the subtask is already in the array
@@ -245,7 +238,6 @@ function addSubTaskToArray(subTaskValue) {
         createdSubTasks.push({ title: subTaskValue, completed: false });
     }
 }
-
 
 // Updates the user interface with the new subtask
 function updateSubTaskUI(subTaskValue) {
@@ -266,7 +258,6 @@ function updateSubTaskUI(subTaskValue) {
     document.getElementById("sub-task-input").value = '';
 }
 
-
 // Resets the icons in the input field after a subtask has been added
 function resetSubTaskInputIcons() {
     // Reset icon in the input when subtask is added
@@ -280,7 +271,6 @@ function resetSubTaskInputIcons() {
     divider.classList.add('toggle-display');
     cancelIcon.classList.add('toggle-display');
 }
-
 
 //// Removes a subtask based
 function removeSubTask(subTaskValue) {
@@ -298,7 +288,6 @@ function removeSubTask(subTaskValue) {
         }
     }
 }
-
 
 /// Allows the editing of a subtask
 function editSubTask(subTaskValue) {
@@ -323,7 +312,6 @@ function editSubTask(subTaskValue) {
     `;
 }
 
-
 //// Clears the input field for editing a subtask
 function clearSubTaskListInput(subTaskValue) {
     let inputField = document.getElementById('sub-task-list-input');
@@ -332,7 +320,6 @@ function clearSubTaskListInput(subTaskValue) {
         handleInputChange(subTaskValue);
     }
 }
-
 
 //Change Img(Button) if the current input changes
 function handleInputChange(subTaskValue) {
@@ -347,29 +334,28 @@ function handleInputChange(subTaskValue) {
     }
 }
 
-
 //save subtask text after edite
 function saveSubTask(subTaskValue) {
     let listItem = document.getElementById(subTaskValue);
     let inputField = listItem.querySelector('.subtask-list-form input');
     let newValue = inputField.value;
 
+    // Update the inner HTML of listItem to reflect the new value
     listItem.innerHTML = `
-        <span>${newValue}</span>
-    </div>
-    <div class="subtask-list-right">
-        <span><img src="../assets/icons/EditAddTask.svg" alt="" class="toggle-display" onclick="editSubTask('${subTaskValue}')"></span>
-        <div class="subtask-list-divider toggle-display"></div>
-        <span><img src="../assets/icons/delete.svg" alt="" class="toggle-display" onclick="removeSubTask('${subTaskValue}')"></span>
-     `;
-    // show again the point in the list
+        <div class="subtask-list-left">
+            <input type="checkbox" onchange="toggleSubtaskCompletion(this, '${subTaskValue}')" class="d-none">
+            <span>${newValue}</span>
+        </div>
+        <div class="subtask-list-right">
+            <span><img src="../assets/icons/EditAddTask.svg" alt="" class="toggle-display" onclick="editSubTask('${subTaskValue}')"></span>
+            <div class="subtask-list-divider toggle-display"></div>
+            <span><img src="../assets/icons/delete.svg" alt="" class="toggle-display" onclick="removeSubTask('${subTaskValue}')"></span>
+        </div>
+    `;
+
+    // Show again the point in the list
     listItem.style.paddingLeft = '20px';
-
-    // Hides the form
-    let form = listItem.querySelector('.subtask-list-form');
-    form.style.display = 'none';
 }
-
 
 //clear all input value in add task page
 function clearInputsAndSelections() {
@@ -396,7 +382,6 @@ function clearInputsAndSelections() {
     });
 }
 
-
 // Reset all buttons
 function resetPriorityButtonsAndEditTask() { 
 
@@ -409,22 +394,25 @@ function resetPriorityButtonsAndEditTask() {
     mediumBtn.classList.add('medium-prio-active');
 
     // Reset the edit task popup
-    resetPopupEditTask();
+    if (typeof resetPopupEditTask === 'function') {
+        resetPopupEditTask();
+    }
 }
 
-
+/**
+ * Clears the task input form by resetting all inputs and selections, 
+ * as well as resetting priority buttons and the task editor.
+ */
 function clearAddTaskForm() {
     clearInputsAndSelections();
     resetPriorityButtonsAndEditTask();
 }
-
 
 //Function to save the value of a new subtask into an array 
 function saveAddTaskArray(){
     let subTaskValue = document.getElementById("sub-task-input").value
     createdSubTasks.push(subTaskValue);
 }
-
 
 //form Validate Title
 function validateTitle() {
@@ -442,7 +430,6 @@ function validateTitle() {
     }
 }
 
-
 //form Validate Date
 function validateDate() {
     let dateInput = document.getElementById("date");
@@ -459,7 +446,6 @@ function validateDate() {
     }
 }
 
-
 //form Validate Category
 function validateCategory() {
     let categorySelect = document.getElementById("category");
@@ -475,7 +461,6 @@ function validateCategory() {
         return true;
     }
 }
-
 
 // Combining the Functions
 function formvalidation() {
