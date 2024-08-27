@@ -19,7 +19,7 @@ function assignedDropdown(users) {
             <label style="display: flex; align-items: center; padding: 8px;">
                 ${createProfileIcon(user.name)}
                 <span>${user.name}</span>
-                <input type="checkbox" value="${user.name}" style="margin-left: auto;" onclick="toggleContactSelection(this)">
+                <input type="checkbox" value="${user.name}" style="margin-left: auto;" onclick="toggleContactSelectionWrapper(this)">
             </label>
         `;
         dropdownContent.innerHTML += label;

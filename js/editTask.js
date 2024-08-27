@@ -203,12 +203,24 @@ function fillAssignedToDropdown(assignedTo) {
  * @param {HTMLInputElement} checkbox - The checkbox element that was toggled.
  * @returns {void} - This function does not return a value.
  */
-function toggleContactSelection(checkbox) {
+function toggleContactSelection2(checkbox) {
   const contactName = checkbox.value.trim();
   const selectedBadgesContainer = document.getElementById("selectedBadges");
 
   updateBadgeState(checkbox, contactName, selectedBadgesContainer);
 }
+
+
+function toggleContactSelectionWrapper(checkbox) {
+  const headerTitle = document.getElementById('titleHeaderAdust').innerHTML;
+
+  if (headerTitle === "Edit Task") {
+      toggleContactSelection2(checkbox);
+  } else {
+      toggleContactSelection(checkbox);
+  }
+}
+
 
 /**
  * Updates the state of a badge based on checkbox selection.
