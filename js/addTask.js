@@ -42,6 +42,16 @@ function toggleContactSelection(checkbox) {
     updateSelectedBadges();
 }
 
+function toggleContactSelectionWrapper(checkbox) {
+    const headerTitle = document.getElementById('titleHeaderAdust').innerHTML;
+  
+    if (headerTitle === "Edit Task") {
+        toggleContactSelection2(checkbox);
+    } else {
+        toggleContactSelection(checkbox);
+    }
+  }
+
 //Display Selected Contacts as Badges with Overflow Indicator
 function updateSelectedBadges() {
     let selectedBadgesContainer = document.getElementById('selectedBadges');
@@ -252,9 +262,9 @@ function updateSubTaskUI(subTaskValue) {
             <span>${subTaskValue}</span>
         </div>
         <div class="subtask-list-right">
-            <span><img src="../assets/icons/EditAddTask.svg" alt="" class="toggle-display" onclick="editSubTask('${subTaskValue}')"></span>
+            <span><img src="./assets/icons/EditAddTask.svg" alt="" class="toggle-display" onclick="editSubTask('${subTaskValue}')"></span>
             <div class="subtask-list-divider toggle-display"></div>
-            <span><img src="../assets/icons/delete.svg" alt="" class="toggle-display" onclick="removeSubTask('${subTaskValue}')"></span>
+            <span><img src="./assets/icons/delete.svg" alt="" class="toggle-display" onclick="removeSubTask('${subTaskValue}')"></span>
         </div>
     </li>`;
     document.getElementById("sub-task-input").value = '';
@@ -303,11 +313,11 @@ function editSubTask(subTaskValue) {
             <input type="text" name="" id="sub-task-list-input" value="${currentText}" oninput="handleInputChange('${subTaskValue}')">  
             <button type="button" class="subtask-btn-list">
                 <span class="subtask-btn-list-checked">
-                    <img src="../assets/icons/CheckAddTask.svg" alt="" onclick="saveSubTask('${subTaskValue}')">
+                    <img src="./assets/icons/CheckAddTask.svg" alt="" onclick="saveSubTask('${subTaskValue}')">
                 </span>
                 <div class="subtask-btn-list-divider"></div>
                 <span class="subtask-btn-list-delete">
-                    <img src="../assets/icons/delete.svg" id="delete-icon-${subTaskValue}" alt="" onclick="clearSubTaskListInput('${subTaskValue}')">
+                    <img src="./assets/icons/delete.svg" id="delete-icon-${subTaskValue}" alt="" onclick="clearSubTaskListInput('${subTaskValue}')">
                 </span>
             </button>
         </form>
@@ -329,10 +339,10 @@ function handleInputChange(subTaskValue) {
     let deleteIcon = document.getElementById(`delete-icon-${subTaskValue}`);
     if (inputField.value.trim() !== '') {
        
-        deleteIcon.src = "../assets/icons/CloseAddTask.svg";
+        deleteIcon.src = "./assets/icons/CloseAddTask.svg";
     } else {
        
-        deleteIcon.src = "../assets/icons/delete.svg";
+        deleteIcon.src = "./assets/icons/delete.svg";
     }
 }
 
@@ -349,9 +359,9 @@ function saveSubTask(subTaskValue) {
             <span>${newValue}</span>
         </div>
         <div class="subtask-list-right">
-            <span><img src="../assets/icons/EditAddTask.svg" alt="" class="toggle-display" onclick="editSubTask('${subTaskValue}')"></span>
+            <span><img src="./assets/icons/EditAddTask.svg" alt="" class="toggle-display" onclick="editSubTask('${subTaskValue}')"></span>
             <div class="subtask-list-divider toggle-display"></div>
-            <span><img src="../assets/icons/delete.svg" alt="" class="toggle-display" onclick="removeSubTask('${subTaskValue}')"></span>
+            <span><img src="./assets/icons/delete.svg" alt="" class="toggle-display" onclick="removeSubTask('${subTaskValue}')"></span>
         </div>
     `;
 

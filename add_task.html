@@ -37,7 +37,7 @@
                   
                     <label for="dropdown">Assigned to</label>
                     <div class="dropdown">
-                        <button onclick="toggleDropdown()" class="dropdown-btn">Select contacts to assign <span><img src="../assets/icons/arrow_drop_down .svg" alt=""></span></button>
+                        <button onclick="toggleDropdown()" class="dropdown-btn">Select contacts to assign <span><img src="./assets/icons/arrow_drop_down .svg" alt=""></span></button>
                         <div id="contactsDropdown" class="dropdown-content">
                             <!-- Load in JS -->
                         </div>
@@ -61,15 +61,15 @@
                     <div class="priority-buttons">
                         <button type="button" id="urgent" class="priority-btn " onclick="selectPrio('urgent')">
                             Urgent
-                            <img src="../assets/icons/PrioUrgent.svg" alt="Urgent Icon" >
+                            <img src="./assets/icons/PrioUrgent.svg" alt="Urgent Icon" >
                         </button>
                         <button type="button" id="medium" class="priority-btn medium-prio-active" onclick="selectPrio('medium')">
                             Medium
-                            <img src="../assets/icons/PrioMedium.svg" alt="Medium Icon" class="change-svg-color">
+                            <img src="./assets/icons/PrioMedium.svg" alt="Medium Icon" class="change-svg-color">
                         </button>
                         <button type="button" id="low" class="priority-btn " onclick="selectPrio('low')">
                             Low
-                            <img src="../assets/icons/PrioLow.svg" alt="Low Icon" >
+                            <img src="./assets/icons/PrioLow.svg" alt="Low Icon" >
                         </button>
                     </div>
 
@@ -81,7 +81,7 @@
                             <option value="UserStory">User Story</option>                        
                         </select>
                        
-                       <img src="../assets/icons/arrow_drop_down .svg" alt="Dropdown Icon" class="custom-dropdown-icon">
+                       <img src="./assets/icons/arrow_drop_down .svg" alt="Dropdown Icon" class="custom-dropdown-icon">
                        <div class="error-validation-category toggle-display">This field is required</div>
                     </div>
 
@@ -89,11 +89,11 @@
                     <form class="subtask-form" action="">
                         <input class="input-style" type="text" name="" id="sub-task-input" placeholder="Add new subtask" oninput="subTaskInput()">  <!-- oninput whenever the input value changes. -->
                         <button  type="button" class="subtask-btn">
-                            <span class="subtask-btn-plus"><img src="../assets/icons/addblack.svg" alt=""></span>
+                            <span class="subtask-btn-plus"><img src="./assets/icons/addblack.svg" alt=""></span>
                            
-                            <span class="subtask-btn-checked"><img src="../assets/icons/CheckAddTask.svg" alt="" class="toggle-display" onclick="addSubTask()"></span>
+                            <span class="subtask-btn-checked"><img src="./assets/icons/CheckAddTask.svg" alt="" class="toggle-display" onclick="addSubTask()"></span>
                             <div class="subtask-btn-divider toggle-display"></div>
-                            <span class="subtask-btn-cancel"><img src="../assets/icons/CloseAddTask.svg" alt="" class="toggle-display" onclick="clearInput()"></span>
+                            <span class="subtask-btn-cancel"><img src="./assets/icons/CloseAddTask.svg" alt="" class="toggle-display" onclick="clearInput()"></span>
                         </button>
 
                     </form>
@@ -121,8 +121,8 @@
                     <span><span class="required">*</span>This field is required</span>
                 </div>
                 <div id="footer-add-task-right" class="footer-add-task-right">
-                    <button class="clear-btn" onclick="clearAddTaskForm()">clear <img src="../assets/icons/close.svg" alt="Clear Icon" class="icon"></button>
-                    <button class="create-task-btn" onclick="addTask()">create Task <img src="../assets/icons/check.svg" alt="Create Icon" class="icon"></button>
+                    <button class="clear-btn" onclick="clearAddTaskForm()">clear <img src="./assets/icons/close.svg" alt="Clear Icon" class="icon"></button>
+                    <button class="create-task-btn" onclick="addTask()">create Task <img src="./assets/icons/check.svg" alt="Create Icon" class="icon"></button>
                     <input type="hidden" id="status" value="todo">
                     <input type="hidden" id="priority" value="low">
                     

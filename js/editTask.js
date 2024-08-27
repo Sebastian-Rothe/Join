@@ -207,15 +207,7 @@ function toggleContactSelection2(checkbox) {
 }
 
 
-function toggleContactSelectionWrapper(checkbox) {
-  const headerTitle = document.getElementById('titleHeaderAdust').innerHTML;
 
-  if (headerTitle === "Edit Task") {
-      toggleContactSelection2(checkbox);
-  } else {
-      toggleContactSelection(checkbox);
-  }
-}
 
 
 /**
@@ -369,9 +361,9 @@ function createSubtaskListItem(subtask) {
   <span>${subtask.title}</span>
   </div>
   <div class="subtask-list-right">
-  <span><img src="../assets/icons/EditAddTask.svg" alt="" class="toggle-display" onclick="editSubTask('${subtask.title}')"></span>
+  <span><img src="./assets/icons/EditAddTask.svg" alt="" class="toggle-display" onclick="editSubTask('${subtask.title}')"></span>
   <div class="subtask-list-divider toggle-display"></div>
-  <span><img src="../assets/icons/delete.svg" alt="" class="toggle-display" onclick="removeSubTask('${subtask.title}')"></span>
+  <span><img src="./assets/icons/delete.svg" alt="" class="toggle-display" onclick="removeSubTask('${subtask.title}')"></span>
   </div>
   `;
   return li;
