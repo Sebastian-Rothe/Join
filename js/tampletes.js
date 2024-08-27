@@ -1,3 +1,9 @@
+/**
+ * Adds an alphabet header to the contact display list.
+ * The header includes a letter heading and a separator.
+ * @param {HTMLElement} contactDisplay - The DOM element where the header will be added.
+ * @param {string} sortAlphabet - The letter to display in the header.
+ */
 function addAlphabetHeader(contactDisplay, sortAlphabet) {
     contactDisplay.innerHTML += `
     <li class="letter-heading">
@@ -6,6 +12,12 @@ function addAlphabetHeader(contactDisplay, sortAlphabet) {
     <li class="contact-separator"></li>`;
 }
 
+/**
+ * Generates the HTML content for displaying the details of a contact.
+ * Includes the user's avatar, name, email, and phone number, along with edit and delete actions.
+ * @param {Object} user - The user object containing contact details.
+ * @returns {string} - The HTML string for the contact details display.
+ */
 function getContactDetailHTML(user){
     return`
           <div class="contact-content-text">
@@ -41,6 +53,13 @@ function getContactDetailHTML(user){
           </div>`;
 }
   
+/**
+ * Generates the HTML for a contact card to be displayed in the contact list.
+ * Includes the user's avatar, name, and email, and handles the new contact highlight if applicable.
+ * @param {Object} user - The user object containing contact details.
+ * @param {boolean} isNew - A flag indicating if this is a new contact, used to apply special styling.
+ * @returns {string} - The HTML string for the contact card.
+ */
 function getContactCardHTML(user, isNew) {
     return `
     <li id="contact-item-${user.email}" class="single-contact contact-hover-effect ${isNew ? 'new-contact' : ''}" onclick='showContactDetails(${JSON.stringify(user)})' style="cursor: pointer;">
