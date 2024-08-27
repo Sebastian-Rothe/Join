@@ -11,6 +11,12 @@ let profileColors = [
     '#3E6020'  // Dunkelolivgrün
   ];
 
+  /**
+ * Retrieves the initials from a full name. If the name consists of one word, the first two letters are used.
+ * If the name consists of multiple words, the initials of the first letters of each word are used.
+ * @param {string} fullName - The full name of the user.
+ * @returns {string} - The initials derived from the full name.
+ */
 function getInitials(fullName) {
   if (!fullName || typeof fullName !== 'string') {
       return "";
@@ -28,10 +34,19 @@ function getInitials(fullName) {
   return initials;
 }
 
+/**
+ * Assigns a random color from the `profileColors` array.
+ * @returns {string} - A random color code.
+ */
   function assignRandomColors() {
     return profileColors[Math.floor(Math.random() * profileColors.length)]
   }
 
+/**
+ * Creates a profile icon with the user's initials and assigns a random background color.
+ * @param {string} fullName - The full name of the user.
+ * @returns {string} - The HTML string for the profile icon.
+ */
   function createProfileIcon(fullName) {
     let initials = getInitials(fullName);
     let color = assignRandomColors();
@@ -57,7 +72,10 @@ function getInitials(fullName) {
     `;
 }
 
-
+/**
+ * Initializes the profile icon with the user's initials from local storage.
+ * Updates the HTML element with the ID 'init-name' with the initials.
+ */
 function initialProfileIcon(){  
   let userName = localStorage.getItem("loggedInUserName");
   let initName = getInitials(userName);
@@ -67,7 +85,9 @@ function initialProfileIcon(){
 }
 
 
-// Returns to the previous page
+/**
+ * Navigates the browser to the previous page in the history.
+ */
 function BackToPreviousPage() {
   window.history.back();
 }
