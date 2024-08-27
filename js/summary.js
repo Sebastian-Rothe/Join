@@ -87,7 +87,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const element = document.querySelector(selector);
     element.addEventListener("mouseover", () => changeImg(selector, hoverSrc));
     element.addEventListener("mouseout", () =>
-    changeImg(selector, originalSrc)
+      changeImg(selector, originalSrc)
     );
   });
 });
@@ -112,10 +112,10 @@ function updateGreeting() {
     greetingText = "Good night";
   }
 
-/**
- * Updates the displayed greeting name with the username stored in localStorage.
- * If no username is found, the function does nothing.
- */
+  /**
+   * Updates the displayed greeting name with the username stored in localStorage.
+   * If no username is found, the function does nothing.
+   */
   if (userName) {
     document.getElementById("greetingText").textContent = greetingText;
     document.getElementById("greetingName").textContent = userName;

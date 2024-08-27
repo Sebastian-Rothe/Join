@@ -17,6 +17,7 @@ body {
   width: 100%;
   margin-bottom: 20px;
 }
+
 .key {
   font-size: 20px;
   font-weight: 400;
@@ -81,6 +82,7 @@ body {
   background-color: rgba(42, 54, 71, 1);
   color: white;
 }
+
 .done:hover p {
   color: white;
 }
@@ -228,10 +230,12 @@ body {
   align-items: center;
   gap: 20px;
 }
+
 .main-headline p {
   font-size: 61px;
   font-weight: 700;
 }
+
 @media screen and (min-width: 1920px) {
   .container,
   .summary-tasks {
@@ -265,12 +269,14 @@ body {
     justify-content: center;
     margin-bottom: 80px;
   }
+
   .summary-todo-and-tasks {
     margin: 0;
     padding: 0;
     display: flex;
     justify-content: center;
   }
+
   .greeting {
     display: none;
   }
@@ -278,12 +284,13 @@ body {
   .all {
     padding: 0;
     margin-top: 5px;
-    height: 160vh;
+    height: 140vh;
     display: flex;
     justify-content: center;
     align-items: center;
     margin-bottom: 20px;
   }
+
   .container {
     padding: 0;
   }
@@ -306,6 +313,7 @@ body {
     .all {
       height: 130vh;
     }
+
     .main-headline {
       gap: inherit;
       display: flex;
@@ -313,18 +321,22 @@ body {
       align-items: center;
       text-align: center;
     }
+
     .main-headline img {
       display: none;
     }
+
     .summary-tasks {
       margin: auto;
       display: flex;
       flex-direction: column;
       justify-content: end;
     }
+
     .greeting {
       display: none;
     }
+
     .container {
       display: flex;
       align-items: center;
@@ -474,26 +486,30 @@ body {
     .all {
       width: 100%;
       margin-top: 5px;
-      height: 160vh;
+      height: 126vh;
       display: flex;
       justify-content: center;
       align-items: center;
       margin-bottom: 20px;
     }
+
     .container {
       width: 100%;
       display: flex;
       justify-content: center;
       align-items: center;
     }
+
     .done {
       height: 108px;
       width: 150px;
     }
+
     .done p {
       font-weight: 400;
       font-size: 12px;
     }
+
     .done h3 {
       font-size: 40px;
       font-weight: 600;
@@ -504,10 +520,12 @@ body {
       height: 108px;
       width: 150px;
     }
+
     .todo p {
       font-weight: 400;
       font-size: 12px;
     }
+
     .todo h3 {
       font-size: 40px;
       font-weight: 600;
@@ -524,6 +542,7 @@ body {
       height: 108px;
       width: 315px;
     }
+
     .summary-urgent-tasks p {
       font-size: 12px;
     }
@@ -549,6 +568,7 @@ body {
       font-weight: 400;
       font-size: 12px;
     }
+
     .task-container h3 {
       font-size: 40px;
       font-weight: 600;
