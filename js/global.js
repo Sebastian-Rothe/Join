@@ -66,3 +66,9 @@ function initialProfileIcon(){
   if(initNameElement)
       initNameElement.innerHTML = initName?initName:"";
 }
+
+
+// Returns to the previous page
+function BackToPreviousPage() {
+  window.history.back();
+}
