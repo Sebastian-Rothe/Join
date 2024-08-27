@@ -354,20 +354,21 @@ function saveSubTask(subTaskValue) {
     let inputField = listItem.querySelector('.subtask-list-form input');
     let newValue = inputField.value;
 
+    // Update the inner HTML of listItem to reflect the new value
     listItem.innerHTML = `
-        <span>${newValue}</span>
-    </div>
-    <div class="subtask-list-right">
-        <span><img src="../assets/icons/EditAddTask.svg" alt="" class="toggle-display" onclick="editSubTask('${subTaskValue}')"></span>
-        <div class="subtask-list-divider toggle-display"></div>
-        <span><img src="../assets/icons/delete.svg" alt="" class="toggle-display" onclick="removeSubTask('${subTaskValue}')"></span>
-     `;
-    // show again the point in the list
-    listItem.style.paddingLeft = '20px';
+        <div class="subtask-list-left">
+            <input type="checkbox" onchange="toggleSubtaskCompletion(this, '${subTaskValue}')" class="d-none">
+            <span>${newValue}</span>
+        </div>
+        <div class="subtask-list-right">
+            <span><img src="../assets/icons/EditAddTask.svg" alt="" class="toggle-display" onclick="editSubTask('${subTaskValue}')"></span>
+            <div class="subtask-list-divider toggle-display"></div>
+            <span><img src="../assets/icons/delete.svg" alt="" class="toggle-display" onclick="removeSubTask('${subTaskValue}')"></span>
+        </div>
+    `;
 
-    // Hides the form
-    let form = listItem.querySelector('.subtask-list-form');
-    form.style.display = 'none';
+    // Show again the point in the list
+    listItem.style.paddingLeft = '20px';
 }
 
 

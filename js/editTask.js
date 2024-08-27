@@ -75,21 +75,17 @@ function fillAssignedToDropdown(assignedTo) {
 
   setTimeout(() => {
       const labels = dropdown.querySelectorAll("label");
-
       if (labels.length === 0) {
           console.warn("No labels found. Possible timing issue.");
       } else {
           const selectedBadgesContainer = document.getElementById("selectedBadges");
           selectedBadgesContainer.innerHTML = "";
-
-          // Only add badges for contacts in the assignedTo array
           labels.forEach((label) => {
               const checkbox = label.querySelector('input[type="checkbox"]');
               const contactName = checkbox.value.trim();
 
               if (checkbox && assignedTo.includes(contactName)) {
                   checkbox.checked = true;
-                  // Add a badge for this contact
                   selectedBadgesContainer.innerHTML += createProfileIcon(contactName);
               } else {
                   checkbox.checked = false;
@@ -138,7 +134,6 @@ function addBadge(fullname, container) {
       checkbox.checked = false;
     }
   };
-  
   container.appendChild(badge);
 }
 
@@ -208,6 +203,7 @@ function createSubtaskListItem(subtask) {
   `;
   return li;
 }
+
 
 function toggleSubtaskCompletion(checkbox) {
   const subtaskElement = checkbox.closest('li');
