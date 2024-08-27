@@ -176,9 +176,6 @@ function fillAssignedToDropdown(assignedTo) {
   const dropdown = document.getElementById("contactsDropdown");
   setTimeout(() => {
       const labels = dropdown.querySelectorAll("label");
-      if (labels.length === 0) {
-          console.warn("No labels found. Possible timing issue.");
-      } else {
           const selectedBadgesContainer = document.getElementById("selectedBadges");
           selectedBadgesContainer.innerHTML = "";
           labels.forEach((label) => {
@@ -192,7 +189,6 @@ function fillAssignedToDropdown(assignedTo) {
                   checkbox.checked = false;
               }
           });
-      }
   }, 100);
 }
 
