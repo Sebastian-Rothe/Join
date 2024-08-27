@@ -10,8 +10,7 @@ function init() {
 async function loadContacts(path = "/contacts") {
   users = [];
   let userResponse = await fetch(BASE_URL + path + ".json");
-  let responseToJson = await userResponse.json();
-  console.log(responseToJson);
+  let responseToJson = await userResponse.json();  
 
   if (responseToJson) {
     Object.keys(responseToJson).forEach((key) => {
@@ -21,8 +20,7 @@ async function loadContacts(path = "/contacts") {
         email: responseToJson[key]["email"],
         phone: responseToJson[key]["phone"],
       });
-    });
-    console.log(users);
+    });    
     return users;
   }
 }
@@ -54,12 +52,11 @@ async function deleteContact(id) {
   let response = await fetch(BASE_URL + `/contacts/${id}.json`, {
     method: "DELETE",
   });
-  if (!response.ok) {
-    // console.error(`Fehler beim Löschen des Kontakts: ${response.statusText}`);
+  if (!response.ok) {    
     return null;
   }
   let responseToJson = await response.json();
-  // console.log(`Kontakt mit ID ${id} gelöscht:`, responseToJson);
+  
 
   await loadContacts("/contacts");
   displayContacts();
@@ -174,8 +171,7 @@ function updateDisplayStates(contactDetails, contactContent, mobileContactOption
 
 
 
-function openMobileContactOption() {
-  console.log('Opening popup...');
+function openMobileContactOption() {  
   const popup = document.getElementById('mobile-contact-option-popup');
   const overlay = document.getElementById('overlay-option');
   closeMobileAddB();
@@ -187,8 +183,7 @@ function openMobileContactOption() {
   }, 10);
 }
 
-function closeMobileContactOption() {
-  console.log('Closing popup...');
+function closeMobileContactOption() {  
   const popup = document.getElementById('mobile-contact-option-popup');
   const overlay = document.getElementById('overlay-option');
   popup.classList.remove('aktiv');
@@ -445,9 +440,7 @@ function toggleContactSelection(checkbox, contactName) {
       if (index > -1) {
           assignedTo.splice(index, 1);
       }
-  }
-
-  console.log('Aktualisiertes assignedTo:', assignedTo); // Debug-Ausgabe
+  }  
 }
 
 

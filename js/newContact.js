@@ -26,17 +26,14 @@ function closeNewContact(){
   popup.classList.remove('aktiv');
   setTimeout(() => {
     popup.classList.add('d-none');
-  }, 500);
-  console.log("closed");
+  }, 500); 
 }
 
 function submitAndClose(){
   addUser().then(closeNewContact);
 }
 
-function checkForm(){
-  console.log("check form");
-
+function checkForm(){ 
   let form = document.getElementById('contactForm');
   if (form.checkValidity()){
     submitAndClose();

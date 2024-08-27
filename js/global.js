@@ -58,8 +58,7 @@ function getInitials(fullName) {
 }
 
 
-function initialProfileIcon(){
-  // console.log(localStorage.getItem("loggedInUserName"));
+function initialProfileIcon(){  
   let userName = localStorage.getItem("loggedInUserName");
   let initName = getInitials(userName);
   let initNameElement = document.getElementById("init-name");

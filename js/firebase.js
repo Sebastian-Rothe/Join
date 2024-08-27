@@ -193,8 +193,7 @@ async function postTask(path = "", data = {}) {
 async function loadAssignedPerson(path = "/contacts") {
   let users = [];
   let userResponse = await fetch(BASE_URL + path + ".json");
-  let responseToJson = await userResponse.json();
-  console.log();
+  let responseToJson = await userResponse.json();  
   if (responseToJson) {
     Object.keys(responseToJson).forEach((key) => {
       users.push({
