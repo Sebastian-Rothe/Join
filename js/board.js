@@ -1,8 +1,7 @@
 let currentDraggedElement = null;
 
 /**
- * @function initBoard
- * @description Initializes the board and loads all tasks.
+ * Initializes the board and loads all tasks.
  * @async
  */
 async function initBoard() {
@@ -11,8 +10,7 @@ async function initBoard() {
 }
 
 /**
- * @function calculateSubtaskStats
- * @description Calculates statistics for subtasks, including the count of completed subtasks, total subtasks, and progress.
+ * Calculates statistics for subtasks, including the count of completed subtasks, total subtasks, and progress.
  * @param {Array} subtasks - Array of subtask objects.
  * @returns {Object} - An object containing `completedSubtasks`, `subtaskCount`, and `progress`.
  */
@@ -27,8 +25,7 @@ function calculateSubtaskStats(subtasks) {
 }
 
 /**
- * @function updateBoard
- * @description Updates the board by rendering tasks for different status types.
+ * Updates the board by rendering tasks for different status types.
  * @param {Array} filteredTasks - Array of tasks to be displayed on the boards.
  */
 function updateBoard(filteredTasks = tasks) {
@@ -39,8 +36,7 @@ function updateBoard(filteredTasks = tasks) {
 }
 
 /**
- * @function filterTasksByStatus
- * @description Filters tasks based on their status type.
+ * Filters tasks based on their status type.
  * @param {Array} tasks - Array of task objects.
  * @param {string} statusType - The status type to filter by.
  * @returns {Array} - Array of tasks that match the status type.
@@ -50,8 +46,7 @@ function filterTasksByStatus(tasks, statusType) {
 }
 
 /**
- * @function renderEmptySection
- * @description Renders an empty section message for a given status type.
+ * Renders an empty section message for a given status type.
  * @param {string} statusType - The status type to render the empty section for.
  * @returns {string} - HTML string for the empty section.
  */
@@ -62,8 +57,7 @@ function renderEmptySection(statusType) {
 }
 
 /**
- * @function renderTaskCard
- * @description Renders a task card for a given task element.
+ * Renders a task card for a given task element.
  * @param {Object} element - The task object to render.
  * @returns {string} - HTML string for the task card.
  */
@@ -73,8 +67,7 @@ function renderTaskCard(element) {
 }
 
 /**
- * @function renderBoard
- * @description Renders the board by updating the content for a specified status type.
+ * Renders the board by updating the content for a specified status type.
  * @param {string} statusType - The status type to render tasks for.
  * @param {string} boardElementId - The ID of the HTML element to render the tasks in.
  * @param {Array} tasks - Array of task objects to be filtered and displayed.
@@ -94,76 +87,131 @@ function renderBoard(statusType, boardElementId, tasks) {
 }
 
 /**
- * @function generateTaskCardHTML
- * @description Generates the HTML string for a task card based on the task properties.
- * @param {Object} element - The task object to generate HTML for.
- * @returns {string} - HTML string for the task card.
+ * Generates the HTML for a task card based on the provided task element.
+ * @param {Object} element - The task element containing task details.
+ * @param {string} element.idNumber - The unique identifier of the task.
+ * @param {string} element.title - The title of the task.
+ * @param {string} element.description - The description of the task.
+ * @param {Array} element.subtasks - An array of subtasks associated with the task.
+ * @param {string} element.category - The category of the task.
+ * @param {string} element.priority - The priority level of the task.
+ * @param {Array<string>} element.assignedTo - An array of users assigned to the task.
+ * @returns {string} - The HTML string representing the task card.
  */
 function generateTaskCardHTML(element) {
-  const { completedSubtasks, subtaskCount, progress } = calculateSubtaskStats(element.subtasks);
+    const { completedSubtasks, subtaskCount, progress } = calculateSubtaskStats(element.subtasks);
 
-  const maxAvatarsToShow = 3;
-  const avatarsHTML = element.assignedTo
-    .slice(0, maxAvatarsToShow)
-    .map((person) => 
-      `<span class="avatar style-avatar-overlap">${createProfileIcon(person)}</span>`
-    )
-    .join("");
-
-  const extraAvatarsCount = element.assignedTo.length - maxAvatarsToShow;
-  const extraAvatarsHTML = extraAvatarsCount > 0 
-    ? `<span class="align-assignedTo-count">+${extraAvatarsCount}</span>` 
-    : "";
-
-  // Nur anzeigen, wenn es Subtasks gibt
-  const subtasksHTML = subtaskCount > 0 ? `
-    <div class="task-subtasks">
-      <div class="progress-bar">
-        <div class="progress" style="width: ${progress}%;"></div>
-      </div>
-      <div class="subtask-info">${completedSubtasks}/${subtaskCount} Subtasks</div>
-    </div>` : '';
-
-  return `
-    <div class="task-card" draggable="true" ondragstart="startDragging('${element.idNumber}')" onclick="openDetailedTaskOverlay('${element.idNumber}')">
-      <div class="align-task-card-head">
-        <div class="task-label ${
-          element.category === "UserStory"
-            ? "user-story"
-            : element.category === "TechnicalTask"
-            ? "technical-task"
-            : "default-label"
-        }">${element.category}</div>
-        <div class="task-head-menu-background" onclick="toggleTaskMenu(event, '${element.idNumber}')">
-          <img src="./assets/icons/menu-mobile-board.svg" alt="">
-          <div class="task-menu" style="display: none;" id="task-menu-${element.idNumber}">
-            <div class="menu-content">
-              <div onclick="moveTaskTo(event, 'todo', '${element.idNumber}');">To Do</div>
-              <div onclick="moveTaskTo(event, 'inProgress', '${element.idNumber}');">In Progress</div>
-              <div onclick="moveTaskTo(event, 'awaitFeedback', '${element.idNumber}');">Await Feedback</div>
-              <div onclick="moveTaskTo(event, 'done', '${element.idNumber}');">Done</div>
+    const avatarsHTML = generateAvatarsHTML(element.assignedTo);
+    const subtasksHTML = generateSubtasksHTML(subtaskCount, completedSubtasks, progress);
+    
+    return `
+        <div class="task-card" draggable="true" ondragstart="startDragging('${element.idNumber}')" onclick="openDetailedTaskOverlay('${element.idNumber}')">
+            ${generateTaskHeader(element)}
+            <div class="task-title">${element.title}</div>
+            <div class="task-description">${element.description}</div>
+            ${subtasksHTML}
+            <div class="task-footer">
+                <div class="task-assigned">
+                    ${avatarsHTML}
+                </div>
+                <div class="priority-icon ${element.priority}"></div>
             </div>
-          </div>
-        </div>
-      </div>
-      <div class="task-title">${element.title}</div>
-      <div class="task-description">${element.description}</div>
-      ${subtasksHTML}
-      <div class="task-footer">
-        <div class="task-assigned">
-          ${avatarsHTML}
-          ${extraAvatarsHTML}
-        </div>
-        <div class="priority-icon ${element.priority}"></div>
-      </div>
-    </div>`;
+        </div>`;
 }
 
-
+/**
+ * Generates the header HTML for a task card.
+ * @param {Object} element - The task element containing task details.
+ * @param {string} element.idNumber - The unique identifier of the task.
+ * @param {string} element.category - The category of the task.
+ * @returns {string} - The HTML string representing the task header.
+ */
+function generateTaskHeader(element) {
+    return `
+        <div class="align-task-card-head">
+            <div class="task-label ${getTaskCategoryClass(element.category)}">${element.category}</div>
+            <div class="task-head-menu-background" onclick="toggleTaskMenu(event, '${element.idNumber}')">
+                <img src="./assets/icons/menu-mobile-board.svg" alt="">
+                <div class="task-menu" style="display: none;" id="task-menu-${element.idNumber}">
+                    <div class="menu-content">
+                        ${generateTaskMenu(element.idNumber)}
+                    </div>
+                </div>
+            </div>
+        </div>`;
+}
 
 /**
- * @function startDragging
- * @description Sets the currently dragged element by its ID.
+ * Gets the CSS class based on the task category.
+ * @param {string} category - The category of the task.
+ * @returns {string} - The corresponding CSS class for the task category.
+ */
+function getTaskCategoryClass(category) {
+    switch (category) {
+        case "UserStory":
+            return "user-story";
+        case "TechnicalTask":
+            return "technical-task";
+        default:
+            return "default-label";
+    }
+}
+
+/**
+ * Generates the HTML for the task menu with options to move the task.
+ * @param {string} taskId - The unique identifier of the task.
+ * @returns {string} - The HTML string representing the task menu.
+ */
+function generateTaskMenu(taskId) {
+    return `
+        <div onclick="moveTaskTo(event, 'todo', '${taskId}');">To Do</div>
+        <div onclick="moveTaskTo(event, 'inProgress', '${taskId}');">In Progress</div>
+        <div onclick="moveTaskTo(event, 'awaitFeedback', '${taskId}');">Await Feedback</div>
+        <div onclick="moveTaskTo(event, 'done', '${taskId}');">Done</div>`;
+}
+
+/**
+ * Generates the HTML for displaying user avatars assigned to a task.
+ * @param {Array<string>} assignedTo - An array of users assigned to the task.
+ * @returns {string} - The HTML string for displaying avatars, including a count of extra users if applicable.
+ */
+function generateAvatarsHTML(assignedTo) {
+    const maxAvatarsToShow = 3;
+    const avatarsHTML = assignedTo
+        .slice(0, maxAvatarsToShow)
+        .map(person => `<span class="avatar style-avatar-overlap">${createProfileIcon(person)}</span>`)
+        .join("");
+
+    const extraAvatarsCount = assignedTo.length - maxAvatarsToShow;
+    const extraAvatarsHTML = extraAvatarsCount > 0 
+        ? `<span class="align-assignedTo-count">+${extraAvatarsCount}</span>` 
+        : "";
+
+    return avatarsHTML + extraAvatarsHTML;
+}
+
+/**
+ * Generates the HTML for displaying subtasks information and progress bar.
+ * @param {number} subtaskCount - The total number of subtasks.
+ * @param {number} completedSubtasks - The number of completed subtasks.
+ * @param {number} progress - The progress percentage of subtasks.
+ * @returns {string} - The HTML string representing the subtasks information and progress bar, or an empty string if there are no subtasks.
+ */
+function generateSubtasksHTML(subtaskCount, completedSubtasks, progress) {
+    if (subtaskCount > 0) {
+        return `
+            <div class="task-subtasks">
+                <div class="progress-bar">
+                    <div class="progress" style="width: ${progress}%;"></div>
+                </div>
+                <div class="subtask-info">${completedSubtasks}/${subtaskCount} Subtasks</div>
+            </div>`;
+    }
+    return '';
+}
+
+/**
+ * Sets the currently dragged element by its ID.
  * @param {string} id - The ID of the element being dragged.
  */
 function startDragging(id) {
@@ -171,8 +219,7 @@ function startDragging(id) {
 }
 
 /**
- * @function allowDrop
- * @description Allows dropping on the specified element by preventing default behavior.
+ * Allows dropping on the specified element by preventing default behavior.
  * @param {Event} ev - The drag event.
  */
 function allowDrop(ev) {
@@ -180,8 +227,7 @@ function allowDrop(ev) {
 }
 
 /**
- * @function moveTo
- * @description Moves a task to a new category and updates the board.
+ * Moves a task to a new category and updates the board.
  * @param {string} category - The new category for the task.
  * @async
  */
@@ -196,27 +242,27 @@ async function moveTo(category) {
 }
 
 /**
- * @function highlight
- * @description Highlights a drop area by adding a highlight class.
+ * Highlights a drop area by adding a highlight class.
  * @param {string} id - The ID of the element to highlight.
  */
 function highlight(id) {
   document.getElementById(id).classList.add("drag-area-highlight");
 }
 
-
-// new function
-
+/**
+ * Removes highlight classes from all elements in the drag area.
+ * This function selects all elements with the classes 'drag-area-highlight' and 'dragging'
+ * and removes those classes from each element.
+ * @returns {void} - This function does not return a value.
+ */
 function removeHighlightFromAll() {
   document.querySelectorAll('.drag-area-highlight, .dragging').forEach((element) => {
     element.classList.remove('drag-area-highlight', 'dragging');
   });
 }
 
-
 /**
- * @function removeHighlight
- * @description Removes highlight from a drop area by removing the highlight class.
+ * Removes highlight from a drop area by removing the highlight class.
  * @param {string} id - The ID of the element to remove highlight from.
  */
 function removeHighlight(id) {
@@ -224,8 +270,7 @@ function removeHighlight(id) {
 }
 
 /**
- * @function getTaskLabelClass
- * @description Returns the appropriate CSS class for the task label based on its category.
+ * Returns the appropriate CSS class for the task label based on its category.
  * @param {string} category - The category of the task.
  * @returns {string} - The CSS class for the task label.
  */
@@ -241,8 +286,7 @@ function getTaskLabelClass(category) {
 }
 
 /**
- * @function createAssignedToList
- * @description Creates an HTML list of assigned users for a given task.
+ * Creates an HTML list of assigned users for a given task.
  * @param {Object} task - The task object containing assigned users.
  * @returns {string} - HTML string for the assigned users list.
  */
@@ -250,7 +294,6 @@ function createAssignedToList(task) {
   if (!task?.assignedTo?.length) {
     return "<li>No one assigned</li>";
   }
-
   return task.assignedTo.map(person => `
     <li class="assigned-person">
       <span class="avatar">${createProfileIcon(person)}</span>
@@ -260,8 +303,7 @@ function createAssignedToList(task) {
 }
 
 /**
- * @function createSubtasksList
- * @description Creates an HTML list of subtasks for a given task.
+ * Creates an HTML list of subtasks for a given task.
  * @param {Object} task - The task object containing subtasks.
  * @returns {string} - HTML string for the subtasks list.
  */
@@ -284,8 +326,7 @@ function createSubtasksList(task) {
 }
 
 /**
- * @function createTaskDetails
- * @description Creates HTML for the task details section in the popup.
+ * Creates HTML for the task details section in the popup.
  * @param {Object} task - The task object to generate details for.
  * @returns {string} - HTML string for the task details.
  */
@@ -310,8 +351,7 @@ function createTaskDetails(task) {
 }
 
 /**
- * @function getPopupHTML
- * @description Generates the HTML for the task details popup.
+ * Generates the HTML for the task details popup.
  * @param {Object} task - The task object to generate the popup HTML for.
  * @returns {string} - HTML string for the task details popup.
  */
@@ -353,12 +393,10 @@ function getPopupHTML(task) {
 }
 
 /**
- * @function toggleSubtaskStatus
- * @description Toggles the completion status of a subtask for a given task.
+ * Toggles the completion status of a subtask for a given task.
  * @param {string} taskId - The ID of the task.
  * @param {number} subtaskIndex - The index of the subtask to toggle.
  */
-
 function toggleSubtaskStatus(taskId, subtaskIndex) {
   let task = tasks.find((t) => t.idNumber === taskId);
 
@@ -377,8 +415,7 @@ function toggleSubtaskStatus(taskId, subtaskIndex) {
 }
 
 /**
- * @function updateProgress
- * @description Updates the progress of a task based on its subtasks' completion status.
+ * Updates the progress of a task based on its subtasks' completion status.
  * @param {string} taskId - The ID of the task to update progress for.
  */
 function updateProgress(taskId) {
@@ -397,8 +434,7 @@ function updateProgress(taskId) {
 }
 
 /**
- * @function saveTaskProgress
- * @description Saves the updated task progress to the server.
+ * Saves the updated task progress to the server.
  * @param {string} taskId - The ID of the task to save progress for.
  * @async
  */
@@ -420,8 +456,7 @@ async function saveTaskProgress(taskId) {
 }
 
 /**
- * @function formatDate
- * @description Formats a date from "YYYY-MM-DD" to "DD.MM.YYYY".
+ * Formats a date from "YYYY-MM-DD" to "DD.MM.YYYY".
  * @param {string} dateString - The date string to format.
  * @returns {string} - The formatted date string.
  */
@@ -432,8 +467,7 @@ function formatDate(dateString) {
 }
 
 /**
- * @function createTaskPopup
- * @description Creates a task details popup in the DOM.
+ * Creates a task details popup in the DOM.
  * @param {Object} task - The task object to create a popup for.
  */
 function createTaskPopup(task) {
@@ -441,8 +475,7 @@ function createTaskPopup(task) {
 }
 
 /**
- * @function updateTaskPopup
- * @description Updates the existing task popup with new task details.
+ * Updates the existing task popup with new task details.
  * @param {Object} task - The task object to update the popup with.
  */
 function updateTaskPopup(task) {
@@ -452,8 +485,7 @@ function updateTaskPopup(task) {
 }
 
 /**
- * @function updateAssignedToList
- * @description Updates the assigned users list in the task popup.
+ * Updates the assigned users list in the task popup.
  * @param {Object} task - The task object to get assigned users from.
  */
 function updateAssignedToList(task) {
@@ -466,8 +498,7 @@ function updateAssignedToList(task) {
 }
 
 /**
- * @function updateSubtasksList
- * @description Updates the subtasks list in the task popup.
+ * Updates the subtasks list in the task popup.
  * @param {Object} task - The task object to get subtasks from.
  */
 function updateSubtasksList(task) {
@@ -488,8 +519,7 @@ function updateSubtasksList(task) {
 }
 
 /**
- * @function updateTaskDetails
- * @description Updates the task details in the task popup with the current task information.
+ * Updates the task details in the task popup with the current task information.
  * @param {Object} task - The task object to update the details with.
  */
 function updateTaskDetails(task) {
@@ -502,8 +532,7 @@ function updateTaskDetails(task) {
 }
 
 /**
- * @function openPopup
- * @description Opens the task details popup for a specific task.
+ * Opens the task details popup for a specific task.
  * @param {Object} task - The task object to display in the popup.
  */
 function openPopup(task) {
@@ -516,8 +545,7 @@ function openPopup(task) {
 }
 
 /**
- * @function closePopup
- * @description Closes the task details popup and updates the board.
+ * Closes the task details popup and updates the board.
  */
 function closePopup() {
   const existingPopup = document.querySelector(".task-details-popup");
@@ -532,8 +560,7 @@ function closePopup() {
 }
 
 /**
- * @function setupEventListeners
- * @description Sets up event listeners for the application, including the close popup functionality.
+ * Sets up event listeners for the application, including the close popup functionality.
  */
 document.addEventListener("DOMContentLoaded", () => {
   document.body.addEventListener("click", (event) => {
@@ -547,8 +574,7 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 /**
- * @function openDetailedTaskOverlay
- * @description Opens the detailed task overlay for a specific task ID.
+ * Opens the detailed task overlay for a specific task ID.
  * @param {string} taskId - The ID of the task to open in the overlay.
  */
 window.openDetailedTaskOverlay = (taskId) => {
@@ -557,9 +583,14 @@ window.openDetailedTaskOverlay = (taskId) => {
   else console.error("Task not found:", taskId);
 };
 
-
-///////////////////////////////////////////////////////////////////////////// Popup (Add Task) control functions 
-
+/**
+ * Opens the modal for adding a new task.
+ * This function displays the modal overlay and the add task modal. It fetches the HTML
+ * content from 'add_task.html', removes unnecessary elements, and loads the content 
+ * into the modal.
+ *
+ * @returns {void} - This function does not return a value.
+ */
 function openPopupAddTask() {
     document.getElementById('modalOverlay').style.display = 'block';
     document.getElementById('addTaskModal').style.display = 'block';
@@ -579,10 +610,16 @@ function openPopupAddTask() {
                 document.getElementById('addTaskContent').innerHTML = content.outerHTML;
             }
             onloadfunc();
-        })
-       
+        })  
 }
 
+/**
+ * Closes the modal for adding a new task.
+ * This function hides the modal overlay and the add task modal. It also clears any content
+ * within the add task modal and resets the edit task popup if the function exists.
+ *
+ * @returns {void} - This function does not return a value.
+ */
 function closePopupAddTask() {
     document.getElementById('modalOverlay').style.display = 'none';
     document.getElementById('addTaskModal').style.display = 'none';
@@ -592,8 +629,12 @@ function closePopupAddTask() {
   }
 }
 
-
-
+/**
+ * Initializes drag and scroll functionality for task sections.
+ * This function adds event listeners to each task section to enable dragging 
+ * and scrolling when the user clicks and drags on the section.
+ * @returns {void} - This function does not return a value.
+ */
 document.querySelectorAll('.task-section').forEach(section => {
   let isDragging = false;
   let startX;
@@ -625,8 +666,15 @@ document.querySelectorAll('.task-section').forEach(section => {
   });
 });
 
-
-
+/**
+ * Moves a task to a new status.
+ * This function updates the status of a task and refreshes the task board. 
+ * It also sends the updated task data to the server.
+ * @param {Event} event - The event object associated with the action.
+ * @param {string} newStatus - The new status to assign to the task.
+ * @param {string} taskId - The unique identifier of the task to be moved.
+ * @returns {void} - This function does not return a value.
+ */
 function moveTaskTo(event, newStatus, taskId) {
   event.stopPropagation(); 
   let task = tasks.find((t) => t.idNumber === taskId);
@@ -637,16 +685,25 @@ function moveTaskTo(event, newStatus, taskId) {
   }
 }
 
+/**
+ * Toggles the visibility of the task menu.
+ * This function displays or hides the task menu based on its current state.
+ * @param {Event} event - The event object associated with the action.
+ * @param {string} taskId - The unique identifier of the task for which the menu is toggled.
+ * @returns {void} - This function does not return a value.
+ */
 function toggleTaskMenu(event, taskId) {
   event.stopPropagation(); 
   const taskMenu = document.getElementById(`task-menu-${taskId}`);
   taskMenu.style.display = taskMenu.style.display === "block" ? "none" : "block";
 }
 
-
-// --------------------------------------------->>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>________________-------------->>>>>>>
-
-
+/**
+ * Searches for tasks based on user input.
+ * This function retrieves the search input value, filters tasks based on the title 
+ * or description, and updates the task board to display the filtered results.
+ * @returns {void} - This function does not return a value.
+ */
 function searchTasks() {
   let searchInput = document.getElementById('search-input');
   let searchedTask = searchInput.value.trim().toLowerCase();

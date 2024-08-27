@@ -449,3 +449,68 @@ function toggleContactSelection(checkbox, contactName) {
 
   console.log('Aktualisiertes assignedTo:', assignedTo); // Debug-Ausgabe
 }
+
+
+
+
+// ##################
+// save funciton in big
+
+function generateTaskCardHTML(element) {
+  const { completedSubtasks, subtaskCount, progress } = calculateSubtaskStats(element.subtasks);
+
+  const maxAvatarsToShow = 3;
+  const avatarsHTML = element.assignedTo
+    .slice(0, maxAvatarsToShow)
+    .map((person) => 
+      `<span class="avatar style-avatar-overlap">${createProfileIcon(person)}</span>`
+    )
+    .join("");
+
+  const extraAvatarsCount = element.assignedTo.length - maxAvatarsToShow;
+  const extraAvatarsHTML = extraAvatarsCount > 0 
+    ? `<span class="align-assignedTo-count">+${extraAvatarsCount}</span>` 
+    : "";
+
+  const subtasksHTML = subtaskCount > 0 ? `
+    <div class="task-subtasks">
+      <div class="progress-bar">
+        <div class="progress" style="width: ${progress}%;"></div>
+      </div>
+      <div class="subtask-info">${completedSubtasks}/${subtaskCount} Subtasks</div>
+    </div>` : '';
+
+  return `
+    <div class="task-card" draggable="true" ondragstart="startDragging('${element.idNumber}')" onclick="openDetailedTaskOverlay('${element.idNumber}')">
+      <div class="align-task-card-head">
+        <div class="task-label ${
+          element.category === "UserStory"
+            ? "user-story"
+            : element.category === "TechnicalTask"
+            ? "technical-task"
+            : "default-label"
+        }">${element.category}</div>
+        <div class="task-head-menu-background" onclick="toggleTaskMenu(event, '${element.idNumber}')">
+          <img src="./assets/icons/menu-mobile-board.svg" alt="">
+          <div class="task-menu" style="display: none;" id="task-menu-${element.idNumber}">
+            <div class="menu-content">
+              <div onclick="moveTaskTo(event, 'todo', '${element.idNumber}');">To Do</div>
+              <div onclick="moveTaskTo(event, 'inProgress', '${element.idNumber}');">In Progress</div>
+              <div onclick="moveTaskTo(event, 'awaitFeedback', '${element.idNumber}');">Await Feedback</div>
+              <div onclick="moveTaskTo(event, 'done', '${element.idNumber}');">Done</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="task-title">${element.title}</div>
+      <div class="task-description">${element.description}</div>
+      ${subtasksHTML}
+      <div class="task-footer">
+        <div class="task-assigned">
+          ${avatarsHTML}
+          ${extraAvatarsHTML}
+        </div>
+        <div class="priority-icon ${element.priority}"></div>
+      </div>
+    </div>`;
+}

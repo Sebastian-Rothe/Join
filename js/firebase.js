@@ -6,7 +6,6 @@ let tasks = [];
 
 /**
  * Loads contacts from a JSON file.
- *
  * @async
  * @param {string} [path="/contacts"] - The path to the JSON file containing the contacts.
  * @returns {Promise<Array<{id: string, name: string, email: string, phone: string}>>} - An array of user objects.
@@ -31,7 +30,6 @@ async function loadContacts(path = "/contacts") {
 
 /**
  * Adds a new contact via a POST request.
- *
  * @async
  * @param {string} path - The path to the JSON file where the contact should be added.
  * @param {Object} data - The data of the new contact.
@@ -49,7 +47,6 @@ async function postContact(path = "", data = {}) {
 
 /**
  * Deletes a contact based on the ID.
- *
  * @async
  * @param {string} id - The ID of the contact to be deleted.
  * @returns {Promise<Object|null>} - The server's response or null if an error occurs.
@@ -71,7 +68,6 @@ async function deleteContact(id) {
 
 /**
  * Loads and displays contacts.
- *
  * @async
  * @param {Object|null} [newUser=null] - A new user to display, if any.
  * @returns {Promise<void>} - A promise that resolves to nothing.
@@ -96,7 +92,6 @@ async function displayContacts(newUser = null) {
 
 /**
  * Loads tasks from a JSON file.
- *
  * @async
  * @param {string} [path="/tasks"] - The path to the JSON file containing the tasks.
  * @returns {Promise<Array>} - An array of task objects.
@@ -118,7 +113,6 @@ async function loadTasks(path = "/tasks") {
 
 /**
  * Creates a task object based on the provided data.
- *
  * @param {string} key - The key of the task.
  * @param {Object} task - The data of the task.
  * @returns {Object} - A task object.
@@ -139,7 +133,6 @@ function createTaskObject(key, task) {
 
 /**
  * Creates an array of subtasks based on the provided data.
- *
  * @param {Array} subtasks - The subtasks as an array.
  * @returns {Array<Object>} - An array of subtask objects.
  */
@@ -152,7 +145,6 @@ function createSubtasksArray(subtasks) {
 
 /**
  * Creates an array of assigned persons from the provided data.
- *
  * @param {Array|string} assignedTo - The assigned persons as an array or a comma-separated string.
  * @returns {Array<string>} - An array of names of assigned persons.
  */
@@ -168,7 +160,6 @@ function getAssignedToArray(assignedTo) {
 
 /**
  * Adds a new task via a POST request.
- *
  * @async
  * @param {string} path - The path to the JSON file where the task should be added.
  * @param {Object} data - The data of the new task.
@@ -195,7 +186,6 @@ async function postTask(path = "", data = {}) {
 
 /**
  * Loads assigned persons from a JSON file.
- *
  * @async
  * @param {string} [path="/contacts"] - The path to the JSON file containing the contacts.
  * @returns {Promise<Array<{name: string}>>} - An array of objects with the names of users.
@@ -217,7 +207,6 @@ async function loadAssignedPerson(path = "/contacts") {
 
 /**
  * Updates data via a PUT request.
- *
  * @async
  * @param {string} path - The path to the JSON file to be updated.
  * @param {Object} data - The new data to be saved.
@@ -242,7 +231,6 @@ async function putData(path = "", data) {
 
 /**
  * Deletes a task based on the ID.
- *
  * @async
  * @param {string} id - The ID of the task to be deleted.
  * @returns {Promise<Object|null>} - The server's response or null if an error occurs.
