@@ -586,8 +586,10 @@ function openPopupAddTask() {
 function closePopupAddTask() {
     document.getElementById('modalOverlay').style.display = 'none';
     document.getElementById('addTaskModal').style.display = 'none';
-
     document.getElementById('addTaskContent').innerHTML = '';
+    if (typeof resetPopupEditTask === 'function') {
+      resetPopupEditTask();
+  }
 }
 
 

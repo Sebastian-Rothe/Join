@@ -410,7 +410,9 @@ function resetPriorityButtonsAndEditTask() {
     mediumBtn.classList.add('medium-prio-active');
 
     // Reset the edit task popup
-    resetPopupEditTask();
+    if (typeof resetPopupEditTask === 'function') {
+        resetPopupEditTask();
+    }
 }
 
 
