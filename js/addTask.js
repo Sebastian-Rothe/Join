@@ -181,7 +181,9 @@ async function addTask() {
         document.getElementById("success-popup").style.display = "none";
         window.location.reload();
      }, 2000);
-    clearAddTaskForm();   
+    clearAddTaskForm();
+    window.location.replace("board.html");
+       
 }
 
 // subTask function whenever the input value changes. 
