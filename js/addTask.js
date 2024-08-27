@@ -72,6 +72,7 @@ function updateSelectedBadges() {
 }
 
 
+//Toggles the visibility of the dropdown menu.
 function toggleDropdown() {    
     let dropdownContent = document.getElementById('contactsDropdown');
     if (dropdownContent) {
@@ -95,6 +96,7 @@ document.addEventListener('click', function(event) {
 });
 
 
+// Initializes the page by loading assigned users and setting the minimum date for the date input.
 async function onloadfunc() {
     let users = await loadAssignedPerson("/contacts");
     
@@ -104,12 +106,20 @@ async function onloadfunc() {
     setMinDate();
 }
 
+
+// Sets the minimum date for the date input to today's date.
 function setMinDate() {
     const today = new Date().toISOString().split("T")[0];
     const dateInput = document.getElementById('date');
     dateInput.setAttribute('min', today);
 }
+
+
 ///////////////////////////////////////////////////////////////////////// priority
+/**
+ * Applies the active priority to the corresponding button and updates the hidden input field to save the current priority.
+ * @param {string} priority - The priority level to apply ('urgent', 'medium', 'low').
+ */
 function resetButtons() {
     const urgentBtn = document.getElementById('urgent');
     const mediumBtn = document.getElementById('medium');
@@ -416,6 +426,10 @@ function resetPriorityButtonsAndEditTask() {
 }
 
 
+/**
+ * Clears the task input form by resetting all inputs and selections, 
+ * as well as resetting priority buttons and the task editor.
+ */
 function clearAddTaskForm() {
     clearInputsAndSelections();
     resetPriorityButtonsAndEditTask();
