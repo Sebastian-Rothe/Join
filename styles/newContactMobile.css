@@ -29,4 +29,10 @@
         display: block;
     }
 }
-    
+ 
+@media (max-width: 375px){
+    .mobile-add-button{
+       
+        bottom: 68px;
+    }
+}

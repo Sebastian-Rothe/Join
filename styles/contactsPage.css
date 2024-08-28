@@ -329,6 +329,8 @@ header {
   height: 100%;
   padding-left: 230px;
   width: 100%;
+  max-height: calc(100vh - 176px);
+
 }
 
 .contact-area {
@@ -388,6 +390,7 @@ header {
 
 .list-container {
   overflow-y: scroll;
+  height: calc(100vh - 96px);
 }
 
 .button-container {
@@ -421,6 +424,7 @@ header {
   flex-direction: column;
   align-items: center;
   margin-top: 80px;
+  max-height: calc(100vh - 176px);
 }
 
 .letter-heading {
@@ -521,6 +525,7 @@ header {
 .contact-display {
   position: relative;
   width: 100%;
+  max-height: calc(100vh - 96px);
   background-color: rgba(246, 247, 248, 1);
   display: flex;
   flex-direction: column;
@@ -534,6 +539,7 @@ header {
   gap: 28px;
   font-size: 27px;
   font-weight: 400;
+
 }
 
 .contact-heading span.contacts-title {
@@ -560,7 +566,7 @@ header {
 }
 
 .contact-content {
-  height: 100%;
+  height: max-content;
   width: calc(100%-55px);
   position: relative;
   margin-left: 55px;
@@ -595,6 +601,7 @@ header {
   top: 0;
   animation: slideIn 0.2s ease-out forwards;
   opacity: 0;
+  height: max-content;
 }
 
 .contact-content-out {
@@ -992,6 +999,19 @@ header {
   justify-content: start;
   padding-left: 40px;
 }*/
+.list-container {
+  height: calc(100vh - 178px);
+  overflow-x: hidden;
+}
+.contact-list{
+  max-height: calc(100vh - 176px);
+}
+.contact-display {
+  width: 100%;
+  max-height: calc(100vh - 178px);
+  
+}
+
 }
 @media (max-width: 850px) {
   .contact-display {
@@ -1019,12 +1039,6 @@ header {
     margin-left: 90px;
   }
   .mobile-contact-option {
-    /* cursor: pointer;
-    display: block;
-    position: absolute;
-    right: 8px;
-    bottom: 88px;
-    z-index: 99; */
     position: absolute;
     background-color: rgba(42, 54, 71, 1);
     display: flex;
@@ -1033,9 +1047,9 @@ header {
     border-radius: 100%;
     width: 65px;
     height: 65px;
-    z-index: 3;
+    /* z-index: 3; */
     border: 1px;
-    bottom: 94px;
+    bottom: 16px;
     right: 20px;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.3);
     z-index: 1000;
@@ -1168,9 +1182,17 @@ header {
 /* *****************************************iphone SE */
 @media (max-width: 375px) {
   .mobile-add-button {
-    
-    display: none !important;
+    /* display: none !important; */
    
+}
+.contact-display{
+  max-height: calc(100vh - 158px);  
+}
+.contact-list{
+  max-height: calc(100vh - 158px);
+}
+.list-container {
+  height: calc(100vh - 158px);
 }
 .single-contact {
   width: 80%;
