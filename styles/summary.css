@@ -23,7 +23,13 @@ body {
   font-weight: 400;
   color: rgba(42, 54, 71, 1);
 }
-
+.divider{
+  width:90px;
+  height: 3px;
+  background-color:#29ABE2;
+  border-radius: 50px;
+  display: none;
+}
 .summary-tasks {
   padding-left: 96px;
   margin-bottom: 40px;
@@ -253,6 +259,23 @@ body {
   }
 }
 
+@media screen and (max-width: 1262px) {
+  .summary-tasks {
+    padding-left: 206px;    
+}
+.greeting-text {  
+  font-size: 30px;
+}
+}
+@media screen and (max-width: 12032px) {
+  .summary-tasks {
+    padding-left: 206px;    
+}
+.greeting-text {  
+  font-size: 20px;
+}
+
+}
 @media screen and (max-width: 1079px) {
   .greeting {
     display: none;
@@ -284,7 +307,7 @@ body {
   .all {
     padding: 0;
     margin-top: 5px;
-    height: 140vh;
+    height: 90vh;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -294,6 +317,23 @@ body {
   .container {
     padding: 0;
   }
+  .main-headline {   
+    flex-direction: column;
+    align-items: flex-start;    
+  }
+  p {
+    margin: 00px;
+    margin-left: 10px;
+  }
+  .key {
+    margin-left: 10px;  
+  }
+  .divider{    
+    display: block;
+    margin-left:10px;
+    margin-bottom: 40px;
+  }
+
 
   @media screen and (max-width: 650px) {
     .body {
@@ -311,16 +351,12 @@ body {
     }
 
     .all {
-      height: 130vh;
+      height: 90vh;
     }
 
-    .main-headline {
-      gap: inherit;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-    }
+    
+  }
+  
 
     .main-headline img {
       display: none;
@@ -330,7 +366,7 @@ body {
       margin: auto;
       display: flex;
       flex-direction: column;
-      justify-content: end;
+      justify-content: end;     
     }
 
     .greeting {
@@ -344,7 +380,7 @@ body {
 
     .done {
       height: 110px;
-      width: 186px;
+      width: 250px;
     }
 
     .done p {
@@ -360,7 +396,7 @@ body {
     .todo {
       font-weight: 400;
       height: 110px;
-      width: 186px;
+      width: 250px;
     }
 
     .todo p {
@@ -381,7 +417,7 @@ body {
     .summary-urgent-tasks {
       font-weight: 400;
       height: 110px;
-      width: 396px;
+      width: 515px;
     }
     .summary-urgent-tasks p {
       font-size: 14px;
@@ -401,7 +437,7 @@ body {
     .task-container {
       font-weight: 400;
       height: 116px;
-      width: 116px;
+      width: 150px;
     }
 
     .task-container p {
@@ -486,7 +522,7 @@ body {
     .all {
       width: 100%;
       margin-top: 5px;
-      height: 126vh;
+      height: 90vh;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -582,11 +618,54 @@ body {
       justify-content: space-between;
     }
 
-    .summary-tasks {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      width: 100%;
-    }
+   
+    .main-headline {
+      flex-direction: column;
+      align-items: flex-start;
   }
+    .main-headline p {
+      font-size: 51px;     
+  }
+  }
+
+@media screen and (max-width: 350px) {
+  .main-headline p {
+    font-size: 51px;    
+}
+.done { 
+  width: 130px;
+}
+.todo { 
+  width: 130px;
+}
+.icon-sm {
+  height: 30px;
+  width: 30px;
+}
+.done h3 {
+  font-size: 35px;
+  font-weight: 600;
+}
+.todo h3 {
+  font-size: 35px;
+  font-weight: 600;
+}
+.key {
+  font-size: 16px;
+}
+.summary-urgent-tasks {
+  margin-left: 4px;
+  font-weight: 400;
+  height: 108px;
+  width: 295px;
+}
+.task-container { 
+  width: 65px;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+.task-container h3 {
+  font-size: 35px;
+  font-weight: 600;
+}
 }
