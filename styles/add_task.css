@@ -332,6 +332,30 @@ select.dropdownCategory.invalid {
     background-color: #EEEEEE;
 }
 /****************************************************************** Subtask list Style */
+.subtask-list-container {
+    height: 10vh;
+    overflow: auto;
+}
+
+/* Scrollbar styles */
+.subtask-list-container::-webkit-scrollbar {
+    width: 8px;  /* Width of the entire scrollbar */
+}
+
+.subtask-list-container::-webkit-scrollbar-track {
+    background: #f1f1f1;  /* Color of the track (scrollbar background) */
+    border-radius: 10px;  /* Rounded corners for the track */
+}
+
+.subtask-list-container::-webkit-scrollbar-thumb {
+    background-color: #888;  /* Color of the scrollbar thumb */
+    border-radius: 10px;  /* Rounded corners for the thumb */
+    border: 2px solid #f1f1f1;  /* Optional border around the thumb */
+}
+
+.subtask-list-container::-webkit-scrollbar-thumb:hover {
+    background-color: #555;  /* Darker color when hovering over the thumb */
+}
 
 .subtask-list-container ul {
     padding-left:30px;
@@ -728,7 +752,7 @@ select.dropdownCategory.invalid {
     .container-main {        
         padding-left: 70px;
         width: calc(100% - 70px);
-    }     
+    }    
 }
  
 @media (max-width: 855px) {
@@ -784,8 +808,16 @@ select.dropdownCategory.invalid {
         padding-right: 50px;
         width: calc(100% - 100px);
     }
+}
+@media (max-width:517px) {
+    .priority-btn {
+        flex-direction: column;
+        display: flex;
+        align-items: center;
+        gap: 6px;
     }
-    @media (max-width:490px) {
+}
+@media (max-width:490px) {
     .title {
         font-size: 41px;
     }
@@ -811,8 +843,57 @@ select.dropdownCategory.invalid {
         display: flex;
         flex-direction: row;
         justify-content: center;
-        margin-bottom: 10px;
-    
+        margin-bottom: 10px;    
     }
 }
-     
+@media (max-width: 490px) {
+    .footer-add-task-left span {
+        font-weight: 400;
+    }
+    .footer-add-task {
+        padding-left: 20px;
+        padding-right: 20px;
+        width: calc(100% - 40px);
+    }
+    .container-main {
+        padding-left: 0px;       
+    }
+    .create-task-btn {
+        width: 183px; 
+    }
+    .footer-add-task {       
+        flex-direction: row;
+        margin-bottom: 80px;
+        width: 90%;
+        gap: 10px;
+    }
+}
+@media (max-width: 490px) {
+    .create-task-btn {
+        width: 153px;
+        font-size: 16px;
+    }
+}
+@media (max-width:377px) {
+    .footer-add-task {
+        flex-direction: column;        
+    }
+}
+@media (max-width:350px) {
+    .dropdown-btn {        
+        font-size: 16px;        
+    }
+    input.input-style {
+        font-size: 16px;       
+    }
+    textarea{        
+        font-size: 16px;       
+    }
+    .dropdownCategory {      
+        font-size: 16px;
+        
+}
+    label {
+        font-size: 18px;  
+    }
+}

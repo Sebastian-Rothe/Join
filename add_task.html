@@ -31,9 +31,6 @@
 
                     <label for="textarea">Description</label>
                     <textarea id="description" name="textarea" rows="4" cols="50" placeholder="Enter a Description..."></textarea>
-            
-                    
-            
                   
                     <label for="dropdown">Assigned to</label>
                     <div class="dropdown">
@@ -43,13 +40,9 @@
                         </div>
                     </div>
                     <div id="selectedBadges" class="selected-badges"></div>
-
                 </div>  
             
                 <div id="divider" class="divider"></div>
-                    
-                
-           
 
                 <div id="right-side" class="right-side">
                     
@@ -95,18 +88,7 @@
                             <div class="subtask-btn-divider toggle-display"></div>
                             <span class="subtask-btn-cancel"><img src="./assets/icons/CloseAddTask.svg" alt="" class="toggle-display" onclick="clearInput()"></span>
                         </button>
-
                     </form>
-       
-
-
-
-
-                 
-
-
-
-
 
                     <div class="subtask-list-container" id="subtask-list-container">
                         <ul class="toggle-display">
@@ -124,26 +106,21 @@
                     <button class="clear-btn" onclick="clearAddTaskForm()">clear <img src="./assets/icons/close.svg" alt="Clear Icon" class="icon"></button>
                     <button class="create-task-btn" onclick="addTask()">create Task <img src="./assets/icons/check.svg" alt="Create Icon" class="icon"></button>
                     <input type="hidden" id="status" value="todo">
-                    <input type="hidden" id="priority" value="low">
-                    
+                    <input type="hidden" id="priority" value="low">                    
                 </div>
-            </div>
-            
+            </div>            
         </div>
-
     </div>
     <!------------------------------------------------------------popup Add Task successfully  -->
     <div id="success-popup" class="popup-successfully">
         <div class="popup-successfully-content">
             <p>Task added successfully!</p>
         </div>
-    </div>
-    
+    </div>    
     <script src="./js/global.js"></script>
     <script src="./js/script.js"></script>
     <script src="./js/firebase.js"></script>
-    <script src="./js/addTask.js"></script>  
-
+    <script src="./js/addTask.js"></script> 
  
     <script>
         function loadContent(page) {
