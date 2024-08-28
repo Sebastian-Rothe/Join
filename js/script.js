@@ -5,17 +5,17 @@
  * After including the content, it initializes the profile icon.
  */
 async function includeHTML() {
-  let includeElements = document.querySelectorAll('[w3-include-html]');
+  let includeElements = document.querySelectorAll("[w3-include-html]");
   for (let i = 0; i < includeElements.length; i++) {
-      const element = includeElements[i];
-      file = element.getAttribute("w3-include-html");
-      let resp = await fetch(file);
-      if (resp.ok) {
-          element.innerHTML = await resp.text();
-      } else {
-          element.innerHTML = 'Page not found';
-      }
-      initialProfileIcon();
+    const element = includeElements[i];
+    file = element.getAttribute("w3-include-html");
+    let resp = await fetch(file);
+    if (resp.ok) {
+      element.innerHTML = await resp.text();
+    } else {
+      element.innerHTML = "Page not found";
+    }
+    initialProfileIcon();
   }
 }
 
@@ -24,26 +24,32 @@ async function includeHTML() {
  * If the dropdown menu is hidden or not displayed, it sets the display to 'flex'.
  * If the dropdown menu is visible, it hides it.
  */
- function openDropdownMenu(){
-    let dropdownMenu = document.getElementById('dropdown-menu');
-    if (dropdownMenu.style.display === 'none' || dropdownMenu.style.display === '') {
-        dropdownMenu.style.display = 'flex'; 
-    } else {
-        dropdownMenu.style.display = 'none'; 
-    }
+function openDropdownMenu() {
+  let dropdownMenu = document.getElementById("dropdown-menu");
+  if (
+    dropdownMenu.style.display === "none" ||
+    dropdownMenu.style.display === ""
+  ) {
+    dropdownMenu.style.display = "flex";
+  } else {
+    dropdownMenu.style.display = "none";
+  }
 }
 
 /**
  * Adds an event listener to the document that closes the dropdown menu when clicking outside of it.
  * If the user clicks outside of the profile avatar or the dropdown menu, the menu will be hidden.
  */
-document.addEventListener('click', function(event) {
-    const dropdownMenu = document.getElementById('dropdown-menu');
-    const profileAvatar = document.getElementById('profile-avatar');
+document.addEventListener("click", function (event) {
+  const dropdownMenu = document.getElementById("dropdown-menu");
+  const profileAvatar = document.getElementById("profile-avatar");
 
-    if (!profileAvatar.contains(event.target) && !dropdownMenu.contains(event.target)) {
-        dropdownMenu.style.display = 'none'; // Hide dropdown if clicking outside
-    }
+  if (
+    !profileAvatar.contains(event.target) &&
+    !dropdownMenu.contains(event.target)
+  ) {
+    dropdownMenu.style.display = "none"; // Hide dropdown if clicking outside
+  }
 });
 
 /**
@@ -51,7 +57,25 @@ document.addEventListener('click', function(event) {
  * Clears all data stored in localStorage and navigates the user to 'login.html'.
  */
 function logoutUser() {
-    localStorage.clear();
-    window.location.replace("login.html");
-  }
- 
+  localStorage.clear();
+  window.location.replace("login.html");
+}
+
+/**
+ * Searches for tasks based on user input.
+ * This function retrieves the search input value, filters tasks based on the title
+ * or description, and updates the task board to display the filtered results.
+ * @returns {void} - This function does not return a value.
+ */
+function searchTasks() {
+  let searchInput = document.getElementById("search-input");
+  let searchedTask = searchInput.value.trim().toLowerCase();
+
+  let filteredTasks = tasks.filter(
+    (task) =>
+      task.title.toLowerCase().includes(searchedTask) ||
+      (task.description &&
+        task.description.toLowerCase().includes(searchedTask))
+  );
+  updateBoard(filteredTasks);
+}
