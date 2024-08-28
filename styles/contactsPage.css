@@ -329,7 +329,7 @@ header {
   height: 100%;
   padding-left: 230px;
   width: 100%;
-  max-height: calc(100vh - 176px);
+  max-height: calc(100vh - 96px);
 
 }
 
