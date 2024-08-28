@@ -105,6 +105,7 @@ body {
   background-color: #29abe2;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.3);
 }
+
 .footer-links {
   gap: 30px;
 }
@@ -176,7 +177,10 @@ body {
   display: flex;
   justify-content: flex-start;
   width: 80%;
-  margin-top: 10px;
+  margin-top: 30px;
+}
+.header-login-content-responsive{
+  display: none;
 }
 .button-section {
   display: flex;
@@ -184,6 +188,7 @@ body {
   margin-top: 70px;
   margin-bottom: 20px;
   width: 100%;
+  gap: 35px;
 }
 
 .button-section button {
@@ -198,8 +203,8 @@ body {
   border-radius: 16px;
   cursor: pointer;
   border: none;
-  width: 126px;
-  height: 55px;
+  width: 110px;
+  height: 48px;
 }
 .Guest-btn {
   background-color: #ffffff;
@@ -208,7 +213,9 @@ body {
   font-weight: 700;
   border-radius: 16px;
   cursor: pointer;
-  border: none;
+  border: 1px solid #2A3647;
+  width: 177px;
+  height: 48px;
 }
 .toggle-display {
   display: none;
@@ -361,19 +368,51 @@ input[type="checkbox"]:invalid + span {
   text-align: center;
 }
 /******************************************************************End Style for popup Successfully signed up  */
-@media (max-width: 660px) {
-    .logo-sidebar img {
-        width: 64px;
-    }
-
-    .login-section {
-        height: 412px;
-    }
-
-    .button-section {
-        margin-top: 30px;
-    }
-    .background-overlay {
-      background-color: #2a3647;
-    }
+@media (max-width: 1050px) {
+  .login-section {
+    width: 80%;
 }
+}
+@media (max-width: 550px) {
+  .title-section {   
+    font-size: 47px;
+   }
+   .button-section {
+    display: flex;
+    flex-direction: column;  
+    align-items: center ;
+    gap:21px ; 
+  }
+  .Login-btn { 
+    width: 177px;  
+  }
+  .login-section {
+    margin-top:100px;
+  }
+  .header-login-content{
+    display: none;
+  }
+  .header-login-content-responsive{
+    display: block;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top:32px ;
+  }
+  .title-section {
+    font-size: 37px;
+  }
+  .input-section {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    gap: 10px;
+    margin-top: 20px;
+  }
+  .logo-image{
+  width: 90px;
+  height: 90px;
+  }
+
+}
+
