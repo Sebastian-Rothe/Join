@@ -344,6 +344,10 @@ input[type="checkbox"]:invalid + span {
   color: red; /* Highlight the label if the checkbox is not checked */
 }
 
+.signup-hide{
+  display: none !important;
+}
+
 /******************************************************************Start Style for popup Successfully signed up  */
 .popup-successfully {
   display: none;
@@ -367,7 +371,8 @@ input[type="checkbox"]:invalid + span {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   text-align: center;
 }
-/******************************************************************End Style for popup Successfully signed up  */
+/******************************************************************Login Responsive */
+
 @media (max-width: 1050px) {
   .login-section {
     width: 80%;
@@ -390,15 +395,14 @@ input[type="checkbox"]:invalid + span {
     margin-top:100px;
   }
   .header-login-content{
-    display: none;
+    display: none !important;
   }
-  .header-login-content-responsive{
-    display: block;
+  .header-login-content-responsive{    
     display: flex;
     justify-content: center;
     align-items: center;
     margin-top:32px ;
-  }
+  } 
   .title-section {
     font-size: 37px;
   }
@@ -415,4 +419,48 @@ input[type="checkbox"]:invalid + span {
   }
 
 }
+/******************************************************************Sign Up Responsive */
 
+@media (max-width: 1050px) {
+  .title-section-signup {    
+    font-size: 51px;
+}
+}
+@media (max-width: 965px) {
+  .content {  
+    margin-top:100px;
+}
+}
+@media (max-width: 713px) {
+  .title-section-signup {    
+    font-size: 41px;
+}
+.logo-sidebar {
+    top: 0px;
+}
+.signup-section {
+  width: 80%;
+}
+@media (max-width: 549px) {
+  .header-login-content-responsive {   
+    gap: 20px;
+}
+.content {
+  margin-top: 0px;
+}
+}
+@media (max-width: 400px) {
+  .title-section-signup {
+    font-size: 31px;
+  }
+  .divider {    
+    width: 50%;   
+}
+.input-section-signup input {
+    font-size:16px;
+}
+.check-policy-section span {
+  font-size: 12px;
+}
+
+}}

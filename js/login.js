@@ -11,6 +11,8 @@ function hideLoginSection() {
  */
 function showSignUpSection() {
     document.getElementById('signupSection').style.display = 'flex';
+    document.getElementById('header-login-content-responsive').classList.add('signup-hide');
+    
 }
 
 /**
@@ -35,6 +37,8 @@ function showLoginSection() {
  */
 function hideSignUpSection() {
     document.getElementById('signupSection').style.display = 'none';
+    document.getElementById('header-login-content-responsive').classList.remove('signup-hide');
+
 }
 
 /**
