@@ -13,7 +13,6 @@ input, button{
 .main-board{
   height: calc(100vh - 96px);
   position: relative; 
-  margin-top: 100px;
   margin-left: 232px;
   padding: 32px 32px 0 32px;
 }
@@ -187,7 +186,6 @@ input, button{
   padding: 0 2px;
   overflow-y: scroll;
   box-sizing: content-box; 
-  
 }
 
 .task-section::-webkit-scrollbar {
@@ -628,14 +626,14 @@ h3{
     margin-top: 12px;
   }
   .drag-area {
-    height: calc(80vh - 240px); 
+    /* height: calc(80vh - 240px);  */
    
   }
 }
 /* Main Board Adjustments for Smaller Screens */
 @media (max-width: 800px) {
   .drag-area {
-    height: 250px; 
+    /* height: 250px;  */
     margin-bottom: 0;
     padding-top: 0;
   }
