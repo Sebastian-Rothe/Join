@@ -1,7 +1,7 @@
 body {
   position: relative;
   box-sizing: border-box;
-  height: 100vh;
+  height: calc(100vh - 176px);
   overflow: hidden;
   background-color: #ffffff;
   margin: 0px;
@@ -9,7 +9,6 @@ body {
 }
 
 button {
-  
   font-size: 16px;
   font-weight: 400;
   margin: 0;
@@ -128,11 +127,9 @@ address {
 header {
   width: 100%;
   height: 96px;
-  position: fixed;
+  position: sticky;
   z-index: 10;
   top: 0;
-  left: 0;
-  right: 0;
   display: flex;
   background-color: white;
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
@@ -177,9 +174,9 @@ header {
   transform: scale(1.2);
 }
 /* ********************************************************Dropdown Menu Profile Avatar */
-.dropdown-menu-profile-avatar{
-  display: none; 
-  background-color: #2a3647;  
+.dropdown-menu-profile-avatar {
+  display: none;
+  background-color: #2a3647;
   flex-direction: column;
   gap: 10px;
   border-top-left-radius: 20px;
@@ -188,19 +185,18 @@ header {
   font-size: 16px;
   position: absolute;
   right: 45px;
-  top:100px;
+  top: 100px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
   padding: 20px;
-
 }
-.dropdown-menu-profile-avatar a{
+.dropdown-menu-profile-avatar a {
   background-color: #2a3647;
   color: #ffffff;
   text-decoration: none;
-  padding: 10px; 
+  padding: 10px;
   border-radius: 5px;
 }
-.dropdown-menu-profile-avatar a:hover{
+.dropdown-menu-profile-avatar a:hover {
   background-color: #091931;
   padding: 10px;
 }
@@ -325,12 +321,10 @@ header {
 .container-main {
   display: flex;
   justify-content: start;
-  padding-top: 98px;
-  height: 100%;
+  /* padding-top: 98px; */
   padding-left: 230px;
   width: 100%;
-  max-height: calc(100vh - 96px);
-
+  height: calc(100vh - 96px);
 }
 
 .contact-area {
@@ -525,7 +519,7 @@ header {
 .contact-display {
   position: relative;
   width: 100%;
-  max-height: calc(100vh - 96px);
+  height: calc(100vh - 96px);
   background-color: rgba(246, 247, 248, 1);
   display: flex;
   flex-direction: column;
@@ -539,7 +533,6 @@ header {
   gap: 28px;
   font-size: 27px;
   font-weight: 400;
-
 }
 
 .contact-heading span.contacts-title {
@@ -978,7 +971,7 @@ header {
 } */
 
   .container-main {
-    padding-left: 100px;
+    padding-left: 120px;
   }
 }
 
@@ -988,6 +981,7 @@ header {
   } */
   .container-main {
     padding-left: 0px;
+    height: calc(100vh - 178px);
   }
   /* .menu-mobile-display-container {   
    display: flex;
@@ -999,19 +993,21 @@ header {
   justify-content: start;
   padding-left: 40px;
 }*/
-.list-container {
-  height: calc(100vh - 178px);
-  overflow-x: hidden;
-}
-.contact-list{
-  max-height: calc(100vh - 176px);
-}
-.contact-display {
-  width: 100%;
-  max-height: calc(100vh - 178px);
-  
-}
-
+  .list-container {
+    height: calc(100vh - 178px);
+    overflow-x: hidden;
+  }
+  .contact-list {
+    max-height: calc(100vh - 176px);
+  }
+  .contact-display {
+    width: 100%;
+    height: calc(100vh - 178px);
+  }
+  .header-left-content {
+    justify-content: start;
+    padding-left: 40px;
+  }
 }
 @media (max-width: 850px) {
   .contact-display {
@@ -1022,6 +1018,7 @@ header {
   }
   .contact-list {
     width: 800px;
+    margin-top: 30px;
     align-items: center;
   }
   .new-contact-button {
@@ -1101,7 +1098,7 @@ header {
     z-index: 999; /* Slightly less than the popup */
     transition: opacity 0.3s ease;
   }
-  .contact-actions{
+  .contact-actions {
     display: none;
   }
 }
@@ -1109,10 +1106,10 @@ header {
   .contact-details-area {
     width: 90%;
   }
-  .contact-heading{
+  .contact-heading {
     margin-top: 30px;
   }
-  .contact-info-text{
+  .contact-info-text {
     margin: 12px 0px;
   }
   .info-block {
@@ -1180,35 +1177,33 @@ header {
   }
 }
 /* *****************************************iphone SE */
-@media (max-width: 375px) {
+@media (max-width: 376px) {
   .mobile-add-button {
     /* display: none !important; */
-   
-}
-.contact-display{
-  max-height: calc(100vh - 158px);  
-}
-.contact-list{
-  max-height: calc(100vh - 158px);
-}
-.list-container {
-  height: calc(100vh - 158px);
-}
-.single-contact {
-  width: 80%;
- gap:5px
-  
-}
-.contact-separator {
-  height: 1px;
-  width: 55%;
-  
-}
-.contact-details span {
-  font-size: 14px;
-
-}
-
+  }
+  .container-main {
+    height: calc(100vh - 158px);
+  }
+  .contact-display {
+    max-height: calc(100vh - 158px);
+  }
+  .contact-list {
+    max-height: calc(100vh - 158px);
+  }
+  .list-container {
+    height: calc(100vh - 158px);
+  }
+  .single-contact {
+    width: 80%;
+    gap: 5px;
+  }
+  .contact-separator {
+    height: 1px;
+    width: 55%;
+  }
+  .contact-details span {
+    font-size: 14px;
+  }
 }
 @media (max-width: 370px) {
   .contact-list {

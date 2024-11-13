@@ -82,18 +82,11 @@ body{
     .sidebar {    
         display: none;   
     }
-    .container-main {    
-        padding-left: 0px;    
-    }
     .menu-mobile-display-container {   
         display: flex;
     }
     .logo-small {
         display: block;
-    }
-    .header-left-content {
-        justify-content: start;
-        padding-left: 40px;
     }
 }
 /* *****************************************iphone SE */

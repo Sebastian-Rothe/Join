@@ -74,6 +74,7 @@ body {
     height: 50vh;
     opacity: 0;
     display: none;
+    visibility: hidden;
   }
 }
 /* *******************************************************************End Logo animation */
