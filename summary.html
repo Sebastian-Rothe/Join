@@ -7,17 +7,20 @@
     <link
       rel="apple-touch-icon"
       sizes="180x180"
-      href="assets/icons/favicon_io/apple-touch-icon.png" />
+      href="assets/icons/favicon_io/apple-touch-icon.png"
+    />
     <link
       rel="icon"
       type="image/png"
       sizes="32x32"
-      href="assets/icons/favicon_io/favicon-32x32.png" />
+      href="assets/icons/favicon_io/favicon-32x32.png"
+    />
     <link
       rel="icon"
       type="image/png"
       sizes="16x16"
-      href="assets/icons/favicon_io/favicon-16x16.png" />
+      href="assets/icons/favicon_io/favicon-16x16.png"
+    />
     <link rel="manifest" href="assets/icons/favicon_io/site.webmanifest" />
     <link rel="stylesheet" href="./styles/contactsPage.css" />
     <link rel="stylesheet" href="./styles/template.css" />
@@ -26,92 +29,95 @@
 
   <body onload="initBoard(), includeHTML()">
     <div w3-include-html="./head-side-foot.html"></div>
-
-    <div class="all">
-      <div class="container">
-        <div class="summary-tasks">
-          <div class="main-headline">
-            <p>Join 360</p>
-            <img src="assets/img/Vector 5.png" alt="" />            
-            <span class="key">Key Metrics at a Glance</span>
-            <div class="divider"></div>
+    <div class="container-main">
+      <div class="summary-tasks">
+        <div class="main-headline">
+          <p>Join 360</p>
+          <img src="assets/img/Vector 5.png" alt="" />
+          <span class="key">Key Metrics at a Glance</span>
+          <div class="divider"></div>
+        </div>
+        <div class="summary-todo-and-tasks">
+          <div class="todo" onclick="window.location.href='board.html'">
+            <img
+              class="icon-sm"
+              src="assets/icons/Frame 59 (1).png"
+              alt="To-do Icon"
+            />
+            <div class="amount-and-todo">
+              <h3 id="count-todo"></h3>
+              <p>To-do</p>
+            </div>
           </div>
-          <div class="summary-todo-and-tasks">
-            <div class="todo" onclick="window.location.href='board.html'">
-              <img
-                class="icon-sm"
-                src="assets/icons/Frame 59 (1).png"
-                alt="To-do Icon" />
-              <div class="amount-and-todo">
-                <h3 id="count-todo"></h3>
-                <p>To-do</p>
-              </div>
-            </div>
 
-            <div class="done" onclick="window.location.href='board.html'">
-              <img
-                class="icon-sm"
-                src="assets/icons/Frame 59 (3).png"
-                alt="Done Icon" />
-              <div class="amount-and-todo">
-                <h3 id="count-done"></h3>
-                <p>Done</p>
-              </div>
+          <div class="done" onclick="window.location.href='board.html'">
+            <img
+              class="icon-sm"
+              src="assets/icons/Frame 59 (3).png"
+              alt="Done Icon"
+            />
+            <div class="amount-and-todo">
+              <h3 id="count-done"></h3>
+              <p>Done</p>
             </div>
+          </div>
+        </div>
+
+        <div class="summary-urgent-tasks"
+          onclick="window.location.href='board.html'"
+        >
+          <img class="icon-sm" src="assets/icons/Frame 59.png" alt="" />
+
+          <div class="diso">
+            <h3 id="count-priority"></h3>
+            <p>Urgent</p>
+          </div>
+          <img src="assets/img/Vector 5 (1).png" alt="" />
+          <div class="date">
+            <p id="upcoming-deadline"></p>
+            <p>Upcoming Deadline</p>
+          </div>
+        </div>
+
+        <div class="summary-all-tasks">
+          <div
+            class="task-container"
+            onclick="window.location.href='board.html'"
+          >
+            <h3 id="count-board"></h3>
+            <p>
+              Tasks in <br />
+              Board
+            </p>
           </div>
 
           <div
-            class="summary-urgent-tasks"
-            onclick="window.location.href='board.html'">
-            <img class="icon-sm" src="assets/icons/Frame 59.png" alt="" />
-
-            <div class="diso">
-              <h3 id="count-priority"></h3>
-              <p>Urgent</p>
-            </div>
-            <img src="assets/img/Vector 5 (1).png" alt="" />
-            <div class="date">
-              <p id="upcoming-deadline"></p>
-              <p>Upcoming Deadline</p>
-            </div>
+            class="task-container"
+            onclick="window.location.href='board.html'"
+          >
+            <h3 id="count-inProgress"></h3>
+            <p>
+              Tasks In <br />
+              Progress
+            </p>
           </div>
 
-          <div class="summary-all-tasks">
-            <div
-              class="task-container"
-              onclick="window.location.href='board.html'">
-              <h3 id="count-board"></h3>
-              <p>
-                Tasks in <br />
-                Board
-              </p>
-            </div>
-
-            <div
-              class="task-container"
-              onclick="window.location.href='board.html'">
-              <h3 id="count-inProgress"></h3>
-              <p>
-                Tasks In <br />
-                Progress
-              </p>
-            </div>
-
-            <div
-              class="task-container"
-              onclick="window.location.href='board.html'">
-              <h3 id="count-awaitFeedback"></h3>
-              <p>Awaiting Feedback</p>
-            </div>
+          <div
+            class="task-container"
+            onclick="window.location.href='board.html'"
+          >
+            <h3 id="count-awaitFeedback"></h3>
+            <p>Awaiting Feedback</p>
           </div>
-        </div>
-
-        <div class="greeting">
-          <span id="greetingText" class="greeting-text">WellCome</span>, <br />
-          <span id="greetingName" class="greeting-name">Guest</span>
         </div>
       </div>
+
+      <div class="greeting">
+        <span id="greetingText" class="greeting-text">WellCome</span>, <br />
+        <span id="greetingName" class="greeting-name">Guest</span>
+      </div>
     </div>
+
     <script src="js/summary.js"></script>
     <script src="./js/firebase.js"></script>
     <script src="./js/global.js"></script>
