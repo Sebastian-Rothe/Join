@@ -134,16 +134,26 @@ function updateDisplayStates(viewContacts, contactList, contactDetails, mobileCo
  * Returns the display to the contact list from the contact detail view, adjusting for mobile or desktop.
  */
 function backToContactList() {
+
+  if (window.innerWidth <= 850) {
+    window.location.href = "contactsPage.html";
+    return;
+  }
+
   const contactList = document.getElementById("contact-list");
   const contactDetails = document.getElementById("contact-detail");
   const contactDisplay = document.getElementById("contact-display");
+  
   changeToAddButton();
   contactList.classList.remove("d-none");
   contactDetails.classList.remove("d-none");
+  contactDetails.classList.remove("aktiv");
+
   if (window.innerWidth <= 850) {
     contactDisplay.style.display = 'none';
   }
 }
+
 
 /**
  * Handles the resize event to adjust the display of the contact list, detail view, and mobile options.
@@ -158,7 +168,7 @@ function handleResize() {
     contactDisplay.style.display = 'block';
   }
   else if(window.innerWidth <= 850){
-    // contactDisplay.style.display = 'none';
+    contactDisplay.style.display = 'none';
     document.getElementById("mobile-contact-option").classList.remove("d-none");
     document.getElementById("btnBack").classList.add("d-none");
   }

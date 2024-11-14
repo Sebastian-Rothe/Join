@@ -430,7 +430,7 @@ header {
 }
 
 .letter-heading span {
-  margin-left: 40px;
+  margin-left: 24px;
   font-size: 20px;
   font-weight: 400;
 }
@@ -453,7 +453,7 @@ header {
   align-items: center;
   gap: 35px;
   border-radius: 10px;
-  padding: 15px 0px 15px 0px;
+  /* padding: 15px 0px 15px 0px; */
 }
 
 .contact-hover-effect:hover {
@@ -560,10 +560,11 @@ header {
 }
 
 .contact-content {
-  height: max-content;
-  width: calc(100%-55px);
+  height: auto;
+  /* width: calc(100% - 55px); */
   position: relative;
   margin-left: 55px;
+  /* overflow: hidden; */
 }
 
 @keyframes slideIn {
@@ -589,14 +590,21 @@ header {
 }
 
 .contact-content-text {
-  height: 100%;
+  height: max-content;
   width: calc(100% - 55px);
+  max-width: 100%;
   position: absolute;
   top: 0;
-  animation: slideIn 0.2s ease-out forwards;
   opacity: 0;
-  height: max-content;
+  left: 100%;
+  transition: left 0.2s ease-out, opacity 0.2s ease-out;
 }
+
+.contact-content.aktiv .contact-content-text {
+  left: 0;
+  opacity: 1;
+}
+
 
 .contact-content-out {
   left: 100%;
@@ -1089,7 +1097,7 @@ header {
     padding-right: 10px;
   }
   .overlay-option {
-    position: fixed;
+    position: absolute;
     top: 0;
     left: 0;
     width: 100%;
@@ -1162,6 +1170,7 @@ header {
   .contact-list {
     width: 420px;
     align-items: start;
+    margin-left: 12px;
   }
   .contact-heading span.contacts-title {
     font-size: 31px;
@@ -1179,7 +1188,7 @@ header {
     height: calc(100vh - 158px);
   }
   .contact-display {
-    max-height: calc(100vh - 158px);
+    height: calc(100vh - 158px);
   }
   .contact-list {
     /* max-height: calc(100vh - 158px); */
@@ -1188,7 +1197,6 @@ header {
     /* height: calc(100vh - 158px); */
   }
   .single-contact {
-    width: 80%;
     gap: 5px;
   }
   .contact-separator {
