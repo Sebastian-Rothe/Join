@@ -14,7 +14,7 @@ body {
     background-color: rgba(246, 247, 248, 1);
     height: calc(100% - 96px);
     width: calc(100% - 232px);
-    padding-top: 96px;
+    /* padding-top: 96px; */
     padding-left: 232px;
 }
 /******************************************************* title input style */
@@ -45,7 +45,7 @@ input[type="text"].invalid {
     display: flex;
     flex-direction: row;
     width: 100%;
-    height: 100vh;
+    height: auto;
 }
 .left-side{
     width: 49%;
@@ -744,7 +744,6 @@ select.dropdownCategory.invalid {
     .footer-add-task {
         padding-left: 107px;
         padding-right: 65px;
-        margin-top: 200px;
         width: calc(100% - 182px);
     }
 }
@@ -755,24 +754,12 @@ select.dropdownCategory.invalid {
     }    
 }
  
-@media (max-width: 855px) {
-    .container-main {        
-        padding-left: 10px;
-        width: calc(100% - 10px);
-    } 
-    .left-side {        
-        padding-left: 0px;
-        padding-right: 0px;
-    }
-    .right-side {        
-        padding-left: 0px;        
-        padding-right: 0px;
-    }     
-}
-@media (max-width: 900px) {
+@media (max-width: 902px) {
     .container-main {
         padding-left: 0px;
-        width: calc(100%);
+        width: 100%;
+        height: calc(100vh - 176px);
+        overflow-x: hidden;
     }
     .left-side {
         padding-left: 10px;
@@ -783,17 +770,27 @@ select.dropdownCategory.invalid {
         padding-right: 10px;
     }
     .footer-add-task {
-        margin-bottom: 120px;      
+        margin-bottom: 60px;      
         padding-left: 90px;
         padding-right: 45px;
     }
+}
+@media (max-width: 855px) {
+    .left-side {        
+        padding-left: 0px;
+        padding-right: 0px;
+    }
+    .right-side {        
+        padding-left: 0px;        
+        padding-right: 0px;
+    }     
 }
 @media (max-width: 700px) {
     .clear-btn {
        display: none;
     }
     .footer-add-task {
-        margin-bottom: 120px;      
+        margin-bottom: 40px;      
         padding-left: 70px;
         padding-right: 70px;
         width: calc(100% - 140px);
@@ -827,13 +824,14 @@ select.dropdownCategory.invalid {
         margin-bottom: 10px;
     }
     .footer-add-task {
+        position: relative;
         display: flex;
         flex-direction: column;
         justify-content: center;
         padding-left: 0px;
         padding-right: 0px;
-        margin-bottom: 80px;
-        width: calc(100%);
+        /* margin-bottom: 80px;
+        width: calc(100%); */
     }
     .footer-add-task-left {
         flex-direction: row;
@@ -855,15 +853,13 @@ select.dropdownCategory.invalid {
         padding-right: 20px;
         width: calc(100% - 40px);
     }
-    .container-main {
-        padding-left: 0px;       
-    }
+  
     .create-task-btn {
         width: 183px; 
     }
     .footer-add-task {       
         flex-direction: row;
-        margin-bottom: 80px;
+        margin-bottom: 10px;
         width: 90%;
         gap: 10px;
     }
@@ -877,6 +873,12 @@ select.dropdownCategory.invalid {
 @media (max-width:377px) {
     .footer-add-task {
         flex-direction: column;        
+    }
+}
+@media (max-width: 375px) {
+    .container-main {
+        height: calc(100vh - 156px);
+      
     }
 }
 @media (max-width:350px) {
