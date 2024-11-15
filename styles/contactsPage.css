@@ -596,6 +596,7 @@ header {
   position: absolute;
   top: 0;
   opacity: 0;
+  visibility: hidden;
   left: 100%;
   transition: left 0.2s ease-out, opacity 0.2s ease-out;
 }
@@ -603,6 +604,7 @@ header {
 .contact-content.aktiv .contact-content-text {
   left: 0;
   opacity: 1;
+  visibility: visible;
 }
 
 
@@ -985,30 +987,14 @@ header {
 }
 
 @media (max-width: 902px) {
-  /* .sidebar {    
-    display: none;   
-  } */
   .container-main {
     padding-left: 0px;
     height: calc(100vh - 178px);
   }
-  /* .menu-mobile-display-container {   
-   display: flex;
-}
-.logo-small {
-  display: block;
-}
-.header-left-content {
-  justify-content: start;
-  padding-left: 40px;
-}*/
   .list-container {
-    /* height: calc(100vh - 178px); */
     overflow-x: hidden;
   }
-  .contact-list {
-    /* max-height: calc(100vh - 176px); */
-  }
+ 
   .contact-display {
     height: calc(100vh - 178px);
   }
@@ -1052,7 +1038,6 @@ header {
     border-radius: 100%;
     width: 65px;
     height: 65px;
-    /* z-index: 3; */
     border: 1px;
     bottom: 16px;
     right: 20px;
@@ -1102,8 +1087,8 @@ header {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: transparent; /* Transparent black */
-    z-index: 999; /* Slightly less than the popup */
+    background-color: transparent; 
+    z-index: 999; 
     transition: opacity 0.3s ease;
   }
   .contact-actions {
@@ -1122,7 +1107,6 @@ header {
   }
   .contact-list {
     width: 720px;
-    /* padding-left: 20px; */
   }
 }
 @media (max-width: 700px) {
@@ -1181,21 +1165,13 @@ header {
 }
 /* *****************************************iphone SE */
 @media (max-width: 376px) {
-  .mobile-add-button {
-    /* display: none !important; */
-  }
   .container-main {
     height: calc(100vh - 158px);
   }
   .contact-display {
     height: calc(100vh - 158px);
   }
-  .contact-list {
-    /* max-height: calc(100vh - 158px); */
-  }
-  .list-container {
-    /* height: calc(100vh - 158px); */
-  }
+
   .single-contact {
     gap: 5px;
   }
