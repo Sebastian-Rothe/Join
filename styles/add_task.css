@@ -852,24 +852,18 @@ select.dropdownCategory.invalid {
         padding-left: 20px;
         padding-right: 20px;
         width: calc(100% - 40px);
-    }
-  
-    .create-task-btn {
-        width: 183px; 
-    }
-    .footer-add-task {       
         flex-direction: row;
-        margin-bottom: 20px;
+        margin-bottom: 40px;
         width: 90%;
         gap: 10px;
     }
-}
-@media (max-width: 490px) {
     .create-task-btn {
+        width: 183px; 
         width: 153px;
         font-size: 16px;
     }
 }
+
 @media (max-width:377px) {
     .footer-add-task {
         flex-direction: column;        
