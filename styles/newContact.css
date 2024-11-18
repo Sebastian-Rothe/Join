@@ -310,6 +310,10 @@ input {
   }
 }
 @media (max-width: 580px) {
+  .popup{
+    height: 95%;
+    width: 99%;
+  }
   .align-form{
     width: 90%;
     margin-left: 10px;
@@ -317,7 +321,6 @@ input {
 }
 @media (max-width: 430px){
   .popup {
-    height: 80%;
     margin-top: 20px;
   }
   .left-pane p {

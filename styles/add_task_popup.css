@@ -3,7 +3,7 @@
 .modal {
     display: none;
     position: fixed;
-    z-index: 1001;
+    z-index: 2000;
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
@@ -114,6 +114,10 @@
         padding-left: 20px;
         padding-right: 20px;
         width: calc(100% - 40px);
+    }
+    .modal{
+        width: 90%;
+        height: 90%;
     }
 }
 @media (max-width: 510px) {
