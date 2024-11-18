@@ -633,7 +633,7 @@ h3{
 /* Main Board Adjustments for Smaller Screens */
 @media (max-width: 800px) {
   .drag-area {
-    /* height: 250px;  */
+    height: auto; 
     margin-bottom: 0;
     padding-top: 0;
   }
@@ -666,6 +666,7 @@ h3{
   .task-card{
     min-width: 200px;
     max-width: 250px;
+    margin-right: 4px;
   }
   .board-popup-content {
     height: 80% !important;

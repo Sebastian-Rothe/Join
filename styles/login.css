@@ -445,6 +445,7 @@ input[type="checkbox"]:invalid + span {
 @media (max-width: 549px) {
   .header-login-content-responsive {   
     gap: 20px;
+    margin-top: 16px;
 }
 .content {
   margin-top: 0px;

@@ -859,7 +859,7 @@ select.dropdownCategory.invalid {
     }
     .footer-add-task {       
         flex-direction: row;
-        margin-bottom: 10px;
+        margin-bottom: 20px;
         width: 90%;
         gap: 10px;
     }
