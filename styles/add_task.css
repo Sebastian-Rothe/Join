@@ -853,7 +853,7 @@ select.dropdownCategory.invalid {
         padding-right: 20px;
         width: calc(100% - 40px);
         flex-direction: row;
-        margin-bottom: 40px;
+        margin-bottom: 60px;
         width: 90%;
         gap: 10px;
     }

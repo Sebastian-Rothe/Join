@@ -1185,6 +1185,7 @@ header {
 @media (max-width: 370px) {
   .contact-list {
     width: 380px;
+    margin-bottom: 60px;
   }
   .avatar-large {
     display: none;
@@ -1201,5 +1202,16 @@ header {
 @media (max-width: 320px) {
   .contact-list {
     width: 350px;
+  }
+}
+@media (max-height: 600px) {
+  .contact-heading {
+    gap: 4px;
+    font-size: 27px;
+    font-weight: 400;
+    margin: 30px 0 0 36px;
+  }
+  .contact-name-large{
+    margin: 0;
   }
 }
