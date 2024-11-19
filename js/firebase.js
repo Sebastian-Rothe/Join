@@ -1,5 +1,5 @@
 const BASE_URL =
-  "https://joincontacts-e7692-default-rtdb.europe-west1.firebasedatabase.app/";
+  "https://join-d97d9-default-rtdb.europe-west1.firebasedatabase.app/";
 
 let users = [];
 let tasks = [];
