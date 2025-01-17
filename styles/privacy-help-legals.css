@@ -1,76 +1,86 @@
 body {
-    overflow: auto; 
-    /* padding-bottom: 30px;
+  overflow: auto;
+  /* padding-bottom: 30px;
     padding-left: 20px;
     padding-right: 20px; */
-    font-family: 'Inter', sans-serif;
-    margin: 0;
+  font-family: "Inter", sans-serif;
+  margin: 0;
 }
 
 .all {
-    /* overflow: auto;  */
-    padding-right: 20px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-left: 252px;
-    /* margin-top: 200px; */
-    text-align: justify;
-    margin-right: 20px;
+  /* overflow: auto;  */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: justify;
+  margin: 0 20px 90px 252px;
 }
 
 .title {
-    font-size: 61px;
-    margin-bottom: 30px;
+  font-size: 61px;
+  margin-bottom: 30px;
 }
 
 .sub-title {
-    font-size: 27px;
-    font-weight: 700;
+  font-size: 27px;
+  font-weight: 700;
 }
 
-.container-fluid h2, .container-fluid h1 {
-    font-weight: 600;
+.container-fluid h2,
+.container-fluid h1 {
+  font-weight: 600;
 }
 
 .container-fluid h1 {
-    font-size: 28px;
+  font-size: 28px;
 }
 
 .container-fluid p {
-    font-size: 14px;
-    line-height: 1.5;
+  font-size: 14px;
+  line-height: 1.5;
 }
 
 .font {
-    font-size: 40px;
+  font-size: 40px;
 }
 
 .backIcon {
-    border-radius: 50%; 
-    position: absolute;
-    right: 20px;
+  border-radius: 50%;
+  position: absolute;
+  right: 20px;
 }
 .backIcon:hover {
-    cursor: pointer;
-    transform: scale(1.1);
-    filter: brightness(1.2); 
-    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15); 
+  cursor: pointer;
+  transform: scale(1.1);
+  filter: brightness(1.2);
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
 }
 .blue-text {
-    color:#29ABE2;   
+  color: #29abe2;
 }
 
 @media (max-width: 1030px) {
-    .all {
-        /* margin-left: 150px; */
-    }
-    }
-    @media (max-width: 901px) {
-        .all {
-            margin-left: 40px;
-            margin-right: 40px;
-            text-align: justify;
-        }
-        }
+  .all {
+    margin-left: 150px;
+  }
+}
+@media (max-width: 901px) {
+  .all {
+    margin-left: 40px;
+    margin-right: 40px;
+    text-align: justify;
+  }
+}
 
+@media (max-width: 620px) {
+  .all {
+    margin-left: 20px;
+    margin-right: 20px;
+  }
+}
+@media (max-width: 424px) {
+  .all {
+    margin-left: 8px;
+    margin-right: 8px;
+  }
+}
