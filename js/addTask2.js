@@ -1,3 +1,5 @@
+let selectedFiles = [];
+
 /**
  * Clears all input values, selections, and resets the form on the "Add Task" page.
  * @returns {void}
@@ -22,6 +24,7 @@ function clearInputsAndSelections() {
     subTasks.forEach(function(subTask) {
         subTask.remove();
     });
+    selectedFiles = [];
 }
 
 /**
@@ -141,19 +144,44 @@ function displaySelectedFiles() {
     const fileInput = document.getElementById('file-upload');
     const fileListContainer = document.getElementById('file-list-container');
     const fileList = fileListContainer.querySelector('ul');
-    fileList.innerHTML = ''; // Clear previous file list
+    // fileList.innerHTML = ''; // Clear previous file list
 
-    Array.from(fileInput.files).forEach(file => {
+    selectedFiles = Array.from(fileInput.files);
+
+    selectedFiles.forEach(file => {
         const li = document.createElement('li');
-        li.textContent = file.name;
+        li.classList.add('file-list-item');
+        li.innerHTML = `
+            <div class="file-list-left">
+                <span>${file.name}</span>
+            </div>
+            <div class="file-list-right">
+                <img src="assets/icons/delete.svg" alt="" class="toggle-display" onclick="removeFile('${file.name}')">
+            </div>
+        `;
         fileList.appendChild(li);
     });
 
-    if (fileInput.files.length > 0) {
+    if (selectedFiles.length > 0) {
         fileListContainer.querySelector('ul').classList.remove('toggle-display');
     } else {
         fileListContainer.querySelector('ul').classList.add('toggle-display');
     }
+}
+
+/**
+ * Removes a file from the list.
+ * @param {string} fileName - The name of the file to remove.
+ * @returns {void}
+ */
+function removeFile(fileName) {
+    selectedFiles = selectedFiles.filter(file => file.name !== fileName);
+
+    const dataTransfer = new DataTransfer();
+    selectedFiles.forEach(file => dataTransfer.items.add(file));
+    document.getElementById('file-upload').files = dataTransfer.files;
+
+    displaySelectedFiles();
 }
 
 

@@ -542,7 +542,7 @@ select.dropdownCategory.invalid {
     text-align: left;
 }
 
-/****************************************************************** File list Style */
+
 .file-list-container {
     height: 10vh;
     overflow: auto;
@@ -576,7 +576,6 @@ select.dropdownCategory.invalid {
     position: relative;
     padding-left: 20px;
     cursor: pointer;
-    margin-bottom: 30px;
     height: 38px;
     display: flex;
     align-items: center;
@@ -600,6 +599,16 @@ select.dropdownCategory.invalid {
     list-style-type: circle;
 }
 
+.file-list-left {
+    flex-grow: 1;
+}
+
+.file-list-right {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+/* new code for IHK end */
 /************************************************************** footer */
 
 .footer-add-task{
