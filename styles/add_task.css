@@ -542,7 +542,7 @@ select.dropdownCategory.invalid {
     text-align: left;
 }
 
-
+/****************************************************************** File list Style */
 .file-list-container {
     height: 10vh;
     overflow: auto;
@@ -604,9 +604,7 @@ select.dropdownCategory.invalid {
 }
 
 .file-list-right {
-    display: flex;
-    align-items: center;
-    gap: 10px;
+    padding-right: 14px;
 }
 /* new code for IHK end */
 /************************************************************** footer */

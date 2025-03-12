@@ -25,6 +25,7 @@ function clearInputsAndSelections() {
         subTask.remove();
     });
     selectedFiles = [];
+    displaySelectedFiles();
 }
 
 /**
@@ -144,7 +145,7 @@ function displaySelectedFiles() {
     const fileInput = document.getElementById('file-upload');
     const fileListContainer = document.getElementById('file-list-container');
     const fileList = fileListContainer.querySelector('ul');
-    // fileList.innerHTML = ''; // Clear previous file list
+    fileList.innerHTML = ''; // Clear previous file list
 
     selectedFiles = Array.from(fileInput.files);
 
@@ -156,7 +157,7 @@ function displaySelectedFiles() {
                 <span>${file.name}</span>
             </div>
             <div class="file-list-right">
-                <img src="assets/icons/delete.svg" alt="" class="toggle-display" onclick="removeFile('${file.name}')">
+                <img src="assets/icons/delete.svg" alt="Delete Icon" onclick="removeFile('${file.name}')">
             </div>
         `;
         fileList.appendChild(li);
