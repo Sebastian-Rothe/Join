@@ -487,6 +487,118 @@ select.dropdownCategory.invalid {
     background-color: #EEEEEE;
 }
 
+/****************************************************************** File upload Style */
+.file-upload-form {
+    border-radius: 25px;
+    position: relative;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.file-upload-form input {
+    display: none; /* Hide the actual file input */
+}
+
+.file-upload-btn {
+    display: block;
+    height: 38px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 21px;
+    padding: 10px;
+    box-shadow: #7AE229;
+    color: #000000;
+    background-color: #fff;
+    cursor: pointer;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.file-upload-btn:hover {
+    border-color: black;
+}
+
+.file-upload-btn img {
+    width: 14px;
+    height: 14px;
+    padding: 5px;
+}
+
+.file-upload-btn img:hover {
+    background-color: #EEEEEE;
+    border-radius: 50px;
+}
+
+.file-upload-btn-divider {
+    width: 1px;
+    height: 40px;
+    background-color: #EEEEEE;
+}
+
+.file-upload-label {
+    flex-grow: 1;
+    text-align: left;
+}
+
+/****************************************************************** File list Style */
+.file-list-container {
+    height: 10vh;
+    overflow: auto;
+}
+
+/* Scrollbar styles */
+.file-list-container::-webkit-scrollbar {
+    width: 8px;  /* Width of the entire scrollbar */
+}
+
+.file-list-container::-webkit-scrollbar-track {
+    background: #f1f1f1;  /* Color of the track (scrollbar background) */
+    border-radius: 10px;  /* Rounded corners for the track */
+}
+
+.file-list-container::-webkit-scrollbar-thumb {
+    background-color: #888;  /* Color of the scrollbar thumb */
+    border-radius: 10px;  /* Rounded corners for the thumb */
+    border: 2px solid #f1f1f1;  /* Optional border around the thumb */
+}
+
+.file-list-container::-webkit-scrollbar-thumb:hover {
+    background-color: #555;  /* Darker color when hovering over the thumb */
+}
+
+.file-list-container ul {
+    padding-left: 30px;
+}
+
+.file-list-container ul li {
+    position: relative;
+    padding-left: 20px;
+    cursor: pointer;
+    margin-bottom: 30px;
+    height: 38px;
+    display: flex;
+    align-items: center;
+}
+
+.file-list-container ul li:hover {
+    background-color: #EEEEEE;
+    border-radius: 8px;
+}
+
+.file-list-container ul li::before {
+    content: "\2022"; /* Unicode for bullet point */
+    position: absolute;
+    left: 0;
+    font-size: 16px;
+    line-height: 1em;
+    color: black;
+}
+
+.file-list-container ul li:last-child::before {
+    list-style-type: circle;
+}
 
 /************************************************************** footer */
 

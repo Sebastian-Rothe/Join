@@ -1,4 +1,3 @@
-
 /**
  * Clears all input values, selections, and resets the form on the "Add Task" page.
  * @returns {void}
@@ -132,6 +131,29 @@ function formvalidation() {
     let isCategoryValid = validateCategory();
 
     return isTitleValid && isDateValid && isCategoryValid;
+}
+
+/**
+ * Displays the selected files below the file upload input.
+ * @returns {void}
+ */
+function displaySelectedFiles() {
+    const fileInput = document.getElementById('file-upload');
+    const fileListContainer = document.getElementById('file-list-container');
+    const fileList = fileListContainer.querySelector('ul');
+    fileList.innerHTML = ''; // Clear previous file list
+
+    Array.from(fileInput.files).forEach(file => {
+        const li = document.createElement('li');
+        li.textContent = file.name;
+        fileList.appendChild(li);
+    });
+
+    if (fileInput.files.length > 0) {
+        fileListContainer.querySelector('ul').classList.remove('toggle-display');
+    } else {
+        fileListContainer.querySelector('ul').classList.add('toggle-display');
+    }
 }
 
 
