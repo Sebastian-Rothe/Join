@@ -168,6 +168,8 @@ function displaySelectedFiles() {
         fileList.appendChild(li);
     });
 
+    // const blob = convertFilesToBlob();
+    // console.log(blob);
 }
 
 /**
@@ -180,8 +182,18 @@ function removeFile(fileName) {
     const dataTransfer = new DataTransfer();
     selectedFiles.forEach(file => dataTransfer.items.add(file));
     document.getElementById('file-upload').files = dataTransfer.files;
-    
+ 
     displaySelectedFiles();
+}
+
+/**
+ * Converts the selected files to a Blob format.
+ * @returns {Blob} - The Blob containing the selected files.
+ */
+function convertFilesToBlob() {
+    const dataTransfer = new DataTransfer();
+    selectedFiles.forEach(file => dataTransfer.items.add(file));
+    return new Blob(dataTransfer.files, { type: 'application/octet-stream' });
 }
 
 
