@@ -168,11 +168,6 @@ function displaySelectedFiles() {
         fileList.appendChild(li);
     });
 
-    if (selectedFiles.length > 0) {
-        fileListContainer.querySelector('ul').classList.remove('toggle-display');
-    } else {
-        fileListContainer.querySelector('ul').classList.add('toggle-display');
-    }
 }
 
 /**
@@ -182,11 +177,10 @@ function displaySelectedFiles() {
  */
 function removeFile(fileName) {
     selectedFiles = selectedFiles.filter(file => file.name !== fileName);
-
     const dataTransfer = new DataTransfer();
     selectedFiles.forEach(file => dataTransfer.items.add(file));
     document.getElementById('file-upload').files = dataTransfer.files;
-
+    
     displaySelectedFiles();
 }
 
