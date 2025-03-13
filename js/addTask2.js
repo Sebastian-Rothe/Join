@@ -145,7 +145,7 @@ function displaySelectedFiles() {
     const fileInput = document.getElementById('file-upload');
     const fileListContainer = document.getElementById('file-list-container');
     const fileList = fileListContainer.querySelector('ul');
-    fileList.innerHTML = ''; // Clear previous file list
+    // fileList.innerHTML = ''; // Clear previous file list
 
     selectedFiles = Array.from(fileInput.files);
 
