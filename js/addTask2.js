@@ -145,9 +145,14 @@ function displaySelectedFiles() {
     const fileInput = document.getElementById('file-upload');
     const fileListContainer = document.getElementById('file-list-container');
     const fileList = fileListContainer.querySelector('ul');
-    // fileList.innerHTML = ''; // Clear previous file list
+    fileList.innerHTML = ''; // Clear previous file list
 
-    selectedFiles = Array.from(fileInput.files);
+    // Add new files to the selectedFiles array
+    Array.from(fileInput.files).forEach(file => {
+        if (!selectedFiles.some(f => f.name === file.name)) {
+            selectedFiles.push(file);
+        }
+    });
 
     selectedFiles.forEach(file => {
         const li = document.createElement('li');
