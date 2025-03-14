@@ -191,10 +191,15 @@ function removeFile(fileName) {
  * @returns {Blob} - The Blob containing the selected files.
  */
 function convertFilesToBlob() {
-    const dataTransfer = new DataTransfer();
-    selectedFiles.forEach(file => dataTransfer.items.add(file));
-    return new Blob(dataTransfer.files, { type: 'application/octet-stream' });
+   const filesWithMetadata = selectedFiles.map(file => ({
+       fileName: file.name,
+       type: file.type,
+       file: file
+   }));
+
+   return new Blob([JSON.stringify(filesWithMetadata)], { type: 'application/json' });
 }
+
 
 
 
