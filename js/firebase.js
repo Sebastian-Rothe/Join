@@ -167,6 +167,19 @@ function getAssignedToArray(assignedTo) {
  */
 async function postTask(path = "", data = {}) {
   try {
+    // Convert files to Base64 and add to the task data
+    if (data.files) {
+      const filesArray = await Promise.all(data.files.map(async file => {
+        const base64 = await fileToBase64(file);
+        return {
+          fileName: file.name,
+          type: file.type,
+          file: base64
+        };
+      }));
+      data.files = filesArray;
+    }
+
     let response = await fetch(BASE_URL + path + ".json", {
       method: "POST",
       headers: {
@@ -182,6 +195,20 @@ async function postTask(path = "", data = {}) {
   } catch (error) {
     console.error("Error posting task:", error);
   }
+}
+
+/**
+ * Converts a file to a Base64 string.
+ * @param {File} file - The file to convert.
+ * @returns {Promise<string>} - A promise that resolves to the Base64 string.
+ */
+function fileToBase64(file) {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onloadend = () => resolve(reader.result);
+    reader.onerror = reject;
+    reader.readAsDataURL(file);
+  });
 }
 
 /**

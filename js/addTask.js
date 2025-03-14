@@ -9,6 +9,7 @@ const fields = [
     "subtasks",
     "status",
 ];
+let selectedFiles = [];
 
 /**
  * Populates the dropdown with users' profile icons, names, and checkboxes, 
@@ -204,7 +205,7 @@ function selectPrio(priority) {
  * @returns {Promise<void>} - A promise that resolves when the task is successfully created.
  */
 async function addTask() {
-       if (!formvalidation()) {       
+    if (!formvalidation()) {       
         return;
     }
     const newTask = {};
@@ -218,13 +219,14 @@ async function addTask() {
     newTask.assignedTo = selectedContacts;
     newTask.subtasks = createdSubTasks;
     newTask.status = "todo";
+    newTask.files = selectedFiles;
 
     await postTask("/tasks", newTask);
-     document.getElementById("success-popup").style.display = "flex";
-     setTimeout(() => {
+    document.getElementById("success-popup").style.display = "flex";
+    setTimeout(() => {
         document.getElementById("success-popup").style.display = "none";
         window.location.reload();
-     }, 2000);
+    }, 2000);
     clearAddTaskForm();
     window.location.replace("board.html");   
 }

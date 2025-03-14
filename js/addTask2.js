@@ -1,4 +1,4 @@
-let selectedFiles = [];
+
 
 /**
  * Clears all input values, selections, and resets the form on the "Add Task" page.
@@ -198,6 +198,36 @@ function convertFilesToBlob() {
    }));
 
    return new Blob([JSON.stringify(filesWithMetadata)], { type: 'application/json' });
+}
+
+/**
+ * Converts the selected files to a Base64 format.
+ * @returns {Promise<Array<Object>>} - A promise that resolves to an array of objects containing the file metadata and Base64 string.
+ */
+async function convertFilesToBase64() {
+    const filesArray = await Promise.all(selectedFiles.map(async file => {
+        const base64 = await fileToBase64(file);
+        return {
+            fileName: file.name,
+            type: file.type,
+            file: base64
+        };
+    }));
+    return filesArray;
+}
+
+/**
+ * Converts a file to a Base64 string.
+ * @param {File} file - The file to convert.
+ * @returns {Promise<string>} - A promise that resolves to the Base64 string.
+ */
+function fileToBase64(file) {
+    return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onloadend = () => resolve(reader.result);
+        reader.onerror = reject;
+        reader.readAsDataURL(file);
+    });
 }
 
 
