@@ -1,4 +1,3 @@
-
 /**
  * Generates the HTML for the task details popup.
  * @param {Object} task - The task object to generate the popup HTML for.
@@ -8,6 +7,7 @@ function getPopupHTML(task) {
     const assignedTo = createAssignedToList(task);
     const subtasks = createSubtasksList(task);
     const taskDetails = createTaskDetails(task);
+    const files = createFilesList(task); // New line to create files list
   
     return `
       <div class="task-details-popup">
@@ -23,6 +23,13 @@ function getPopupHTML(task) {
             <div class="board-popup-subtasks" id="taskSubtasks">
               <p class="titleDetails">Subtasks:</p>
               ${subtasks}
+            </div>
+
+            <div class="board-popup-files" id="taskFiles">
+              <p class="titleDetails">Files:</p>
+              <div class="files-grid">
+                ${files}
+              </div>
             </div>
           
             <div class="editOptionsDetailsContain">
@@ -41,12 +48,37 @@ function getPopupHTML(task) {
       </div>`;
   }
   
-  /**
-   * Toggles the completion status of a subtask for a given task.
-   * @param {string} taskId - The ID of the task.
-   * @param {number} subtaskIndex - The index of the subtask to toggle.
-   */
-  function toggleSubtaskStatus(taskId, subtaskIndex) {
+/**
+ * Creates the HTML for the files list in the task details popup.
+ * @param {Object} task - The task object to generate the files list for.
+ * @returns {string} - HTML string for the files list.
+ */
+function createFilesList(task) {
+  console.log(task.files);
+  
+    if (!task.files || task.files.length === 0) {
+        return "<p>No files attached</p>";
+    }
+    return task.files.map(file => {
+        const base64Data = file.base64 || ''; 
+        const fileType = file.type ? (file.type.startsWith('image/') ? 'image' : 'file') : 'file';
+        return `
+            <div class="file-box">
+                ${fileType === 'image' ? 
+                    `<img src="${base64Data}" alt="${file.name || 'Unnamed file'}" class="file-image"/>` : 
+                    `<a href="${base64Data}" download="${file.name || 'Unnamed file'}" class="file-link">${file.name || 'Unnamed file'}</a>`
+                }
+            </div>
+        `;
+    }).join("");
+}
+
+/**
+ * Toggles the completion status of a subtask for a given task.
+ * @param {string} taskId - The ID of the task.
+ * @param {number} subtaskIndex - The index of the subtask to toggle.
+ */
+function toggleSubtaskStatus(taskId, subtaskIndex) {
     let task = tasks.find((t) => t.idNumber === taskId);
   
     task.subtasks[subtaskIndex].completed =
@@ -346,5 +378,4 @@ function getPopupHTML(task) {
     const taskMenu = document.getElementById(`task-menu-${taskId}`);
     taskMenu.style.display = taskMenu.style.display === "block" ? "none" : "block";
   }
-  
-  
+

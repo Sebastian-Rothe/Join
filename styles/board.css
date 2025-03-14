@@ -873,3 +873,32 @@ h3 {
 .subtask-list {
   margin: 10px 0;
 }
+
+/* ...existing code... */
+
+.file-box {
+  display: inline-block;
+  margin: 10px;
+  text-align: center;
+}
+
+.file-image {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.file-link {
+  display: block;
+  margin-top: 5px;
+  color: #007bff;
+  text-decoration: none;
+}
+
+.file-link:hover {
+  text-decoration: underline;
+}
+
+/* ...existing code... */

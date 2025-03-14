@@ -184,19 +184,19 @@ function removeFile(fileName) {
     displaySelectedFiles();
 }
 
-/**
- * Converts the selected files to a Blob format.
- * @returns {Blob} - The Blob containing the selected files.
- */
-function convertFilesToBlob() {
-   const filesWithMetadata = selectedFiles.map(file => ({
-       fileName: file.name,
-       type: file.type,
-       file: file
-   }));
+// /**
+//  * Converts the selected files to a Blob format.
+//  * @returns {Blob} - The Blob containing the selected files.
+//  */
+// function convertFilesToBlob() {
+//    const filesWithMetadata = selectedFiles.map(file => ({
+//        fileName: file.name,
+//        type: file.type,
+//        file: file
+//    }));
 
-   return new Blob([JSON.stringify(filesWithMetadata)], { type: 'application/json' });
-}
+//    return new Blob([JSON.stringify(filesWithMetadata)], { type: 'application/json' });
+// }
 
 /**
  * Converts the selected files to a Base64 format.
@@ -209,7 +209,7 @@ async function convertFilesToBase64() {
             fileName: file.name,
             type: file.type,
             size: file.size,
-            file: base64
+            base64: base64
         };
     }));
     return filesArray;

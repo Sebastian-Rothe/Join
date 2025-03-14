@@ -127,7 +127,8 @@ function createTaskObject(key, task) {
       date: task.date || null,
       subtasks: createSubtasksArray(task.subtasks),
       assignedTo: getAssignedToArray(task.assignedTo),
-      priority: task.priority || "medium"
+      priority: task.priority || "medium",
+      files: task.files || [] // Include files
   };
 }
 
