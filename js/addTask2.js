@@ -140,7 +140,7 @@ function formvalidation() {
  * @returns {void}
  */
 function displaySelectedFiles() {
-    const fileInput = document.getElementById('file-upload');
+    const fileInput = document.getElementById('upload');
     const fileListContainer = document.getElementById('file-list-container');
     const fileList = fileListContainer.querySelector('ul');
     fileList.innerHTML = ''; // Clear previous file list
@@ -179,7 +179,7 @@ function removeFile(fileName) {
     selectedFiles = selectedFiles.filter(file => file.name !== fileName);
     const dataTransfer = new DataTransfer();
     selectedFiles.forEach(file => dataTransfer.items.add(file));
-    document.getElementById('file-upload').files = dataTransfer.files;
+    document.getElementById('upload').files = dataTransfer.files;
  
     displaySelectedFiles();
 }
