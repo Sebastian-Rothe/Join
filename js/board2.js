@@ -64,26 +64,49 @@ function createFilesList(task) {
     const otherFiles = task.files.filter(file => !file.type || !file.type.startsWith('image/'));
 
     const imageElements = images.map(file => `
-        <div class="file-box">
+        <div class="file-box" >
             <img src="${file.base64}" alt="${file.name || 'Unnamed file'}" class="file-image"/>
         </div>
     `).join("");
-
+    
     const otherFileElements = otherFiles.map(file => `
-        <li class="file-item">
-            <img src="assets/icons/doc-icon.svg" alt="${file.name || 'Unnamed file'}" class="file-icon"/>
-            <a href="${file.base64}" class="file-link">${file.name || 'Unnamed file'}</a>
-        </li>
-    `).join("");
+      <li class="file-item">
+      <img src="assets/icons/doc-icon.svg" alt="${file.name || 'Unnamed file'}" class="file-icon"/>
+      <a href="${file.base64}" class="file-link">${file.name || 'Unnamed file'}</a>
+      </li>
+      `).join("");
+      
+    // Initialize Viewer.js for the image gallery
+    setTimeout(() => {
+        const gallery = document.getElementById('gallery');
+        if (gallery) {
+            new Viewer(gallery, {
+                inline: false,
+                button: true,
+                navbar: true,
+                title: true,
+                toolbar: true,
+                tooltip: true,
+                movable: true,
+                zoomable: true,
+                rotatable: true,
+                scalable: true,
+                transition: true,
+                fullscreen: true,
+                keyboard: true,
+                url: 'src'
+            });
+        }
+    }, 0);
 
     return `
-        <div class="file-images">
-            ${imageElements}
-        </div>
-        <ul class="file-list">
-            ${otherFileElements}
-        </ul>
-    `;
+      <div class="file-images" id="gallery">
+      ${imageElements}
+      </div>
+      <ul class="file-list">
+      ${otherFileElements}
+      </ul>
+      `;
 }
 
 /**
