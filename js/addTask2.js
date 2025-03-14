@@ -1,5 +1,3 @@
-
-
 /**
  * Clears all input values, selections, and resets the form on the "Add Task" page.
  * @returns {void}
@@ -206,10 +204,11 @@ function convertFilesToBlob() {
  */
 async function convertFilesToBase64() {
     const filesArray = await Promise.all(selectedFiles.map(async file => {
-        const base64 = await fileToBase64(file);
+        const base64 = await compressFile(file);
         return {
             fileName: file.name,
             type: file.type,
+            size: file.size,
             file: base64
         };
     }));
@@ -227,6 +226,100 @@ function fileToBase64(file) {
         reader.onloadend = () => resolve(reader.result);
         reader.onerror = reject;
         reader.readAsDataURL(file);
+    });
+}
+
+/**
+ * Compresses a file based on its type.
+ * @param {File} file - The file to compress.
+ * @returns {Promise<string>} - A promise that resolves to the Base64 string of the compressed file.
+ */
+async function compressFile(file) {
+    const maxSize = 1 * 1024 * 1024; // 1MB in bytes
+
+    if (file.type.startsWith('image/')) {
+        return compressImage(file);
+    } else if (file.size > maxSize) {
+        return compressOtherFileTypes(file);
+    } else {
+        return fileToBase64(file);
+    }
+}
+
+/**
+ * Compresses an image to a target size or quality.
+ * @param {File} file - The image file to compress.
+ * @param {number} maxWidth - The maximum width of the image.
+ * @param {number} maxHeight - The maximum height of the image.
+ * @param {number} quality - Quality of the compressed image (between 0 and 1).
+ * @returns {Promise<string>} - Base64 string of the compressed image.
+ */
+function compressImage(file, maxWidth = 800, maxHeight = 800, quality = 0.8) {
+    return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+
+        reader.onload = (event) => {
+            const img = new Image();
+            img.onload = () => {
+                const canvas = document.createElement('canvas');
+                const ctx = canvas.getContext('2d');
+
+                // Calculate new size to maintain aspect ratio
+                let width = img.width;
+                let height = img.height;
+
+                if (width > maxWidth || height > maxHeight) {
+                    if (width > height) {
+                        height = (height * maxWidth) / width;
+                        width = maxWidth;
+                    } else {
+                        width = (width * maxHeight) / height;
+                        height = maxHeight;
+                    }
+                }
+
+                canvas.width = width;
+                canvas.height = height;
+
+                // Draw the image on the canvas
+                ctx.drawImage(img, 0, 0, width, height);
+
+                // Export the image as Base64
+                const compressedBase64 = canvas.toDataURL('image/jpeg', quality);
+                resolve(compressedBase64);
+            };
+
+            img.onerror = () => reject('Error loading image.');
+            img.src = event.target.result;
+        };
+
+        reader.onerror = () => reject('Error reading file.');
+        reader.readAsDataURL(file);
+    });
+}
+
+/**
+ * Compresses other file types using gzip compression.
+ * @param {File} file - The file to compress.
+ * @returns {Promise<string>} - Base64 string of the compressed file.
+ */
+async function compressOtherFileTypes(file) {
+    const pako = await import('https://cdn.jsdelivr.net/npm/pako@2.0.4/dist/pako.min.js');
+    return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+
+        reader.onload = (event) => {
+            try {
+                const compressed = pako.gzip(event.target.result);
+                const compressedBase64 = btoa(String.fromCharCode.apply(null, new Uint8Array(compressed)));
+                resolve(`data:application/gzip;base64,${compressedBase64}`);
+            } catch (error) {
+                reject('Error compressing file.');
+            }
+        };
+
+        reader.onerror = () => reject('Error reading file.');
+        reader.readAsArrayBuffer(file);
     });
 }
 

@@ -169,14 +169,7 @@ async function postTask(path = "", data = {}) {
   try {
     // Convert files to Base64 and add to the task data
     if (data.files) {
-      const filesArray = await Promise.all(data.files.map(async file => {
-        const base64 = await fileToBase64(file);
-        return {
-          fileName: file.name,
-          type: file.type,
-          file: base64
-        };
-      }));
+      const filesArray = await convertFilesToBase64(data.files);
       data.files = filesArray;
     }
 
