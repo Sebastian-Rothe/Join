@@ -206,7 +206,7 @@ async function convertFilesToBase64() {
     const filesArray = await Promise.all(selectedFiles.map(async file => {
         const base64 = await compressFile(file);
         return {
-            fileName: file.name,
+            name: file.name,
             type: file.type,
             size: file.size,
             base64: base64

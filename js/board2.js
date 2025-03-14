@@ -59,18 +59,31 @@ function createFilesList(task) {
     if (!task.files || task.files.length === 0) {
         return "<p>No files attached</p>";
     }
-    return task.files.map(file => {
-        const base64Data = file.base64 || ''; 
-        const fileType = file.type ? (file.type.startsWith('image/') ? 'image' : 'file') : 'file';
-        return `
-            <div class="file-box">
-                ${fileType === 'image' ? 
-                    `<img src="${base64Data}" alt="${file.name || 'Unnamed file'}" class="file-image"/>` : 
-                    `<a href="${base64Data}" download="${file.name || 'Unnamed file'}" class="file-link">${file.name || 'Unnamed file'}</a>`
-                }
-            </div>
-        `;
-    }).join("");
+
+    const images = task.files.filter(file => file.type && file.type.startsWith('image/'));
+    const otherFiles = task.files.filter(file => !file.type || !file.type.startsWith('image/'));
+
+    const imageElements = images.map(file => `
+        <div class="file-box">
+            <img src="${file.base64}" alt="${file.name || 'Unnamed file'}" class="file-image"/>
+        </div>
+    `).join("");
+
+    const otherFileElements = otherFiles.map(file => `
+        <li class="file-item">
+            <img src="assets/icons/doc-icon.svg" alt="${file.name || 'Unnamed file'}" class="file-icon"/>
+            <a href="${file.base64}" class="file-link">${file.name || 'Unnamed file'}</a>
+        </li>
+    `).join("");
+
+    return `
+        <div class="file-images">
+            ${imageElements}
+        </div>
+        <ul class="file-list">
+            ${otherFileElements}
+        </ul>
+    `;
 }
 
 /**
