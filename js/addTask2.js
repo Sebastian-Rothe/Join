@@ -141,6 +141,7 @@ function formvalidation() {
  */
 function displaySelectedFiles() {
     const fileInput = document.getElementById('upload');
+    fileInput.setAttribute('accept', 'application/pdf'); // Accept only PDF files
     const fileListContainer = document.getElementById('file-list-container');
     const fileList = fileListContainer.querySelector('ul');
     fileList.innerHTML = ''; // Clear previous file list

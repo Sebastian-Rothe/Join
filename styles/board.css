@@ -874,8 +874,6 @@ h3 {
   margin: 10px 0;
 }
 
-/* ...existing code... */
-
 .file-box {
   display: inline-block;
   margin: 10px;
@@ -891,10 +889,11 @@ h3 {
   cursor: pointer;
 }
 
-.file-image:hover{
+.file-image:hover {
   filter: brightness(1.2);
   box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2);
 }
+
 .file-list {
   list-style-type: none;
   padding: 0;
@@ -907,6 +906,7 @@ h3 {
   margin: 5px 0;
   cursor: pointer;
 }
+
 .file-icon {
   width: 20px;
   height: 20px;
@@ -922,4 +922,43 @@ h3 {
   text-decoration: underline;
 }
 
-/* ...existing code... */
+
+.pdf-popup {
+  display: none;
+  position: fixed;
+  z-index: 4000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.8); 
+}
+
+.pdf-content {
+  background-color: #fefefe;
+  margin: 5% auto;
+  /* padding: 20px; */
+  border: 1px solid #888;
+  width: 90%;
+  height: 80%;
+  border-radius: 10px; 
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
+}
+
+.close-pdf {
+  position: fixed;
+  top: 16px;
+  right: 24px;
+  color: #aaa;
+  float: right;
+  font-size: 48px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.close-pdf:hover,
+.close-pdf:focus {
+  color: white;
+  text-decoration: none;
+}

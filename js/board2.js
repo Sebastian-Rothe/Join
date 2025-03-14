@@ -54,28 +54,26 @@ function getPopupHTML(task) {
  * @returns {string} - HTML string for the files list.
  */
 function createFilesList(task) {
-  console.log(task.files);
-  
     if (!task.files || task.files.length === 0) {
         return "<p>No files attached</p>";
     }
 
     const images = task.files.filter(file => file.type && file.type.startsWith('image/'));
-    const otherFiles = task.files.filter(file => !file.type || !file.type.startsWith('image/'));
+    const pdfFiles = task.files.filter(file => file.type === 'application/pdf');
 
     const imageElements = images.map(file => `
-        <div class="file-box" >
+        <div class="file-box">
             <img src="${file.base64}" alt="${file.name || 'Unnamed file'}" class="file-image"/>
         </div>
     `).join("");
-    
-    const otherFileElements = otherFiles.map(file => `
-      <li class="file-item">
-      <img src="assets/icons/doc-icon.svg" alt="${file.name || 'Unnamed file'}" class="file-icon"/>
-      <a href="${file.base64}" class="file-link">${file.name || 'Unnamed file'}</a>
-      </li>
-      `).join("");
-      
+
+    const pdfFileElements = pdfFiles.map(file => `
+        <li class="file-item" onclick="openPdfModal('${file.base64}')">
+            <img src="assets/icons/doc-icon.svg" alt="${file.name || 'Unnamed file'}" class="file-icon"/>
+            <a href="#" class="file-link">${file.name || 'Unnamed file'}</a>
+        </li>
+    `).join("");
+
     // Initialize Viewer.js for the image gallery
     setTimeout(() => {
         const gallery = document.getElementById('gallery');
@@ -100,13 +98,36 @@ function createFilesList(task) {
     }, 0);
 
     return `
-      <div class="file-images" id="gallery">
-      ${imageElements}
-      </div>
-      <ul class="file-list">
-      ${otherFileElements}
-      </ul>
-      `;
+        <div class="file-images" id="gallery">
+            ${imageElements}
+        </div>
+        <ul class="file-list">
+            ${pdfFileElements}
+        </ul>
+    `;
+}
+
+/**
+ * Opens the PDF in a modal.
+ * @param {string} pdfSrc - The source URL of the PDF.
+ */
+function openPdfModal(pdfSrc) {
+    const modal = document.getElementById('pdfModal');
+    const pdfViewer = document.getElementById('pdfViewer');
+    if (pdfViewer) {
+        pdfViewer.src = pdfSrc;
+        modal.style.display = 'block';
+    } else {
+        console.error('PDF viewer element not found');
+    }
+}
+
+/**
+ * Closes the PDF modal.
+ */
+function closePdfModal() {
+    const modal = document.getElementById('pdfModal');
+    modal.style.display = 'none';
 }
 
 /**
