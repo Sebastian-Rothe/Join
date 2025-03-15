@@ -172,6 +172,20 @@ function displaySelectedFiles() {
 }
 
 /**
+ * Displays a custom popup with the given message.
+ * @param {string} message - The message to display in the popup.
+ */
+function showFileErrorPopup(message) {
+    const popup = document.getElementById('file-error-popup');
+    const popupMessage = document.getElementById('file-error-message');
+    popupMessage.innerText = message;
+    popup.style.display = 'flex';
+    setTimeout(() => {
+        popup.style.display = 'none';
+    }, 3000);
+}
+
+/**
  * Validates the file type to ensure it is an allowed image type or PDF.
  * @param {File} file - The file to validate.
  * @returns {boolean} - Returns true if the file type is valid, otherwise false.
@@ -179,7 +193,7 @@ function displaySelectedFiles() {
 function validateFileType(file) {
     const allowedTypes = ['image/jpeg', 'image/png', 'image/jpg', 'application/pdf'];
     if (!allowedTypes.includes(file.type)) {
-        alert(`Invalid file type: ${file.name}. Only jpg, jpeg, png, and pdf files are allowed.`);
+        showFileErrorPopup(`Invalid file type: ${file.name}. Only jpg, jpeg, png, and pdf files are allowed.`);
         return false;
     }
     return true;

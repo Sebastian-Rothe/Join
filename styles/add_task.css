@@ -810,6 +810,30 @@ select.dropdownCategory.invalid {
     font-size: 18px;
 }
 
+
+/* Popup for Invalid File Type */
+.popup-error {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(131, 131, 131, 0.7);
+    z-index: 2000;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .popup-error-content {
+    background-color: #ff4d4d;
+    color: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    text-align: center;
+  }
+
 /******************************************************************* Responsive */
 @media (max-width: 1660px) {
     .left-side {

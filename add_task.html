@@ -43,7 +43,7 @@
 
                     <!-- New file upload field -->
                     <form class="file-upload-form" action="">
-                        <input class="input-style" type="file" id="upload" name="file-upload" multiple onchange="displaySelectedFiles()">
+                        <input class="input-style" type="file" id="upload" name="file-upload" multiple onchange="displaySelectedFiles()"  accept=".pdf, .jpg, .jpeg, .png">
                         <button type="button" class="file-upload-btn" onclick="document.getElementById('upload').click()">
                             <span class="file-upload-label">Upload Files</span>
                             <span class="file-upload-btn-plus"><img src="./assets/icons/addblack.svg" alt=""></span>
@@ -55,9 +55,10 @@
                            <!-- load in js -->
                         </ul>
                     </div>
-                    
-                </div>  
-            
+                         <!-- Popup for Invalid File Type -->
+                         
+                        </div>  
+                        
                 <div id="divider" class="divider"></div>
 
                 <div id="right-side" class="right-side">
@@ -81,7 +82,7 @@
                             <img src="./assets/icons/PrioLow.svg" alt="Low Icon" >
                         </button>
                     </div>
-
+                    
                     <label for="category">Category<span class="required">*</span></label>
                     <div class="dropdown-category">
                         <select id="category" name="dropdown" class="dropdownCategory">
@@ -89,30 +90,30 @@
                             <option value="TechnicalTask">Technical Task</option>
                             <option value="UserStory">User Story</option>                        
                         </select>
-                       
-                       <img src="./assets/icons/arrow_drop_down .svg" alt="Dropdown Icon" class="custom-dropdown-icon">
-                       <div class="error-validation-category toggle-display">This field is required</div>
+                        
+                        <img src="./assets/icons/arrow_drop_down .svg" alt="Dropdown Icon" class="custom-dropdown-icon">
+                        <div class="error-validation-category toggle-display">This field is required</div>
                     </div>
-
-                   
+                    
+                    
                     <form class="subtask-form" action="">
                         <input class="input-style" type="text" name="" id="sub-task-input" placeholder="Add new subtask" oninput="subTaskInput()">  <!-- oninput whenever the input value changes. -->
                         <button  type="button" class="subtask-btn">
                             <span class="subtask-btn-plus"><img src="./assets/icons/addblack.svg" alt=""></span>
-                           
+                            
                             <span class="subtask-btn-checked"><img src="./assets/icons/CheckAddTask.svg" alt="" class="toggle-display" onclick="addSubTask()"></span>
                             <div class="subtask-btn-divider toggle-display"></div>
                             <span class="subtask-btn-cancel"><img src="./assets/icons/CloseAddTask.svg" alt="" class="toggle-display" onclick="clearInput()"></span>
                         </button>
                     </form>
-
+                    
                     <div class="subtask-list-container" id="subtask-list-container">
                         <ul class="toggle-display">
-                           <!-- load in js -->
+                            <!-- load in js -->
                         </ul>
                     </div>
                 </div>
-
+                
             </div>
             <div id="footer-add-task" class="footer-add-task">
                 <div id="footer-add-task-left" class="footer-add-task-left">
@@ -133,17 +134,24 @@
             <p>Task added successfully!</p>
         </div>
     </div>    
+        <!-- Popup for Invalid File Type -->
+        <div id="file-error-popup" class="popup-error">
+            <div class="popup-error-content">
+                <p id="file-error-message">Invalid file type. Only jpg, jpeg, png, and pdf files are allowed.</p>
+            </div>
+        </div>
+    
     <script src="./js/global.js"></script>
     <script src="./js/script.js"></script>
     <script src="./js/firebase.js"></script>
     <script src="./js/addTask.js"></script> 
     <script src="./js/addTask2.js"></script> 
- 
+    
     <script>
         function loadContent(page) {
             document.getElementById('content-frame').src = page;
         }
-    </script>
+        </script>
 
 <script>
     function checkIfPopup() {
