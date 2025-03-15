@@ -141,14 +141,14 @@ function formvalidation() {
  */
 function displaySelectedFiles() {
     const fileInput = document.getElementById('upload');
-    fileInput.setAttribute('accept', 'application/pdf'); // Accept only PDF files
+    fileInput.setAttribute('accept', 'image/jpeg, image/png, image/jpg, application/pdf'); // Accept only specific image types and PDF
     const fileListContainer = document.getElementById('file-list-container');
     const fileList = fileListContainer.querySelector('ul');
     fileList.innerHTML = ''; // Clear previous file list
 
     // Add new files to the selectedFiles array
     Array.from(fileInput.files).forEach(file => {
-        if (!selectedFiles.some(f => f.name === file.name)) {
+        if (validateFileType(file) && !selectedFiles.some(f => f.name === file.name)) {
             selectedFiles.push(file);
         }
     });
@@ -172,6 +172,20 @@ function displaySelectedFiles() {
 }
 
 /**
+ * Validates the file type to ensure it is an allowed image type or PDF.
+ * @param {File} file - The file to validate.
+ * @returns {boolean} - Returns true if the file type is valid, otherwise false.
+ */
+function validateFileType(file) {
+    const allowedTypes = ['image/jpeg', 'image/png', 'image/jpg', 'application/pdf'];
+    if (!allowedTypes.includes(file.type)) {
+        alert(`Invalid file type: ${file.name}. Only jpg, jpeg, png, and pdf files are allowed.`);
+        return false;
+    }
+    return true;
+}
+
+/**
  * Removes a file from the list.
  * @param {string} fileName - The name of the file to remove.
  * @returns {void}
@@ -184,20 +198,6 @@ function removeFile(fileName) {
  
     displaySelectedFiles();
 }
-
-// /**
-//  * Converts the selected files to a Blob format.
-//  * @returns {Blob} - The Blob containing the selected files.
-//  */
-// function convertFilesToBlob() {
-//    const filesWithMetadata = selectedFiles.map(file => ({
-//        fileName: file.name,
-//        type: file.type,
-//        file: file
-//    }));
-
-//    return new Blob([JSON.stringify(filesWithMetadata)], { type: 'application/json' });
-// }
 
 /**
  * Converts the selected files to a Base64 format.
