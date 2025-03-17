@@ -1,3 +1,5 @@
+let currentTaskId; // Add this line to define currentTaskId
+
 /**
  * Opens the modal for editing a task.
  * This function closes the current popup, displays the edit task modal, 
@@ -7,6 +9,7 @@
  * @returns {void} - This function does not return a value.
  */
 function openPopupEditTask(taskId) {
+  currentTaskId = taskId; // Set currentTaskId when opening the edit task modal
   closePopup();
   showEditTaskModal();
 
@@ -119,6 +122,7 @@ function populateTaskFields(taskId) {
       fillAssignedToDropdown(task.assignedTo || []);
       fillSubtasks(task.subtasks || []);
       updateSelectedBadgesOnLoad(task.assignedTo || []);
+      displaySelectedFilesInEdit(task.files || []); // Add this line
   }
 }
 
@@ -205,10 +209,6 @@ function toggleContactSelection2(checkbox) {
 
   updateBadgeState(checkbox, contactName, selectedBadgesContainer);
 }
-
-
-
-
 
 /**
  * Updates the state of a badge based on checkbox selection.
@@ -426,11 +426,11 @@ function updateTask(taskId) {
       updateTaskPriority(task);
       updateAssignedContacts(task); 
       updateSubtasks(task);
+      updateFiles(task); // Add this line
       sendUpdatedTask(taskId, task);
   }
   updateBoard();
 }
-
 
 /**
  * Finds a task by its unique identifier.
@@ -490,7 +490,6 @@ function sendUpdatedTask(taskId, task) {
   });
 }
 
-
 /**
  * Resets the edit task popup to its initial state.
  * This function hides the modal and resets its content and styles, preparing 
@@ -503,5 +502,66 @@ function resetPopupEditTask() {
   document.getElementById('addTaskModal').style.padding = ''; 
   document.getElementById('addTaskModal').classList.remove('board-popup-content');
   document.getElementById('addTaskContent').innerHTML = '';
+}
+
+/**
+ * Displays the selected files in the edit task window.
+ * @param {Array<Object>} files - The array of file objects to display.
+ * @returns {void}
+ */
+function displaySelectedFilesInEdit(files) {
+  const fileListContainer = document.getElementById('file-list-container');
+  const fileList = fileListContainer.querySelector('ul');
+  fileList.innerHTML = ''; // Clear previous file list
+
+  files.forEach(file => {
+      const li = document.createElement('li');
+      li.classList.add('file-list-item');
+      li.innerHTML = `
+          <div class="file-list-left">
+              <span>${file.name}</span>
+          </div>
+          <div class="file-list-right">
+              <img src="assets/icons/delete.svg" alt="Delete Icon" onclick="removeFileFromEdit('${file.name}')">
+          </div>
+      `;
+      fileList.appendChild(li);
+  });
+}
+
+/**
+ * Removes a file from the list in the edit task window.
+ * @param {string} fileName - The name of the file to remove.
+ * @returns {void}
+ */
+function removeFileFromEdit(fileName) {
+  const task = tasks.find(t => t.idNumber === currentTaskId);
+  if (task) {
+      task.files = task.files.filter(file => file.name !== fileName);
+      displaySelectedFilesInEdit(task.files);
+  }
+}
+
+/**
+ * Updates the files of a task based on the current state of the file list.
+ * This function retrieves the current files from the modal and updates 
+ * the task object accordingly.
+ * @param {Object} task - The task object to be updated.
+ * @returns {void} - This function does not return a value.
+ */
+function updateFiles(task) {
+  const fileListContainer = document.getElementById('file-list-container');
+  const fileItems = fileListContainer.querySelectorAll('li');
+  const files = [];
+
+  fileItems.forEach(item => {
+      const fileName = item.querySelector('.file-list-left span').textContent;
+      const file = selectedFiles.find(f => f.name === fileName);
+      if (file) {
+          files.push(file);
+      }
+  });
+
+  task.files = files;
 }
 
