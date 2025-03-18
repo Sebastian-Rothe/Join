@@ -418,7 +418,7 @@ function updateSubtasks(task) {
  * @param {string} taskId - The unique identifier of the task to update.
  * @returns {void} - This function does not return a value.
  */
-function updateTask(taskId) {
+async function updateTask(taskId) {
   const task = findTaskById(taskId);
   
   if (task) {
@@ -426,8 +426,8 @@ function updateTask(taskId) {
       updateTaskPriority(task);
       updateAssignedContacts(task); 
       updateSubtasks(task);
-      updateFiles(task); // Add this line
-      sendUpdatedTask(taskId, task);
+      await updateFiles(task); // Ensure files are updated before sending the task
+      await sendUpdatedTask(taskId, task);
   }
   updateBoard();
 }
@@ -482,12 +482,40 @@ function updateTaskPriority(task) {
  * @returns {Promise<void>} - Returns a promise that resolves when the task 
  * is successfully updated.
  */
-function sendUpdatedTask(taskId, task) {
-  putData(`/tasks/${taskId}`, task).then(() => {
-      closePopupAddTask();
-      updateBoard();
-      resetPopupEditTask();
-  });
+async function sendUpdatedTask(taskId, task) {
+  await putData(`/tasks/${taskId}`, task); // Push the updated task to Firestore
+  closePopupAddTask();
+  updateBoard();
+  resetPopupEditTask();
+}
+
+/**
+ * Updates the files of a task based on the current state of the file list.
+ * This function retrieves the current files from the modal and updates 
+ * the task object accordingly.
+ * @param {Object} task - The task object to be updated.
+ * @returns {Promise<void>} - This function does not return a value.
+ */
+async function updateFiles(task) {
+  const fileListContainer = document.getElementById('file-list-container');
+  const fileItems = fileListContainer.querySelectorAll('li');
+  const files = [...task.files]; // Start with existing files
+
+  for (const item of fileItems) {
+      const fileName = item.querySelector('.file-list-left span').textContent;
+      const file = selectedFiles.find(f => f.name === fileName);
+      if (file) {
+          const base64File = await compressFile(file);
+          files.push({
+              name: file.name,
+              type: file.type,
+              size: file.size,
+              base64: base64File
+          });
+      }
+  }
+
+  task.files = files;
 }
 
 /**
@@ -512,7 +540,7 @@ function resetPopupEditTask() {
 function displaySelectedFilesInEdit(files) {
   const fileListContainer = document.getElementById('file-list-container');
   const fileList = fileListContainer.querySelector('ul');
-  fileList.innerHTML = ''; // Clear previous file list
+  fileList.innerHTML = '';
 
   files.forEach(file => {
       const li = document.createElement('li');
@@ -538,36 +566,10 @@ function removeFileFromEdit(fileName) {
   const task = tasks.find(t => t.idNumber === currentTaskId);
   if (task) {
       task.files = task.files.filter(file => file.name !== fileName);
+      selectedFiles = selectedFiles.filter(file => file.name !== fileName); 
       displaySelectedFilesInEdit(task.files);
   }
 }
 
-/**
- * Updates the files of a task based on the current state of the file list.
- * This function retrieves the current files from the modal and updates 
- * the task object accordingly.
- * @param {Object} task - The task object to be updated.
- * @returns {void} - This function does not return a value.
- */
-async function updateFiles(task) {
-  const fileListContainer = document.getElementById('file-list-container');
-  const fileItems = fileListContainer.querySelectorAll('li');
-  const files = [];
 
-  for (const item of fileItems) {
-      const fileName = item.querySelector('.file-list-left span').textContent;
-      const file = selectedFiles.find(f => f.name === fileName);
-      if (file) {
-          const base64File = await compressFile(file);
-          files.push({
-              name: file.name,
-              type: file.type,
-              size: file.size,
-              base64: base64File
-          });
-      }
-  }
-
-  task.files = files;
-}
 
