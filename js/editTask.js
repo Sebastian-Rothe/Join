@@ -549,18 +549,24 @@ function removeFileFromEdit(fileName) {
  * @param {Object} task - The task object to be updated.
  * @returns {void} - This function does not return a value.
  */
-function updateFiles(task) {
+async function updateFiles(task) {
   const fileListContainer = document.getElementById('file-list-container');
   const fileItems = fileListContainer.querySelectorAll('li');
   const files = [];
 
-  fileItems.forEach(item => {
+  for (const item of fileItems) {
       const fileName = item.querySelector('.file-list-left span').textContent;
       const file = selectedFiles.find(f => f.name === fileName);
       if (file) {
-          files.push(file);
+          const base64File = await compressFile(file);
+          files.push({
+              name: file.name,
+              type: file.type,
+              size: file.size,
+              base64: base64File
+          });
       }
-  });
+  }
 
   task.files = files;
 }
