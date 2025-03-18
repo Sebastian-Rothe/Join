@@ -119,10 +119,10 @@ function populateTaskFields(taskId) {
       document.getElementById('category').value = task.category || '';
 
       activatePriorityButton(task.priority);
-      fillAssignedToDropdown(task.assignedTo || []);
+      fillAssignedToDropdown(task.assignedTo || []); 
       fillSubtasks(task.subtasks || []);
       updateSelectedBadgesOnLoad(task.assignedTo || []);
-      displaySelectedFilesInEdit(task.files || []); // Add this line
+      displaySelectedFilesInEdit(task.files || []);
   }
 }
 
@@ -285,8 +285,7 @@ function updateAssignedContacts(task) {
           ...contactsDropdown.querySelectorAll('input[type="checkbox"]:checked'),
       ].map(option => option.value);
       
-      // Setze die zugewiesenen Kontakte zusammen
-      task.assignedTo = selectedOptions;
+      task.assignedTo = selectedOptions; 
   } else {
     console.error(
       "Das Dropdown-Element mit der ID 'contactsDropdown' wurde nicht gefunden."
@@ -426,7 +425,7 @@ async function updateTask(taskId) {
       updateTaskPriority(task);
       updateAssignedContacts(task); 
       updateSubtasks(task);
-      await updateFiles(task); // Ensure files are updated before sending the task
+      await updateFiles(task);
       await sendUpdatedTask(taskId, task);
   }
   updateBoard();
@@ -483,7 +482,7 @@ function updateTaskPriority(task) {
  * is successfully updated.
  */
 async function sendUpdatedTask(taskId, task) {
-  await putData(`/tasks/${taskId}`, task); // Push the updated task to Firestore
+  await putData(`/tasks/${taskId}`, task);
   closePopupAddTask();
   updateBoard();
   resetPopupEditTask();
@@ -499,7 +498,7 @@ async function sendUpdatedTask(taskId, task) {
 async function updateFiles(task) {
   const fileListContainer = document.getElementById('file-list-container');
   const fileItems = fileListContainer.querySelectorAll('li');
-  const files = [...task.files]; // Start with existing files
+  const files = [...task.files]; 
 
   for (const item of fileItems) {
       const fileName = item.querySelector('.file-list-left span').textContent;

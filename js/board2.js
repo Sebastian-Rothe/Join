@@ -74,7 +74,6 @@ function createFilesList(task) {
         </li>
     `).join("");
 
-    // Initialize Viewer.js for the image gallery
     setTimeout(() => {
         const gallery = document.getElementById('gallery');
         if (gallery) {
